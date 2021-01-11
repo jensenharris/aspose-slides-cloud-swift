@@ -36,7 +36,7 @@ class TestUtils {
     class func getTestValueInternal(functionName: String, name: String, type: String) -> Any? {
         ensureRules()
         if type == "Data" {
-            return FileManager.default.contents(atPath: "TestData/test.ppt")
+            return FileManager.default.contents(atPath: "TestData/test.pptx")
         }
         var value: Any? = "test" + name
         let v = rules!["Values"] as! NSArray
@@ -232,11 +232,11 @@ class TestUtils {
                 let file = FileManager.default.contents(atPath: "testConfig.json")
                 let json = try JSONSerialization.jsonObject(with: file!)
                 let config = json as! [String:Any]
-                if config["AppSid"] != nil {
-                    AsposeSlidesCloudAPI.appSid = config["AppSid"] as! String
+                if config["ClientId"] != nil {
+                    AsposeSlidesCloudAPI.appSid = config["ClientId"] as! String
                 }
-                if config["AppKey"] != nil {
-                    AsposeSlidesCloudAPI.appKey = config["AppKey"] as! String
+                if config["ClientSecret"] != nil {
+                    AsposeSlidesCloudAPI.appKey = config["ClientSecret"] as! String
                 }
                 if config["BaseUrl"] != nil {
                     AsposeSlidesCloudAPI.basePath = config["BaseUrl"] as! String

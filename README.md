@@ -61,8 +61,8 @@ import AsposeSlidesCloud
 
 let dispatchGroup = DispatchGroup()
 
-AsposeSlidesCloudAPI.appSid = "MyAppSid"
-AsposeSlidesCloudAPI.appKey = "MyAppKey"
+AsposeSlidesCloudAPI.appSid = "MyClientId"
+AsposeSlidesCloudAPI.appKey = "MyClientSecret"
 
 dispatchGroup.enter()
 let input = FileManager.default.contents(atPath: "MyPresentation.ppt")!

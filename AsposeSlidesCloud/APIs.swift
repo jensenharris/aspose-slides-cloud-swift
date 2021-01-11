@@ -67,7 +67,7 @@ open class RequestBuilder<T> {
     }
     
     open func authenticate(completion: @escaping(() -> Void)) {
-        if AsposeSlidesCloudAPI.authToken == nil {
+        if AsposeSlidesCloudAPI.appSid != "" && AsposeSlidesCloudAPI.authToken == nil {
             var request = URLRequest(url: URL(string: "\(AsposeSlidesCloudAPI.authBasePath)/connect/token")!)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.httpMethod = "POST"
@@ -95,7 +95,9 @@ open class RequestBuilder<T> {
     
     open func executeAuthorized(_ completion: @escaping (_ response: Response<T>?, _ error: Error?) -> Void) {
         authenticate() {
-            self.headers["Authorization"] = "Bearer " + AsposeSlidesCloudAPI.authToken!
+            if AsposeSlidesCloudAPI.authToken != nil {
+                self.headers["Authorization"] = "Bearer " + AsposeSlidesCloudAPI.authToken!
+            }
             self.headers["x-aspose-client"] = "swift sdk"
             self.headers["x-aspose-version"] = Configuration.apiVersion
             if AsposeSlidesCloudAPI.timeout > 0 {
