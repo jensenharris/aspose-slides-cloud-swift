@@ -2358,6 +2358,28 @@ public struct GetSlidesPresentationTextItemsRequest: Codable {
     }
 }
 
+public struct GetSlidesProtectionPropertiesRequest: Codable {
+
+    /** Read presentation protection properties. */
+    public var name: String
+
+    /** Read presentation protection properties. */
+    public var password: String
+
+    /** Read presentation protection properties. */
+    public var folder: String
+
+    /** Read presentation protection properties. */
+    public var storage: String
+
+    public init(name: String, password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
+        self.password = password
+        self.folder = folder
+        self.storage = storage
+    }
+}
+
 public struct GetSlidesSlideRequest: Codable {
 
     /** Read presentation slide info. */
@@ -2456,6 +2478,28 @@ public struct GetSlidesSlideImagesRequest: Codable {
     public init(name: String, slideIndex: Int, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
+        self.password = password
+        self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct GetSlidesSlidePropertiesRequest: Codable {
+
+    /** Read presentation slide properties. */
+    public var name: String
+
+    /** Read presentation slide properties. */
+    public var password: String
+
+    /** Read presentation slide properties. */
+    public var folder: String
+
+    /** Read presentation slide properties. */
+    public var storage: String
+
+    public init(name: String, password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
         self.password = password
         self.folder = folder
         self.storage = storage
@@ -3922,6 +3966,32 @@ public struct PostSlidesDocumentFromHtmlRequest: Codable {
     }
 }
 
+public struct PostSlidesDocumentFromPdfRequest: Codable {
+
+    /** Create presentation document from pdf or append pdf to an existing presentation. */
+    public var name: String
+
+    /** Create presentation document from pdf or append pdf to an existing presentation. */
+    public var pdf: Data?
+
+    /** Create presentation document from pdf or append pdf to an existing presentation. */
+    public var password: String
+
+    /** Create presentation document from pdf or append pdf to an existing presentation. */
+    public var storage: String
+
+    /** Create presentation document from pdf or append pdf to an existing presentation. */
+    public var folder: String
+
+    public init(name: String, pdf: Data? = nil, password: String = "", storage: String = "", folder: String = "") {
+        self.name = name
+        self.pdf = pdf
+        self.password = password
+        self.storage = storage
+        self.folder = folder
+    }
+}
+
 public struct PostSlidesDocumentFromSourceRequest: Codable {
 
     /** Create a presentation from an existing source. */
@@ -5192,6 +5262,32 @@ public struct PutSlidesHeaderFooterRequest: Codable {
     }
 }
 
+public struct PutSlidesProtectionPropertiesRequest: Codable {
+
+    /** Update presentation protection properties. */
+    public var name: String
+
+    /** Update presentation protection properties. */
+    public var dto: ProtectionProperties
+
+    /** Update presentation protection properties. */
+    public var password: String
+
+    /** Update presentation protection properties. */
+    public var folder: String
+
+    /** Update presentation protection properties. */
+    public var storage: String
+
+    public init(name: String, dto: ProtectionProperties, password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
+        self.dto = dto
+        self.password = password
+        self.folder = folder
+        self.storage = storage
+    }
+}
+
 public struct PutSlidesSaveAsRequest: Codable {
 
     /** Save a presentation to a specified format. */
@@ -5346,6 +5442,32 @@ public struct PutSlidesSlideBackgroundColorRequest: Codable {
         self.color = color
         self.folder = folder
         self.password = password
+        self.storage = storage
+    }
+}
+
+public struct PutSlidesSlidePropertiesRequest: Codable {
+
+    /** Update presentation slide properties. */
+    public var name: String
+
+    /** Update presentation slide properties. */
+    public var dto: SlideProperties
+
+    /** Update presentation slide properties. */
+    public var password: String
+
+    /** Update presentation slide properties. */
+    public var folder: String
+
+    /** Update presentation slide properties. */
+    public var storage: String
+
+    public init(name: String, dto: SlideProperties, password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
+        self.dto = dto
+        self.password = password
+        self.folder = folder
         self.storage = storage
     }
 }

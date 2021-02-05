@@ -36,7 +36,11 @@ class TestUtils {
     class func getTestValueInternal(functionName: String, name: String, type: String) -> Any? {
         ensureRules()
         if type == "Data" {
-            return FileManager.default.contents(atPath: "TestData/test.pptx")
+            var fileName = "test.pptx"
+            if functionName.caseInsensitiveCompare("postSlidesDocumentFromPdf") == .orderedSame {
+                fileName = "test.pdf"
+            }
+            return FileManager.default.contents(atPath: "TestData/" + fileName)
         }
         var value: Any? = "test" + name
         let v = rules!["Values"] as! NSArray
