@@ -63,7 +63,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "srcPath", request.srcPath)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "destPath": request.destPath, 
@@ -109,7 +108,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "srcPath", request.srcPath)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "destPath": request.destPath, 
@@ -154,7 +152,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName
@@ -197,7 +194,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "categoryIndex", request.categoryIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -246,7 +242,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "pointIndex", request.pointIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -294,7 +289,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "seriesIndex", request.seriesIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -342,7 +336,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName, 
@@ -386,7 +379,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName, 
@@ -428,7 +420,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -476,7 +467,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -523,7 +513,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "paragraphs": request.paragraphs, 
@@ -573,7 +562,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -621,7 +609,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "portions": request.portions, 
@@ -669,7 +656,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -715,7 +701,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "shapes": request.shapes, 
@@ -764,7 +749,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -811,7 +795,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "paragraphs": request.paragraphs, 
@@ -861,7 +844,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -909,7 +891,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "portions": request.portions, 
@@ -956,7 +937,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "sectionIndex", request.sectionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "withSlides": request.withSlides, 
@@ -1002,7 +982,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "sections": request.sections, 
@@ -1050,7 +1029,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1097,7 +1075,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "effectIndex", request.effectIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1144,7 +1121,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "sequenceIndex", request.sequenceIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1192,7 +1168,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "effectIndex", request.effectIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1238,7 +1213,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1284,7 +1258,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1330,7 +1303,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1377,7 +1349,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1423,7 +1394,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "shapes": request.shapes, 
@@ -1472,7 +1442,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1519,7 +1488,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "shapes": request.shapes, 
@@ -1565,7 +1533,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "slides": request.slides, 
@@ -1611,7 +1578,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1657,7 +1623,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "propertyName", request.propertyName)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1703,7 +1668,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1752,7 +1716,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1800,7 +1763,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "paragraphs": request.paragraphs, 
@@ -1851,7 +1813,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -1900,7 +1861,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "portions": request.portions, 
@@ -1946,7 +1906,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName, 
@@ -1989,7 +1948,6 @@ open class SlidesAPI {
         let path = "/slides/storage/disc"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName
@@ -2031,7 +1989,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName
@@ -2085,7 +2042,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName
@@ -2126,7 +2082,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2171,7 +2126,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2217,7 +2171,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2262,7 +2215,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2308,7 +2260,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2356,7 +2307,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2402,7 +2352,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -2449,7 +2398,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2497,7 +2445,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2544,7 +2491,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2593,7 +2539,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2641,7 +2586,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2687,7 +2631,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2745,7 +2688,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "width": request.width?.encodeToJSON(), 
@@ -2797,7 +2739,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2845,7 +2786,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2890,7 +2830,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -2936,7 +2875,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "shapeIndex": request.shapeIndex?.encodeToJSON(), 
@@ -2983,7 +2921,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3030,7 +2967,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3078,7 +3014,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3125,7 +3060,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3171,7 +3105,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3219,7 +3152,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3268,7 +3200,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3316,7 +3247,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3363,7 +3293,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3408,7 +3337,7 @@ open class SlidesAPI {
         let path = "/slides/info"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
+
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<ApiInfo>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
@@ -3445,7 +3374,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -3490,7 +3418,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3536,7 +3463,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "propertyName", request.propertyName)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3582,7 +3508,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "index", request.index)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3640,7 +3565,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3685,7 +3609,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3732,7 +3655,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "placeholderIndex", request.placeholderIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3778,7 +3700,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3823,7 +3744,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "withEmpty": request.withEmpty, 
@@ -3869,7 +3789,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3915,7 +3834,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -3961,7 +3879,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4007,7 +3924,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4053,7 +3969,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4098,7 +4013,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4144,7 +4058,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "withEmpty": request.withEmpty, 
@@ -4190,7 +4103,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4236,7 +4148,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4282,7 +4193,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4328,7 +4238,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4374,7 +4283,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4419,7 +4327,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4469,7 +4376,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4518,7 +4424,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4566,7 +4471,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "srcPath", request.srcPath)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "destPath": request.destPath, 
@@ -4612,7 +4516,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "srcPath", request.srcPath)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "destPath": request.destPath, 
@@ -4657,7 +4560,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName, 
@@ -4700,7 +4602,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4749,7 +4650,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4796,7 +4696,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4845,7 +4744,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "path", request.path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4895,7 +4793,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4945,7 +4842,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -4992,7 +4888,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5039,7 +4934,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.category)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5087,7 +4981,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "seriesIndex", request.seriesIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dataPoint)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5134,7 +5027,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.series)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5179,7 +5071,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "cloneFrom": request.cloneFrom, 
@@ -5228,7 +5119,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "cloneFrom": request.cloneFrom, 
@@ -5277,7 +5167,12 @@ open class SlidesAPI {
         var path = "/slides/slides/{slideIndex}/notesSlide"
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.document)
+        let formParams: [String:Any?] = [
+            "document": request.document
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
 
         let url = URLComponents(string: URLString)
         let nillableHeaders: [String: Any?] = [
@@ -5287,7 +5182,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<NotesSlide>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -5320,7 +5215,12 @@ open class SlidesAPI {
         var path = "/slides/slides/{slideIndex}/notesSlide/exist"
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.document)
+        let formParams: [String:Any?] = [
+            "document": request.document
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
 
         let url = URLComponents(string: URLString)
         let nillableHeaders: [String: Any?] = [
@@ -5330,7 +5230,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<EntityExists>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -5373,8 +5273,12 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.document)
+        let formParams: [String:Any?] = [
+            "document": request.document
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "width": request.width?.encodeToJSON(), 
@@ -5388,7 +5292,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -5422,7 +5326,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5471,7 +5374,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5518,7 +5420,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5589,7 +5490,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5638,7 +5538,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.request)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -5683,7 +5582,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "sectionName": request.sectionName, 
@@ -5731,7 +5629,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "sectionIndex", request.sectionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "newPosition": request.newPosition.encodeToJSON(), 
@@ -5801,7 +5698,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5851,7 +5747,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.effect)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5897,7 +5792,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.sequence)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -5944,7 +5838,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "sequenceIndex", request.sequenceIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.effect)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -6018,7 +5911,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "width": request.width?.encodeToJSON(), 
@@ -6066,7 +5958,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "position": request.position?.encodeToJSON(), 
@@ -6140,8 +6031,12 @@ open class SlidesAPI {
         var path = "/slides/convert/{format}"
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.document)
+        let formParams: [String:Any?] = [
+            "document": request.document
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "fontsFolder": request.fontsFolder
@@ -6153,7 +6048,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -6185,7 +6080,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "slideToCopy": request.slideToCopy.encodeToJSON(), 
@@ -6234,8 +6128,12 @@ open class SlidesAPI {
         var path = "/slides/{name}"
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.data)
+        let formParams: [String:Any?] = [
+            "data": request.data
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -6249,7 +6147,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<Document>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -6281,7 +6179,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.html)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -6325,8 +6222,12 @@ open class SlidesAPI {
         var path = "/slides/{name}/fromPdf"
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.pdf)
+        let formParams: [String:Any?] = [
+            "pdf": request.pdf
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -6339,7 +6240,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<Document>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -6371,7 +6272,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "sourcePath": request.sourcePath, 
@@ -6419,7 +6319,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.data)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "templatePath": request.templatePath, 
@@ -6467,8 +6366,8 @@ open class SlidesAPI {
         let path = "/slides/pipeline"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.pipeline)
+        let files = request.files ?? []
 
-        let files = request.files
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
@@ -6505,7 +6404,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "oldValue": request.oldValue, 
@@ -6554,7 +6452,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "newPosition": request.newPosition.encodeToJSON(), 
@@ -6600,7 +6497,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "oldPositions": request.oldPositions, 
@@ -6676,7 +6572,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -6722,7 +6617,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.properties)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -6768,7 +6662,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "oldValue": request.oldValue, 
@@ -6843,7 +6736,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "format": request.format, 
@@ -6920,7 +6812,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -6972,7 +6863,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "categoryIndex", request.categoryIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.category)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7021,7 +6911,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "pointIndex", request.pointIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dataPoint)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7069,7 +6958,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "seriesIndex", request.seriesIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.series)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7115,7 +7003,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.slideDto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7161,7 +7048,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -7233,7 +7119,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": request.outPath, 
@@ -7283,7 +7168,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.request)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -7329,7 +7213,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "sectionIndex", request.sectionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "sectionName": request.sectionName, 
@@ -7375,7 +7258,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.sections)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7424,7 +7306,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7472,7 +7353,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7522,7 +7402,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7571,7 +7450,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7643,7 +7521,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": request.outPath, 
@@ -7694,7 +7571,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.animation)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7741,7 +7617,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "effectIndex", request.effectIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.effect)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7789,7 +7664,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "effectIndex", request.effectIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.effect)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7835,7 +7709,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -7912,7 +7785,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": request.outPath, 
@@ -7963,7 +7835,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8011,7 +7882,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8086,8 +7956,12 @@ open class SlidesAPI {
         var path = "/slides/convert/{format}"
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.document)
+        let formParams: [String:Any?] = [
+            "document": request.document
+        ]
 
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": request.outPath, 
@@ -8100,7 +7974,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<Void>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getNonDecodableBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
@@ -8132,7 +8006,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.html)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -8177,7 +8050,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -8222,7 +8094,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8299,7 +8170,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": request.outPath, 
@@ -8347,7 +8217,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "propertyName", request.propertyName)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.property)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8393,7 +8262,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.slideDto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8439,7 +8307,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.background)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8485,7 +8352,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "color": request.color, 
@@ -8531,7 +8397,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8608,7 +8473,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": request.storage, 
@@ -8657,7 +8521,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "name", request.name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8730,7 +8593,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "format", request.format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.options)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": request.outPath, 
@@ -8781,7 +8643,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "slideIndex", request.slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8828,7 +8689,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "shapeIndex", request.shapeIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8876,7 +8736,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "paragraphIndex", request.paragraphIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8925,7 +8784,6 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "portionIndex", request.portionIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: request.dto)
-
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": request.folder, 
@@ -8972,7 +8830,7 @@ open class SlidesAPI {
         path = APIHelper.replacePathParameter(path, "storageName", request.storageName)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + path
         let parameters: [String:Any]? = nil
-        
+
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<StorageExist>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
@@ -9033,7 +8891,6 @@ open class SlidesAPI {
 
         let nonNullParameters = APIHelper.rejectNil(formParams)
         let parameters = APIHelper.convertBoolToString(nonNullParameters)
-        
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storageName": request.storageName

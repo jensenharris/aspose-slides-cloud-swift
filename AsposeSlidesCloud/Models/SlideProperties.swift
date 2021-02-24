@@ -62,7 +62,7 @@ public class SlideProperties: ResourceBase {
     }
     /** First slide number. */
     public var firstSlideNumber: Int?
-    /** Last used view mode. */
+    /** Slide orientation. */
     public var orientation: Orientation?
     /** Scale type. */
     public var scaleType: ScaleType?

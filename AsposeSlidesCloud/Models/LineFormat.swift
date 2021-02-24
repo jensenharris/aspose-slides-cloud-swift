@@ -72,6 +72,13 @@ public class LineFormat: Codable {
         case thickBetweenThin = "ThickBetweenThin"
         case notDefined = "NotDefined"
     }
+    public enum SketchType: String, Codable { 
+        case _none = "None"
+        case curved = "Curved"
+        case freehand = "Freehand"
+        case scribble = "Scribble"
+        case notDefined = "NotDefined"
+    }
     /** Alignment. */
     public var alignment: Alignment?
     /** Cap style. */
@@ -82,6 +89,8 @@ public class LineFormat: Codable {
     public var joinStyle: JoinStyle?
     /** Style. */
     public var style: Style?
+    /** Sketch type. */
+    public var sketchType: SketchType?
     /** Begin arrowhead. */
     public var beginArrowHead: ArrowHeadProperties?
     /** End arrowhead. */
@@ -101,6 +110,7 @@ public class LineFormat: Codable {
         case dashStyle
         case joinStyle
         case style
+        case sketchType
         case beginArrowHead
         case endArrowHead
         case customDashPattern
@@ -109,12 +119,13 @@ public class LineFormat: Codable {
         case width
     }
 
-    public init(alignment: Alignment? = nil, capStyle: CapStyle? = nil, dashStyle: DashStyle? = nil, joinStyle: JoinStyle? = nil, style: Style? = nil, beginArrowHead: ArrowHeadProperties? = nil, endArrowHead: ArrowHeadProperties? = nil, customDashPattern: CustomDashPattern? = nil, fillFormat: FillFormat? = nil, miterLimit: Double? = nil, width: Double? = nil) {
+    public init(alignment: Alignment? = nil, capStyle: CapStyle? = nil, dashStyle: DashStyle? = nil, joinStyle: JoinStyle? = nil, style: Style? = nil, sketchType: SketchType? = nil, beginArrowHead: ArrowHeadProperties? = nil, endArrowHead: ArrowHeadProperties? = nil, customDashPattern: CustomDashPattern? = nil, fillFormat: FillFormat? = nil, miterLimit: Double? = nil, width: Double? = nil) {
         self.alignment = alignment
         self.capStyle = capStyle
         self.dashStyle = dashStyle
         self.joinStyle = joinStyle
         self.style = style
+        self.sketchType = sketchType
         self.beginArrowHead = beginArrowHead
         self.endArrowHead = endArrowHead
         self.customDashPattern = customDashPattern

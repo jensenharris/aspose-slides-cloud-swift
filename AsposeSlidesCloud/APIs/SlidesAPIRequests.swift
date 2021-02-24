@@ -4074,9 +4074,9 @@ public struct PostSlidesPipelineRequest: Codable {
     public var pipeline: Pipeline
 
     /** Performs slides pipeline. */
-    public var files: [Data]
+    public var files: [Data]?
 
-    public init(pipeline: Pipeline, files: [Data] = [Data]()) {
+    public init(pipeline: Pipeline, files: [Data]? = nil) {
         self.pipeline = pipeline
         self.files = files
     }

@@ -114,6 +114,7 @@ public class Chart: ShapeBase {
         case boxAndWhisker = "BoxAndWhisker"
         case waterfall = "Waterfall"
         case funnel = "Funnel"
+        case map = "Map"
     }
     /** Gets or sets the type of the chart. */
     public var chartType: ChartType?

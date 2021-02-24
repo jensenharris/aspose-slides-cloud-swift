@@ -114,6 +114,7 @@ public class Series: Codable {
         case boxAndWhisker = "BoxAndWhisker"
         case waterfall = "Waterfall"
         case funnel = "Funnel"
+        case map = "Map"
     }
     public enum DataPointType: String, Codable { 
         case oneValue = "OneValue"
