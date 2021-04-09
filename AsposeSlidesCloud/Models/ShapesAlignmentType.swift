@@ -25,12 +25,19 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "21.3.0"
+
+/**  */
+public enum ShapesAlignmentType: String, Codable {
+    case alignLeft = "AlignLeft"
+    case alignRight = "AlignRight"
+    case alignCenter = "AlignCenter"
+    case alignTop = "AlignTop"
+    case alignMiddle = "AlignMiddle"
+    case alignBottom = "AlignBottom"
+    case distributeHorizontally = "DistributeHorizontally"
+    case distributeVertically = "DistributeVertically"
+
 }

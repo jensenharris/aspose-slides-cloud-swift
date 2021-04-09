@@ -97,7 +97,7 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
     fileprivate func putMultipart(_ data: inout Data, _ boundary: String, _ index: Int, _ part: Data) {
         data.append(Data("\r\n--\(boundary)\r\n".utf8))
         if index > 0 {
-            data.append(Data("Content-Disposition: form-data; name=\"file\(index)\";filename=\"null\"\r\n".utf8))
+            data.append(Data("Content-Disposition: form-data; name=\"file\(index)\";filename=\"file\(index)\"\r\n".utf8))
             data.append(Data("Content-Type: application/octet-stream\r\n".utf8))
         } else {
           data.append(Data("Content-Disposition: form-data; name=\"data\"\r\n".utf8))

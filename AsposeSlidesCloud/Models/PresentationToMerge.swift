@@ -32,23 +32,31 @@ import Foundation
 /** Represents presentation to merge */
 public class PresentationToMerge: Codable {
 
+    public enum Source: String, Codable { 
+        case storage = "Storage"
+        case request = "Request"
+    }
     /** Get or sets the presentation path */
     public var path: String?
     /** Get or sets the presentation password */
     public var password: String?
     /** Get or sets the indexes of slides to merge */
     public var slides: [Int]?
+    /** Merge (request or storage).  */
+    public var source: Source?
 
     private enum CodingKeys: String, CodingKey {
         case path
         case password
         case slides
+        case source
     }
 
-    public init(path: String? = nil, password: String? = nil, slides: [Int]? = nil) {
+    public init(path: String? = nil, password: String? = nil, slides: [Int]? = nil, source: Source? = nil) {
         self.path = path
         self.password = password
         self.slides = slides
+        self.source = source
     }
 
 

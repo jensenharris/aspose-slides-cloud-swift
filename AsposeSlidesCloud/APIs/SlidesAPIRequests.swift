@@ -1468,17 +1468,17 @@ public struct GetNotesSlideHeaderFooterRequest: Codable {
     public var password: String
 
     /** Get header/footer info for the notes slide. */
-    public var storage: String
-
-    /** Get header/footer info for the notes slide. */
     public var folder: String
 
-    public init(name: String, slideIndex: Int, password: String = "", storage: String = "", folder: String = "") {
+    /** Get header/footer info for the notes slide. */
+    public var storage: String
+
+    public init(name: String, slideIndex: Int, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -2137,16 +2137,16 @@ public struct GetSlidesDocumentRequest: Codable {
     public var password: String
 
     /** Read presentation info. */
-    public var storage: String
-
-    /** Read presentation info. */
     public var folder: String
 
-    public init(name: String, password: String = "", storage: String = "", folder: String = "") {
+    /** Read presentation info. */
+    public var storage: String
+
+    public init(name: String, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -2845,6 +2845,9 @@ public struct PostAddNewParagraphRequest: Codable {
     public var dto: Paragraph
 
     /** Creates new paragraph. */
+    public var position: Int?
+
+    /** Creates new paragraph. */
     public var password: String
 
     /** Creates new paragraph. */
@@ -2853,18 +2856,15 @@ public struct PostAddNewParagraphRequest: Codable {
     /** Creates new paragraph. */
     public var storage: String
 
-    /** Creates new paragraph. */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, shapeIndex: Int, dto: Paragraph, password: String = "", folder: String = "", storage: String = "", position: Int? = nil) {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, dto: Paragraph, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.dto = dto
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.position = position
     }
 }
 
@@ -2886,6 +2886,9 @@ public struct PostAddNewPortionRequest: Codable {
     public var dto: Portion
 
     /** Creates new portion. */
+    public var position: Int?
+
+    /** Creates new portion. */
     public var password: String
 
     /** Creates new portion. */
@@ -2894,19 +2897,16 @@ public struct PostAddNewPortionRequest: Codable {
     /** Creates new portion. */
     public var storage: String
 
-    /** Creates new portion. */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, shapeIndex: Int, paragraphIndex: Int, dto: Portion, password: String = "", folder: String = "", storage: String = "", position: Int? = nil) {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, paragraphIndex: Int, dto: Portion, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.paragraphIndex = paragraphIndex
         self.dto = dto
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.position = position
     }
 }
 
@@ -2922,6 +2922,12 @@ public struct PostAddNewShapeRequest: Codable {
     public var dto: ShapeBase?
 
     /** Create new shape. */
+    public var shapeToClone: Int?
+
+    /** Create new shape. */
+    public var position: Int?
+
+    /** Create new shape. */
     public var password: String
 
     /** Create new shape. */
@@ -2930,21 +2936,15 @@ public struct PostAddNewShapeRequest: Codable {
     /** Create new shape. */
     public var storage: String
 
-    /** Create new shape. */
-    public var shapeToClone: Int?
-
-    /** Create new shape. */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, dto: ShapeBase? = nil, password: String = "", folder: String = "", storage: String = "", shapeToClone: Int? = nil, position: Int? = nil) {
+    public init(name: String, slideIndex: Int, dto: ShapeBase? = nil, shapeToClone: Int? = nil, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.dto = dto
+        self.shapeToClone = shapeToClone
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.shapeToClone = shapeToClone
-        self.position = position
     }
 }
 
@@ -2963,6 +2963,12 @@ public struct PostAddNewSubshapeRequest: Codable {
     public var dto: ShapeBase?
 
     /** Create new shape (for smart art and group shapes). */
+    public var shapeToClone: Int?
+
+    /** Create new shape (for smart art and group shapes). */
+    public var position: Int?
+
+    /** Create new shape (for smart art and group shapes). */
     public var password: String
 
     /** Create new shape (for smart art and group shapes). */
@@ -2971,22 +2977,16 @@ public struct PostAddNewSubshapeRequest: Codable {
     /** Create new shape (for smart art and group shapes). */
     public var storage: String
 
-    /** Create new shape (for smart art and group shapes). */
-    public var shapeToClone: Int?
-
-    /** Create new shape (for smart art and group shapes). */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, path: String, dto: ShapeBase? = nil, password: String = "", folder: String = "", storage: String = "", shapeToClone: Int? = nil, position: Int? = nil) {
+    public init(name: String, slideIndex: Int, path: String, dto: ShapeBase? = nil, shapeToClone: Int? = nil, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.path = path
         self.dto = dto
+        self.shapeToClone = shapeToClone
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.shapeToClone = shapeToClone
-        self.position = position
     }
 }
 
@@ -3008,6 +3008,9 @@ public struct PostAddNewSubshapeParagraphRequest: Codable {
     public var dto: Paragraph
 
     /** Creates new paragraph (for smart art and group shapes). */
+    public var position: Int?
+
+    /** Creates new paragraph (for smart art and group shapes). */
     public var password: String
 
     /** Creates new paragraph (for smart art and group shapes). */
@@ -3016,19 +3019,16 @@ public struct PostAddNewSubshapeParagraphRequest: Codable {
     /** Creates new paragraph (for smart art and group shapes). */
     public var storage: String
 
-    /** Creates new paragraph (for smart art and group shapes). */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, dto: Paragraph, password: String = "", folder: String = "", storage: String = "", position: Int? = nil) {
+    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, dto: Paragraph, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.path = path
         self.shapeIndex = shapeIndex
         self.dto = dto
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.position = position
     }
 }
 
@@ -3053,6 +3053,9 @@ public struct PostAddNewSubshapePortionRequest: Codable {
     public var dto: Portion
 
     /** Creates new portion (for smart art and group shapes). */
+    public var position: Int?
+
+    /** Creates new portion (for smart art and group shapes). */
     public var password: String
 
     /** Creates new portion (for smart art and group shapes). */
@@ -3061,20 +3064,17 @@ public struct PostAddNewSubshapePortionRequest: Codable {
     /** Creates new portion (for smart art and group shapes). */
     public var storage: String
 
-    /** Creates new portion (for smart art and group shapes). */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, paragraphIndex: Int, dto: Portion, password: String = "", folder: String = "", storage: String = "", position: Int? = nil) {
+    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, paragraphIndex: Int, dto: Portion, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.path = path
         self.shapeIndex = shapeIndex
         self.paragraphIndex = paragraphIndex
         self.dto = dto
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.position = position
     }
 }
 
@@ -3102,6 +3102,44 @@ public struct PostAddNotesSlideRequest: Codable {
         self.name = name
         self.slideIndex = slideIndex
         self.dto = dto
+        self.password = password
+        self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PostAlignShapesRequest: Codable {
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var name: String
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var slideIndex: Int
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var alignmentType: String
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var alignToSlide: Bool?
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var shapes: [Int]
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var password: String
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var folder: String
+
+    /** Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other. */
+    public var storage: String
+
+    public init(name: String, slideIndex: Int, alignmentType: String, alignToSlide: Bool? = nil, shapes: [Int] = [Int](), password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
+        self.slideIndex = slideIndex
+        self.alignmentType = alignmentType
+        self.alignToSlide = alignToSlide
+        self.shapes = shapes
         self.password = password
         self.folder = folder
         self.storage = storage
@@ -3294,6 +3332,196 @@ public struct PostCopyMasterSlideFromSourcePresentationRequest: Codable {
     }
 }
 
+public struct PostExportImageWithDefaultFormatRequest: Codable {
+
+    /** Get image binary data. */
+    public var document: Data
+
+    /** Get image binary data. */
+    public var index: Int
+
+    /** Get image binary data. */
+    public var password: String
+
+    public init(document: Data, index: Int, password: String = "") {
+        self.document = document
+        self.index = index
+        self.password = password
+    }
+}
+
+public struct PostExportImageWithFormatRequest: Codable {
+
+    /** Get image in specified format. */
+    public var document: Data
+
+    /** Get image in specified format. */
+    public var index: Int
+
+    /** Get image in specified format. */
+    public var format: String
+
+    /** Get image in specified format. */
+    public var password: String
+
+    public init(document: Data, index: Int, format: String, password: String = "") {
+        self.document = document
+        self.index = index
+        self.format = format
+        self.password = password
+    }
+}
+
+public struct PostExportImagesFromRequestWithFormatRequest: Codable {
+
+    /** Get all presentation images in specified format.  */
+    public var document: Data
+
+    /** Get all presentation images in specified format.  */
+    public var format: String
+
+    /** Get all presentation images in specified format.  */
+    public var password: String
+
+    public init(document: Data, format: String, password: String = "") {
+        self.document = document
+        self.format = format
+        self.password = password
+    }
+}
+
+public struct PostExportImagesWithDefaultFormatRequest: Codable {
+
+    /** Get all presentation images. */
+    public var name: String
+
+    /** Get all presentation images. */
+    public var password: String
+
+    /** Get all presentation images. */
+    public var folder: String
+
+    /** Get all presentation images. */
+    public var storage: String
+
+    public init(name: String, password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
+        self.password = password
+        self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PostExportImagesWithFormatRequest: Codable {
+
+    /** Get all presentation images in specified format. */
+    public var name: String
+
+    /** Get all presentation images in specified format. */
+    public var format: String
+
+    /** Get all presentation images in specified format. */
+    public var password: String
+
+    /** Get all presentation images in specified format. */
+    public var folder: String
+
+    /** Get all presentation images in specified format. */
+    public var storage: String
+
+    public init(name: String, format: String, password: String = "", folder: String = "", storage: String = "") {
+        self.name = name
+        self.format = format
+        self.password = password
+        self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PostExportShapeRequest: Codable {
+
+    /** Render shape to specified picture format. */
+    public var document: Data
+
+    /** Render shape to specified picture format. */
+    public var slideIndex: Int
+
+    /** Render shape to specified picture format. */
+    public var shapeIndex: Int
+
+    /** Render shape to specified picture format. */
+    public var format: String
+
+    /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
+    public var scaleX: Double?
+
+    /** Render shape to specified picture format. */
+    public var scaleY: Double?
+
+    /** Render shape to specified picture format. */
+    public var bounds: String
+
+    /** Render shape to specified picture format. */
+    public var fontsFolder: String
+
+    public init(document: Data, slideIndex: Int, shapeIndex: Int, format: String, password: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+        self.document = document
+        self.slideIndex = slideIndex
+        self.shapeIndex = shapeIndex
+        self.format = format
+        self.password = password
+        self.storage = storage
+        self.scaleX = scaleX
+        self.scaleY = scaleY
+        self.bounds = bounds
+        self.fontsFolder = fontsFolder
+    }
+}
+
+public struct PostExportSlideRequest: Codable {
+
+    /** Save a slide to a specified format. */
+    public var document: Data
+
+    /** Save a slide to a specified format. */
+    public var slideIndex: Int
+
+    /** Save a slide to a specified format. */
+    public var format: String
+
+    /** Save a slide to a specified format. */
+    public var width: Int?
+
+    /** Save a slide to a specified format. */
+    public var height: Int?
+
+    /** Save a slide to a specified format. */
+    public var password: String
+
+    /** Save a slide to a specified format. */
+    public var storage: String
+
+    /** Save a slide to a specified format. */
+    public var fontsFolder: String
+
+    public init(document: Data, slideIndex: Int, format: String, width: Int? = nil, height: Int? = nil, password: String = "", storage: String = "", fontsFolder: String = "") {
+        self.document = document
+        self.slideIndex = slideIndex
+        self.format = format
+        self.width = width
+        self.height = height
+        self.password = password
+        self.storage = storage
+        self.fontsFolder = fontsFolder
+    }
+}
+
 public struct PostGetNotesSlideRequest: Codable {
 
     /** Read notes slide info. */
@@ -3364,6 +3592,20 @@ public struct PostGetNotesSlideWithFormatRequest: Codable {
     }
 }
 
+public struct PostImagesFromRequestWithDefaultFormatRequest: Codable {
+
+    /** Get all presentation images. */
+    public var document: Data
+
+    /** Get all presentation images. */
+    public var password: String
+
+    public init(document: Data, password: String = "") {
+        self.document = document
+        self.password = password
+    }
+}
+
 public struct PostNotesSlideAddNewParagraphRequest: Codable {
 
     /** Creates new paragraph. */
@@ -3379,6 +3621,9 @@ public struct PostNotesSlideAddNewParagraphRequest: Codable {
     public var dto: Paragraph
 
     /** Creates new paragraph. */
+    public var position: Int?
+
+    /** Creates new paragraph. */
     public var password: String
 
     /** Creates new paragraph. */
@@ -3387,18 +3632,15 @@ public struct PostNotesSlideAddNewParagraphRequest: Codable {
     /** Creates new paragraph. */
     public var storage: String
 
-    /** Creates new paragraph. */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, shapeIndex: Int, dto: Paragraph, password: String = "", folder: String = "", storage: String = "", position: Int? = nil) {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, dto: Paragraph, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.dto = dto
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.position = position
     }
 }
 
@@ -3420,6 +3662,9 @@ public struct PostNotesSlideAddNewPortionRequest: Codable {
     public var dto: Portion
 
     /** Creates new portion. */
+    public var position: Int?
+
+    /** Creates new portion. */
     public var password: String
 
     /** Creates new portion. */
@@ -3428,19 +3673,16 @@ public struct PostNotesSlideAddNewPortionRequest: Codable {
     /** Creates new portion. */
     public var storage: String
 
-    /** Creates new portion. */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, shapeIndex: Int, paragraphIndex: Int, dto: Portion, password: String = "", folder: String = "", storage: String = "", position: Int? = nil) {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, paragraphIndex: Int, dto: Portion, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.paragraphIndex = paragraphIndex
         self.dto = dto
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.position = position
     }
 }
 
@@ -3456,6 +3698,12 @@ public struct PostNotesSlideAddNewShapeRequest: Codable {
     public var dto: ShapeBase
 
     /** Create new shape. */
+    public var shapeToClone: Int?
+
+    /** Create new shape. */
+    public var position: Int?
+
+    /** Create new shape. */
     public var password: String
 
     /** Create new shape. */
@@ -3464,21 +3712,15 @@ public struct PostNotesSlideAddNewShapeRequest: Codable {
     /** Create new shape. */
     public var storage: String
 
-    /** Create new shape. */
-    public var shapeToClone: Int?
-
-    /** Create new shape. */
-    public var position: Int?
-
-    public init(name: String, slideIndex: Int, dto: ShapeBase, password: String = "", folder: String = "", storage: String = "", shapeToClone: Int? = nil, position: Int? = nil) {
+    public init(name: String, slideIndex: Int, dto: ShapeBase, shapeToClone: Int? = nil, position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.dto = dto
+        self.shapeToClone = shapeToClone
+        self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.shapeToClone = shapeToClone
-        self.position = position
     }
 }
 
@@ -3500,15 +3742,6 @@ public struct PostNotesSlideShapeSaveAsRequest: Codable {
     public var options: IShapeExportOptions?
 
     /** Render shape to specified picture format. */
-    public var password: String
-
-    /** Render shape to specified picture format. */
-    public var folder: String
-
-    /** Render shape to specified picture format. */
-    public var storage: String
-
-    /** Render shape to specified picture format. */
     public var scaleX: Double?
 
     /** Render shape to specified picture format. */
@@ -3518,20 +3751,29 @@ public struct PostNotesSlideShapeSaveAsRequest: Codable {
     public var bounds: String
 
     /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var folder: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
     public var fontsFolder: String
 
-    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, options: IShapeExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, options: IShapeExportOptions? = nil, scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.format = format
         self.options = options
-        self.password = password
-        self.folder = folder
-        self.storage = storage
         self.scaleX = scaleX
         self.scaleY = scaleY
         self.bounds = bounds
+        self.password = password
+        self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -3548,17 +3790,85 @@ public struct PostPresentationMergeRequest: Codable {
     public var password: String
 
     /** Merge the presentation with other presentations specified in the request parameter. */
-    public var storage: String
-
-    /** Merge the presentation with other presentations specified in the request parameter. */
     public var folder: String
 
-    public init(name: String, request: PresentationsMergeRequest, password: String = "", storage: String = "", folder: String = "") {
+    /** Merge the presentation with other presentations specified in the request parameter. */
+    public var storage: String
+
+    public init(name: String, request: PresentationsMergeRequest, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.request = request
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PostPresentationReplaceTextRequest: Codable {
+
+    /** Replace text with a new value. */
+    public var document: Data
+
+    /** Replace text with a new value. */
+    public var oldValue: String
+
+    /** Replace text with a new value. */
+    public var newValue: String
+
+    /** Replace text with a new value. */
+    public var ignoreCase: Bool?
+
+    /** Replace text with a new value. */
+    public var password: String
+
+    public init(document: Data, oldValue: String, newValue: String, ignoreCase: Bool? = nil, password: String = "") {
+        self.document = document
+        self.oldValue = oldValue
+        self.newValue = newValue
+        self.ignoreCase = ignoreCase
+        self.password = password
+    }
+}
+
+public struct PostPresentationSplitRequest: Codable {
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var document: Data
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var format: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var width: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var height: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var from: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var to: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var password: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var storage: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var fontsFolder: String
+
+    public init(document: Data, format: String, width: Int? = nil, height: Int? = nil, from: Int? = nil, to: Int? = nil, password: String = "", storage: String = "", fontsFolder: String = "") {
+        self.document = document
+        self.format = format
+        self.width = width
+        self.height = height
+        self.from = from
+        self.to = to
+        self.password = password
+        self.storage = storage
+        self.fontsFolder = fontsFolder
     }
 }
 
@@ -3640,15 +3950,6 @@ public struct PostShapeSaveAsRequest: Codable {
     public var options: IShapeExportOptions?
 
     /** Render shape to specified picture format. */
-    public var password: String
-
-    /** Render shape to specified picture format. */
-    public var folder: String
-
-    /** Render shape to specified picture format. */
-    public var storage: String
-
-    /** Render shape to specified picture format. */
     public var scaleX: Double?
 
     /** Render shape to specified picture format. */
@@ -3658,20 +3959,29 @@ public struct PostShapeSaveAsRequest: Codable {
     public var bounds: String
 
     /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var folder: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
     public var fontsFolder: String
 
-    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, options: IShapeExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, options: IShapeExportOptions? = nil, scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.format = format
         self.options = options
-        self.password = password
-        self.folder = folder
-        self.storage = storage
         self.scaleX = scaleX
         self.scaleY = scaleY
         self.bounds = bounds
+        self.password = password
+        self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -3770,6 +4080,36 @@ public struct PostSlideAnimationInteractiveSequenceEffectRequest: Codable {
     }
 }
 
+public struct PostSlideReplaceTextRequest: Codable {
+
+    /** Replace slide text with a new value. */
+    public var document: Data
+
+    /** Replace slide text with a new value. */
+    public var slideIndex: Int
+
+    /** Replace slide text with a new value. */
+    public var oldValue: String
+
+    /** Replace slide text with a new value. */
+    public var newValue: String
+
+    /** Replace slide text with a new value. */
+    public var ignoreCase: Bool?
+
+    /** Replace slide text with a new value. */
+    public var password: String
+
+    public init(document: Data, slideIndex: Int, oldValue: String, newValue: String, ignoreCase: Bool? = nil, password: String = "") {
+        self.document = document
+        self.slideIndex = slideIndex
+        self.oldValue = oldValue
+        self.newValue = newValue
+        self.ignoreCase = ignoreCase
+        self.password = password
+    }
+}
+
 public struct PostSlideSaveAsRequest: Codable {
 
     /** Save a slide to a specified format. */
@@ -3822,6 +4162,9 @@ public struct PostSlidesAddRequest: Codable {
     public var name: String
 
     /** Create a slide. */
+    public var layoutAlias: String
+
+    /** Create a slide. */
     public var position: Int?
 
     /** Create a slide. */
@@ -3833,16 +4176,13 @@ public struct PostSlidesAddRequest: Codable {
     /** Create a slide. */
     public var storage: String
 
-    /** Create a slide. */
-    public var layoutAlias: String
-
-    public init(name: String, position: Int? = nil, password: String = "", folder: String = "", storage: String = "", layoutAlias: String = "") {
+    public init(name: String, layoutAlias: String = "", position: Int? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
+        self.layoutAlias = layoutAlias
         self.position = position
         self.password = password
         self.folder = folder
         self.storage = storage
-        self.layoutAlias = layoutAlias
     }
 }
 
@@ -3858,12 +4198,16 @@ public struct PostSlidesConvertRequest: Codable {
     public var password: String
 
     /** Convert presentation from request content to format specified. */
+    public var storage: String
+
+    /** Convert presentation from request content to format specified. */
     public var fontsFolder: String
 
-    public init(document: Data, format: String, password: String = "", fontsFolder: String = "") {
+    public init(document: Data, format: String, password: String = "", storage: String = "", fontsFolder: String = "") {
         self.document = document
         self.format = format
         self.password = password
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -3925,18 +4269,18 @@ public struct PostSlidesDocumentRequest: Codable {
     public var password: String
 
     /** Create a presentation. */
-    public var storage: String
-
-    /** Create a presentation. */
     public var folder: String
 
-    public init(name: String, data: Data? = nil, inputPassword: String = "", password: String = "", storage: String = "", folder: String = "") {
+    /** Create a presentation. */
+    public var storage: String
+
+    public init(name: String, data: Data? = nil, inputPassword: String = "", password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.data = data
         self.inputPassword = inputPassword
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -3952,17 +4296,17 @@ public struct PostSlidesDocumentFromHtmlRequest: Codable {
     public var password: String
 
     /** Create presentation document from html. */
-    public var storage: String
-
-    /** Create presentation document from html. */
     public var folder: String
 
-    public init(name: String, html: String = "", password: String = "", storage: String = "", folder: String = "") {
+    /** Create presentation document from html. */
+    public var storage: String
+
+    public init(name: String, html: String = "", password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.html = html
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -3978,17 +4322,17 @@ public struct PostSlidesDocumentFromPdfRequest: Codable {
     public var password: String
 
     /** Create presentation document from pdf or append pdf to an existing presentation. */
-    public var storage: String
-
-    /** Create presentation document from pdf or append pdf to an existing presentation. */
     public var folder: String
 
-    public init(name: String, pdf: Data? = nil, password: String = "", storage: String = "", folder: String = "") {
+    /** Create presentation document from pdf or append pdf to an existing presentation. */
+    public var storage: String
+
+    public init(name: String, pdf: Data? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.pdf = pdf
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -4010,19 +4354,19 @@ public struct PostSlidesDocumentFromSourceRequest: Codable {
     public var password: String
 
     /** Create a presentation from an existing source. */
-    public var storage: String
-
-    /** Create a presentation from an existing source. */
     public var folder: String
 
-    public init(name: String, sourcePath: String = "", sourcePassword: String = "", sourceStorage: String = "", password: String = "", storage: String = "", folder: String = "") {
+    /** Create a presentation from an existing source. */
+    public var storage: String
+
+    public init(name: String, sourcePath: String = "", sourcePassword: String = "", sourceStorage: String = "", password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.sourcePath = sourcePath
         self.sourcePassword = sourcePassword
         self.sourceStorage = sourceStorage
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -4050,12 +4394,12 @@ public struct PostSlidesDocumentFromTemplateRequest: Codable {
     public var password: String
 
     /** Create a presentation. */
-    public var storage: String
-
-    /** Create a presentation. */
     public var folder: String
 
-    public init(name: String, templatePath: String, data: String = "", templatePassword: String = "", templateStorage: String = "", isImageDataEmbedded: Bool? = nil, password: String = "", storage: String = "", folder: String = "") {
+    /** Create a presentation. */
+    public var storage: String
+
+    public init(name: String, templatePath: String, data: String = "", templatePassword: String = "", templateStorage: String = "", isImageDataEmbedded: Bool? = nil, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.templatePath = templatePath
         self.data = data
@@ -4063,8 +4407,26 @@ public struct PostSlidesDocumentFromTemplateRequest: Codable {
         self.templateStorage = templateStorage
         self.isImageDataEmbedded = isImageDataEmbedded
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PostSlidesMergeRequest: Codable {
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Returns result file in the response.  */
+    public var files: [Data]?
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Returns result file in the response.  */
+    public var request: OrderedMergeRequest?
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Returns result file in the response.  */
+    public var password: String
+
+    public init(files: [Data]? = nil, request: OrderedMergeRequest? = nil, password: String = "") {
+        self.files = files
+        self.request = request
+        self.password = password
     }
 }
 
@@ -4191,21 +4553,21 @@ public struct PostSlidesSaveAsRequest: Codable {
     public var password: String
 
     /** Save a presentation to a specified format. */
-    public var storage: String
+    public var folder: String
 
     /** Save a presentation to a specified format. */
-    public var folder: String
+    public var storage: String
 
     /** Save a presentation to a specified format. */
     public var fontsFolder: String
 
-    public init(name: String, format: String, options: ExportOptions? = nil, password: String = "", storage: String = "", folder: String = "", fontsFolder: String = "") {
+    public init(name: String, format: String, options: ExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.format = format
         self.options = options
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -4292,10 +4654,10 @@ public struct PostSlidesSplitRequest: Codable {
     public var height: Int?
 
     /** Splitting presentations. Create one image per slide. */
-    public var to: Int?
+    public var from: Int?
 
     /** Splitting presentations. Create one image per slide. */
-    public var from: Int?
+    public var to: Int?
 
     /** Splitting presentations. Create one image per slide. */
     public var destFolder: String
@@ -4304,26 +4666,26 @@ public struct PostSlidesSplitRequest: Codable {
     public var password: String
 
     /** Splitting presentations. Create one image per slide. */
-    public var storage: String
+    public var folder: String
 
     /** Splitting presentations. Create one image per slide. */
-    public var folder: String
+    public var storage: String
 
     /** Splitting presentations. Create one image per slide. */
     public var fontsFolder: String
 
-    public init(name: String, options: ExportOptions? = nil, format: String = "", width: Int? = nil, height: Int? = nil, to: Int? = nil, from: Int? = nil, destFolder: String = "", password: String = "", storage: String = "", folder: String = "", fontsFolder: String = "") {
+    public init(name: String, options: ExportOptions? = nil, format: String = "", width: Int? = nil, height: Int? = nil, from: Int? = nil, to: Int? = nil, destFolder: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.options = options
         self.format = format
         self.width = width
         self.height = height
-        self.to = to
         self.from = from
+        self.to = to
         self.destFolder = destFolder
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -4349,15 +4711,6 @@ public struct PostSubshapeSaveAsRequest: Codable {
     public var options: IShapeExportOptions?
 
     /** Render shape to specified picture format (for smart art and group shapes). */
-    public var password: String
-
-    /** Render shape to specified picture format (for smart art and group shapes). */
-    public var folder: String
-
-    /** Render shape to specified picture format (for smart art and group shapes). */
-    public var storage: String
-
-    /** Render shape to specified picture format (for smart art and group shapes). */
     public var scaleX: Double?
 
     /** Render shape to specified picture format (for smart art and group shapes). */
@@ -4367,21 +4720,30 @@ public struct PostSubshapeSaveAsRequest: Codable {
     public var bounds: String
 
     /** Render shape to specified picture format (for smart art and group shapes). */
+    public var password: String
+
+    /** Render shape to specified picture format (for smart art and group shapes). */
+    public var folder: String
+
+    /** Render shape to specified picture format (for smart art and group shapes). */
+    public var storage: String
+
+    /** Render shape to specified picture format (for smart art and group shapes). */
     public var fontsFolder: String
 
-    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, format: String, options: IShapeExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, format: String, options: IShapeExportOptions? = nil, scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.path = path
         self.shapeIndex = shapeIndex
         self.format = format
         self.options = options
-        self.password = password
-        self.folder = folder
-        self.storage = storage
         self.scaleX = scaleX
         self.scaleY = scaleY
         self.bounds = bounds
+        self.password = password
+        self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -4504,6 +4866,98 @@ public struct PutChartSeriesRequest: Codable {
     }
 }
 
+public struct PutExportShapeRequest: Codable {
+
+    /** Render shape to specified picture format. */
+    public var document: Data
+
+    /** Render shape to specified picture format. */
+    public var slideIndex: Int
+
+    /** Render shape to specified picture format. */
+    public var shapeIndex: Int
+
+    /** Render shape to specified picture format. */
+    public var format: String
+
+    /** Render shape to specified picture format. */
+    public var outPath: String
+
+    /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
+    public var scaleX: Double?
+
+    /** Render shape to specified picture format. */
+    public var scaleY: Double?
+
+    /** Render shape to specified picture format. */
+    public var bounds: String
+
+    /** Render shape to specified picture format. */
+    public var fontsFolder: String
+
+    public init(document: Data, slideIndex: Int, shapeIndex: Int, format: String, outPath: String, password: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+        self.document = document
+        self.slideIndex = slideIndex
+        self.shapeIndex = shapeIndex
+        self.format = format
+        self.outPath = outPath
+        self.password = password
+        self.storage = storage
+        self.scaleX = scaleX
+        self.scaleY = scaleY
+        self.bounds = bounds
+        self.fontsFolder = fontsFolder
+    }
+}
+
+public struct PutExportSlideRequest: Codable {
+
+    /** Save a slide to a specified format. */
+    public var document: Data
+
+    /** Save a slide to a specified format. */
+    public var slideIndex: Int
+
+    /** Save a slide to a specified format. */
+    public var format: String
+
+    /** Save a slide to a specified format. */
+    public var outPath: String
+
+    /** Save a slide to a specified format. */
+    public var width: Int?
+
+    /** Save a slide to a specified format. */
+    public var height: Int?
+
+    /** Save a slide to a specified format. */
+    public var password: String
+
+    /** Save a slide to a specified format. */
+    public var storage: String
+
+    /** Save a slide to a specified format. */
+    public var fontsFolder: String
+
+    public init(document: Data, slideIndex: Int, format: String, outPath: String, width: Int? = nil, height: Int? = nil, password: String = "", storage: String = "", fontsFolder: String = "") {
+        self.document = document
+        self.slideIndex = slideIndex
+        self.format = format
+        self.outPath = outPath
+        self.width = width
+        self.height = height
+        self.password = password
+        self.storage = storage
+        self.fontsFolder = fontsFolder
+    }
+}
+
 public struct PutLayoutSlideRequest: Codable {
 
     /** Update a layoutSlide. */
@@ -4549,18 +5003,18 @@ public struct PutNotesSlideHeaderFooterRequest: Codable {
     public var password: String
 
     /** Set header/footer the notes slide. */
-    public var storage: String
-
-    /** Set header/footer the notes slide. */
     public var folder: String
 
-    public init(name: String, slideIndex: Int, dto: NotesSlideHeaderFooter, password: String = "", storage: String = "", folder: String = "") {
+    /** Set header/footer the notes slide. */
+    public var storage: String
+
+    public init(name: String, slideIndex: Int, dto: NotesSlideHeaderFooter, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.dto = dto
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -4585,15 +5039,6 @@ public struct PutNotesSlideShapeSaveAsRequest: Codable {
     public var options: IShapeExportOptions?
 
     /** Render shape to specified picture format. */
-    public var password: String
-
-    /** Render shape to specified picture format. */
-    public var folder: String
-
-    /** Render shape to specified picture format. */
-    public var storage: String
-
-    /** Render shape to specified picture format. */
     public var scaleX: Double?
 
     /** Render shape to specified picture format. */
@@ -4603,21 +5048,30 @@ public struct PutNotesSlideShapeSaveAsRequest: Codable {
     public var bounds: String
 
     /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var folder: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
     public var fontsFolder: String
 
-    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, outPath: String, options: IShapeExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, outPath: String, options: IShapeExportOptions? = nil, scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.format = format
         self.outPath = outPath
         self.options = options
-        self.password = password
-        self.folder = folder
-        self.storage = storage
         self.scaleX = scaleX
         self.scaleY = scaleY
         self.bounds = bounds
+        self.password = password
+        self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -4634,17 +5088,63 @@ public struct PutPresentationMergeRequest: Codable {
     public var password: String
 
     /** Merge the presentation with other presentations or some of their slides specified in the request parameter. */
-    public var storage: String
-
-    /** Merge the presentation with other presentations or some of their slides specified in the request parameter. */
     public var folder: String
 
-    public init(name: String, request: OrderedMergeRequest, password: String = "", storage: String = "", folder: String = "") {
+    /** Merge the presentation with other presentations or some of their slides specified in the request parameter. */
+    public var storage: String
+
+    public init(name: String, request: OrderedMergeRequest, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.request = request
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PutPresentationSplitRequest: Codable {
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var document: Data
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var format: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var destFolder: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var width: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var height: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var from: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var to: Int?
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var password: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var storage: String
+
+    /** Splits PowerPoint presentation slides from the specified range into separate files and exports them in the specified file format. If the range is not provided all slides will be processed.  */
+    public var fontsFolder: String
+
+    public init(document: Data, format: String, destFolder: String = "", width: Int? = nil, height: Int? = nil, from: Int? = nil, to: Int? = nil, password: String = "", storage: String = "", fontsFolder: String = "") {
+        self.document = document
+        self.format = format
+        self.destFolder = destFolder
+        self.width = width
+        self.height = height
+        self.from = from
+        self.to = to
+        self.password = password
+        self.storage = storage
+        self.fontsFolder = fontsFolder
     }
 }
 
@@ -4893,15 +5393,6 @@ public struct PutShapeSaveAsRequest: Codable {
     public var options: IShapeExportOptions?
 
     /** Render shape to specified picture format. */
-    public var password: String
-
-    /** Render shape to specified picture format. */
-    public var folder: String
-
-    /** Render shape to specified picture format. */
-    public var storage: String
-
-    /** Render shape to specified picture format. */
     public var scaleX: Double?
 
     /** Render shape to specified picture format. */
@@ -4911,21 +5402,30 @@ public struct PutShapeSaveAsRequest: Codable {
     public var bounds: String
 
     /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var folder: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
     public var fontsFolder: String
 
-    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, outPath: String, options: IShapeExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+    public init(name: String, slideIndex: Int, shapeIndex: Int, format: String, outPath: String, options: IShapeExportOptions? = nil, scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.shapeIndex = shapeIndex
         self.format = format
         self.outPath = outPath
         self.options = options
-        self.password = password
-        self.folder = folder
-        self.storage = storage
         self.scaleX = scaleX
         self.scaleY = scaleY
         self.bounds = bounds
+        self.password = password
+        self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -5199,13 +5699,17 @@ public struct PutSlidesConvertRequest: Codable {
     public var password: String
 
     /** Convert presentation from request content to format specified. */
+    public var storage: String
+
+    /** Convert presentation from request content to format specified. */
     public var fontsFolder: String
 
-    public init(document: Data, format: String, outPath: String, password: String = "", fontsFolder: String = "") {
+    public init(document: Data, format: String, outPath: String, password: String = "", storage: String = "", fontsFolder: String = "") {
         self.document = document
         self.format = format
         self.outPath = outPath
         self.password = password
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -5222,17 +5726,17 @@ public struct PutSlidesDocumentFromHtmlRequest: Codable {
     public var password: String
 
     /** Update presentation document from html. */
-    public var storage: String
-
-    /** Update presentation document from html. */
     public var folder: String
 
-    public init(name: String, html: String = "", password: String = "", storage: String = "", folder: String = "") {
+    /** Update presentation document from html. */
+    public var storage: String
+
+    public init(name: String, html: String = "", password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.html = html
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -5248,17 +5752,43 @@ public struct PutSlidesHeaderFooterRequest: Codable {
     public var password: String
 
     /** Set footers for all slides in a presentation. */
-    public var storage: String
-
-    /** Set footers for all slides in a presentation. */
     public var folder: String
 
-    public init(name: String, dto: HeaderFooter, password: String = "", storage: String = "", folder: String = "") {
+    /** Set footers for all slides in a presentation. */
+    public var storage: String
+
+    public init(name: String, dto: HeaderFooter, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.dto = dto
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
+    }
+}
+
+public struct PutSlidesMergeRequest: Codable {
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Puts result in the storage.  */
+    public var outPath: String
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Puts result in the storage.  */
+    public var files: [Data]?
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Puts result in the storage.  */
+    public var request: OrderedMergeRequest?
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Puts result in the storage.  */
+    public var password: String
+
+    /** Merges the presentation with other presentations or some of their slides specified in the request parameter. Puts result in the storage.  */
+    public var storage: String
+
+    public init(outPath: String, files: [Data]? = nil, request: OrderedMergeRequest? = nil, password: String = "", storage: String = "") {
+        self.outPath = outPath
+        self.files = files
+        self.request = request
+        self.password = password
+        self.storage = storage
     }
 }
 
@@ -5294,10 +5824,10 @@ public struct PutSlidesSaveAsRequest: Codable {
     public var name: String
 
     /** Save a presentation to a specified format. */
-    public var outPath: String
+    public var format: String
 
     /** Save a presentation to a specified format. */
-    public var format: String
+    public var outPath: String
 
     /** Save a presentation to a specified format. */
     public var options: ExportOptions?
@@ -5306,22 +5836,22 @@ public struct PutSlidesSaveAsRequest: Codable {
     public var password: String
 
     /** Save a presentation to a specified format. */
-    public var storage: String
+    public var folder: String
 
     /** Save a presentation to a specified format. */
-    public var folder: String
+    public var storage: String
 
     /** Save a presentation to a specified format. */
     public var fontsFolder: String
 
-    public init(name: String, outPath: String, format: String, options: ExportOptions? = nil, password: String = "", storage: String = "", folder: String = "", fontsFolder: String = "") {
+    public init(name: String, format: String, outPath: String, options: ExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
-        self.outPath = outPath
         self.format = format
+        self.outPath = outPath
         self.options = options
         self.password = password
-        self.storage = storage
         self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }
@@ -5398,20 +5928,20 @@ public struct PutSlidesSlideBackgroundRequest: Codable {
     public var background: SlideBackground
 
     /** Set background for a slide. */
-    public var folder: String
+    public var password: String
 
     /** Set background for a slide. */
-    public var password: String
+    public var folder: String
 
     /** Set background for a slide. */
     public var storage: String
 
-    public init(name: String, slideIndex: Int, background: SlideBackground, folder: String = "", password: String = "", storage: String = "") {
+    public init(name: String, slideIndex: Int, background: SlideBackground, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.background = background
-        self.folder = folder
         self.password = password
+        self.folder = folder
         self.storage = storage
     }
 }
@@ -5428,20 +5958,20 @@ public struct PutSlidesSlideBackgroundColorRequest: Codable {
     public var color: String
 
     /** Set background color for a slide. */
-    public var folder: String
+    public var password: String
 
     /** Set background color for a slide. */
-    public var password: String
+    public var folder: String
 
     /** Set background color for a slide. */
     public var storage: String
 
-    public init(name: String, slideIndex: Int, color: String, folder: String = "", password: String = "", storage: String = "") {
+    public init(name: String, slideIndex: Int, color: String, password: String = "", folder: String = "", storage: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.color = color
-        self.folder = folder
         self.password = password
+        self.folder = folder
         self.storage = storage
     }
 }
@@ -5478,15 +6008,6 @@ public struct PutSlidesSlideSizeRequest: Codable {
     public var name: String
 
     /** Set slide size for a presentation. */
-    public var password: String
-
-    /** Set slide size for a presentation. */
-    public var storage: String
-
-    /** Set slide size for a presentation. */
-    public var folder: String
-
-    /** Set slide size for a presentation. */
     public var width: Int?
 
     /** Set slide size for a presentation. */
@@ -5498,15 +6019,24 @@ public struct PutSlidesSlideSizeRequest: Codable {
     /** Set slide size for a presentation. */
     public var scaleType: String
 
-    public init(name: String, password: String = "", storage: String = "", folder: String = "", width: Int? = nil, height: Int? = nil, sizeType: String = "", scaleType: String = "") {
+    /** Set slide size for a presentation. */
+    public var password: String
+
+    /** Set slide size for a presentation. */
+    public var folder: String
+
+    /** Set slide size for a presentation. */
+    public var storage: String
+
+    public init(name: String, width: Int? = nil, height: Int? = nil, sizeType: String = "", scaleType: String = "", password: String = "", folder: String = "", storage: String = "") {
         self.name = name
-        self.password = password
-        self.storage = storage
-        self.folder = folder
         self.width = width
         self.height = height
         self.sizeType = sizeType
         self.scaleType = scaleType
+        self.password = password
+        self.folder = folder
+        self.storage = storage
     }
 }
 
@@ -5560,15 +6090,6 @@ public struct PutSubshapeSaveAsRequest: Codable {
     public var options: IShapeExportOptions?
 
     /** Render shape to specified picture format. */
-    public var password: String
-
-    /** Render shape to specified picture format. */
-    public var folder: String
-
-    /** Render shape to specified picture format. */
-    public var storage: String
-
-    /** Render shape to specified picture format. */
     public var scaleX: Double?
 
     /** Render shape to specified picture format. */
@@ -5578,9 +6099,18 @@ public struct PutSubshapeSaveAsRequest: Codable {
     public var bounds: String
 
     /** Render shape to specified picture format. */
+    public var password: String
+
+    /** Render shape to specified picture format. */
+    public var folder: String
+
+    /** Render shape to specified picture format. */
+    public var storage: String
+
+    /** Render shape to specified picture format. */
     public var fontsFolder: String
 
-    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, format: String, outPath: String, options: IShapeExportOptions? = nil, password: String = "", folder: String = "", storage: String = "", scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", fontsFolder: String = "") {
+    public init(name: String, slideIndex: Int, path: String, shapeIndex: Int, format: String, outPath: String, options: IShapeExportOptions? = nil, scaleX: Double? = nil, scaleY: Double? = nil, bounds: String = "", password: String = "", folder: String = "", storage: String = "", fontsFolder: String = "") {
         self.name = name
         self.slideIndex = slideIndex
         self.path = path
@@ -5588,12 +6118,12 @@ public struct PutSubshapeSaveAsRequest: Codable {
         self.format = format
         self.outPath = outPath
         self.options = options
-        self.password = password
-        self.folder = folder
-        self.storage = storage
         self.scaleX = scaleX
         self.scaleY = scaleY
         self.bounds = bounds
+        self.password = password
+        self.folder = folder
+        self.storage = storage
         self.fontsFolder = fontsFolder
     }
 }

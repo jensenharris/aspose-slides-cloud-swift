@@ -42,6 +42,9 @@ class TestUtils {
             }
             return FileManager.default.contents(atPath: "TestData/" + fileName)
         }
+        if type == "[Data]" {
+            return [ FileManager.default.contents(atPath: "TestData/test.pptx")!, FileManager.default.contents(atPath: "TestData/test-unprotected.pptx")! ]
+        }
         var value: Any? = "test" + name
         let v = rules!["Values"] as! NSArray
         for vr in v {
@@ -209,19 +212,17 @@ class TestUtils {
             let rule = rules[path] as! NSDictionary
             let action = rule["Action"] as! String
             if (action == "Put") {
-                let cr = CopyFileRequest(srcPath: "TempTests/" + (rule["ActualName"] as! String), destPath: path, srcStorageName: "", destStorageName: "", versionId: "")
-                SlidesAPI.copyFile(request: cr) { (response, error) -> Void in
+                SlidesAPI.copyFile("TempTests/" + (rule["ActualName"] as! String), path) { (response, error) -> Void in
                     initializeRules(functionName: functionName, parameterName: parameterName, ruleIndex: ruleIndex + 1, rules: rules) { (response, error) -> Void in
                         completion(response, error)
                     }
                 }
             } else if (action == "Delete") {
-                let cr = DeleteFileRequest(path: path, storageName: "", versionId: "")
-                    SlidesAPI.deleteFile(request: cr) { (response, error) -> Void in
-                        initializeRules(functionName: functionName, parameterName: parameterName, ruleIndex: ruleIndex + 1, rules: rules) { (response, error) -> Void in
-                            completion(response, error)
-                        }
+                SlidesAPI.deleteFile(path) { (response, error) -> Void in
+                    initializeRules(functionName: functionName, parameterName: parameterName, ruleIndex: ruleIndex + 1, rules: rules) { (response, error) -> Void in
+                        completion(response, error)
                     }
+                }
             } else {
                 initializeRules(functionName: functionName, parameterName: parameterName, ruleIndex: ruleIndex + 1, rules: rules) { (response, error) -> Void in
                     completion(response, error)
@@ -256,16 +257,14 @@ class TestUtils {
 
             let versionPath = "TempTests/version.txt"
             let expectedVersion = "1"
-            let r = DownloadFileRequest(path: versionPath, storageName: "", versionId: "")
-            SlidesAPI.downloadFile(request: r) { (response, error) -> Void in
+            SlidesAPI.downloadFile(versionPath) { (response, error) -> Void in
                 let version = String(decoding: response!, as: UTF8.self)
                 if (version != expectedVersion) {
                     do {
                         let files = try FileManager.default.contentsOfDirectory(atPath: "TestData")
                         uploadFiles(files: files, fileIndex: 0) { (response, error) -> Void in
                             let data = expectedVersion.data(using: .utf8)
-                            let vr = UploadFileRequest(path: versionPath, file: data!, storageName: "")
-                            SlidesAPI.uploadFile(request: vr) { (response, error) -> Void in
+                            SlidesAPI.uploadFile(versionPath, data!) { (response, error) -> Void in
                                 isInitialized = true
                                 completion(error)
                             }
@@ -285,8 +284,7 @@ class TestUtils {
     class func uploadFiles(files: [String], fileIndex: Int, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
         if (fileIndex < files.count) {
             let fileData = FileManager.default.contents(atPath: "TestData/" + files[fileIndex])
-            let r = UploadFileRequest(path: "TempTests/" + files[fileIndex], file: fileData!, storageName: "")
-            SlidesAPI.uploadFile(request: r) { (response, error) -> Void in
+            SlidesAPI.uploadFile("TempTests/" + files[fileIndex], fileData!) { (response, error) -> Void in
                 uploadFiles(files: files, fileIndex: fileIndex + 1) { (response, error) -> Void in
                     completion(response, error)
                 }

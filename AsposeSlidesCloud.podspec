@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AsposeSlidesCloud'
-  s.version          = '21.2.0'
+  s.version          = '21.3.0'
   s.summary          = 'SDK for Aspose.Slides Cloud.'
   s.description      = <<-DESC
 This is a library for communication with Aspose.Slides Cloud REST API. Its methods are wrappers for corresponding HTTP calls.
