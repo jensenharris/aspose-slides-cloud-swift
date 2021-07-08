@@ -24,6 +24,11 @@ This repository contains Aspose.Slides Cloud SDK for Swift source code. This SDK
 **Web:** HTML
 **Other:** SWF (export whole presentations)
 
+## Enhancements in Version 21.6
+* New **CreateComment**, **CreateCommentOnline**, **DeleteComments**, **DeleteCommentsOnline**, **DeleteSlideComments** and **DeleteSlideCommentsOnline** methods to add or delete comments in presentations.
+* New **CreateWatermark**, **CreateWatermarkOnline**, **CreateImageWatermark**, **CreateImageWatermarkOnline**, **DeleteWatermark** and **DeleteWatermarkOnline** methods to add or delete and remove watermark in presentations.
+* New **SetProtection**, **DeleteProtection**, **SetProtectionOnline** and **DeleteProtectionOnline** methods to set or clear presentation protection properties like read/write password, readonly flag.
+
 ## Enhancements in Version 21.3
 * New **MergeOnline** and **MergeAndSaveOnline** methods to merge presentations from multipart request body.
 * New **SplitOnline** and **SplitAndSaveOnline** methods to split presentation from request body.
@@ -67,7 +72,7 @@ import PackageDescription
 let package = Package(
     name: "MyPackage",
     dependencies: [
-        .package(url: "https://github.com/aspose-slides-cloud/aspose-slides-cloud-swift", from: "21.3.0"),
+        .package(url: "https://github.com/aspose-slides-cloud/aspose-slides-cloud-swift", from: "21.6.0"),
     ],
     targets: [
         .target(
@@ -82,7 +87,7 @@ To use the SDK as a Cocoapod, add "pod 'AsposeSlidesCloud'" line to your Podfile
 ```ruby
 target 'myproj' do
   ...
-  pod 'AsposeSlidesCloud', '~> 21.3.0'
+  pod 'AsposeSlidesCloud', '~> 21.6.0'
 end
 ```
 ### Sample usage

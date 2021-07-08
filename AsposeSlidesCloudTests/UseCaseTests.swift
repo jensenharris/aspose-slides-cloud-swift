@@ -63,9 +63,8 @@ class UseCaseTests : XCTestCase {
                self.assertTrue(isinstance(result, str))
                self.assertTrue(len(result) > 0)
         */
-        let request = PostSlidesPipelineRequest(pipeline: Pipeline(input: Input(template: RequestInputFile(type: InputFile.ModelType.request, index: 1), templateData: RequestInputFile(type: InputFile.ModelType.request, index: 0)), tasks: [ Save(type: Task.ModelType.save, format: Save.Format.pptx, output: OutputFile(type: OutputFile.ModelType.response)) ]), files: [ FileManager.default.contents(atPath: "TestData/TemplatingCVDataWithBase64.xml")!, FileManager.default.contents(atPath: "TestData/TemplateCV.pptx")! ])
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.postSlidesPipeline(request: request) { (response, error) -> Void in
+            SlidesAPI.pipeline(Pipeline(input: Input(template: RequestInputFile(type: InputFile.ModelType.request, index: 1), templateData: RequestInputFile(type: InputFile.ModelType.request, index: 0)), tasks: [ Save(type: Task.ModelType.save, format: Save.Format.pptx, output: OutputFile(type: OutputFile.ModelType.response)) ]), [ FileManager.default.contents(atPath: "TestData/TemplatingCVDataWithBase64.xml")!, FileManager.default.contents(atPath: "TestData/TemplateCV.pptx")! ]) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()

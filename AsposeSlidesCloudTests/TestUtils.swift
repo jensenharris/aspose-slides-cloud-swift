@@ -37,7 +37,7 @@ class TestUtils {
         ensureRules()
         if type == "Data" {
             var fileName = "test.pptx"
-            if functionName.caseInsensitiveCompare("postSlidesDocumentFromPdf") == .orderedSame {
+            if functionName.caseInsensitiveCompare("importFromPdf") == .orderedSame {
                 fileName = "test.pdf"
             }
             return FileManager.default.contents(atPath: "TestData/" + fileName)
