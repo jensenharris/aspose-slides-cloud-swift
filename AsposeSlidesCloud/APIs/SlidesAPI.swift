@@ -139,10 +139,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be converted. If not specified, all slides are converted by default.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func convert(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        convertWithRequestBuilder(document, format, password, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func convert(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        convertWithRequestBuilder(document, format, password, storage, fontsFolder, slides).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -160,9 +161,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be converted. If not specified, all slides are converted by default.
      - returns: RequestBuilder<Data> 
      */
-    open class func convertWithRequestBuilder(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+    open class func convertWithRequestBuilder(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int]()) -> RequestBuilder<Data> {
         var methodPath = "/slides/convert/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -175,7 +177,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "slides": slides
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -222,10 +225,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be converted. If not specified, all slides are converted by default.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func convertAndSave(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        convertAndSaveWithRequestBuilder(document, format, outPath, password, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func convertAndSave(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+        convertAndSaveWithRequestBuilder(document, format, outPath, password, storage, fontsFolder, slides).executeAuthorized { (response, error) -> Void in
             if error == nil {
                 completion((), error)
             } else {
@@ -247,9 +251,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be converted. If not specified, all slides are converted by default.
      - returns: RequestBuilder<Void> 
      */
-    open class func convertAndSaveWithRequestBuilder(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Void> {
+    open class func convertAndSaveWithRequestBuilder(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int]()) -> RequestBuilder<Void> {
         var methodPath = "/slides/convert/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -263,7 +268,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "outPath": outPath, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "slides": slides
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -5247,10 +5253,11 @@ open class SlidesAPI {
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func downloadPresentation(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        downloadPresentationWithRequestBuilder(name, format, options, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func downloadPresentation(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        downloadPresentationWithRequestBuilder(name, format, options, password, folder, storage, fontsFolder, slides).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5270,9 +5277,10 @@ open class SlidesAPI {
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - returns: RequestBuilder<Data> 
      */
-    open class func downloadPresentationWithRequestBuilder(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+    open class func downloadPresentationWithRequestBuilder(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int]()) -> RequestBuilder<Data> {
         var methodPath = "/slides/{name}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
@@ -5282,7 +5290,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "slides": slides
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9473,10 +9482,11 @@ open class SlidesAPI {
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func savePresentation(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        savePresentationWithRequestBuilder(name, format, outPath, options, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func savePresentation(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+        savePresentationWithRequestBuilder(name, format, outPath, options, password, folder, storage, fontsFolder, slides).executeAuthorized { (response, error) -> Void in
             if error == nil {
                 completion((), error)
             } else {
@@ -9500,9 +9510,10 @@ open class SlidesAPI {
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - returns: RequestBuilder<Void> 
      */
-    open class func savePresentationWithRequestBuilder(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Void> {
+    open class func savePresentationWithRequestBuilder(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int]()) -> RequestBuilder<Void> {
         var methodPath = "/slides/{name}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
@@ -9513,7 +9524,8 @@ open class SlidesAPI {
             "outPath": outPath, 
             "folder": folder, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "slides": slides
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password

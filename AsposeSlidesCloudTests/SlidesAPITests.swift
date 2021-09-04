@@ -46,6 +46,7 @@ class SlidesAPITests : XCTestCase {
         ("testConvertInvalidPassword", testConvertInvalidPassword),
         ("testConvertInvalidStorage", testConvertInvalidStorage),
         ("testConvertInvalidFontsFolder", testConvertInvalidFontsFolder),
+        ("testConvertInvalidSlides", testConvertInvalidSlides),
         ("testConvertAndSave", testConvertAndSave),
         ("testConvertAndSaveInvalidDocument", testConvertAndSaveInvalidDocument),
         ("testConvertAndSaveInvalidFormat", testConvertAndSaveInvalidFormat),
@@ -53,6 +54,7 @@ class SlidesAPITests : XCTestCase {
         ("testConvertAndSaveInvalidPassword", testConvertAndSaveInvalidPassword),
         ("testConvertAndSaveInvalidStorage", testConvertAndSaveInvalidStorage),
         ("testConvertAndSaveInvalidFontsFolder", testConvertAndSaveInvalidFontsFolder),
+        ("testConvertAndSaveInvalidSlides", testConvertAndSaveInvalidSlides),
         ("testCopyFile", testCopyFile),
         ("testCopyFileInvalidSrcPath", testCopyFileInvalidSrcPath),
         ("testCopyFileInvalidDestPath", testCopyFileInvalidDestPath),
@@ -713,6 +715,7 @@ class SlidesAPITests : XCTestCase {
         ("testDownloadPresentationInvalidFolder", testDownloadPresentationInvalidFolder),
         ("testDownloadPresentationInvalidStorage", testDownloadPresentationInvalidStorage),
         ("testDownloadPresentationInvalidFontsFolder", testDownloadPresentationInvalidFontsFolder),
+        ("testDownloadPresentationInvalidSlides", testDownloadPresentationInvalidSlides),
         ("testDownloadShape", testDownloadShape),
         ("testDownloadShapeInvalidName", testDownloadShapeInvalidName),
         ("testDownloadShapeInvalidSlideIndex", testDownloadShapeInvalidSlideIndex),
@@ -1227,6 +1230,7 @@ class SlidesAPITests : XCTestCase {
         ("testSavePresentationInvalidFolder", testSavePresentationInvalidFolder),
         ("testSavePresentationInvalidStorage", testSavePresentationInvalidStorage),
         ("testSavePresentationInvalidFontsFolder", testSavePresentationInvalidFontsFolder),
+        ("testSavePresentationInvalidSlides", testSavePresentationInvalidSlides),
         ("testSaveShape", testSaveShape),
         ("testSaveShapeInvalidName", testSaveShapeInvalidName),
         ("testSaveShapeInvalidSlideIndex", testSaveShapeInvalidSlideIndex),
@@ -1767,8 +1771,9 @@ class SlidesAPITests : XCTestCase {
         let paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
         let paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
         let paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        let paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
         TestUtils.initialize("convert") { (response, error) -> Void in
-            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()
@@ -1784,9 +1789,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
         paramDocument = TestUtils.getInvalidTestValue(functionName: "convert", name: "document", value: paramDocument as Any, type: "Data")
         TestUtils.initialize("convert", "document", paramDocument) { (response, error) -> Void in
-            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convert", parameterName: "document", parameterValue: paramDocument as Any)
                 expectation.fulfill()
             }
@@ -1801,9 +1807,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
         paramFormat = TestUtils.getInvalidTestValue(functionName: "convert", name: "format", value: paramFormat as Any, type: "String")
         TestUtils.initialize("convert", "format", paramFormat) { (response, error) -> Void in
-            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convert", parameterName: "format", parameterValue: paramFormat as Any)
                 expectation.fulfill()
             }
@@ -1818,9 +1825,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
         paramPassword = TestUtils.getInvalidTestValue(functionName: "convert", name: "password", value: paramPassword as Any, type: "String")
         TestUtils.initialize("convert", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convert", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
@@ -1835,9 +1843,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
         paramStorage = TestUtils.getInvalidTestValue(functionName: "convert", name: "storage", value: paramStorage as Any, type: "String")
         TestUtils.initialize("convert", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convert", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
@@ -1852,10 +1861,29 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
         paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "convert", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
         TestUtils.initialize("convert", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
-            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convert", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testConvertInvalidSlides() {
+        let expectation = self.expectation(description: "testconvert")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "convert", name: "document", type: "Data")
+        var paramFormat : String = TestUtils.getTestValue(functionName: "convert", name: "format", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "convert", name: "password", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "convert", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convert", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convert", name: "slides", type: "[Int]")
+        paramSlides = TestUtils.getInvalidTestValue(functionName: "convert", name: "slides", value: paramSlides as Any, type: "[Int]")
+        TestUtils.initialize("convert", "slides", paramSlides) { (response, error) -> Void in
+            SlidesAPI.convert(paramDocument, paramFormat, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "convert", parameterName: "slides", parameterValue: paramSlides as Any)
                 expectation.fulfill()
             }
         }
@@ -1869,8 +1897,9 @@ class SlidesAPITests : XCTestCase {
         let paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         let paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         let paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        let paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         TestUtils.initialize("convertAndSave") { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()
@@ -1887,9 +1916,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         paramDocument = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "document", value: paramDocument as Any, type: "Data")
         TestUtils.initialize("convertAndSave", "document", paramDocument) { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "document", parameterValue: paramDocument as Any)
                 expectation.fulfill()
             }
@@ -1905,9 +1935,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         paramFormat = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "format", value: paramFormat as Any, type: "String")
         TestUtils.initialize("convertAndSave", "format", paramFormat) { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "format", parameterValue: paramFormat as Any)
                 expectation.fulfill()
             }
@@ -1923,9 +1954,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         paramOutPath = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "outPath", value: paramOutPath as Any, type: "String")
         TestUtils.initialize("convertAndSave", "outPath", paramOutPath) { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "outPath", parameterValue: paramOutPath as Any)
                 expectation.fulfill()
             }
@@ -1941,9 +1973,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         paramPassword = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "password", value: paramPassword as Any, type: "String")
         TestUtils.initialize("convertAndSave", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
@@ -1959,9 +1992,10 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         paramStorage = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "storage", value: paramStorage as Any, type: "String")
         TestUtils.initialize("convertAndSave", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
@@ -1977,10 +2011,30 @@ class SlidesAPITests : XCTestCase {
         var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
         paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
         TestUtils.initialize("convertAndSave", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
-            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testConvertAndSaveInvalidSlides() {
+        let expectation = self.expectation(description: "testconvertAndSave")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "convertAndSave", name: "document", type: "Data")
+        var paramFormat : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "format", type: "String")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "password", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "convertAndSave", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "convertAndSave", name: "slides", type: "[Int]")
+        paramSlides = TestUtils.getInvalidTestValue(functionName: "convertAndSave", name: "slides", value: paramSlides as Any, type: "[Int]")
+        TestUtils.initialize("convertAndSave", "slides", paramSlides) { (response, error) -> Void in
+            SlidesAPI.convertAndSave(paramDocument, paramFormat, paramOutPath, paramPassword, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "convertAndSave", parameterName: "slides", parameterValue: paramSlides as Any)
                 expectation.fulfill()
             }
         }
@@ -14169,8 +14223,9 @@ class SlidesAPITests : XCTestCase {
         let paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         let paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         let paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        let paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         TestUtils.initialize("downloadPresentation") { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()
@@ -14188,9 +14243,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramName = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "name", value: paramName as Any, type: "String")
         TestUtils.initialize("downloadPresentation", "name", paramName) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "name", parameterValue: paramName as Any)
                 expectation.fulfill()
             }
@@ -14207,9 +14263,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramFormat = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "format", value: paramFormat as Any, type: "String")
         TestUtils.initialize("downloadPresentation", "format", paramFormat) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "format", parameterValue: paramFormat as Any)
                 expectation.fulfill()
             }
@@ -14226,9 +14283,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramOptions = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "options", value: paramOptions as Any, type: "ExportOptions")
         TestUtils.initialize("downloadPresentation", "options", paramOptions) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "options", parameterValue: paramOptions as Any)
                 expectation.fulfill()
             }
@@ -14245,9 +14303,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramPassword = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "password", value: paramPassword as Any, type: "String")
         TestUtils.initialize("downloadPresentation", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
@@ -14264,9 +14323,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramFolder = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "folder", value: paramFolder as Any, type: "String")
         TestUtils.initialize("downloadPresentation", "folder", paramFolder) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "folder", parameterValue: paramFolder as Any)
                 expectation.fulfill()
             }
@@ -14283,9 +14343,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramStorage = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "storage", value: paramStorage as Any, type: "String")
         TestUtils.initialize("downloadPresentation", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
@@ -14302,10 +14363,31 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
         paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
         TestUtils.initialize("downloadPresentation", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
-            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPresentationInvalidSlides() {
+        let expectation = self.expectation(description: "testdownloadPresentation")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "name", type: "String")
+        var paramFormat : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "format", type: "String")
+        var paramOptions : ExportOptions = TestUtils.getTestValue(functionName: "downloadPresentation", name: "options", type: "ExportOptions")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "downloadPresentation", name: "slides", type: "[Int]")
+        paramSlides = TestUtils.getInvalidTestValue(functionName: "downloadPresentation", name: "slides", value: paramSlides as Any, type: "[Int]")
+        TestUtils.initialize("downloadPresentation", "slides", paramSlides) { (response, error) -> Void in
+            SlidesAPI.downloadPresentation(paramName, paramFormat, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPresentation", parameterName: "slides", parameterValue: paramSlides as Any)
                 expectation.fulfill()
             }
         }
@@ -23520,8 +23602,9 @@ class SlidesAPITests : XCTestCase {
         let paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         let paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         let paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        let paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         TestUtils.initialize("savePresentation") { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()
@@ -23540,9 +23623,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramName = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "name", value: paramName as Any, type: "String")
         TestUtils.initialize("savePresentation", "name", paramName) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "name", parameterValue: paramName as Any)
                 expectation.fulfill()
             }
@@ -23560,9 +23644,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramFormat = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "format", value: paramFormat as Any, type: "String")
         TestUtils.initialize("savePresentation", "format", paramFormat) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "format", parameterValue: paramFormat as Any)
                 expectation.fulfill()
             }
@@ -23580,9 +23665,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramOutPath = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "outPath", value: paramOutPath as Any, type: "String")
         TestUtils.initialize("savePresentation", "outPath", paramOutPath) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "outPath", parameterValue: paramOutPath as Any)
                 expectation.fulfill()
             }
@@ -23600,9 +23686,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramOptions = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "options", value: paramOptions as Any, type: "ExportOptions")
         TestUtils.initialize("savePresentation", "options", paramOptions) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "options", parameterValue: paramOptions as Any)
                 expectation.fulfill()
             }
@@ -23620,9 +23707,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramPassword = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "password", value: paramPassword as Any, type: "String")
         TestUtils.initialize("savePresentation", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
@@ -23640,9 +23728,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramFolder = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "folder", value: paramFolder as Any, type: "String")
         TestUtils.initialize("savePresentation", "folder", paramFolder) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "folder", parameterValue: paramFolder as Any)
                 expectation.fulfill()
             }
@@ -23660,9 +23749,10 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramStorage = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "storage", value: paramStorage as Any, type: "String")
         TestUtils.initialize("savePresentation", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
@@ -23680,10 +23770,32 @@ class SlidesAPITests : XCTestCase {
         var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
         var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
         paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
         TestUtils.initialize("savePresentation", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
-            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePresentationInvalidSlides() {
+        let expectation = self.expectation(description: "testsavePresentation")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePresentation", name: "name", type: "String")
+        var paramFormat : String = TestUtils.getTestValue(functionName: "savePresentation", name: "format", type: "String")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePresentation", name: "outPath", type: "String")
+        var paramOptions : ExportOptions = TestUtils.getTestValue(functionName: "savePresentation", name: "options", type: "ExportOptions")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePresentation", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePresentation", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "savePresentation", name: "fontsFolder", type: "String")
+        var paramSlides : [Int] = TestUtils.getTestValue(functionName: "savePresentation", name: "slides", type: "[Int]")
+        paramSlides = TestUtils.getInvalidTestValue(functionName: "savePresentation", name: "slides", value: paramSlides as Any, type: "[Int]")
+        TestUtils.initialize("savePresentation", "slides", paramSlides) { (response, error) -> Void in
+            SlidesAPI.savePresentation(paramName, paramFormat, paramOutPath, paramOptions, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSlides) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePresentation", parameterName: "slides", parameterValue: paramSlides as Any)
                 expectation.fulfill()
             }
         }
