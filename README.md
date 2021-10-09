@@ -24,6 +24,10 @@ This repository contains Aspose.Slides Cloud SDK for Swift source code. This SDK
 **Web:** HTML
 **Other:** SWF (export whole presentations)
 
+## Enhancements in Version 21.9
+* New **options** parameter for **Convert**, **ConvertAndSave**, **DownloadSlideOnline**, **SaveSlideOnline**, **DownloadShapeOnline** and **SaveShapeOnline** methods that allows to specify options when converting presentations from request body.
+* New methods to manage shapes and animation for special slide types: master, layout and notes slides. The new methods are **GetSpecialSlideShapes**, **GetSpecialSlideSubshapes, **GetSpecialSlideShape**, **GetSpecialSlideSubshape**, **GetSpecialSlideParagraphs**, **GetSpecialSlideSubshapeParagraphs**, **GetSpecialSlideParagraph**, **GetSpecialSlideSubshapeParagraph**, **GetSpecialSlidePortions**, **GetSpecialSlideSubshapePortions**, **GetSpecialSlidePortion**, **GetSpecialSlideSubshapePortion**, **CreateSpecialSlideShape**, **CreateSpecialSlideSubshape**, **CreateSpecialSlideParagraph**, **CreateSpecialSlideSubshapeParagraph**, **CreateSpecialSlidePortion**, **CreateSpecialSlideSubshapePortion**, **UpdateSpecialSlideShape**, **UpdateSpecialSlideSubshape**, **UpdateSpecialSlideParagraph**, **UpdateSpecialSlideSubshapeParagraph**, **UpdateSpecialSlidePortion**, **UpdateSpecialSlideSubshapePortion**, **DeleteSpecialSlideShapes**, **DeleteSpecialSlideSubshapes**, **DeleteSpecialSlideShape**, **DeleteSpecialSlideSubshape**, **DeleteSpecialSlideParagraphs**, **DeleteSpecialSlideSubshapeParagraphs**, **DeleteSpecialSlideParagraph**, **DeleteSpecialSlideSubshapeParagraph**, **DeleteSpecialSlidePortions**, **DeleteSpecialSlideSubshapePortions**, **DeleteSpecialSlidePortion**, **DeleteSpecialSlideSubshapePortion**, **DownloadSpecialSlideShape**, **DownloadSpecialSlideSubshape**, **SaveSpecialSlideShape**, **SaveSpecialSlideSubshape**, **AlignSpecialSlideShapes**, **GetSpecialSlideAnimation**, **SetSpecialSlideAnimation**, **CreateSpecialSlideAnimationInteractiveSequence**, **CreateSpecialSlideAnimationEffect**, **CreateSpecialSlideAnimationInteractiveSequenceEffect**, **UpdateSpecialSlideAnimationEffect**, **UpdateSpecialSlideAnimationInteractiveSequenceEffect**, **DeleteSpecialSlideAnimation**, **DeleteSpecialSlideAnimationMainSequence**, **DeleteSpecialSlideAnimationInteractiveSequences**, **DeleteSpecialSlideAnimationInteractiveSequence**, **DeleteSpecialSlideAnimationEffect**, **DeleteSpecialSlideAnimationInteractiveSequenceEffect**.
+
 ## Enhancements in Version 21.8
 * New **slides** parameter for **Convert**, **ConvertAndSave**, **DownloadPresentation** and **SavePresentation** methods that allows to convert a specified set of slides in the presentation.
 
@@ -75,7 +79,7 @@ import PackageDescription
 let package = Package(
     name: "MyPackage",
     dependencies: [
-        .package(url: "https://github.com/aspose-slides-cloud/aspose-slides-cloud-swift", from: "21.8.0"),
+        .package(url: "https://github.com/aspose-slides-cloud/aspose-slides-cloud-swift", from: "21.9.0"),
     ],
     targets: [
         .target(
@@ -90,7 +94,7 @@ To use the SDK as a Cocoapod, add "pod 'AsposeSlidesCloud'" line to your Podfile
 ```ruby
 target 'myproj' do
   ...
-  pod 'AsposeSlidesCloud', '~> 21.8.0'
+  pod 'AsposeSlidesCloud', '~> 21.9.0'
 end
 ```
 ### Sample usage

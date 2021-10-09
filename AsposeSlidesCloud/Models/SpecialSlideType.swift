@@ -29,23 +29,10 @@
 import Foundation
 
 
-/** Represents export options for whole presentation. */
-public class ExportOptions: Codable {
-
-    /** Default regular font for rendering the presentation.  */
-    public var defaultRegularFont: String?
-    public var format: String?
-
-    private enum CodingKeys: String, CodingKey {
-        case defaultRegularFont
-        case format
-    }
-
-    public init(defaultRegularFont: String? = nil, format: String? = nil) {
-        self.defaultRegularFont = defaultRegularFont
-        self.format = format
-    }
-
+/**  */
+public enum SpecialSlideType: String, Codable {
+    case masterSlide = "MasterSlide"
+    case layoutSlide = "LayoutSlide"
+    case notesSlide = "NotesSlide"
 
 }
-
