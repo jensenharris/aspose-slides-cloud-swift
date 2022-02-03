@@ -36,6 +36,7 @@ public class AudioFrame: GeometryShape {
         case auto = "Auto"
         case onClick = "OnClick"
         case allSlides = "AllSlides"
+        case inClickSequence = "InClickSequence"
         case mixed = "Mixed"
     }
     public enum Volume: String, Codable { 
@@ -65,6 +66,10 @@ public class AudioFrame: GeometryShape {
     public var volume: Volume?
     /** Audio data encoded in base64. */
     public var base64Data: String?
+    /** Determines whether an audio is playing across the slides. */
+    public var playAcrossSlides: Bool?
+    /** Determines whether audio is automatically rewound to start after playing. */
+    public var rewindAudio: Bool?
 
     private enum CodingKeys: String, CodingKey {
         case audioCdEndTrack
@@ -77,10 +82,12 @@ public class AudioFrame: GeometryShape {
         case playMode
         case volume
         case base64Data
+        case playAcrossSlides
+        case rewindAudio
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, audioCdEndTrack: Int? = nil, audioCdEndTrackTime: Int? = nil, audioCdStartTrack: Int? = nil, audioCdStartTrackTime: Int? = nil, embedded: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, volume: Volume? = nil, base64Data: String? = nil) {
-        super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, shapes: shapes, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, type: type, shapeType: shapeType)
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, audioCdEndTrack: Int? = nil, audioCdEndTrackTime: Int? = nil, audioCdStartTrack: Int? = nil, audioCdStartTrackTime: Int? = nil, embedded: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, volume: Volume? = nil, base64Data: String? = nil, playAcrossSlides: Bool? = nil, rewindAudio: Bool? = nil) {
+        super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, shapes: shapes, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type, shapeType: shapeType)
         self.audioCdEndTrack = audioCdEndTrack
         self.audioCdEndTrackTime = audioCdEndTrackTime
         self.audioCdStartTrack = audioCdStartTrack
@@ -91,6 +98,8 @@ public class AudioFrame: GeometryShape {
         self.playMode = playMode
         self.volume = volume
         self.base64Data = base64Data
+        self.playAcrossSlides = playAcrossSlides
+        self.rewindAudio = rewindAudio
     }
 
     required init(from decoder: Decoder) throws {
@@ -106,6 +115,8 @@ public class AudioFrame: GeometryShape {
         playMode = try values.decode(PlayMode?.self, forKey: .playMode)
         volume = try values.decode(Volume?.self, forKey: .volume)
         base64Data = try values.decode(String?.self, forKey: .base64Data)
+        playAcrossSlides = try values.decode(Bool?.self, forKey: .playAcrossSlides)
+        rewindAudio = try values.decode(Bool?.self, forKey: .rewindAudio)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -121,6 +132,8 @@ public class AudioFrame: GeometryShape {
         try container.encode(playMode, forKey: .playMode)
         try container.encode(volume, forKey: .volume)
         try container.encode(base64Data, forKey: .base64Data)
+        try container.encode(playAcrossSlides, forKey: .playAcrossSlides)
+        try container.encode(rewindAudio, forKey: .rewindAudio)
     }
 
 

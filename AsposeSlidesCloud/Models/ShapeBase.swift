@@ -70,8 +70,14 @@ public class ShapeBase: ResourceBase {
     public var fillFormat: FillFormat?
     /** Gets or sets the effect format. */
     public var effectFormat: EffectFormat?
+    /** Gets or sets the 3D format */
+    public var threeDFormat: ThreeDFormat?
     /** Gets or sets the line format. */
     public var lineFormat: LineFormat?
+    /** Hyperlink defined for mouse click. */
+    public var hyperlinkClick: Hyperlink?
+    /** Hyperlink defined for mouse over. */
+    public var hyperlinkMouseOver: Hyperlink?
     public var type: ModelType?
 
     private enum CodingKeys: String, CodingKey {
@@ -87,11 +93,14 @@ public class ShapeBase: ResourceBase {
         case shapes
         case fillFormat
         case effectFormat
+        case threeDFormat
         case lineFormat
+        case hyperlinkClick
+        case hyperlinkMouseOver
         case type
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, type: ModelType? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks)
         self.name = name
         self.width = width
@@ -105,7 +114,10 @@ public class ShapeBase: ResourceBase {
         self.shapes = shapes
         self.fillFormat = fillFormat
         self.effectFormat = effectFormat
+        self.threeDFormat = threeDFormat
         self.lineFormat = lineFormat
+        self.hyperlinkClick = hyperlinkClick
+        self.hyperlinkMouseOver = hyperlinkMouseOver
         self.type = type
     }
 
@@ -124,7 +136,10 @@ public class ShapeBase: ResourceBase {
         shapes = try values.decode(ResourceUri?.self, forKey: .shapes)
         fillFormat = try values.decode(FillFormat?.self, forKey: .fillFormat)
         effectFormat = try values.decode(EffectFormat?.self, forKey: .effectFormat)
+        threeDFormat = try values.decode(ThreeDFormat?.self, forKey: .threeDFormat)
         lineFormat = try values.decode(LineFormat?.self, forKey: .lineFormat)
+        hyperlinkClick = try values.decode(Hyperlink?.self, forKey: .hyperlinkClick)
+        hyperlinkMouseOver = try values.decode(Hyperlink?.self, forKey: .hyperlinkMouseOver)
         type = try values.decode(ModelType?.self, forKey: .type)
     }
 
@@ -143,7 +158,10 @@ public class ShapeBase: ResourceBase {
         try container.encode(shapes, forKey: .shapes)
         try container.encode(fillFormat, forKey: .fillFormat)
         try container.encode(effectFormat, forKey: .effectFormat)
+        try container.encode(threeDFormat, forKey: .threeDFormat)
         try container.encode(lineFormat, forKey: .lineFormat)
+        try container.encode(hyperlinkClick, forKey: .hyperlinkClick)
+        try container.encode(hyperlinkMouseOver, forKey: .hyperlinkMouseOver)
         try container.encode(type, forKey: .type)
     }
 

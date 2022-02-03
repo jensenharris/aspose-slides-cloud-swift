@@ -45,8 +45,8 @@ public class XpsExportOptions: ExportOptions {
         case drawSlidesFrame
     }
 
-    public init(defaultRegularFont: String? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, drawSlidesFrame: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, format: format)
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, drawSlidesFrame: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
         self.showHiddenSlides = showHiddenSlides
         self.saveMetafilesAsPng = saveMetafilesAsPng
         self.drawSlidesFrame = drawSlidesFrame

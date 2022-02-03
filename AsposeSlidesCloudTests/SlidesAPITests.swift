@@ -50,6 +50,16 @@ class SlidesAPITests : XCTestCase {
         ("testAlignSpecialSlideShapesInvalidPassword", testAlignSpecialSlideShapesInvalidPassword),
         ("testAlignSpecialSlideShapesInvalidFolder", testAlignSpecialSlideShapesInvalidFolder),
         ("testAlignSpecialSlideShapesInvalidStorage", testAlignSpecialSlideShapesInvalidStorage),
+        ("testAlignSubshapes", testAlignSubshapes),
+        ("testAlignSubshapesInvalidName", testAlignSubshapesInvalidName),
+        ("testAlignSubshapesInvalidSlideIndex", testAlignSubshapesInvalidSlideIndex),
+        ("testAlignSubshapesInvalidPath", testAlignSubshapesInvalidPath),
+        ("testAlignSubshapesInvalidAlignmentType", testAlignSubshapesInvalidAlignmentType),
+        ("testAlignSubshapesInvalidAlignToSlide", testAlignSubshapesInvalidAlignToSlide),
+        ("testAlignSubshapesInvalidShapes", testAlignSubshapesInvalidShapes),
+        ("testAlignSubshapesInvalidPassword", testAlignSubshapesInvalidPassword),
+        ("testAlignSubshapesInvalidFolder", testAlignSubshapesInvalidFolder),
+        ("testAlignSubshapesInvalidStorage", testAlignSubshapesInvalidStorage),
         ("testConvert", testConvert),
         ("testConvertInvalidDocument", testConvertInvalidDocument),
         ("testConvertInvalidFormat", testConvertInvalidFormat),
@@ -880,6 +890,15 @@ class SlidesAPITests : XCTestCase {
         ("testDownloadNotesSlideOnlineInvalidHeight", testDownloadNotesSlideOnlineInvalidHeight),
         ("testDownloadNotesSlideOnlineInvalidPassword", testDownloadNotesSlideOnlineInvalidPassword),
         ("testDownloadNotesSlideOnlineInvalidFontsFolder", testDownloadNotesSlideOnlineInvalidFontsFolder),
+        ("testDownloadPortionAsMathMl", testDownloadPortionAsMathMl),
+        ("testDownloadPortionAsMathMlInvalidName", testDownloadPortionAsMathMlInvalidName),
+        ("testDownloadPortionAsMathMlInvalidSlideIndex", testDownloadPortionAsMathMlInvalidSlideIndex),
+        ("testDownloadPortionAsMathMlInvalidShapeIndex", testDownloadPortionAsMathMlInvalidShapeIndex),
+        ("testDownloadPortionAsMathMlInvalidParagraphIndex", testDownloadPortionAsMathMlInvalidParagraphIndex),
+        ("testDownloadPortionAsMathMlInvalidPortionIndex", testDownloadPortionAsMathMlInvalidPortionIndex),
+        ("testDownloadPortionAsMathMlInvalidPassword", testDownloadPortionAsMathMlInvalidPassword),
+        ("testDownloadPortionAsMathMlInvalidFolder", testDownloadPortionAsMathMlInvalidFolder),
+        ("testDownloadPortionAsMathMlInvalidStorage", testDownloadPortionAsMathMlInvalidStorage),
         ("testDownloadPresentation", testDownloadPresentation),
         ("testDownloadPresentationInvalidName", testDownloadPresentationInvalidName),
         ("testDownloadPresentationInvalidFormat", testDownloadPresentationInvalidFormat),
@@ -982,6 +1001,7 @@ class SlidesAPITests : XCTestCase {
         ("testGetAnimationInvalidName", testGetAnimationInvalidName),
         ("testGetAnimationInvalidSlideIndex", testGetAnimationInvalidSlideIndex),
         ("testGetAnimationInvalidShapeIndex", testGetAnimationInvalidShapeIndex),
+        ("testGetAnimationInvalidParagraphIndex", testGetAnimationInvalidParagraphIndex),
         ("testGetAnimationInvalidPassword", testGetAnimationInvalidPassword),
         ("testGetAnimationInvalidFolder", testGetAnimationInvalidFolder),
         ("testGetAnimationInvalidStorage", testGetAnimationInvalidStorage),
@@ -1145,6 +1165,13 @@ class SlidesAPITests : XCTestCase {
         ("testGetShapeInvalidPassword", testGetShapeInvalidPassword),
         ("testGetShapeInvalidFolder", testGetShapeInvalidFolder),
         ("testGetShapeInvalidStorage", testGetShapeInvalidStorage),
+        ("testGetShapeGeometryPath", testGetShapeGeometryPath),
+        ("testGetShapeGeometryPathInvalidName", testGetShapeGeometryPathInvalidName),
+        ("testGetShapeGeometryPathInvalidSlideIndex", testGetShapeGeometryPathInvalidSlideIndex),
+        ("testGetShapeGeometryPathInvalidShapeIndex", testGetShapeGeometryPathInvalidShapeIndex),
+        ("testGetShapeGeometryPathInvalidPassword", testGetShapeGeometryPathInvalidPassword),
+        ("testGetShapeGeometryPathInvalidFolder", testGetShapeGeometryPathInvalidFolder),
+        ("testGetShapeGeometryPathInvalidStorage", testGetShapeGeometryPathInvalidStorage),
         ("testGetShapes", testGetShapes),
         ("testGetShapesInvalidName", testGetShapesInvalidName),
         ("testGetShapesInvalidSlideIndex", testGetShapesInvalidSlideIndex),
@@ -1197,6 +1224,7 @@ class SlidesAPITests : XCTestCase {
         ("testGetSpecialSlideAnimationInvalidSlideIndex", testGetSpecialSlideAnimationInvalidSlideIndex),
         ("testGetSpecialSlideAnimationInvalidSlideType", testGetSpecialSlideAnimationInvalidSlideType),
         ("testGetSpecialSlideAnimationInvalidShapeIndex", testGetSpecialSlideAnimationInvalidShapeIndex),
+        ("testGetSpecialSlideAnimationInvalidParagraphIndex", testGetSpecialSlideAnimationInvalidParagraphIndex),
         ("testGetSpecialSlideAnimationInvalidPassword", testGetSpecialSlideAnimationInvalidPassword),
         ("testGetSpecialSlideAnimationInvalidFolder", testGetSpecialSlideAnimationInvalidFolder),
         ("testGetSpecialSlideAnimationInvalidStorage", testGetSpecialSlideAnimationInvalidStorage),
@@ -1482,6 +1510,16 @@ class SlidesAPITests : XCTestCase {
         ("testReplaceSlideTextOnlineInvalidNewValue", testReplaceSlideTextOnlineInvalidNewValue),
         ("testReplaceSlideTextOnlineInvalidIgnoreCase", testReplaceSlideTextOnlineInvalidIgnoreCase),
         ("testReplaceSlideTextOnlineInvalidPassword", testReplaceSlideTextOnlineInvalidPassword),
+        ("testSavePortionAsMathMl", testSavePortionAsMathMl),
+        ("testSavePortionAsMathMlInvalidName", testSavePortionAsMathMlInvalidName),
+        ("testSavePortionAsMathMlInvalidSlideIndex", testSavePortionAsMathMlInvalidSlideIndex),
+        ("testSavePortionAsMathMlInvalidShapeIndex", testSavePortionAsMathMlInvalidShapeIndex),
+        ("testSavePortionAsMathMlInvalidParagraphIndex", testSavePortionAsMathMlInvalidParagraphIndex),
+        ("testSavePortionAsMathMlInvalidPortionIndex", testSavePortionAsMathMlInvalidPortionIndex),
+        ("testSavePortionAsMathMlInvalidOutPath", testSavePortionAsMathMlInvalidOutPath),
+        ("testSavePortionAsMathMlInvalidPassword", testSavePortionAsMathMlInvalidPassword),
+        ("testSavePortionAsMathMlInvalidFolder", testSavePortionAsMathMlInvalidFolder),
+        ("testSavePortionAsMathMlInvalidStorage", testSavePortionAsMathMlInvalidStorage),
         ("testSavePresentation", testSavePresentation),
         ("testSavePresentationInvalidName", testSavePresentationInvalidName),
         ("testSavePresentationInvalidFormat", testSavePresentationInvalidFormat),
@@ -1651,6 +1689,14 @@ class SlidesAPITests : XCTestCase {
         ("testSetSectionsInvalidPassword", testSetSectionsInvalidPassword),
         ("testSetSectionsInvalidFolder", testSetSectionsInvalidFolder),
         ("testSetSectionsInvalidStorage", testSetSectionsInvalidStorage),
+        ("testSetShapeGeometryPath", testSetShapeGeometryPath),
+        ("testSetShapeGeometryPathInvalidName", testSetShapeGeometryPathInvalidName),
+        ("testSetShapeGeometryPathInvalidSlideIndex", testSetShapeGeometryPathInvalidSlideIndex),
+        ("testSetShapeGeometryPathInvalidShapeIndex", testSetShapeGeometryPathInvalidShapeIndex),
+        ("testSetShapeGeometryPathInvalidDto", testSetShapeGeometryPathInvalidDto),
+        ("testSetShapeGeometryPathInvalidPassword", testSetShapeGeometryPathInvalidPassword),
+        ("testSetShapeGeometryPathInvalidFolder", testSetShapeGeometryPathInvalidFolder),
+        ("testSetShapeGeometryPathInvalidStorage", testSetShapeGeometryPathInvalidStorage),
         ("testSetSlideHeaderFooter", testSetSlideHeaderFooter),
         ("testSetSlideHeaderFooterInvalidName", testSetSlideHeaderFooterInvalidName),
         ("testSetSlideHeaderFooterInvalidSlideIndex", testSetSlideHeaderFooterInvalidSlideIndex),
@@ -2325,6 +2371,215 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("alignSpecialSlideShapes", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.alignSpecialSlideShapes(paramName, paramSlideIndex, paramSlideType, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "alignSpecialSlideShapes", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testAlignSubshapes() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        let paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        let paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        let paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        let paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        let paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        TestUtils.initialize("alignSubshapes") { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidName() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("alignSubshapes", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("alignSubshapes", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidPath() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramPath = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "path", value: paramPath as Any, type: "String")
+        TestUtils.initialize("alignSubshapes", "path", paramPath) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "path", parameterValue: paramPath as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidAlignmentType() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramAlignmentType = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "alignmentType", value: paramAlignmentType as Any, type: "String")
+        TestUtils.initialize("alignSubshapes", "alignmentType", paramAlignmentType) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "alignmentType", parameterValue: paramAlignmentType as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidAlignToSlide() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramAlignToSlide = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "alignToSlide", value: paramAlignToSlide as Any, type: "Bool")
+        TestUtils.initialize("alignSubshapes", "alignToSlide", paramAlignToSlide) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "alignToSlide", parameterValue: paramAlignToSlide as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidShapes() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramShapes = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "shapes", value: paramShapes as Any, type: "[Int]")
+        TestUtils.initialize("alignSubshapes", "shapes", paramShapes) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "shapes", parameterValue: paramShapes as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidPassword() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("alignSubshapes", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidFolder() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("alignSubshapes", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testAlignSubshapesInvalidStorage() {
+        let expectation = self.expectation(description: "testalignSubshapes")
+        var paramName : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "alignSubshapes", name: "slideIndex", type: "Int")
+        var paramPath : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "path", type: "String")
+        var paramAlignmentType : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignmentType", type: "String")
+        var paramAlignToSlide : Bool = TestUtils.getTestValue(functionName: "alignSubshapes", name: "alignToSlide", type: "Bool")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "alignSubshapes", name: "shapes", type: "[Int]")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "alignSubshapes", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "alignSubshapes", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("alignSubshapes", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.alignSubshapes(paramName, paramSlideIndex, paramPath, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "alignSubshapes", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }
@@ -18135,6 +18390,185 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testDownloadPortionAsMathMl() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        let paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        TestUtils.initialize("downloadPortionAsMathMl") { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidName() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("downloadPortionAsMathMl", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("downloadPortionAsMathMl", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("downloadPortionAsMathMl", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramParagraphIndex = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", value: paramParagraphIndex as Any, type: "Int")
+        TestUtils.initialize("downloadPortionAsMathMl", "paragraphIndex", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "paragraphIndex", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidPortionIndex() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramPortionIndex = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", value: paramPortionIndex as Any, type: "Int")
+        TestUtils.initialize("downloadPortionAsMathMl", "portionIndex", paramPortionIndex) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "portionIndex", parameterValue: paramPortionIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidPassword() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("downloadPortionAsMathMl", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidFolder() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("downloadPortionAsMathMl", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadPortionAsMathMlInvalidStorage() {
+        let expectation = self.expectation(description: "testdownloadPortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "downloadPortionAsMathMl", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "downloadPortionAsMathMl", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("downloadPortionAsMathMl", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.downloadPortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadPortionAsMathMl", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testDownloadPresentation() {
         let expectation = self.expectation(description: "testdownloadPresentation")
         let paramName : String = TestUtils.getTestValue(functionName: "downloadPresentation", name: "name", type: "String")
@@ -20442,11 +20876,12 @@ class SlidesAPITests : XCTestCase {
         let paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         let paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         let paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         let paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         TestUtils.initialize("getAnimation") { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()
@@ -20460,12 +20895,13 @@ class SlidesAPITests : XCTestCase {
         var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         paramName = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "name", value: paramName as Any, type: "String")
         TestUtils.initialize("getAnimation", "name", paramName) { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "name", parameterValue: paramName as Any)
                 expectation.fulfill()
             }
@@ -20478,12 +20914,13 @@ class SlidesAPITests : XCTestCase {
         var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
         TestUtils.initialize("getAnimation", "slideIndex", paramSlideIndex) { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
                 expectation.fulfill()
             }
@@ -20496,13 +20933,33 @@ class SlidesAPITests : XCTestCase {
         var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
         TestUtils.initialize("getAnimation", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetAnimationInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testgetAnimation")
+        var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
+        paramParagraphIndex = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "paragraphIndex", value: paramParagraphIndex as Any, type: "Int")
+        TestUtils.initialize("getAnimation", "paragraphIndex", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "paragraphIndex", parameterValue: paramParagraphIndex as Any)
                 expectation.fulfill()
             }
         }
@@ -20514,12 +20971,13 @@ class SlidesAPITests : XCTestCase {
         var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         paramPassword = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "password", value: paramPassword as Any, type: "String")
         TestUtils.initialize("getAnimation", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
@@ -20532,12 +20990,13 @@ class SlidesAPITests : XCTestCase {
         var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         paramFolder = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "folder", value: paramFolder as Any, type: "String")
         TestUtils.initialize("getAnimation", "folder", paramFolder) { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "folder", parameterValue: paramFolder as Any)
                 expectation.fulfill()
             }
@@ -20550,12 +21009,13 @@ class SlidesAPITests : XCTestCase {
         var paramName : String = TestUtils.getTestValue(functionName: "getAnimation", name: "name", type: "String")
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "slideIndex", type: "Int")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getAnimation", name: "storage", type: "String")
         paramStorage = TestUtils.getInvalidTestValue(functionName: "getAnimation", name: "storage", value: paramStorage as Any, type: "String")
         TestUtils.initialize("getAnimation", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getAnimation(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getAnimation", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
@@ -23259,6 +23719,131 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testGetShapeGeometryPath() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        let paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        TestUtils.initialize("getShapeGeometryPath") { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetShapeGeometryPathInvalidName() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "getShapeGeometryPath", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("getShapeGeometryPath", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getShapeGeometryPath", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetShapeGeometryPathInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("getShapeGeometryPath", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getShapeGeometryPath", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetShapeGeometryPathInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("getShapeGeometryPath", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getShapeGeometryPath", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetShapeGeometryPathInvalidPassword() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "getShapeGeometryPath", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("getShapeGeometryPath", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getShapeGeometryPath", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetShapeGeometryPathInvalidFolder() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "getShapeGeometryPath", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("getShapeGeometryPath", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getShapeGeometryPath", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetShapeGeometryPathInvalidStorage() {
+        let expectation = self.expectation(description: "testgetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getShapeGeometryPath", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "getShapeGeometryPath", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("getShapeGeometryPath", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.getShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getShapeGeometryPath", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testGetShapes() {
         let expectation = self.expectation(description: "testgetShapes")
         let paramName : String = TestUtils.getTestValue(functionName: "getShapes", name: "name", type: "String")
@@ -24053,11 +24638,12 @@ class SlidesAPITests : XCTestCase {
         let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         let paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         let paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         let paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         let paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         TestUtils.initialize("getSpecialSlideAnimation") { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 XCTAssertNotNil(response)
                 XCTAssertNil(error)
                 expectation.fulfill()
@@ -24072,12 +24658,13 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramName = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "name", value: paramName as Any, type: "String")
         TestUtils.initialize("getSpecialSlideAnimation", "name", paramName) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "name", parameterValue: paramName as Any)
                 expectation.fulfill()
             }
@@ -24091,12 +24678,13 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
         TestUtils.initialize("getSpecialSlideAnimation", "slideIndex", paramSlideIndex) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
                 expectation.fulfill()
             }
@@ -24110,12 +24698,13 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramSlideType = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", value: paramSlideType as Any, type: "String")
         TestUtils.initialize("getSpecialSlideAnimation", "slideType", paramSlideType) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "slideType", parameterValue: paramSlideType as Any)
                 expectation.fulfill()
             }
@@ -24129,13 +24718,34 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
         TestUtils.initialize("getSpecialSlideAnimation", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetSpecialSlideAnimationInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testgetSpecialSlideAnimation")
+        var paramName : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
+        var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
+        paramParagraphIndex = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", value: paramParagraphIndex as Any, type: "Int")
+        TestUtils.initialize("getSpecialSlideAnimation", "paragraphIndex", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "paragraphIndex", parameterValue: paramParagraphIndex as Any)
                 expectation.fulfill()
             }
         }
@@ -24148,12 +24758,13 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramPassword = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "password", value: paramPassword as Any, type: "String")
         TestUtils.initialize("getSpecialSlideAnimation", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
@@ -24167,12 +24778,13 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramFolder = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "folder", value: paramFolder as Any, type: "String")
         TestUtils.initialize("getSpecialSlideAnimation", "folder", paramFolder) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "folder", parameterValue: paramFolder as Any)
                 expectation.fulfill()
             }
@@ -24186,12 +24798,13 @@ class SlidesAPITests : XCTestCase {
         var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideIndex", type: "Int")
         var paramSlideType : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "slideType", type: "String")
         var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "paragraphIndex", type: "Int")
         var paramPassword : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "password", type: "String")
         var paramFolder : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "folder", type: "String")
         var paramStorage : String = TestUtils.getTestValue(functionName: "getSpecialSlideAnimation", name: "storage", type: "String")
         paramStorage = TestUtils.getInvalidTestValue(functionName: "getSpecialSlideAnimation", name: "storage", value: paramStorage as Any, type: "String")
         TestUtils.initialize("getSpecialSlideAnimation", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+            SlidesAPI.getSpecialSlideAnimation(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getSpecialSlideAnimation", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
@@ -29447,6 +30060,215 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testSavePortionAsMathMl() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        let paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        let paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        TestUtils.initialize("savePortionAsMathMl") { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidName() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("savePortionAsMathMl", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("savePortionAsMathMl", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("savePortionAsMathMl", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramParagraphIndex = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", value: paramParagraphIndex as Any, type: "Int")
+        TestUtils.initialize("savePortionAsMathMl", "paragraphIndex", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "paragraphIndex", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidPortionIndex() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramPortionIndex = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", value: paramPortionIndex as Any, type: "Int")
+        TestUtils.initialize("savePortionAsMathMl", "portionIndex", paramPortionIndex) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "portionIndex", parameterValue: paramPortionIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidOutPath() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramOutPath = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "outPath", value: paramOutPath as Any, type: "String")
+        TestUtils.initialize("savePortionAsMathMl", "outPath", paramOutPath) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "outPath", parameterValue: paramOutPath as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidPassword() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("savePortionAsMathMl", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidFolder() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("savePortionAsMathMl", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSavePortionAsMathMlInvalidStorage() {
+        let expectation = self.expectation(description: "testsavePortionAsMathMl")
+        var paramName : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "shapeIndex", type: "Int")
+        var paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "paragraphIndex", type: "Int")
+        var paramPortionIndex : Int = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "portionIndex", type: "Int")
+        var paramOutPath : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "outPath", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "savePortionAsMathMl", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "savePortionAsMathMl", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("savePortionAsMathMl", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.savePortionAsMathMl(paramName, paramSlideIndex, paramShapeIndex, paramParagraphIndex, paramPortionIndex, paramOutPath, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "savePortionAsMathMl", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testSavePresentation() {
         let expectation = self.expectation(description: "testsavePresentation")
         let paramName : String = TestUtils.getTestValue(functionName: "savePresentation", name: "name", type: "String")
@@ -33124,6 +33946,157 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("setSections", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.setSections(paramName, paramSections, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "setSections", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetShapeGeometryPath() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        let paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        let paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        TestUtils.initialize("setShapeGeometryPath") { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidName() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setShapeGeometryPath", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("setShapeGeometryPath", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("setShapeGeometryPath", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidDto() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramDto = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "dto", value: paramDto as Any, type: "GeometryPaths")
+        TestUtils.initialize("setShapeGeometryPath", "dto", paramDto) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "dto", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidPassword() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setShapeGeometryPath", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidFolder() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setShapeGeometryPath", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetShapeGeometryPathInvalidStorage() {
+        let expectation = self.expectation(description: "testsetShapeGeometryPath")
+        var paramName : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "shapeIndex", type: "Int")
+        var paramDto : GeometryPaths = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "dto", type: "GeometryPaths")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setShapeGeometryPath", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setShapeGeometryPath", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setShapeGeometryPath", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setShapeGeometryPath(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setShapeGeometryPath", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }

@@ -76,8 +76,8 @@ public class SvgExportOptions: ExportOptions {
         case externalFontsHandling
     }
 
-    public init(defaultRegularFont: String? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, format: format)
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
         self.vectorizeText = vectorizeText
         self.metafileRasterizationDpi = metafileRasterizationDpi
         self.disable3DText = disable3DText

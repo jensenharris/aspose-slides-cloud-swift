@@ -268,6 +268,8 @@ public class Effect: Codable {
     public var presetClassType: PresetClassType?
     /** Shape index. */
     public var shapeIndex: Int?
+    /** Paragraph index. */
+    public var paragraphIndex: Int?
     /** Effect trigger type. */
     public var triggerType: TriggerType?
     /** The percentage of duration accelerate behavior effect. */
@@ -294,6 +296,7 @@ public class Effect: Codable {
         case subtype
         case presetClassType
         case shapeIndex
+        case paragraphIndex
         case triggerType
         case accelerate
         case autoReverse
@@ -306,11 +309,12 @@ public class Effect: Codable {
         case triggerDelayTime
     }
 
-    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil) {
+    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil) {
         self.type = type
         self.subtype = subtype
         self.presetClassType = presetClassType
         self.shapeIndex = shapeIndex
+        self.paragraphIndex = paragraphIndex
         self.triggerType = triggerType
         self.accelerate = accelerate
         self.autoReverse = autoReverse

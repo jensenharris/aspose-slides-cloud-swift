@@ -54,6 +54,7 @@ public class SaveSlide: Task {
         case potm = "Potm"
         case svg = "Svg"
         case fodp = "Fodp"
+        case xaml = "Xaml"
     }
     /** Output to save the slide to. */
     public var output: OutputFile?

@@ -34,15 +34,23 @@ public class ExportOptions: Codable {
 
     /** Default regular font for rendering the presentation.  */
     public var defaultRegularFont: String?
+    /** Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc. */
+    public var height: Int?
+    /** Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc. */
+    public var width: Int?
     public var format: String?
 
     private enum CodingKeys: String, CodingKey {
         case defaultRegularFont
+        case height
+        case width
         case format
     }
 
-    public init(defaultRegularFont: String? = nil, format: String? = nil) {
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil) {
         self.defaultRegularFont = defaultRegularFont
+        self.height = height
+        self.width = width
         self.format = format
     }
 

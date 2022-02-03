@@ -59,10 +59,6 @@ public class TiffExportOptions: ExportOptions {
     }
     /** Compression type. */
     public var compression: Compression?
-    /** Width. */
-    public var width: Int?
-    /** Height. */
-    public var height: Int?
     /** Horizontal resolution, in dots per inch. */
     public var dpiX: Int?
     /** Vertical resolution, in dots per inch. */
@@ -84,8 +80,6 @@ public class TiffExportOptions: ExportOptions {
 
     private enum CodingKeys: String, CodingKey {
         case compression
-        case width
-        case height
         case dpiX
         case dpiY
         case showHiddenSlides
@@ -97,11 +91,9 @@ public class TiffExportOptions: ExportOptions {
         case showCommentsByNoAuthor
     }
 
-    public init(defaultRegularFont: String? = nil, format: String? = nil, compression: Compression? = nil, width: Int? = nil, height: Int? = nil, dpiX: Int? = nil, dpiY: Int? = nil, showHiddenSlides: Bool? = nil, pixelFormat: PixelFormat? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, format: format)
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, compression: Compression? = nil, dpiX: Int? = nil, dpiY: Int? = nil, showHiddenSlides: Bool? = nil, pixelFormat: PixelFormat? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
         self.compression = compression
-        self.width = width
-        self.height = height
         self.dpiX = dpiX
         self.dpiY = dpiY
         self.showHiddenSlides = showHiddenSlides
@@ -117,8 +109,6 @@ public class TiffExportOptions: ExportOptions {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
         compression = try values.decode(Compression?.self, forKey: .compression)
-        width = try values.decode(Int?.self, forKey: .width)
-        height = try values.decode(Int?.self, forKey: .height)
         dpiX = try values.decode(Int?.self, forKey: .dpiX)
         dpiY = try values.decode(Int?.self, forKey: .dpiY)
         showHiddenSlides = try values.decode(Bool?.self, forKey: .showHiddenSlides)
@@ -134,8 +124,6 @@ public class TiffExportOptions: ExportOptions {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(compression, forKey: .compression)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
         try container.encode(dpiX, forKey: .dpiX)
         try container.encode(dpiY, forKey: .dpiY)
         try container.encode(showHiddenSlides, forKey: .showHiddenSlides)

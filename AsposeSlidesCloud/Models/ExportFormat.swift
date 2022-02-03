@@ -46,6 +46,7 @@ public enum ExportFormat: String, Codable {
     case potx = "Potx"
     case potm = "Potm"
     case html = "Html"
+    case html5 = "Html5"
     case swf = "Swf"
     case svg = "Svg"
     case jpeg = "Jpeg"
@@ -53,5 +54,6 @@ public enum ExportFormat: String, Codable {
     case gif = "Gif"
     case bmp = "Bmp"
     case fodp = "Fodp"
+    case xaml = "Xaml"
 
 }

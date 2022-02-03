@@ -48,6 +48,7 @@ public class Save: Task {
         case potx = "Potx"
         case potm = "Potm"
         case html = "Html"
+        case html5 = "Html5"
         case swf = "Swf"
         case svg = "Svg"
         case jpeg = "Jpeg"
@@ -55,6 +56,7 @@ public class Save: Task {
         case gif = "Gif"
         case bmp = "Bmp"
         case fodp = "Fodp"
+        case xaml = "Xaml"
     }
     /** Format. */
     public var format: Format?
