@@ -52,11 +52,13 @@ public class Axis: Codable {
         case customValue = "CustomValue"
     }
     public enum BaseUnitScale: String, Codable { 
+        case _none = "None"
         case days = "Days"
         case months = "Months"
         case years = "Years"
     }
     public enum MajorUnitScale: String, Codable { 
+        case _none = "None"
         case days = "Days"
         case months = "Months"
         case years = "Years"
@@ -68,6 +70,7 @@ public class Axis: Codable {
         case outside = "Outside"
     }
     public enum MinorUnitScale: String, Codable { 
+        case _none = "None"
         case days = "Days"
         case months = "Months"
         case years = "Years"

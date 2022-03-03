@@ -135,14 +135,6 @@ public class Series: Codable {
     public var plotOnSecondAxis: Bool?
     /** Series order. */
     public var order: Int?
-    /** The number format for the series y values. */
-    public var numberFormatOfYValues: String?
-    /** The number format for the series x values. */
-    public var numberFormatOfXValues: String?
-    /** The number format for the series values. */
-    public var numberFormatOfValues: String?
-    /** The number format for the series bubble sizes. */
-    public var numberFormatOfBubbleSizes: String?
     /** True if the series shall invert its colors if the value is negative. Applies to bar, column and bubble series. */
     public var invertIfNegative: Bool?
     /** The distance of an open pie slice from the center of the pie chart is expressed as a percentage of the pie diameter. */
@@ -165,10 +157,6 @@ public class Series: Codable {
         case smooth
         case plotOnSecondAxis
         case order
-        case numberFormatOfYValues
-        case numberFormatOfXValues
-        case numberFormatOfValues
-        case numberFormatOfBubbleSizes
         case invertIfNegative
         case explosion
         case marker
@@ -178,7 +166,7 @@ public class Series: Codable {
         case dataPointType
     }
 
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil, numberFormatOfValues: String? = nil, numberFormatOfBubbleSizes: String? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil) {
+    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil) {
         self.type = type
         self.name = name
         self.isColorVaried = isColorVaried
@@ -186,10 +174,6 @@ public class Series: Codable {
         self.smooth = smooth
         self.plotOnSecondAxis = plotOnSecondAxis
         self.order = order
-        self.numberFormatOfYValues = numberFormatOfYValues
-        self.numberFormatOfXValues = numberFormatOfXValues
-        self.numberFormatOfValues = numberFormatOfValues
-        self.numberFormatOfBubbleSizes = numberFormatOfBubbleSizes
         self.invertIfNegative = invertIfNegative
         self.explosion = explosion
         self.marker = marker

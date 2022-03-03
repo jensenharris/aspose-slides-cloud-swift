@@ -45,6 +45,10 @@ public class ShapeBase: ResourceBase {
         case graphicalObject = "GraphicalObject"
         case connector = "Connector"
         case smartArtShape = "SmartArtShape"
+        case zoomFrame = "ZoomFrame"
+        case sectionZoomFrame = "SectionZoomFrame"
+        case summaryZoomFrame = "SummaryZoomFrame"
+        case summaryZoomSection = "SummaryZoomSection"
     }
     /** Gets or sets the name. */
     public var name: String?

@@ -293,6 +293,7 @@ open class SlidesAPI {
         case bmp = "Bmp"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case mpeg4 = "Mpeg4"
     }
 
     /**
@@ -377,6 +378,7 @@ open class SlidesAPI {
         case bmp = "Bmp"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case mpeg4 = "Mpeg4"
     }
 
     /**
@@ -5902,6 +5904,97 @@ open class SlidesAPI {
         return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
     /**
+     Removes unused layout slides.
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteUnusedLayoutSlides(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: LayoutSlides?,_ error: Error?) -> Void)) {
+        deleteUnusedLayoutSlidesWithRequestBuilder(name, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes unused layout slides.
+     - DELETE /slides/{name}/layoutSlides
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<LayoutSlides> 
+     */
+    open class func deleteUnusedLayoutSlidesWithRequestBuilder(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<LayoutSlides> {
+        var methodPath = "/slides/{name}/layoutSlides"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<LayoutSlides>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
+    }
+    /**
+     Removes unused layout slides.
+     - parameter document: Document data
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteUnusedLayoutSlidesOnline(_ document: Data, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        deleteUnusedLayoutSlidesOnlineWithRequestBuilder(document, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes unused layout slides.
+     - POST /slides/layoutSlides/delete
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data
+     - parameter password: Document password.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func deleteUnusedLayoutSlidesOnlineWithRequestBuilder(_ document: Data, _ password: String = "") -> RequestBuilder<Data> {
+        let methodPath = "/slides/layoutSlides/delete"
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let formParams: [String:Any?] = [
+            "document": document
+        ]
+
+        let nonNullParameters = APIHelper.rejectNil(formParams)
+        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+
+        let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
+    }
+    /**
      Removes shapes with name \"watermark\" from the presentation.
      - parameter name: Document name.
      - parameter shapeName: Name of the watermark shape. If null, default value \"watermark\"is used.
@@ -6706,6 +6799,7 @@ open class SlidesAPI {
         case bmp = "Bmp"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case mpeg4 = "Mpeg4"
     }
 
     /**
@@ -10698,6 +10792,136 @@ open class SlidesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
     /**
+     Highlight all matches of sample in text frame text using specified color.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter regex: Regular expression.
+     - parameter color: Highlighting color.
+     - parameter wholeWordsOnly: Match only whole words.
+     - parameter ignoreCase: True to search ignoring char case.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func highlightShapeRegex(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ regex: String, _ color: String, _ wholeWordsOnly: Bool? = nil, _ ignoreCase: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shape?,_ error: Error?) -> Void)) {
+        highlightShapeRegexWithRequestBuilder(name, slideIndex, shapeIndex, regex, color, wholeWordsOnly, ignoreCase, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Highlight all matches of sample in text frame text using specified color.
+     - POST /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/highlightRegex
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter regex: Regular expression.
+     - parameter color: Highlighting color.
+     - parameter wholeWordsOnly: Match only whole words.
+     - parameter ignoreCase: True to search ignoring char case.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Shape> 
+     */
+    open class func highlightShapeRegexWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ regex: String, _ color: String, _ wholeWordsOnly: Bool? = nil, _ ignoreCase: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shape> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/highlightRegex"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "regex": regex, 
+            "color": color, 
+            "wholeWordsOnly": wholeWordsOnly, 
+            "ignoreCase": ignoreCase, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Shape>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
+    }
+    /**
+     Highlight all matches of sample in text frame text using specified color.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter text: Text sample to highlight.
+     - parameter color: Highlighting color.
+     - parameter wholeWordsOnly: Match only whole words.
+     - parameter ignoreCase: True to search ignoring char case.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func highlightShapeText(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ text: String, _ color: String, _ wholeWordsOnly: Bool? = nil, _ ignoreCase: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shape?,_ error: Error?) -> Void)) {
+        highlightShapeTextWithRequestBuilder(name, slideIndex, shapeIndex, text, color, wholeWordsOnly, ignoreCase, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Highlight all matches of sample in text frame text using specified color.
+     - POST /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/highlightText
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter text: Text sample to highlight.
+     - parameter color: Highlighting color.
+     - parameter wholeWordsOnly: Match only whole words.
+     - parameter ignoreCase: True to search ignoring char case.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Shape> 
+     */
+    open class func highlightShapeTextWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ text: String, _ color: String, _ wholeWordsOnly: Bool? = nil, _ ignoreCase: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shape> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/highlightText"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "text": text, 
+            "color": color, 
+            "wholeWordsOnly": wholeWordsOnly, 
+            "ignoreCase": ignoreCase, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Shape>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
+    }
+    /**
      Create presentation document from html.
      - parameter name: Document name.
      - parameter html: HTML data.
@@ -11740,6 +11964,7 @@ open class SlidesAPI {
         case bmp = "Bmp"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case mpeg4 = "Mpeg4"
     }
 
     /**

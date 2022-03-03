@@ -29,70 +29,31 @@
 import Foundation
 
 
-/** Save slide task. */
-public class Save: Task {
+/** Section zoom frame.              */
+public class SectionZoomFrame: ZoomObject {
 
-    public enum Format: String, Codable { 
-        case pdf = "Pdf"
-        case xps = "Xps"
-        case tiff = "Tiff"
-        case pptx = "Pptx"
-        case odp = "Odp"
-        case otp = "Otp"
-        case ppt = "Ppt"
-        case pps = "Pps"
-        case ppsx = "Ppsx"
-        case pptm = "Pptm"
-        case ppsm = "Ppsm"
-        case pot = "Pot"
-        case potx = "Potx"
-        case potm = "Potm"
-        case html = "Html"
-        case html5 = "Html5"
-        case swf = "Swf"
-        case svg = "Svg"
-        case jpeg = "Jpeg"
-        case png = "Png"
-        case gif = "Gif"
-        case bmp = "Bmp"
-        case fodp = "Fodp"
-        case xaml = "Xaml"
-        case mpeg4 = "Mpeg4"
-    }
-    /** Format. */
-    public var format: Format?
-    /** Output file. */
-    public var output: OutputFile?
-    /** Save options. */
-    public var options: ExportOptions?
+    /** Index of the target section */
+    public var targetSectionIndex: Int?
 
     private enum CodingKeys: String, CodingKey {
-        case format
-        case output
-        case options
+        case targetSectionIndex
     }
 
-    public init(type: ModelType? = nil, format: Format? = nil, output: OutputFile? = nil, options: ExportOptions? = nil) {
-        super.init(type: type)
-        self.format = format
-        self.output = output
-        self.options = options
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, imageType: ImageType? = nil, returnToParent: Bool? = nil, showBackground: Bool? = nil, image: ResourceUri? = nil, transitionDuration: Double? = nil, targetSectionIndex: Int? = nil) {
+        super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, shapes: shapes, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type, imageType: imageType, returnToParent: returnToParent, showBackground: showBackground, image: image, transitionDuration: transitionDuration)
+        self.targetSectionIndex = targetSectionIndex
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        format = try values.decode(Format?.self, forKey: .format)
-        output = try values.decode(OutputFile?.self, forKey: .output)
-        options = try values.decode(ExportOptions?.self, forKey: .options)
+        targetSectionIndex = try values.decode(Int?.self, forKey: .targetSectionIndex)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(format, forKey: .format)
-        try container.encode(output, forKey: .output)
-        try container.encode(options, forKey: .options)
+        try container.encode(targetSectionIndex, forKey: .targetSectionIndex)
     }
 
 

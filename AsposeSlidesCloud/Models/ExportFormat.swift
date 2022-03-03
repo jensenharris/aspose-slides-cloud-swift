@@ -55,5 +55,6 @@ public enum ExportFormat: String, Codable {
     case bmp = "Bmp"
     case fodp = "Fodp"
     case xaml = "Xaml"
+    case mpeg4 = "Mpeg4"
 
 }

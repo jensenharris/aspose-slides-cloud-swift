@@ -30,7 +30,7 @@ import Foundation
 
 
 /** A scatter series */
-public class ScatterSeries: Series {
+public class ScatterSeries: XYSeries {
 
     /** Gets or sets the values. */
     public var dataPoints: [ScatterChartDataPoint]?
@@ -39,8 +39,8 @@ public class ScatterSeries: Series {
         case dataPoints
     }
 
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil, numberFormatOfValues: String? = nil, numberFormatOfBubbleSizes: String? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, dataPoints: [ScatterChartDataPoint]? = nil) {
-        super.init(type: type, name: name, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, numberFormatOfYValues: numberFormatOfYValues, numberFormatOfXValues: numberFormatOfXValues, numberFormatOfValues: numberFormatOfValues, numberFormatOfBubbleSizes: numberFormatOfBubbleSizes, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType)
+    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil, dataPoints: [ScatterChartDataPoint]? = nil) {
+        super.init(type: type, name: name, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType, numberFormatOfYValues: numberFormatOfYValues, numberFormatOfXValues: numberFormatOfXValues)
         self.dataPoints = dataPoints
     }
 

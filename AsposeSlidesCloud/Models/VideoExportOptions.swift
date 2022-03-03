@@ -29,70 +29,43 @@
 import Foundation
 
 
-/** Save slide task. */
-public class Save: Task {
+/** Provides options that control how a presentation is saved in an video format. */
+public class VideoExportOptions: ExportOptions {
 
-    public enum Format: String, Codable { 
-        case pdf = "Pdf"
-        case xps = "Xps"
-        case tiff = "Tiff"
-        case pptx = "Pptx"
-        case odp = "Odp"
-        case otp = "Otp"
-        case ppt = "Ppt"
-        case pps = "Pps"
-        case ppsx = "Ppsx"
-        case pptm = "Pptm"
-        case ppsm = "Ppsm"
-        case pot = "Pot"
-        case potx = "Potx"
-        case potm = "Potm"
-        case html = "Html"
-        case html5 = "Html5"
-        case swf = "Swf"
-        case svg = "Svg"
-        case jpeg = "Jpeg"
-        case png = "Png"
-        case gif = "Gif"
-        case bmp = "Bmp"
-        case fodp = "Fodp"
-        case xaml = "Xaml"
-        case mpeg4 = "Mpeg4"
+    public enum VideoResolutionType: String, Codable { 
+        case fullHD = "FullHD"
+        case sd = "SD"
+        case hd = "HD"
+        case qhd = "QHD"
     }
-    /** Format. */
-    public var format: Format?
-    /** Output file. */
-    public var output: OutputFile?
-    /** Save options. */
-    public var options: ExportOptions?
+    /** Transition duration. */
+    public var transitionDuration: Int?
+    /** Video resolution type */
+    public var videoResolutionType: VideoResolutionType?
 
     private enum CodingKeys: String, CodingKey {
-        case format
-        case output
-        case options
+        case transitionDuration
+        case videoResolutionType
     }
 
-    public init(type: ModelType? = nil, format: Format? = nil, output: OutputFile? = nil, options: ExportOptions? = nil) {
-        super.init(type: type)
-        self.format = format
-        self.output = output
-        self.options = options
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, transitionDuration: Int? = nil, videoResolutionType: VideoResolutionType? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
+        self.transitionDuration = transitionDuration
+        self.videoResolutionType = videoResolutionType
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        format = try values.decode(Format?.self, forKey: .format)
-        output = try values.decode(OutputFile?.self, forKey: .output)
-        options = try values.decode(ExportOptions?.self, forKey: .options)
+        transitionDuration = try values.decode(Int?.self, forKey: .transitionDuration)
+        videoResolutionType = try values.decode(VideoResolutionType?.self, forKey: .videoResolutionType)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(format, forKey: .format)
-        try container.encode(output, forKey: .output)
-        try container.encode(options, forKey: .options)
+        try container.encode(transitionDuration, forKey: .transitionDuration)
+        try container.encode(videoResolutionType, forKey: .videoResolutionType)
     }
 
 

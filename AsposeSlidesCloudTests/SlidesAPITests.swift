@@ -818,6 +818,14 @@ class SlidesAPITests : XCTestCase {
         ("testDeleteSubshapesInvalidPassword", testDeleteSubshapesInvalidPassword),
         ("testDeleteSubshapesInvalidFolder", testDeleteSubshapesInvalidFolder),
         ("testDeleteSubshapesInvalidStorage", testDeleteSubshapesInvalidStorage),
+        ("testDeleteUnusedLayoutSlides", testDeleteUnusedLayoutSlides),
+        ("testDeleteUnusedLayoutSlidesInvalidName", testDeleteUnusedLayoutSlidesInvalidName),
+        ("testDeleteUnusedLayoutSlidesInvalidPassword", testDeleteUnusedLayoutSlidesInvalidPassword),
+        ("testDeleteUnusedLayoutSlidesInvalidFolder", testDeleteUnusedLayoutSlidesInvalidFolder),
+        ("testDeleteUnusedLayoutSlidesInvalidStorage", testDeleteUnusedLayoutSlidesInvalidStorage),
+        ("testDeleteUnusedLayoutSlidesOnline", testDeleteUnusedLayoutSlidesOnline),
+        ("testDeleteUnusedLayoutSlidesOnlineInvalidDocument", testDeleteUnusedLayoutSlidesOnlineInvalidDocument),
+        ("testDeleteUnusedLayoutSlidesOnlineInvalidPassword", testDeleteUnusedLayoutSlidesOnlineInvalidPassword),
         ("testDeleteWatermark", testDeleteWatermark),
         ("testDeleteWatermarkInvalidName", testDeleteWatermarkInvalidName),
         ("testDeleteWatermarkInvalidShapeName", testDeleteWatermarkInvalidShapeName),
@@ -1398,6 +1406,28 @@ class SlidesAPITests : XCTestCase {
         ("testGetViewPropertiesInvalidPassword", testGetViewPropertiesInvalidPassword),
         ("testGetViewPropertiesInvalidFolder", testGetViewPropertiesInvalidFolder),
         ("testGetViewPropertiesInvalidStorage", testGetViewPropertiesInvalidStorage),
+        ("testHighlightShapeRegex", testHighlightShapeRegex),
+        ("testHighlightShapeRegexInvalidName", testHighlightShapeRegexInvalidName),
+        ("testHighlightShapeRegexInvalidSlideIndex", testHighlightShapeRegexInvalidSlideIndex),
+        ("testHighlightShapeRegexInvalidShapeIndex", testHighlightShapeRegexInvalidShapeIndex),
+        ("testHighlightShapeRegexInvalidRegex", testHighlightShapeRegexInvalidRegex),
+        ("testHighlightShapeRegexInvalidColor", testHighlightShapeRegexInvalidColor),
+        ("testHighlightShapeRegexInvalidWholeWordsOnly", testHighlightShapeRegexInvalidWholeWordsOnly),
+        ("testHighlightShapeRegexInvalidIgnoreCase", testHighlightShapeRegexInvalidIgnoreCase),
+        ("testHighlightShapeRegexInvalidPassword", testHighlightShapeRegexInvalidPassword),
+        ("testHighlightShapeRegexInvalidFolder", testHighlightShapeRegexInvalidFolder),
+        ("testHighlightShapeRegexInvalidStorage", testHighlightShapeRegexInvalidStorage),
+        ("testHighlightShapeText", testHighlightShapeText),
+        ("testHighlightShapeTextInvalidName", testHighlightShapeTextInvalidName),
+        ("testHighlightShapeTextInvalidSlideIndex", testHighlightShapeTextInvalidSlideIndex),
+        ("testHighlightShapeTextInvalidShapeIndex", testHighlightShapeTextInvalidShapeIndex),
+        ("testHighlightShapeTextInvalidText", testHighlightShapeTextInvalidText),
+        ("testHighlightShapeTextInvalidColor", testHighlightShapeTextInvalidColor),
+        ("testHighlightShapeTextInvalidWholeWordsOnly", testHighlightShapeTextInvalidWholeWordsOnly),
+        ("testHighlightShapeTextInvalidIgnoreCase", testHighlightShapeTextInvalidIgnoreCase),
+        ("testHighlightShapeTextInvalidPassword", testHighlightShapeTextInvalidPassword),
+        ("testHighlightShapeTextInvalidFolder", testHighlightShapeTextInvalidFolder),
+        ("testHighlightShapeTextInvalidStorage", testHighlightShapeTextInvalidStorage),
         ("testImportFromHtml", testImportFromHtml),
         ("testImportFromHtmlInvalidName", testImportFromHtmlInvalidName),
         ("testImportFromHtmlInvalidHtml", testImportFromHtmlInvalidHtml),
@@ -17167,6 +17197,126 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testDeleteUnusedLayoutSlides() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlides")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "name", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "storage", type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlides") { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlides(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedLayoutSlidesInvalidName() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "deleteUnusedLayoutSlides", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlides", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlides(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlides", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedLayoutSlidesInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteUnusedLayoutSlides", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlides", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlides(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlides", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedLayoutSlidesInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "deleteUnusedLayoutSlides", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlides", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlides(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlides", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedLayoutSlidesInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlides", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "deleteUnusedLayoutSlides", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlides", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlides(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlides", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testDeleteUnusedLayoutSlidesOnline() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlidesOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "document", type: "Data")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "password", type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlidesOnline") { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlidesOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedLayoutSlidesOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlidesOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "document", type: "Data")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "password", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("deleteUnusedLayoutSlidesOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlidesOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlidesOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedLayoutSlidesOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteUnusedLayoutSlidesOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "document", type: "Data")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "password", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteUnusedLayoutSlidesOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteUnusedLayoutSlidesOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedLayoutSlidesOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlidesOnline", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testDeleteWatermark() {
         let expectation = self.expectation(description: "testdeleteWatermark")
         let paramName : String = TestUtils.getTestValue(functionName: "deleteWatermark", name: "name", type: "String")
@@ -28142,6 +28292,488 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("getViewProperties", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.getViewProperties(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getViewProperties", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testHighlightShapeRegex() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        let paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        let paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        let paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        let paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        let paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        TestUtils.initialize("highlightShapeRegex") { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidName() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("highlightShapeRegex", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("highlightShapeRegex", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("highlightShapeRegex", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidRegex() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramRegex = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "regex", value: paramRegex as Any, type: "String")
+        TestUtils.initialize("highlightShapeRegex", "regex", paramRegex) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "regex", parameterValue: paramRegex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidColor() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramColor = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "color", value: paramColor as Any, type: "String")
+        TestUtils.initialize("highlightShapeRegex", "color", paramColor) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "color", parameterValue: paramColor as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidWholeWordsOnly() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramWholeWordsOnly = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", value: paramWholeWordsOnly as Any, type: "Bool")
+        TestUtils.initialize("highlightShapeRegex", "wholeWordsOnly", paramWholeWordsOnly) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "wholeWordsOnly", parameterValue: paramWholeWordsOnly as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidIgnoreCase() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramIgnoreCase = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", value: paramIgnoreCase as Any, type: "Bool")
+        TestUtils.initialize("highlightShapeRegex", "ignoreCase", paramIgnoreCase) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "ignoreCase", parameterValue: paramIgnoreCase as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidPassword() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("highlightShapeRegex", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidFolder() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("highlightShapeRegex", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeRegexInvalidStorage() {
+        let expectation = self.expectation(description: "testhighlightShapeRegex")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "shapeIndex", type: "Int")
+        var paramRegex : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "regex", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeRegex", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "highlightShapeRegex", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("highlightShapeRegex", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.highlightShapeRegex(paramName, paramSlideIndex, paramShapeIndex, paramRegex, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeRegex", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testHighlightShapeText() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        let paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        let paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        let paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        let paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        let paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        TestUtils.initialize("highlightShapeText") { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidName() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("highlightShapeText", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("highlightShapeText", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("highlightShapeText", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidText() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramText = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "text", value: paramText as Any, type: "String")
+        TestUtils.initialize("highlightShapeText", "text", paramText) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "text", parameterValue: paramText as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidColor() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramColor = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "color", value: paramColor as Any, type: "String")
+        TestUtils.initialize("highlightShapeText", "color", paramColor) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "color", parameterValue: paramColor as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidWholeWordsOnly() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramWholeWordsOnly = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", value: paramWholeWordsOnly as Any, type: "Bool")
+        TestUtils.initialize("highlightShapeText", "wholeWordsOnly", paramWholeWordsOnly) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "wholeWordsOnly", parameterValue: paramWholeWordsOnly as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidIgnoreCase() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramIgnoreCase = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "ignoreCase", value: paramIgnoreCase as Any, type: "Bool")
+        TestUtils.initialize("highlightShapeText", "ignoreCase", paramIgnoreCase) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "ignoreCase", parameterValue: paramIgnoreCase as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidPassword() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("highlightShapeText", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidFolder() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("highlightShapeText", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testHighlightShapeTextInvalidStorage() {
+        let expectation = self.expectation(description: "testhighlightShapeText")
+        var paramName : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "highlightShapeText", name: "shapeIndex", type: "Int")
+        var paramText : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "text", type: "String")
+        var paramColor : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "color", type: "String")
+        var paramWholeWordsOnly : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "wholeWordsOnly", type: "Bool")
+        var paramIgnoreCase : Bool = TestUtils.getTestValue(functionName: "highlightShapeText", name: "ignoreCase", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "highlightShapeText", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "highlightShapeText", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("highlightShapeText", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.highlightShapeText(paramName, paramSlideIndex, paramShapeIndex, paramText, paramColor, paramWholeWordsOnly, paramIgnoreCase, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "highlightShapeText", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }

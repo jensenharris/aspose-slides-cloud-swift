@@ -36,16 +36,20 @@ public class Shape: GeometryShape {
     public var text: String?
     /** Get or sets list to paragraphs list */
     public var paragraphs: ResourceUri?
+    /** Returns TextFrame&#39;s formatting properties. */
+    public var textFrameFormat: TextFrameFormat?
 
     private enum CodingKeys: String, CodingKey {
         case text
         case paragraphs
+        case textFrameFormat
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, text: String? = nil, paragraphs: ResourceUri? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, text: String? = nil, paragraphs: ResourceUri? = nil, textFrameFormat: TextFrameFormat? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, shapes: shapes, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type, shapeType: shapeType)
         self.text = text
         self.paragraphs = paragraphs
+        self.textFrameFormat = textFrameFormat
     }
 
     required init(from decoder: Decoder) throws {
@@ -53,6 +57,7 @@ public class Shape: GeometryShape {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         text = try values.decode(String?.self, forKey: .text)
         paragraphs = try values.decode(ResourceUri?.self, forKey: .paragraphs)
+        textFrameFormat = try values.decode(TextFrameFormat?.self, forKey: .textFrameFormat)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -60,6 +65,7 @@ public class Shape: GeometryShape {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(text, forKey: .text)
         try container.encode(paragraphs, forKey: .paragraphs)
+        try container.encode(textFrameFormat, forKey: .textFrameFormat)
     }
 
 
