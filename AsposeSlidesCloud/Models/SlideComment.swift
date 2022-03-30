@@ -30,29 +30,16 @@ import Foundation
 
 
 /** Represents comment of slide */
-public class SlideComment: Codable {
+public class SlideComment: SlideCommentBase {
 
-    /** Author. */
-    public var author: String?
-    /** Text. */
-    public var text: String?
-    /** Creation time. */
-    public var createdTime: String?
-    /** Child comments. */
-    public var childComments: [SlideComment]?
 
-    private enum CodingKeys: String, CodingKey {
-        case author
-        case text
-        case createdTime
-        case childComments
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
     }
 
-    public init(author: String? = nil, text: String? = nil, createdTime: String? = nil, childComments: [SlideComment]? = nil) {
-        self.author = author
-        self.text = text
-        self.createdTime = createdTime
-        self.childComments = childComments
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
     }
 
 

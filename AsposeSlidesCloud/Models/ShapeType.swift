@@ -29,33 +29,23 @@
 import Foundation
 
 
-/** Provides options that control how a presentation is saved in XAML format. */
-public class XamlExportOptions: ExportOptions {
-
-    /** Export hidden slides */
-    public var exportHiddenSlides: Bool?
-
-    private enum CodingKeys: String, CodingKey {
-        case exportHiddenSlides
-    }
-
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
-        self.exportHiddenSlides = exportHiddenSlides
-    }
-
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        exportHiddenSlides = try values.decode(Bool?.self, forKey: .exportHiddenSlides)
-    }
-
-    public override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
-    }
-
+/** Shape type */
+public enum ShapeType: String, Codable {
+    case shape = "Shape"
+    case chart = "Chart"
+    case table = "Table"
+    case pictureFrame = "PictureFrame"
+    case videoFrame = "VideoFrame"
+    case audioFrame = "AudioFrame"
+    case smartArt = "SmartArt"
+    case oleObjectFrame = "OleObjectFrame"
+    case groupShape = "GroupShape"
+    case graphicalObject = "GraphicalObject"
+    case connector = "Connector"
+    case smartArtShape = "SmartArtShape"
+    case zoomFrame = "ZoomFrame"
+    case sectionZoomFrame = "SectionZoomFrame"
+    case summaryZoomFrame = "SummaryZoomFrame"
+    case summaryZoomSection = "SummaryZoomSection"
 
 }
-

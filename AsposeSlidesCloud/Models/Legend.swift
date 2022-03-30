@@ -57,6 +57,8 @@ public class Legend: Codable {
     public var effectFormat: EffectFormat?
     /** Get or sets the line format. */
     public var lineFormat: LineFormat?
+    /** Get or sets value determines the visibility of legend */
+    public var hasLegend: Bool?
 
     private enum CodingKeys: String, CodingKey {
         case position
@@ -68,9 +70,10 @@ public class Legend: Codable {
         case fillFormat
         case effectFormat
         case lineFormat
+        case hasLegend
     }
 
-    public init(position: Position? = nil, X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil, overlay: Bool? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
+    public init(position: Position? = nil, X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil, overlay: Bool? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, hasLegend: Bool? = nil) {
         self.position = position
         self.X = X
         self.Y = Y
@@ -80,6 +83,7 @@ public class Legend: Codable {
         self.fillFormat = fillFormat
         self.effectFormat = effectFormat
         self.lineFormat = lineFormat
+        self.hasLegend = hasLegend
     }
 
 

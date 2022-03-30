@@ -29,6 +29,7 @@
 import Foundation
 
 
+/** Zoom object. */
 public class ZoomObject: ShapeBase {
 
     public enum ImageType: String, Codable { 

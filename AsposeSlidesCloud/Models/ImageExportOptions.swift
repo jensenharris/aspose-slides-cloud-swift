@@ -58,8 +58,8 @@ public class ImageExportOptions: ExportOptions {
         case commentsAreaColor
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
         self.notesPosition = notesPosition
         self.commentsPosition = commentsPosition
         self.commentsAreaWidth = commentsAreaWidth

@@ -48,8 +48,8 @@ public class VideoExportOptions: ExportOptions {
         case videoResolutionType
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, transitionDuration: Int? = nil, videoResolutionType: VideoResolutionType? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, transitionDuration: Int? = nil, videoResolutionType: VideoResolutionType? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
         self.transitionDuration = transitionDuration
         self.videoResolutionType = videoResolutionType
     }

@@ -156,6 +156,12 @@ public class Portion: ResourceBase {
     public var hyperlinkClick: Hyperlink?
     /** Hyperlink defined for mouse over. */
     public var hyperlinkMouseOver: Hyperlink?
+    /** Returns or sets the Latin font info. */
+    public var latinFont: String?
+    /** Returns or sets the East Asian font info. */
+    public var eastAsianFont: String?
+    /** Returns or sets the complex script font info. */
+    public var complexScriptFont: String?
 
     private enum CodingKeys: String, CodingKey {
         case text
@@ -186,9 +192,12 @@ public class Portion: ResourceBase {
         case underlineLineFormat
         case hyperlinkClick
         case hyperlinkMouseOver
+        case latinFont
+        case eastAsianFont
+        case complexScriptFont
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, text: String? = nil, mathParagraph: MathParagraph? = nil, fontBold: FontBold? = nil, fontItalic: FontItalic? = nil, fontUnderline: FontUnderline? = nil, strikethroughType: StrikethroughType? = nil, textCapType: TextCapType? = nil, escapement: Double? = nil, spacing: Double? = nil, fontColor: String? = nil, highlightColor: String? = nil, fontHeight: Double? = nil, normaliseHeight: NormaliseHeight? = nil, proofDisabled: ProofDisabled? = nil, smartTagClean: Bool? = nil, kerningMinimalSize: Double? = nil, kumimoji: Kumimoji? = nil, languageId: String? = nil, alternativeLanguageId: String? = nil, isHardUnderlineFill: IsHardUnderlineFill? = nil, isHardUnderlineLine: IsHardUnderlineLine? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, underlineFillFormat: FillFormat? = nil, underlineLineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, text: String? = nil, mathParagraph: MathParagraph? = nil, fontBold: FontBold? = nil, fontItalic: FontItalic? = nil, fontUnderline: FontUnderline? = nil, strikethroughType: StrikethroughType? = nil, textCapType: TextCapType? = nil, escapement: Double? = nil, spacing: Double? = nil, fontColor: String? = nil, highlightColor: String? = nil, fontHeight: Double? = nil, normaliseHeight: NormaliseHeight? = nil, proofDisabled: ProofDisabled? = nil, smartTagClean: Bool? = nil, kerningMinimalSize: Double? = nil, kumimoji: Kumimoji? = nil, languageId: String? = nil, alternativeLanguageId: String? = nil, isHardUnderlineFill: IsHardUnderlineFill? = nil, isHardUnderlineLine: IsHardUnderlineLine? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, underlineFillFormat: FillFormat? = nil, underlineLineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, latinFont: String? = nil, eastAsianFont: String? = nil, complexScriptFont: String? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks)
         self.text = text
         self.mathParagraph = mathParagraph
@@ -218,6 +227,9 @@ public class Portion: ResourceBase {
         self.underlineLineFormat = underlineLineFormat
         self.hyperlinkClick = hyperlinkClick
         self.hyperlinkMouseOver = hyperlinkMouseOver
+        self.latinFont = latinFont
+        self.eastAsianFont = eastAsianFont
+        self.complexScriptFont = complexScriptFont
     }
 
     required init(from decoder: Decoder) throws {
@@ -251,6 +263,9 @@ public class Portion: ResourceBase {
         underlineLineFormat = try values.decode(LineFormat?.self, forKey: .underlineLineFormat)
         hyperlinkClick = try values.decode(Hyperlink?.self, forKey: .hyperlinkClick)
         hyperlinkMouseOver = try values.decode(Hyperlink?.self, forKey: .hyperlinkMouseOver)
+        latinFont = try values.decode(String?.self, forKey: .latinFont)
+        eastAsianFont = try values.decode(String?.self, forKey: .eastAsianFont)
+        complexScriptFont = try values.decode(String?.self, forKey: .complexScriptFont)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -284,6 +299,9 @@ public class Portion: ResourceBase {
         try container.encode(underlineLineFormat, forKey: .underlineLineFormat)
         try container.encode(hyperlinkClick, forKey: .hyperlinkClick)
         try container.encode(hyperlinkMouseOver, forKey: .hyperlinkMouseOver)
+        try container.encode(latinFont, forKey: .latinFont)
+        try container.encode(eastAsianFont, forKey: .eastAsianFont)
+        try container.encode(complexScriptFont, forKey: .complexScriptFont)
     }
 
 

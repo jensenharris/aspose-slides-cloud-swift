@@ -45,8 +45,8 @@ public class GifExportOptions: ExportOptions {
         case defaultDelay
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, format: format)
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
         self.exportHiddenSlides = exportHiddenSlides
         self.transitionFps = transitionFps
         self.defaultDelay = defaultDelay

@@ -29,31 +29,22 @@
 import Foundation
 
 
-/** Provides options that control how a presentation is saved in XAML format. */
-public class XamlExportOptions: ExportOptions {
+/** Represents the lines format of chart elements.  */
+public class ChartLinesFormat: Codable {
 
-    /** Export hidden slides */
-    public var exportHiddenSlides: Bool?
+    /** Get or sets the effect format. */
+    public var effectFormat: EffectFormat?
+    /** Get or sets the line format. */
+    public var lineFormat: LineFormat?
 
     private enum CodingKeys: String, CodingKey {
-        case exportHiddenSlides
+        case effectFormat
+        case lineFormat
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
-        self.exportHiddenSlides = exportHiddenSlides
-    }
-
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        exportHiddenSlides = try values.decode(Bool?.self, forKey: .exportHiddenSlides)
-    }
-
-    public override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
+    public init(effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
+        self.effectFormat = effectFormat
+        self.lineFormat = lineFormat
     }
 
 

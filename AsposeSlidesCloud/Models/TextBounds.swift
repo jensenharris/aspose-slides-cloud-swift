@@ -29,31 +29,30 @@
 import Foundation
 
 
-/** Provides options that control how a presentation is saved in XAML format. */
-public class XamlExportOptions: ExportOptions {
+/** Represents text bounds within a paragraph or portion. */
+public class TextBounds: Codable {
 
-    /** Export hidden slides */
-    public var exportHiddenSlides: Bool?
+    /** X coordinate of the text bounds. */
+    public var X: Double?
+    /** X coordinate of the text bounds.              */
+    public var Y: Double?
+    /** Width of the text bounds. */
+    public var width: Double?
+    /** Height of the text bounds. */
+    public var height: Double?
 
     private enum CodingKeys: String, CodingKey {
-        case exportHiddenSlides
+        case X
+        case Y
+        case width
+        case height
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
-        self.exportHiddenSlides = exportHiddenSlides
-    }
-
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        exportHiddenSlides = try values.decode(Bool?.self, forKey: .exportHiddenSlides)
-    }
-
-    public override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
+    public init(X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil) {
+        self.X = X
+        self.Y = Y
+        self.width = width
+        self.height = height
     }
 
 

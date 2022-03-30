@@ -1053,13 +1053,14 @@ open class SlidesAPI {
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: Comment DTO.
+     - parameter shapeIndex: Shape index.
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createComment(_ name: String, _ slideIndex: Int, _ dto: SlideComment, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: SlideComments?,_ error: Error?) -> Void)) {
-        createCommentWithRequestBuilder(name, slideIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createComment(_ name: String, _ slideIndex: Int, _ dto: SlideCommentBase, _ shapeIndex: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: SlideComments?,_ error: Error?) -> Void)) {
+        createCommentWithRequestBuilder(name, slideIndex, dto, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1075,12 +1076,13 @@ open class SlidesAPI {
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: Comment DTO.
+     - parameter shapeIndex: Shape index.
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - returns: RequestBuilder<SlideComments> 
      */
-    open class func createCommentWithRequestBuilder(_ name: String, _ slideIndex: Int, _ dto: SlideComment, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SlideComments> {
+    open class func createCommentWithRequestBuilder(_ name: String, _ slideIndex: Int, _ dto: SlideCommentBase, _ shapeIndex: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SlideComments> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/comments"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -1088,6 +1090,7 @@ open class SlidesAPI {
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "shapeIndex": shapeIndex?.encodeToJSON(), 
             "folder": folder, 
             "storage": storage
         ])
@@ -1105,11 +1108,12 @@ open class SlidesAPI {
      - parameter document: Document data.
      - parameter slideIndex: Slide index.
      - parameter dto: Comment DTO.
+     - parameter shapeIndex: Shape index.
      - parameter password: Document password.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createCommentOnline(_ document: Data, _ slideIndex: Int, _ dto: SlideComment, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        createCommentOnlineWithRequestBuilder(document, slideIndex, dto, password).executeAuthorized { (response, error) -> Void in
+    open class func createCommentOnline(_ document: Data, _ slideIndex: Int, _ dto: SlideCommentBase, _ shapeIndex: Int? = nil, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        createCommentOnlineWithRequestBuilder(document, slideIndex, dto, shapeIndex, password).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1125,16 +1129,19 @@ open class SlidesAPI {
      - parameter document: Document data.
      - parameter slideIndex: Slide index.
      - parameter dto: Comment DTO.
+     - parameter shapeIndex: Shape index.
      - parameter password: Document password.
      - returns: RequestBuilder<Data> 
      */
-    open class func createCommentOnlineWithRequestBuilder(_ document: Data, _ slideIndex: Int, _ dto: SlideComment, _ password: String = "") -> RequestBuilder<Data> {
+    open class func createCommentOnlineWithRequestBuilder(_ document: Data, _ slideIndex: Int, _ dto: SlideCommentBase, _ shapeIndex: Int? = nil, _ password: String = "") -> RequestBuilder<Data> {
         var methodPath = "/slides/slides/{slideIndex}/comments"
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "shapeIndex": shapeIndex?.encodeToJSON()
+        ])
         let nillableHeaders: [String: Any?] = [
             "password": password
         ]
@@ -8436,6 +8443,67 @@ open class SlidesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
     /**
+     Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter paragraphIndex: Paragraph index.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func getParagraphRectangle(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: TextBounds?,_ error: Error?) -> Void)) {
+        getParagraphRectangleWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones.
+     - GET /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/bounds
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "X" : 0.8008281904610115,
+  "Y" : 6.027456183070403,
+  "Height" : 5.962133916683182,
+  "Width" : 1.4658129805029452
+}}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter paragraphIndex: Paragraph index.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<TextBounds> 
+     */
+    open class func getParagraphRectangleWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<TextBounds> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/bounds"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<TextBounds>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
+    }
+    /**
      Read shape paragraphs info.
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
@@ -8647,6 +8715,70 @@ open class SlidesAPI {
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
+    }
+    /**
+     Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter paragraphIndex: Paragraph index.
+     - parameter portionIndex: Portion index.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func getPortionRectangle(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: TextBounds?,_ error: Error?) -> Void)) {
+        getPortionRectangleWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Return coordinates of rect that bounds paragraph. The rect includes all the lines of text in paragraph, including empty ones.
+     - GET /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/bounds
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "X" : 0.8008281904610115,
+  "Y" : 6.027456183070403,
+  "Height" : 5.962133916683182,
+  "Width" : 1.4658129805029452
+}}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter paragraphIndex: Paragraph index.
+     - parameter portionIndex: Portion index.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<TextBounds> 
+     */
+    open class func getPortionRectangleWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<TextBounds> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/bounds"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<TextBounds>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
@@ -9069,16 +9201,39 @@ open class SlidesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
     /**
+     * enum for parameter shapeType
+     */
+    public enum ShapeType_getShapes: String { 
+        case shape = "Shape"
+        case chart = "Chart"
+        case table = "Table"
+        case pictureFrame = "PictureFrame"
+        case videoFrame = "VideoFrame"
+        case audioFrame = "AudioFrame"
+        case smartArt = "SmartArt"
+        case oleObjectFrame = "OleObjectFrame"
+        case groupShape = "GroupShape"
+        case graphicalObject = "GraphicalObject"
+        case connector = "Connector"
+        case smartArtShape = "SmartArtShape"
+        case zoomFrame = "ZoomFrame"
+        case sectionZoomFrame = "SectionZoomFrame"
+        case summaryZoomFrame = "SummaryZoomFrame"
+        case summaryZoomSection = "SummaryZoomSection"
+    }
+
+    /**
      Read slide shapes info.
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter shapeType: Shape type.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getShapes(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        getShapesWithRequestBuilder(name, slideIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getShapes(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ shapeType: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        getShapesWithRequestBuilder(name, slideIndex, password, folder, storage, shapeType).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9096,9 +9251,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter shapeType: Shape type.
      - returns: RequestBuilder<Shapes> 
      */
-    open class func getShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func getShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ shapeType: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -9107,7 +9263,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "shapeType": shapeType
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -10979,7 +11136,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func importFromPdf(_ name: String, _ pdf: Data? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Document?,_ error: Error?) -> Void)) {
+    open class func importFromPdf(_ name: String, _ pdf: Data, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Document?,_ error: Error?) -> Void)) {
         importFromPdfWithRequestBuilder(name, pdf, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -11000,7 +11157,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - returns: RequestBuilder<Document> 
      */
-    open class func importFromPdfWithRequestBuilder(_ name: String, _ pdf: Data? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Document> {
+    open class func importFromPdfWithRequestBuilder(_ name: String, _ pdf: Data, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Document> {
         var methodPath = "/slides/{name}/fromPdf"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath

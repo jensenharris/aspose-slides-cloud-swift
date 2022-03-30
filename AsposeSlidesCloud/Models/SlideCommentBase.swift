@@ -29,31 +29,37 @@
 import Foundation
 
 
-/** Provides options that control how a presentation is saved in XAML format. */
-public class XamlExportOptions: ExportOptions {
+/** Represents slide comment */
+public class SlideCommentBase: Codable {
 
-    /** Export hidden slides */
-    public var exportHiddenSlides: Bool?
+    public enum ModelType: String, Codable { 
+        case regular = "Regular"
+        case modern = "Modern"
+    }
+    /** Author. */
+    public var author: String?
+    /** Text. */
+    public var text: String?
+    /** Creation time. */
+    public var createdTime: String?
+    /** Child comments. */
+    public var childComments: [SlideCommentBase]?
+    public var type: ModelType?
 
     private enum CodingKeys: String, CodingKey {
-        case exportHiddenSlides
+        case author
+        case text
+        case createdTime
+        case childComments
+        case type
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
-        self.exportHiddenSlides = exportHiddenSlides
-    }
-
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        exportHiddenSlides = try values.decode(Bool?.self, forKey: .exportHiddenSlides)
-    }
-
-    public override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
+    public init(author: String? = nil, text: String? = nil, createdTime: String? = nil, childComments: [SlideCommentBase]? = nil, type: ModelType? = nil) {
+        self.author = author
+        self.text = text
+        self.createdTime = createdTime
+        self.childComments = childComments
+        self.type = type
     }
 
 

@@ -38,19 +38,23 @@ public class ExportOptions: Codable {
     public var height: Int?
     /** Gets or sets the height of slides in the output format, e.g. image size, pdf page size etc. */
     public var width: Int?
+    /** Gets of sets list of font fallback rules. */
+    public var fontFallbackRules: [FontFallbackRule]?
     public var format: String?
 
     private enum CodingKeys: String, CodingKey {
         case defaultRegularFont
         case height
         case width
+        case fontFallbackRules
         case format
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, format: String? = nil) {
+    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil) {
         self.defaultRegularFont = defaultRegularFont
         self.height = height
         self.width = width
+        self.fontFallbackRules = fontFallbackRules
         self.format = format
     }
 

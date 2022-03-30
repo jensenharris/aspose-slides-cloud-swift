@@ -33,13 +33,13 @@ import Foundation
 public class SlideComments: ResourceBase {
 
     /** Slide comment list. */
-    public var list: [SlideComment]?
+    public var list: [SlideCommentBase]?
 
     private enum CodingKeys: String, CodingKey {
         case list
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, list: [SlideComment]? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, list: [SlideCommentBase]? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks)
         self.list = list
     }
@@ -47,7 +47,7 @@ public class SlideComments: ResourceBase {
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        list = try values.decode([SlideComment]?.self, forKey: .list)
+        list = try values.decode([SlideCommentBase]?.self, forKey: .list)
     }
 
     public override func encode(to encoder: Encoder) throws {
