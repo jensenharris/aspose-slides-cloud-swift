@@ -68,8 +68,6 @@ public class ShapeBase: ResourceBase {
     public var Y: Double?
     /** Gets z-order position of shape */
     public var zOrderPosition: Int?
-    /** Gets or sets the link to shapes. */
-    public var shapes: ResourceUri?
     /** Gets or sets the fill format. */
     public var fillFormat: FillFormat?
     /** Gets or sets the effect format. */
@@ -94,7 +92,6 @@ public class ShapeBase: ResourceBase {
         case X
         case Y
         case zOrderPosition
-        case shapes
         case fillFormat
         case effectFormat
         case threeDFormat
@@ -104,7 +101,7 @@ public class ShapeBase: ResourceBase {
         case type
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, shapes: ResourceUri? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks)
         self.name = name
         self.width = width
@@ -115,7 +112,6 @@ public class ShapeBase: ResourceBase {
         self.X = X
         self.Y = Y
         self.zOrderPosition = zOrderPosition
-        self.shapes = shapes
         self.fillFormat = fillFormat
         self.effectFormat = effectFormat
         self.threeDFormat = threeDFormat
@@ -137,7 +133,6 @@ public class ShapeBase: ResourceBase {
         X = try values.decode(Double?.self, forKey: .X)
         Y = try values.decode(Double?.self, forKey: .Y)
         zOrderPosition = try values.decode(Int?.self, forKey: .zOrderPosition)
-        shapes = try values.decode(ResourceUri?.self, forKey: .shapes)
         fillFormat = try values.decode(FillFormat?.self, forKey: .fillFormat)
         effectFormat = try values.decode(EffectFormat?.self, forKey: .effectFormat)
         threeDFormat = try values.decode(ThreeDFormat?.self, forKey: .threeDFormat)
@@ -159,7 +154,6 @@ public class ShapeBase: ResourceBase {
         try container.encode(X, forKey: .X)
         try container.encode(Y, forKey: .Y)
         try container.encode(zOrderPosition, forKey: .zOrderPosition)
-        try container.encode(shapes, forKey: .shapes)
         try container.encode(fillFormat, forKey: .fillFormat)
         try container.encode(effectFormat, forKey: .effectFormat)
         try container.encode(threeDFormat, forKey: .threeDFormat)

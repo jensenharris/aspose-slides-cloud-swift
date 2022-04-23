@@ -29,25 +29,37 @@
 import Foundation
 
 
-/** Represents export options for whole presentation. */
-public class ExportOptions: Codable {
+/** The class provides shared options for image formats. */
+public class ImageExportOptionsBase: ExportOptions {
 
-    /** Default regular font for rendering the presentation.  */
-    public var defaultRegularFont: String?
-    /** Gets of sets list of font fallback rules. */
-    public var fontFallbackRules: [FontFallbackRule]?
-    public var format: String?
+    /** Gets or sets the height of slides in the output image format. */
+    public var height: Int?
+    /** Gets or sets the height of slides in the output the output image format. */
+    public var width: Int?
 
     private enum CodingKeys: String, CodingKey {
-        case defaultRegularFont
-        case fontFallbackRules
-        case format
+        case height
+        case width
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil) {
-        self.defaultRegularFont = defaultRegularFont
-        self.fontFallbackRules = fontFallbackRules
-        self.format = format
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+        self.height = height
+        self.width = width
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        height = try values.decode(Int?.self, forKey: .height)
+        width = try values.decode(Int?.self, forKey: .width)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(height, forKey: .height)
+        try container.encode(width, forKey: .width)
     }
 
 

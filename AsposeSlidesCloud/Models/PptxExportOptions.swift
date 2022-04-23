@@ -44,8 +44,8 @@ public class PptxExportOptions: ExportOptions {
         case conformance
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, conformance: Conformance? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, conformance: Conformance? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
         self.conformance = conformance
     }
 

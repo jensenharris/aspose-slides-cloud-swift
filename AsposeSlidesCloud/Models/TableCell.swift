@@ -82,6 +82,10 @@ public class TableCell: Codable {
     public var borderDiagonalUp: LineFormat?
     /** Line properties set for the diagonal down border of the cell. */
     public var borderDiagonalDown: LineFormat?
+    /** Cell column index */
+    public var columnIndex: Int?
+    /** Cell row index */
+    public var rowIndex: Int?
 
     private enum CodingKeys: String, CodingKey {
         case text
@@ -100,9 +104,11 @@ public class TableCell: Codable {
         case borderBottom
         case borderDiagonalUp
         case borderDiagonalDown
+        case columnIndex
+        case rowIndex
     }
 
-    public init(text: String? = nil, rowSpan: Int? = nil, colSpan: Int? = nil, marginTop: Double? = nil, marginRight: Double? = nil, marginLeft: Double? = nil, marginBottom: Double? = nil, textAnchorType: TextAnchorType? = nil, textVerticalType: TextVerticalType? = nil, fillFormat: FillFormat? = nil, borderTop: LineFormat? = nil, borderRight: LineFormat? = nil, borderLeft: LineFormat? = nil, borderBottom: LineFormat? = nil, borderDiagonalUp: LineFormat? = nil, borderDiagonalDown: LineFormat? = nil) {
+    public init(text: String? = nil, rowSpan: Int? = nil, colSpan: Int? = nil, marginTop: Double? = nil, marginRight: Double? = nil, marginLeft: Double? = nil, marginBottom: Double? = nil, textAnchorType: TextAnchorType? = nil, textVerticalType: TextVerticalType? = nil, fillFormat: FillFormat? = nil, borderTop: LineFormat? = nil, borderRight: LineFormat? = nil, borderLeft: LineFormat? = nil, borderBottom: LineFormat? = nil, borderDiagonalUp: LineFormat? = nil, borderDiagonalDown: LineFormat? = nil, columnIndex: Int? = nil, rowIndex: Int? = nil) {
         self.text = text
         self.rowSpan = rowSpan
         self.colSpan = colSpan
@@ -119,6 +125,8 @@ public class TableCell: Codable {
         self.borderBottom = borderBottom
         self.borderDiagonalUp = borderDiagonalUp
         self.borderDiagonalDown = borderDiagonalDown
+        self.columnIndex = columnIndex
+        self.rowIndex = rowIndex
     }
 
 

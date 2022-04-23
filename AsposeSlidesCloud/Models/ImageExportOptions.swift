@@ -30,7 +30,7 @@ import Foundation
 
 
 /** Provides options that control how a presentation is saved in an image format. */
-public class ImageExportOptions: ExportOptions {
+public class ImageExportOptions: ImageExportOptionsBase {
 
     public enum NotesPosition: String, Codable { 
         case _none = "None"
@@ -58,8 +58,8 @@ public class ImageExportOptions: ExportOptions {
         case commentsAreaColor
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format, height: height, width: width)
         self.notesPosition = notesPosition
         self.commentsPosition = commentsPosition
         self.commentsAreaWidth = commentsAreaWidth

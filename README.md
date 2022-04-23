@@ -27,6 +27,16 @@ You may want to check out Aspose free [PPT to PDF](https://products.aspose.app/s
 **Web:** HTML/HTML5
 **Other:** MPEG4, SWF (export whole presentations)
 
+## Enhancements in Version 22.4
+* Added **TransitionType** and **SlidesTransitionDuration** properties to **VideoExportOptions** class to enable creation videos with transitions.
+* Added **DefaultPortionFormat** property to **Paragraph** class. Added new **PortionFormat** class.
+* Added **EmbeddedFileBase64Data** and a number of other properties to **OleObjectFrame** class to enable creation of OLE Object frames.
+* Added **AccessPermissions** class to support access permissions for PDF export.
+* Added **PictureFillformat** property to **AudioFrame** class.
+* Added **RowIndex** and **ColumnIndex** properties to **TableCell** class.
+* Moved **Width** and **Height** properties from **ExportOptions** base class to the new **ImageExportOptionsBase class**. This is a superclass for **ImageExportOptions**, **GifExportOptions** and **TiffExportOptions** classes.
+* Removed redundant **Shapes** property from **ShapeBase** class. It is only left for **GroupShape** class.
+
 ## Enhancements in Version 22.3
 * Added **ModernSlideComment** class to support modern comments. Also added **SlideCommentBase** as base class for comments.
 * Added optional **shapeIndex** parameter to **CreateComment** and **CreateCommentOnline** methods.
@@ -80,7 +90,7 @@ import PackageDescription
 let package = Package(
     name: "MyPackage",
     dependencies: [
-        .package(url: "https://github.com/aspose-slides-cloud/aspose-slides-cloud-swift", from: "22.3.0"),
+        .package(url: "https://github.com/aspose-slides-cloud/aspose-slides-cloud-swift", from: "22.4.0"),
     ],
     targets: [
         .target(
@@ -95,7 +105,7 @@ To use the SDK as a Cocoapod, add "pod 'AsposeSlidesCloud'" line to your Podfile
 ```ruby
 target 'myproj' do
   ...
-  pod 'AsposeSlidesCloud', '~> 22.3.0'
+  pod 'AsposeSlidesCloud', '~> 22.4.0'
 end
 ```
 ### Sample usage

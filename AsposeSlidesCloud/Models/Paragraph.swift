@@ -160,6 +160,8 @@ public class Paragraph: ResourceBase {
     public var rightToLeft: RightToLeft?
     /** List of portion links. */
     public var portionList: [Portion]?
+    /** Default portion format. */
+    public var defaultPortionFormat: PortionFormat?
 
     private enum CodingKeys: String, CodingKey {
         case marginLeft
@@ -182,9 +184,10 @@ public class Paragraph: ResourceBase {
         case latinLineBreak
         case rightToLeft
         case portionList
+        case defaultPortionFormat
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, marginLeft: Double? = nil, marginRight: Double? = nil, spaceBefore: Double? = nil, spaceAfter: Double? = nil, spaceWithin: Double? = nil, indent: Double? = nil, alignment: Alignment? = nil, fontAlignment: FontAlignment? = nil, defaultTabSize: Double? = nil, depth: Int? = nil, bulletChar: String? = nil, bulletHeight: Double? = nil, bulletType: BulletType? = nil, numberedBulletStartWith: Int? = nil, numberedBulletStyle: NumberedBulletStyle? = nil, hangingPunctuation: HangingPunctuation? = nil, eastAsianLineBreak: EastAsianLineBreak? = nil, latinLineBreak: LatinLineBreak? = nil, rightToLeft: RightToLeft? = nil, portionList: [Portion]? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, marginLeft: Double? = nil, marginRight: Double? = nil, spaceBefore: Double? = nil, spaceAfter: Double? = nil, spaceWithin: Double? = nil, indent: Double? = nil, alignment: Alignment? = nil, fontAlignment: FontAlignment? = nil, defaultTabSize: Double? = nil, depth: Int? = nil, bulletChar: String? = nil, bulletHeight: Double? = nil, bulletType: BulletType? = nil, numberedBulletStartWith: Int? = nil, numberedBulletStyle: NumberedBulletStyle? = nil, hangingPunctuation: HangingPunctuation? = nil, eastAsianLineBreak: EastAsianLineBreak? = nil, latinLineBreak: LatinLineBreak? = nil, rightToLeft: RightToLeft? = nil, portionList: [Portion]? = nil, defaultPortionFormat: PortionFormat? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks)
         self.marginLeft = marginLeft
         self.marginRight = marginRight
@@ -206,6 +209,7 @@ public class Paragraph: ResourceBase {
         self.latinLineBreak = latinLineBreak
         self.rightToLeft = rightToLeft
         self.portionList = portionList
+        self.defaultPortionFormat = defaultPortionFormat
     }
 
     required init(from decoder: Decoder) throws {
@@ -231,6 +235,7 @@ public class Paragraph: ResourceBase {
         latinLineBreak = try values.decode(LatinLineBreak?.self, forKey: .latinLineBreak)
         rightToLeft = try values.decode(RightToLeft?.self, forKey: .rightToLeft)
         portionList = try values.decode([Portion]?.self, forKey: .portionList)
+        defaultPortionFormat = try values.decode(PortionFormat?.self, forKey: .defaultPortionFormat)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -256,6 +261,7 @@ public class Paragraph: ResourceBase {
         try container.encode(latinLineBreak, forKey: .latinLineBreak)
         try container.encode(rightToLeft, forKey: .rightToLeft)
         try container.encode(portionList, forKey: .portionList)
+        try container.encode(defaultPortionFormat, forKey: .defaultPortionFormat)
     }
 
 

@@ -42,8 +42,8 @@ public class Html5ExportOptions: ExportOptions {
         case animateShapes
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, animateTransitions: Bool? = nil, animateShapes: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, animateTransitions: Bool? = nil, animateShapes: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
         self.animateTransitions = animateTransitions
         self.animateShapes = animateShapes
     }

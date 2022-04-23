@@ -30,7 +30,7 @@ import Foundation
 
 
 /** Provides options that control how a presentation is saved in Gif format. */
-public class GifExportOptions: ExportOptions {
+public class GifExportOptions: ImageExportOptionsBase {
 
     /** Determines whether hidden slides will be exported. */
     public var exportHiddenSlides: Bool?
@@ -45,8 +45,8 @@ public class GifExportOptions: ExportOptions {
         case defaultDelay
     }
 
-    public init(defaultRegularFont: String? = nil, height: Int? = nil, width: Int? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, height: height, width: width, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format, height: height, width: width)
         self.exportHiddenSlides = exportHiddenSlides
         self.transitionFps = transitionFps
         self.defaultDelay = defaultDelay
