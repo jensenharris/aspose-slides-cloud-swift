@@ -25,12 +25,43 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Represents a Tint effect. */
+public class TintEffect: ImageTransformEffect {
+
+    /** Hue */
+    public var hue: Double?
+    /** Amount */
+    public var amount: Double?
+
+    private enum CodingKeys: String, CodingKey {
+        case hue
+        case amount
+    }
+
+    public init(type: ModelType? = nil, hue: Double? = nil, amount: Double? = nil) {
+        super.init(type: type)
+        self.hue = hue
+        self.amount = amount
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        hue = try values.decode(Double?.self, forKey: .hue)
+        amount = try values.decode(Double?.self, forKey: .amount)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(hue, forKey: .hue)
+        try container.encode(amount, forKey: .amount)
+    }
+
+
 }
+

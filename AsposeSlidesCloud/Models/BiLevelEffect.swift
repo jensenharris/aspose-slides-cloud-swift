@@ -25,12 +25,37 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Represents an BiLevel effect. */
+public class BiLevelEffect: ImageTransformEffect {
+
+    /** Returns effect threshold. */
+    public var threshold: Double?
+
+    private enum CodingKeys: String, CodingKey {
+        case threshold
+    }
+
+    public init(type: ModelType? = nil, threshold: Double? = nil) {
+        super.init(type: type)
+        self.threshold = threshold
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        threshold = try values.decode(Double?.self, forKey: .threshold)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(threshold, forKey: .threshold)
+    }
+
+
 }
+

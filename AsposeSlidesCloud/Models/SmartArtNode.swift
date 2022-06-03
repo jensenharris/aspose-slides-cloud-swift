@@ -49,6 +49,8 @@ public class SmartArtNode: Codable {
     public var text: String?
     /** Organization chart layout type associated with current node. */
     public var orgChartLayout: OrgChartLayout?
+    /** Get or sets list to paragraphs list */
+    public var paragraphs: ResourceUri?
 
     private enum CodingKeys: String, CodingKey {
         case nodes
@@ -56,14 +58,16 @@ public class SmartArtNode: Codable {
         case isAssistant
         case text
         case orgChartLayout
+        case paragraphs
     }
 
-    public init(nodes: [SmartArtNode]? = nil, shapes: ResourceUri? = nil, isAssistant: Bool? = nil, text: String? = nil, orgChartLayout: OrgChartLayout? = nil) {
+    public init(nodes: [SmartArtNode]? = nil, shapes: ResourceUri? = nil, isAssistant: Bool? = nil, text: String? = nil, orgChartLayout: OrgChartLayout? = nil, paragraphs: ResourceUri? = nil) {
         self.nodes = nodes
         self.shapes = shapes
         self.isAssistant = isAssistant
         self.text = text
         self.orgChartLayout = orgChartLayout
+        self.paragraphs = paragraphs
     }
 
 

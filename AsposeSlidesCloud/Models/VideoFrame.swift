@@ -60,6 +60,8 @@ public class VideoFrame: GeometryShape {
     public var volume: Volume?
     /** Video data encoded in base64. */
     public var base64Data: String?
+    /** Picture fill format. */
+    public var pictureFillFormat: PictureFill?
 
     private enum CodingKeys: String, CodingKey {
         case fullScreenMode
@@ -69,9 +71,10 @@ public class VideoFrame: GeometryShape {
         case rewindVideo
         case volume
         case base64Data
+        case pictureFillFormat
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, fullScreenMode: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, rewindVideo: Bool? = nil, volume: Volume? = nil, base64Data: String? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, fullScreenMode: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, rewindVideo: Bool? = nil, volume: Volume? = nil, base64Data: String? = nil, pictureFillFormat: PictureFill? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type, shapeType: shapeType)
         self.fullScreenMode = fullScreenMode
         self.hideAtShowing = hideAtShowing
@@ -80,6 +83,7 @@ public class VideoFrame: GeometryShape {
         self.rewindVideo = rewindVideo
         self.volume = volume
         self.base64Data = base64Data
+        self.pictureFillFormat = pictureFillFormat
     }
 
     required init(from decoder: Decoder) throws {
@@ -92,6 +96,7 @@ public class VideoFrame: GeometryShape {
         rewindVideo = try values.decode(Bool?.self, forKey: .rewindVideo)
         volume = try values.decode(Volume?.self, forKey: .volume)
         base64Data = try values.decode(String?.self, forKey: .base64Data)
+        pictureFillFormat = try values.decode(PictureFill?.self, forKey: .pictureFillFormat)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -104,6 +109,7 @@ public class VideoFrame: GeometryShape {
         try container.encode(rewindVideo, forKey: .rewindVideo)
         try container.encode(volume, forKey: .volume)
         try container.encode(base64Data, forKey: .base64Data)
+        try container.encode(pictureFillFormat, forKey: .pictureFillFormat)
     }
 
 

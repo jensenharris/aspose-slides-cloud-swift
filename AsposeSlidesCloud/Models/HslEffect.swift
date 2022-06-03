@@ -25,12 +25,49 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Represents a Hue/Saturation/Luminance effect. */
+public class HslEffect: ImageTransformEffect {
+
+    /** Hue */
+    public var hue: Double?
+    /** Saturation */
+    public var saturation: Double?
+    /** Luminance */
+    public var luminance: Double?
+
+    private enum CodingKeys: String, CodingKey {
+        case hue
+        case saturation
+        case luminance
+    }
+
+    public init(type: ModelType? = nil, hue: Double? = nil, saturation: Double? = nil, luminance: Double? = nil) {
+        super.init(type: type)
+        self.hue = hue
+        self.saturation = saturation
+        self.luminance = luminance
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        hue = try values.decode(Double?.self, forKey: .hue)
+        saturation = try values.decode(Double?.self, forKey: .saturation)
+        luminance = try values.decode(Double?.self, forKey: .luminance)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(hue, forKey: .hue)
+        try container.encode(saturation, forKey: .saturation)
+        try container.encode(luminance, forKey: .luminance)
+    }
+
+
 }
+

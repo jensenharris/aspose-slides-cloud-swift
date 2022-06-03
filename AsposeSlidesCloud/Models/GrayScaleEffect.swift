@@ -29,31 +29,17 @@
 import Foundation
 
 
-/** One value series. */
-public class WaterfallSeries: OneValueSeries {
+/** Represents an Gray Scale effect. */
+public class GrayScaleEffect: ImageTransformEffect {
 
-    /** True if inner points are shown. */
-    public var showConnectorLines: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case showConnectorLines
-    }
-
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, dataPoints: [OneValueChartDataPoint]? = nil, numberFormatOfValues: String? = nil, showConnectorLines: Bool? = nil) {
-        super.init(type: type, name: name, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType, dataPoints: dataPoints, numberFormatOfValues: numberFormatOfValues)
-        self.showConnectorLines = showConnectorLines
-    }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        showConnectorLines = try values.decode(Bool?.self, forKey: .showConnectorLines)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(showConnectorLines, forKey: .showConnectorLines)
     }
 
 

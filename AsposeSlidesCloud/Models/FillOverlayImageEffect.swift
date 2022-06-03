@@ -25,12 +25,50 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Represents a Fill Overlay effect. A fill overlay may be used to specify an additional fill for an object and blend the two fills together. */
+public class FillOverlayImageEffect: ImageTransformEffect {
+
+    public enum Blend: String, Codable { 
+        case darken = "Darken"
+        case lighten = "Lighten"
+        case multiply = "Multiply"
+        case overlay = "Overlay"
+        case screen = "Screen"
+    }
+    /** FillBlendMode. */
+    public var blend: Blend?
+    /** Fill format. */
+    public var fillFormat: FillFormat?
+
+    private enum CodingKeys: String, CodingKey {
+        case blend
+        case fillFormat
+    }
+
+    public init(type: ModelType? = nil, blend: Blend? = nil, fillFormat: FillFormat? = nil) {
+        super.init(type: type)
+        self.blend = blend
+        self.fillFormat = fillFormat
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        blend = try values.decode(Blend?.self, forKey: .blend)
+        fillFormat = try values.decode(FillFormat?.self, forKey: .fillFormat)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(blend, forKey: .blend)
+        try container.encode(fillFormat, forKey: .fillFormat)
+    }
+
+
 }
+

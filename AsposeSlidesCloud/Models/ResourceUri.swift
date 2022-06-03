@@ -40,19 +40,27 @@ public class ResourceUri: Codable {
     public var linkType: String?
     /** Gets or sets the title of link. */
     public var title: String?
+    /** Resource slide index. */
+    public var slideIndex: Int?
+    /** Resource shape index. */
+    public var shapeIndex: Int?
 
     private enum CodingKeys: String, CodingKey {
         case href
         case relation
         case linkType
         case title
+        case slideIndex
+        case shapeIndex
     }
 
-    public init(href: String? = nil, relation: String? = nil, linkType: String? = nil, title: String? = nil) {
+    public init(href: String? = nil, relation: String? = nil, linkType: String? = nil, title: String? = nil, slideIndex: Int? = nil, shapeIndex: Int? = nil) {
         self.href = href
         self.relation = relation
         self.linkType = linkType
         self.title = title
+        self.slideIndex = slideIndex
+        self.shapeIndex = shapeIndex
     }
 
 

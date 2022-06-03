@@ -34,26 +34,32 @@ public class OneValueChartDataPoint: DataPoint {
 
     /** Value. */
     public var value: Double?
+    /** SetAsTotal. Applied to Waterfall data points only. */
+    public var setAsTotal: Bool?
 
     private enum CodingKeys: String, CodingKey {
         case value
+        case setAsTotal
     }
 
-    public init(value: Double? = nil) {
+    public init(value: Double? = nil, setAsTotal: Bool? = nil) {
         super.init()
         self.value = value
+        self.setAsTotal = setAsTotal
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
         value = try values.decode(Double?.self, forKey: .value)
+        setAsTotal = try values.decode(Bool?.self, forKey: .setAsTotal)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
+        try container.encode(setAsTotal, forKey: .setAsTotal)
     }
 
 

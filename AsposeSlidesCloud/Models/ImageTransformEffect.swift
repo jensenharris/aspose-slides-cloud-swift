@@ -25,12 +25,42 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Image transform effect */
+public class ImageTransformEffect: Codable {
+
+    public enum ModelType: String, Codable { 
+        case alphaBiLevel = "AlphaBiLevel"
+        case alphaCeiling = "AlphaCeiling"
+        case alphaFloor = "AlphaFloor"
+        case alphaInverse = "AlphaInverse"
+        case alphaModulate = "AlphaModulate"
+        case alphaModulateFixed = "AlphaModulateFixed"
+        case alphaReplace = "AlphaReplace"
+        case biLevel = "BiLevel"
+        case blur = "Blur"
+        case colorChange = "ColorChange"
+        case colorReplace = "ColorReplace"
+        case duotone = "Duotone"
+        case fillOverlay = "FillOverlay"
+        case grayScale = "GrayScale"
+        case hsl = "Hsl"
+        case luminance = "Luminance"
+        case tint = "Tint"
+    }
+    public var type: ModelType?
+
+    private enum CodingKeys: String, CodingKey {
+        case type
+    }
+
+    public init(type: ModelType? = nil) {
+        self.type = type
+    }
+
+
 }
+

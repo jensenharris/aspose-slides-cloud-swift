@@ -25,12 +25,37 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Represents an Alpha Replace Effect effect. */
+public class AlphaReplaceEffect: ImageTransformEffect {
+
+    /** The new opacity value. */
+    public var alpha: Double?
+
+    private enum CodingKeys: String, CodingKey {
+        case alpha
+    }
+
+    public init(type: ModelType? = nil, alpha: Double? = nil) {
+        super.init(type: type)
+        self.alpha = alpha
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        alpha = try values.decode(Double?.self, forKey: .alpha)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(alpha, forKey: .alpha)
+    }
+
+
 }
+

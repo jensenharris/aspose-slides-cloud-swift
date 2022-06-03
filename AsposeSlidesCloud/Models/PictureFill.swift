@@ -54,6 +54,8 @@ public class PictureFill: FillFormat {
     public var svgData: String?
     /** Fill mode. */
     public var pictureFillMode: PictureFillMode?
+    /** Image transform effects. */
+    public var imageTransformList: [ImageTransformEffect]?
 
     private enum CodingKeys: String, CodingKey {
         case cropBottom
@@ -65,9 +67,10 @@ public class PictureFill: FillFormat {
         case base64Data
         case svgData
         case pictureFillMode
+        case imageTransformList
     }
 
-    public init(type: ModelType? = nil, cropBottom: Double? = nil, cropLeft: Double? = nil, cropRight: Double? = nil, cropTop: Double? = nil, dpi: Int? = nil, image: ResourceUri? = nil, base64Data: String? = nil, svgData: String? = nil, pictureFillMode: PictureFillMode? = nil) {
+    public init(type: ModelType? = nil, cropBottom: Double? = nil, cropLeft: Double? = nil, cropRight: Double? = nil, cropTop: Double? = nil, dpi: Int? = nil, image: ResourceUri? = nil, base64Data: String? = nil, svgData: String? = nil, pictureFillMode: PictureFillMode? = nil, imageTransformList: [ImageTransformEffect]? = nil) {
         super.init(type: type)
         self.cropBottom = cropBottom
         self.cropLeft = cropLeft
@@ -78,6 +81,7 @@ public class PictureFill: FillFormat {
         self.base64Data = base64Data
         self.svgData = svgData
         self.pictureFillMode = pictureFillMode
+        self.imageTransformList = imageTransformList
     }
 
     required init(from decoder: Decoder) throws {
@@ -92,6 +96,7 @@ public class PictureFill: FillFormat {
         base64Data = try values.decode(String?.self, forKey: .base64Data)
         svgData = try values.decode(String?.self, forKey: .svgData)
         pictureFillMode = try values.decode(PictureFillMode?.self, forKey: .pictureFillMode)
+        imageTransformList = try values.decode([ImageTransformEffect]?.self, forKey: .imageTransformList)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -106,6 +111,7 @@ public class PictureFill: FillFormat {
         try container.encode(base64Data, forKey: .base64Data)
         try container.encode(svgData, forKey: .svgData)
         try container.encode(pictureFillMode, forKey: .pictureFillMode)
+        try container.encode(imageTransformList, forKey: .imageTransformList)
     }
 
 

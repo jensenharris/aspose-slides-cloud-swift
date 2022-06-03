@@ -29,31 +29,17 @@
 import Foundation
 
 
-/** One value chart data point. */
-public class WaterfallChartDataPoint: OneValueChartDataPoint {
+/** Represents an Alpha Ceiling effect. */
+public class AlphaCeilingEffect: ImageTransformEffect {
 
-    /** Value. */
-    public var setAsTotal: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case setAsTotal
-    }
-
-    public init(value: Double? = nil, setAsTotal: Bool? = nil) {
-        super.init(value: value)
-        self.setAsTotal = setAsTotal
-    }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        setAsTotal = try values.decode(Bool?.self, forKey: .setAsTotal)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(setAsTotal, forKey: .setAsTotal)
     }
 
 

@@ -25,12 +25,43 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.5.0"
+
+/** Represents a Blur effect that is applied to the entire shape, including its fill. All color channels, including alpha, are affected. */
+public class BlurImageEffect: ImageTransformEffect {
+
+    /** Returns or sets blur radius. */
+    public var radius: Double?
+    /** Determines whether the bounds of the object should be grown as a result of the blurring. True indicates the bounds are grown while false indicates that they are not. */
+    public var grow: Bool?
+
+    private enum CodingKeys: String, CodingKey {
+        case radius
+        case grow
+    }
+
+    public init(type: ModelType? = nil, radius: Double? = nil, grow: Bool? = nil) {
+        super.init(type: type)
+        self.radius = radius
+        self.grow = grow
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        radius = try values.decode(Double?.self, forKey: .radius)
+        grow = try values.decode(Bool?.self, forKey: .grow)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(radius, forKey: .radius)
+        try container.encode(grow, forKey: .grow)
+    }
+
+
 }
+
