@@ -46,11 +46,29 @@ public class ShapeImageExportOptions: Codable {
     /** Gets export format. */
     public var format: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case scaleX
-        case scaleY
-        case thumbnailBounds
-        case format
+    func fillValues(_ source: [String:Any]) throws {
+        let scaleXValue = source["scaleX"]
+        if scaleXValue != nil {
+            self.scaleX = scaleXValue! as? Double
+        }
+        let scaleYValue = source["scaleY"]
+        if scaleYValue != nil {
+            self.scaleY = scaleYValue! as? Double
+        }
+        let thumbnailBoundsValue = source["thumbnailBounds"]
+        if thumbnailBoundsValue != nil {
+            let thumbnailBoundsStringValue = thumbnailBoundsValue! as? String
+            if thumbnailBoundsStringValue != nil {
+                let thumbnailBoundsEnumValue = ThumbnailBounds(rawValue: thumbnailBoundsStringValue!)
+                if thumbnailBoundsEnumValue != nil {
+                    self.thumbnailBounds = thumbnailBoundsEnumValue!
+                }
+            }
+        }
+        let formatValue = source["format"]
+        if formatValue != nil {
+            self.format = formatValue! as? String
+        }
     }
 
     public init(scaleX: Double? = nil, scaleY: Double? = nil, thumbnailBounds: ThumbnailBounds? = nil, format: String? = nil) {
@@ -60,6 +78,12 @@ public class ShapeImageExportOptions: Codable {
         self.format = format
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case scaleX
+        case scaleY
+        case thumbnailBounds
+        case format
+    }
 
 }
 

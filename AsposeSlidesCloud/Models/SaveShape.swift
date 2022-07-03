@@ -49,11 +49,42 @@ public class SaveShape: Task {
     /** Save options. */
     public var options: IShapeExportOptions?
 
-    private enum CodingKeys: String, CodingKey {
-        case format
-        case shapePath
-        case output
-        case options
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let formatValue = source["format"]
+        if formatValue != nil {
+            let formatStringValue = formatValue! as? String
+            if formatStringValue != nil {
+                let formatEnumValue = Format(rawValue: formatStringValue!)
+                if formatEnumValue != nil {
+                    self.format = formatEnumValue!
+                }
+            }
+        }
+        let shapePathValue = source["shapePath"]
+        if shapePathValue != nil {
+            self.shapePath = shapePathValue! as? String
+        }
+        let outputValue = source["output"]
+        if outputValue != nil {
+            let outputDictionaryValue = outputValue! as? [String:Any]
+            if outputDictionaryValue != nil {
+                let (outputInstance, error) = ClassRegistry.getClassFromDictionary(OutputFile.self, outputDictionaryValue!)
+                if error == nil && outputInstance != nil {
+                    self.output = outputInstance! as? OutputFile
+                }
+            }
+        }
+        let optionsValue = source["options"]
+        if optionsValue != nil {
+            let optionsDictionaryValue = optionsValue! as? [String:Any]
+            if optionsDictionaryValue != nil {
+                let (optionsInstance, error) = ClassRegistry.getClassFromDictionary(IShapeExportOptions.self, optionsDictionaryValue!)
+                if error == nil && optionsInstance != nil {
+                    self.options = optionsInstance! as? IShapeExportOptions
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, format: Format? = nil, shapePath: String? = nil, output: OutputFile? = nil, options: IShapeExportOptions? = nil) {
@@ -62,26 +93,42 @@ public class SaveShape: Task {
         self.shapePath = shapePath
         self.output = output
         self.options = options
+        self.type = ModelType.saveShape
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case format
+        case shapePath
+        case output
+        case options
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        format = try values.decode(Format?.self, forKey: .format)
-        shapePath = try values.decode(String?.self, forKey: .shapePath)
-        output = try values.decode(OutputFile?.self, forKey: .output)
-        options = try values.decode(IShapeExportOptions?.self, forKey: .options)
+        format = try? values.decode(Format.self, forKey: .format)
+        shapePath = try? values.decode(String.self, forKey: .shapePath)
+        output = try? values.decode(OutputFile.self, forKey: .output)
+        options = try? values.decode(IShapeExportOptions.self, forKey: .options)
+        self.type = ModelType.saveShape
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(format, forKey: .format)
-        try container.encode(shapePath, forKey: .shapePath)
-        try container.encode(output, forKey: .output)
-        try container.encode(options, forKey: .options)
+        if (format != nil) {
+            try? container.encode(format, forKey: .format)
+        }
+        if (shapePath != nil) {
+            try? container.encode(shapePath, forKey: .shapePath)
+        }
+        if (output != nil) {
+            try? container.encode(output, forKey: .output)
+        }
+        if (options != nil) {
+            try? container.encode(options, forKey: .options)
+        }
     }
-
 
 }
 

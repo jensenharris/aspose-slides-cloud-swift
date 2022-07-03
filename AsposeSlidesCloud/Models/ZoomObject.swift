@@ -47,12 +47,40 @@ public class ZoomObject: ShapeBase {
     /** Duration of the transition between Zoom and slide. */
     public var transitionDuration: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case imageType
-        case returnToParent
-        case showBackground
-        case image
-        case transitionDuration
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let imageTypeValue = source["imageType"]
+        if imageTypeValue != nil {
+            let imageTypeStringValue = imageTypeValue! as? String
+            if imageTypeStringValue != nil {
+                let imageTypeEnumValue = ImageType(rawValue: imageTypeStringValue!)
+                if imageTypeEnumValue != nil {
+                    self.imageType = imageTypeEnumValue!
+                }
+            }
+        }
+        let returnToParentValue = source["returnToParent"]
+        if returnToParentValue != nil {
+            self.returnToParent = returnToParentValue! as? Bool
+        }
+        let showBackgroundValue = source["showBackground"]
+        if showBackgroundValue != nil {
+            self.showBackground = showBackgroundValue! as? Bool
+        }
+        let imageValue = source["image"]
+        if imageValue != nil {
+            let imageDictionaryValue = imageValue! as? [String:Any]
+            if imageDictionaryValue != nil {
+                let (imageInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, imageDictionaryValue!)
+                if error == nil && imageInstance != nil {
+                    self.image = imageInstance! as? ResourceUri
+                }
+            }
+        }
+        let transitionDurationValue = source["transitionDuration"]
+        if transitionDurationValue != nil {
+            self.transitionDuration = transitionDurationValue! as? Double
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, imageType: ImageType? = nil, returnToParent: Bool? = nil, showBackground: Bool? = nil, image: ResourceUri? = nil, transitionDuration: Double? = nil) {
@@ -64,26 +92,43 @@ public class ZoomObject: ShapeBase {
         self.transitionDuration = transitionDuration
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case imageType
+        case returnToParent
+        case showBackground
+        case image
+        case transitionDuration
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        imageType = try values.decode(ImageType?.self, forKey: .imageType)
-        returnToParent = try values.decode(Bool?.self, forKey: .returnToParent)
-        showBackground = try values.decode(Bool?.self, forKey: .showBackground)
-        image = try values.decode(ResourceUri?.self, forKey: .image)
-        transitionDuration = try values.decode(Double?.self, forKey: .transitionDuration)
+        imageType = try? values.decode(ImageType.self, forKey: .imageType)
+        returnToParent = try? values.decode(Bool.self, forKey: .returnToParent)
+        showBackground = try? values.decode(Bool.self, forKey: .showBackground)
+        image = try? values.decode(ResourceUri.self, forKey: .image)
+        transitionDuration = try? values.decode(Double.self, forKey: .transitionDuration)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(imageType, forKey: .imageType)
-        try container.encode(returnToParent, forKey: .returnToParent)
-        try container.encode(showBackground, forKey: .showBackground)
-        try container.encode(image, forKey: .image)
-        try container.encode(transitionDuration, forKey: .transitionDuration)
+        if (imageType != nil) {
+            try? container.encode(imageType, forKey: .imageType)
+        }
+        if (returnToParent != nil) {
+            try? container.encode(returnToParent, forKey: .returnToParent)
+        }
+        if (showBackground != nil) {
+            try? container.encode(showBackground, forKey: .showBackground)
+        }
+        if (image != nil) {
+            try? container.encode(image, forKey: .image)
+        }
+        if (transitionDuration != nil) {
+            try? container.encode(transitionDuration, forKey: .transitionDuration)
+        }
     }
-
 
 }
 

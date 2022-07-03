@@ -37,9 +37,15 @@ public class ApiInfo: Codable {
     /** API version. */
     public var version: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case version
+    func fillValues(_ source: [String:Any]) throws {
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let versionValue = source["version"]
+        if versionValue != nil {
+            self.version = versionValue! as? String
+        }
     }
 
     public init(name: String? = nil, version: String? = nil) {
@@ -47,6 +53,10 @@ public class ApiInfo: Codable {
         self.version = version
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case version
+    }
 
 }
 

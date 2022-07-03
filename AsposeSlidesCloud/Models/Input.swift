@@ -39,10 +39,37 @@ public class Input: Codable {
     /** Get or sets data for template engine. */
     public var templateData: InputFile?
 
-    private enum CodingKeys: String, CodingKey {
-        case template
-        case htmlData
-        case templateData
+    func fillValues(_ source: [String:Any]) throws {
+        let templateValue = source["template"]
+        if templateValue != nil {
+            let templateDictionaryValue = templateValue! as? [String:Any]
+            if templateDictionaryValue != nil {
+                let (templateInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, templateDictionaryValue!)
+                if error == nil && templateInstance != nil {
+                    self.template = templateInstance! as? InputFile
+                }
+            }
+        }
+        let htmlDataValue = source["htmlData"]
+        if htmlDataValue != nil {
+            let htmlDataDictionaryValue = htmlDataValue! as? [String:Any]
+            if htmlDataDictionaryValue != nil {
+                let (htmlDataInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, htmlDataDictionaryValue!)
+                if error == nil && htmlDataInstance != nil {
+                    self.htmlData = htmlDataInstance! as? InputFile
+                }
+            }
+        }
+        let templateDataValue = source["templateData"]
+        if templateDataValue != nil {
+            let templateDataDictionaryValue = templateDataValue! as? [String:Any]
+            if templateDataDictionaryValue != nil {
+                let (templateDataInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, templateDataDictionaryValue!)
+                if error == nil && templateDataInstance != nil {
+                    self.templateData = templateDataInstance! as? InputFile
+                }
+            }
+        }
     }
 
     public init(template: InputFile? = nil, htmlData: InputFile? = nil, templateData: InputFile? = nil) {
@@ -51,6 +78,11 @@ public class Input: Codable {
         self.templateData = templateData
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case template
+        case htmlData
+        case templateData
+    }
 
 }
 

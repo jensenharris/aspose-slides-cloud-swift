@@ -49,13 +49,59 @@ public class DelimiterElement: MathElement {
     /** Delimiter shape */
     public var delimiterShape: DelimiterShape?
 
-    private enum CodingKeys: String, CodingKey {
-        case arguments
-        case beginningCharacter
-        case separatorCharacter
-        case endingCharacter
-        case growToMatchOperandHeight
-        case delimiterShape
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let argumentsValue = source["arguments"]
+        if argumentsValue != nil {
+            var argumentsArray: [MathElement] = []
+            let argumentsDictionaryValue = argumentsValue! as? [Any]
+            if argumentsDictionaryValue != nil {
+                argumentsDictionaryValue!.forEach { argumentsAnyItem in
+                    let argumentsItem = argumentsAnyItem as? [String:Any]
+                    var added = false
+                    if argumentsItem != nil {
+                        let (argumentsInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, argumentsItem!)
+                        if error == nil && argumentsInstance != nil {
+                            let argumentsArrayItem = argumentsInstance! as? MathElement
+                            if argumentsArrayItem != nil {
+                                argumentsArray.append(argumentsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        argumentsArray.append(MathElement())
+                    }
+                }
+            }
+            self.arguments = argumentsArray
+        }
+        let beginningCharacterValue = source["beginningCharacter"]
+        if beginningCharacterValue != nil {
+            self.beginningCharacter = beginningCharacterValue! as? String
+        }
+        let separatorCharacterValue = source["separatorCharacter"]
+        if separatorCharacterValue != nil {
+            self.separatorCharacter = separatorCharacterValue! as? String
+        }
+        let endingCharacterValue = source["endingCharacter"]
+        if endingCharacterValue != nil {
+            self.endingCharacter = endingCharacterValue! as? String
+        }
+        let growToMatchOperandHeightValue = source["growToMatchOperandHeight"]
+        if growToMatchOperandHeightValue != nil {
+            self.growToMatchOperandHeight = growToMatchOperandHeightValue! as? Bool
+        }
+        let delimiterShapeValue = source["delimiterShape"]
+        if delimiterShapeValue != nil {
+            let delimiterShapeStringValue = delimiterShapeValue! as? String
+            if delimiterShapeStringValue != nil {
+                let delimiterShapeEnumValue = DelimiterShape(rawValue: delimiterShapeStringValue!)
+                if delimiterShapeEnumValue != nil {
+                    self.delimiterShape = delimiterShapeEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, arguments: [MathElement]? = nil, beginningCharacter: String? = nil, separatorCharacter: String? = nil, endingCharacter: String? = nil, growToMatchOperandHeight: Bool? = nil, delimiterShape: DelimiterShape? = nil) {
@@ -66,30 +112,52 @@ public class DelimiterElement: MathElement {
         self.endingCharacter = endingCharacter
         self.growToMatchOperandHeight = growToMatchOperandHeight
         self.delimiterShape = delimiterShape
+        self.type = ModelType.delimiter
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case arguments
+        case beginningCharacter
+        case separatorCharacter
+        case endingCharacter
+        case growToMatchOperandHeight
+        case delimiterShape
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        arguments = try values.decode([MathElement]?.self, forKey: .arguments)
-        beginningCharacter = try values.decode(String?.self, forKey: .beginningCharacter)
-        separatorCharacter = try values.decode(String?.self, forKey: .separatorCharacter)
-        endingCharacter = try values.decode(String?.self, forKey: .endingCharacter)
-        growToMatchOperandHeight = try values.decode(Bool?.self, forKey: .growToMatchOperandHeight)
-        delimiterShape = try values.decode(DelimiterShape?.self, forKey: .delimiterShape)
+        arguments = try? values.decode([MathElement].self, forKey: .arguments)
+        beginningCharacter = try? values.decode(String.self, forKey: .beginningCharacter)
+        separatorCharacter = try? values.decode(String.self, forKey: .separatorCharacter)
+        endingCharacter = try? values.decode(String.self, forKey: .endingCharacter)
+        growToMatchOperandHeight = try? values.decode(Bool.self, forKey: .growToMatchOperandHeight)
+        delimiterShape = try? values.decode(DelimiterShape.self, forKey: .delimiterShape)
+        self.type = ModelType.delimiter
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(arguments, forKey: .arguments)
-        try container.encode(beginningCharacter, forKey: .beginningCharacter)
-        try container.encode(separatorCharacter, forKey: .separatorCharacter)
-        try container.encode(endingCharacter, forKey: .endingCharacter)
-        try container.encode(growToMatchOperandHeight, forKey: .growToMatchOperandHeight)
-        try container.encode(delimiterShape, forKey: .delimiterShape)
+        if (arguments != nil) {
+            try? container.encode(arguments, forKey: .arguments)
+        }
+        if (beginningCharacter != nil) {
+            try? container.encode(beginningCharacter, forKey: .beginningCharacter)
+        }
+        if (separatorCharacter != nil) {
+            try? container.encode(separatorCharacter, forKey: .separatorCharacter)
+        }
+        if (endingCharacter != nil) {
+            try? container.encode(endingCharacter, forKey: .endingCharacter)
+        }
+        if (growToMatchOperandHeight != nil) {
+            try? container.encode(growToMatchOperandHeight, forKey: .growToMatchOperandHeight)
+        }
+        if (delimiterShape != nil) {
+            try? container.encode(delimiterShape, forKey: .delimiterShape)
+        }
     }
-
 
 }
 

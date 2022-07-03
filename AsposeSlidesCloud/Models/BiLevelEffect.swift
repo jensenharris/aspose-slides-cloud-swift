@@ -35,27 +35,38 @@ public class BiLevelEffect: ImageTransformEffect {
     /** Returns effect threshold. */
     public var threshold: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case threshold
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let thresholdValue = source["threshold"]
+        if thresholdValue != nil {
+            self.threshold = thresholdValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, threshold: Double? = nil) {
         super.init(type: type)
         self.threshold = threshold
+        self.type = ModelType.biLevel
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case threshold
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        threshold = try values.decode(Double?.self, forKey: .threshold)
+        threshold = try? values.decode(Double.self, forKey: .threshold)
+        self.type = ModelType.biLevel
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(threshold, forKey: .threshold)
+        if (threshold != nil) {
+            try? container.encode(threshold, forKey: .threshold)
+        }
     }
-
 
 }
 

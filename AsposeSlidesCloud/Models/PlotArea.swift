@@ -53,15 +53,63 @@ public class PlotArea: Codable {
     /** Get or sets the line format. */
     public var lineFormat: LineFormat?
 
-    private enum CodingKeys: String, CodingKey {
-        case X
-        case Y
-        case width
-        case height
-        case layoutTargetType
-        case fillFormat
-        case effectFormat
-        case lineFormat
+    func fillValues(_ source: [String:Any]) throws {
+        let XValue = source["X"]
+        if XValue != nil {
+            self.X = XValue! as? Double
+        }
+        let YValue = source["Y"]
+        if YValue != nil {
+            self.Y = YValue! as? Double
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
+        let layoutTargetTypeValue = source["layoutTargetType"]
+        if layoutTargetTypeValue != nil {
+            let layoutTargetTypeStringValue = layoutTargetTypeValue! as? String
+            if layoutTargetTypeStringValue != nil {
+                let layoutTargetTypeEnumValue = LayoutTargetType(rawValue: layoutTargetTypeStringValue!)
+                if layoutTargetTypeEnumValue != nil {
+                    self.layoutTargetType = layoutTargetTypeEnumValue!
+                }
+            }
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
     }
 
     public init(X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil, layoutTargetType: LayoutTargetType? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
@@ -75,6 +123,16 @@ public class PlotArea: Codable {
         self.lineFormat = lineFormat
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case X
+        case Y
+        case width
+        case height
+        case layoutTargetType
+        case fillFormat
+        case effectFormat
+        case lineFormat
+    }
 
 }
 

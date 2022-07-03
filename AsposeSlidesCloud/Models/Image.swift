@@ -39,10 +39,20 @@ public class Image: ResourceBase {
     /** Get or sets the content type of an image. */
     public var contentType: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case width
-        case height
-        case contentType
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Int
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Int
+        }
+        let contentTypeValue = source["contentType"]
+        if contentTypeValue != nil {
+            self.contentType = contentTypeValue! as? String
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, width: Int? = nil, height: Int? = nil, contentType: String? = nil) {
@@ -52,22 +62,33 @@ public class Image: ResourceBase {
         self.contentType = contentType
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case width
+        case height
+        case contentType
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        width = try values.decode(Int?.self, forKey: .width)
-        height = try values.decode(Int?.self, forKey: .height)
-        contentType = try values.decode(String?.self, forKey: .contentType)
+        width = try? values.decode(Int.self, forKey: .width)
+        height = try? values.decode(Int.self, forKey: .height)
+        contentType = try? values.decode(String.self, forKey: .contentType)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
-        try container.encode(contentType, forKey: .contentType)
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
+        if (contentType != nil) {
+            try? container.encode(contentType, forKey: .contentType)
+        }
     }
-
 
 }
 

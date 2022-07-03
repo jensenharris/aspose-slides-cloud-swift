@@ -33,7 +33,11 @@ import Foundation
 public class IShapeExportOptions: Codable {
 
 
+    func fillValues(_ source: [String:Any]) throws {
+    }
 
+    public init() {
+    }
 
 }
 

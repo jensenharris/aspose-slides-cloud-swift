@@ -42,31 +42,60 @@ public class BarElement: MathElement {
     /** Position of the bar line.              */
     public var position: Position?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case position
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let positionValue = source["position"]
+        if positionValue != nil {
+            let positionStringValue = positionValue! as? String
+            if positionStringValue != nil {
+                let positionEnumValue = Position(rawValue: positionStringValue!)
+                if positionEnumValue != nil {
+                    self.position = positionEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, position: Position? = nil) {
         super.init(type: type)
         self.base = base
         self.position = position
+        self.type = ModelType.bar
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case position
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        position = try values.decode(Position?.self, forKey: .position)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        position = try? values.decode(Position.self, forKey: .position)
+        self.type = ModelType.bar
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(position, forKey: .position)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (position != nil) {
+            try? container.encode(position, forKey: .position)
+        }
     }
-
 
 }
 

@@ -35,27 +35,38 @@ public class AlphaModulateFixedEffect: ImageTransformEffect {
     /** Returns an amount of effect in percents.     */
     public var amount: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case amount
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let amountValue = source["amount"]
+        if amountValue != nil {
+            self.amount = amountValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, amount: Double? = nil) {
         super.init(type: type)
         self.amount = amount
+        self.type = ModelType.alphaModulateFixed
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case amount
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try values.decode(Double?.self, forKey: .amount)
+        amount = try? values.decode(Double.self, forKey: .amount)
+        self.type = ModelType.alphaModulateFixed
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(amount, forKey: .amount)
+        if (amount != nil) {
+            try? container.encode(amount, forKey: .amount)
+        }
     }
-
 
 }
 

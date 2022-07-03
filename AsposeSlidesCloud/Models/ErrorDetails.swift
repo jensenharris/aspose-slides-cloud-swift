@@ -37,9 +37,21 @@ public class ErrorDetails: Codable {
     /** Date */
     public var date: Date?
 
-    private enum CodingKeys: String, CodingKey {
-        case requestId
-        case date
+    func fillValues(_ source: [String:Any]) throws {
+        let requestIdValue = source["requestId"]
+        if requestIdValue != nil {
+            self.requestId = requestIdValue! as? String
+        }
+        let dateValue = source["date"]
+        if dateValue != nil {
+            let dateDictionaryValue = dateValue! as? [String:Any]
+            if dateDictionaryValue != nil {
+                let (dateInstance, error) = ClassRegistry.getClassFromDictionary(Date.self, dateDictionaryValue!)
+                if error == nil && dateInstance != nil {
+                    self.date = dateInstance! as? Date
+                }
+            }
+        }
     }
 
     public init(requestId: String? = nil, date: Date? = nil) {
@@ -47,6 +59,10 @@ public class ErrorDetails: Codable {
         self.date = date
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case requestId
+        case date
+    }
 
 }
 

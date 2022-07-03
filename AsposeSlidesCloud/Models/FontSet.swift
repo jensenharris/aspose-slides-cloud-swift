@@ -39,10 +39,19 @@ public class FontSet: Codable {
     /** Latin font. */
     public var latin: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case complexScript
-        case eastAsian
-        case latin
+    func fillValues(_ source: [String:Any]) throws {
+        let complexScriptValue = source["complexScript"]
+        if complexScriptValue != nil {
+            self.complexScript = complexScriptValue! as? String
+        }
+        let eastAsianValue = source["eastAsian"]
+        if eastAsianValue != nil {
+            self.eastAsian = eastAsianValue! as? String
+        }
+        let latinValue = source["latin"]
+        if latinValue != nil {
+            self.latin = latinValue! as? String
+        }
     }
 
     public init(complexScript: String? = nil, eastAsian: String? = nil, latin: String? = nil) {
@@ -51,6 +60,11 @@ public class FontSet: Codable {
         self.latin = latin
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case complexScript
+        case eastAsian
+        case latin
+    }
 
 }
 

@@ -37,9 +37,16 @@ public class ImageExportOptionsBase: ExportOptions {
     /** Gets or sets the height of slides in the output the output image format. */
     public var width: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case height
-        case width
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Int
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Int
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil) {
@@ -48,20 +55,28 @@ public class ImageExportOptionsBase: ExportOptions {
         self.width = width
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case height
+        case width
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        height = try values.decode(Int?.self, forKey: .height)
-        width = try values.decode(Int?.self, forKey: .width)
+        height = try? values.decode(Int.self, forKey: .height)
+        width = try? values.decode(Int.self, forKey: .width)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(height, forKey: .height)
-        try container.encode(width, forKey: .width)
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
     }
-
 
 }
 

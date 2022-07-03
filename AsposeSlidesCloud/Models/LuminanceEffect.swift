@@ -37,31 +37,48 @@ public class LuminanceEffect: ImageTransformEffect {
     /** Contrast */
     public var contrast: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case brightness
-        case contrast
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let brightnessValue = source["brightness"]
+        if brightnessValue != nil {
+            self.brightness = brightnessValue! as? Double
+        }
+        let contrastValue = source["contrast"]
+        if contrastValue != nil {
+            self.contrast = contrastValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, brightness: Double? = nil, contrast: Double? = nil) {
         super.init(type: type)
         self.brightness = brightness
         self.contrast = contrast
+        self.type = ModelType.luminance
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case brightness
+        case contrast
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        brightness = try values.decode(Double?.self, forKey: .brightness)
-        contrast = try values.decode(Double?.self, forKey: .contrast)
+        brightness = try? values.decode(Double.self, forKey: .brightness)
+        contrast = try? values.decode(Double.self, forKey: .contrast)
+        self.type = ModelType.luminance
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(brightness, forKey: .brightness)
-        try container.encode(contrast, forKey: .contrast)
+        if (brightness != nil) {
+            try? container.encode(brightness, forKey: .brightness)
+        }
+        if (contrast != nil) {
+            try? container.encode(contrast, forKey: .contrast)
+        }
     }
-
 
 }
 

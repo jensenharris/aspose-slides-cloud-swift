@@ -35,8 +35,33 @@ public class Paragraphs: ResourceBase {
     /** List of paragraph links. */
     public var paragraphLinks: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case paragraphLinks
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let paragraphLinksValue = source["paragraphLinks"]
+        if paragraphLinksValue != nil {
+            var paragraphLinksArray: [ResourceUri] = []
+            let paragraphLinksDictionaryValue = paragraphLinksValue! as? [Any]
+            if paragraphLinksDictionaryValue != nil {
+                paragraphLinksDictionaryValue!.forEach { paragraphLinksAnyItem in
+                    let paragraphLinksItem = paragraphLinksAnyItem as? [String:Any]
+                    var added = false
+                    if paragraphLinksItem != nil {
+                        let (paragraphLinksInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, paragraphLinksItem!)
+                        if error == nil && paragraphLinksInstance != nil {
+                            let paragraphLinksArrayItem = paragraphLinksInstance! as? ResourceUri
+                            if paragraphLinksArrayItem != nil {
+                                paragraphLinksArray.append(paragraphLinksArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        paragraphLinksArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.paragraphLinks = paragraphLinksArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, paragraphLinks: [ResourceUri]? = nil) {
@@ -44,18 +69,23 @@ public class Paragraphs: ResourceBase {
         self.paragraphLinks = paragraphLinks
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case paragraphLinks
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        paragraphLinks = try values.decode([ResourceUri]?.self, forKey: .paragraphLinks)
+        paragraphLinks = try? values.decode([ResourceUri].self, forKey: .paragraphLinks)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(paragraphLinks, forKey: .paragraphLinks)
+        if (paragraphLinks != nil) {
+            try? container.encode(paragraphLinks, forKey: .paragraphLinks)
+        }
     }
-
 
 }
 

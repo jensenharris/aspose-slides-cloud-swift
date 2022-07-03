@@ -39,10 +39,20 @@ public class GifExportOptions: ImageExportOptionsBase {
     /** Gets or sets default delay time [ms]. */
     public var defaultDelay: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case exportHiddenSlides
-        case transitionFps
-        case defaultDelay
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let exportHiddenSlidesValue = source["exportHiddenSlides"]
+        if exportHiddenSlidesValue != nil {
+            self.exportHiddenSlides = exportHiddenSlidesValue! as? Bool
+        }
+        let transitionFpsValue = source["transitionFps"]
+        if transitionFpsValue != nil {
+            self.transitionFps = transitionFpsValue! as? Int
+        }
+        let defaultDelayValue = source["defaultDelay"]
+        if defaultDelayValue != nil {
+            self.defaultDelay = defaultDelayValue! as? Int
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
@@ -50,24 +60,37 @@ public class GifExportOptions: ImageExportOptionsBase {
         self.exportHiddenSlides = exportHiddenSlides
         self.transitionFps = transitionFps
         self.defaultDelay = defaultDelay
+        self.format = "gif"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case exportHiddenSlides
+        case transitionFps
+        case defaultDelay
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        exportHiddenSlides = try values.decode(Bool?.self, forKey: .exportHiddenSlides)
-        transitionFps = try values.decode(Int?.self, forKey: .transitionFps)
-        defaultDelay = try values.decode(Int?.self, forKey: .defaultDelay)
+        exportHiddenSlides = try? values.decode(Bool.self, forKey: .exportHiddenSlides)
+        transitionFps = try? values.decode(Int.self, forKey: .transitionFps)
+        defaultDelay = try? values.decode(Int.self, forKey: .defaultDelay)
+        self.format = "gif"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
-        try container.encode(transitionFps, forKey: .transitionFps)
-        try container.encode(defaultDelay, forKey: .defaultDelay)
+        if (exportHiddenSlides != nil) {
+            try? container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
+        }
+        if (transitionFps != nil) {
+            try? container.encode(transitionFps, forKey: .transitionFps)
+        }
+        if (defaultDelay != nil) {
+            try? container.encode(defaultDelay, forKey: .defaultDelay)
+        }
     }
-
 
 }
 

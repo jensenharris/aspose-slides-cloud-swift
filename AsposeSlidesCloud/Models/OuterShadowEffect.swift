@@ -41,11 +41,23 @@ public class OuterShadowEffect: Codable {
     /** shadow color */
     public var shadowColor: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case direction
-        case distance
-        case blurRadius
-        case shadowColor
+    func fillValues(_ source: [String:Any]) throws {
+        let directionValue = source["direction"]
+        if directionValue != nil {
+            self.direction = directionValue! as? Double
+        }
+        let distanceValue = source["distance"]
+        if distanceValue != nil {
+            self.distance = distanceValue! as? Double
+        }
+        let blurRadiusValue = source["blurRadius"]
+        if blurRadiusValue != nil {
+            self.blurRadius = blurRadiusValue! as? Double
+        }
+        let shadowColorValue = source["shadowColor"]
+        if shadowColorValue != nil {
+            self.shadowColor = shadowColorValue! as? String
+        }
     }
 
     public init(direction: Double? = nil, distance: Double? = nil, blurRadius: Double? = nil, shadowColor: String? = nil) {
@@ -55,6 +67,12 @@ public class OuterShadowEffect: Codable {
         self.shadowColor = shadowColor
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case direction
+        case distance
+        case blurRadius
+        case shadowColor
+    }
 
 }
 

@@ -64,16 +64,56 @@ public class SvgExportOptions: ExportOptions {
     /** Determines a way of handling externally loaded fonts. */
     public var externalFontsHandling: ExternalFontsHandling?
 
-    private enum CodingKeys: String, CodingKey {
-        case vectorizeText
-        case metafileRasterizationDpi
-        case disable3DText
-        case disableGradientSplit
-        case disableLineEndCropping
-        case jpegQuality
-        case picturesCompression
-        case deletePicturesCroppedAreas
-        case externalFontsHandling
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let vectorizeTextValue = source["vectorizeText"]
+        if vectorizeTextValue != nil {
+            self.vectorizeText = vectorizeTextValue! as? Bool
+        }
+        let metafileRasterizationDpiValue = source["metafileRasterizationDpi"]
+        if metafileRasterizationDpiValue != nil {
+            self.metafileRasterizationDpi = metafileRasterizationDpiValue! as? Int
+        }
+        let disable3DTextValue = source["disable3DText"]
+        if disable3DTextValue != nil {
+            self.disable3DText = disable3DTextValue! as? Bool
+        }
+        let disableGradientSplitValue = source["disableGradientSplit"]
+        if disableGradientSplitValue != nil {
+            self.disableGradientSplit = disableGradientSplitValue! as? Bool
+        }
+        let disableLineEndCroppingValue = source["disableLineEndCropping"]
+        if disableLineEndCroppingValue != nil {
+            self.disableLineEndCropping = disableLineEndCroppingValue! as? Bool
+        }
+        let jpegQualityValue = source["jpegQuality"]
+        if jpegQualityValue != nil {
+            self.jpegQuality = jpegQualityValue! as? Int
+        }
+        let picturesCompressionValue = source["picturesCompression"]
+        if picturesCompressionValue != nil {
+            let picturesCompressionStringValue = picturesCompressionValue! as? String
+            if picturesCompressionStringValue != nil {
+                let picturesCompressionEnumValue = PicturesCompression(rawValue: picturesCompressionStringValue!)
+                if picturesCompressionEnumValue != nil {
+                    self.picturesCompression = picturesCompressionEnumValue!
+                }
+            }
+        }
+        let deletePicturesCroppedAreasValue = source["deletePicturesCroppedAreas"]
+        if deletePicturesCroppedAreasValue != nil {
+            self.deletePicturesCroppedAreas = deletePicturesCroppedAreasValue! as? Bool
+        }
+        let externalFontsHandlingValue = source["externalFontsHandling"]
+        if externalFontsHandlingValue != nil {
+            let externalFontsHandlingStringValue = externalFontsHandlingValue! as? String
+            if externalFontsHandlingStringValue != nil {
+                let externalFontsHandlingEnumValue = ExternalFontsHandling(rawValue: externalFontsHandlingStringValue!)
+                if externalFontsHandlingEnumValue != nil {
+                    self.externalFontsHandling = externalFontsHandlingEnumValue!
+                }
+            }
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil) {
@@ -87,36 +127,67 @@ public class SvgExportOptions: ExportOptions {
         self.picturesCompression = picturesCompression
         self.deletePicturesCroppedAreas = deletePicturesCroppedAreas
         self.externalFontsHandling = externalFontsHandling
+        self.format = "svg"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case vectorizeText
+        case metafileRasterizationDpi
+        case disable3DText
+        case disableGradientSplit
+        case disableLineEndCropping
+        case jpegQuality
+        case picturesCompression
+        case deletePicturesCroppedAreas
+        case externalFontsHandling
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        vectorizeText = try values.decode(Bool?.self, forKey: .vectorizeText)
-        metafileRasterizationDpi = try values.decode(Int?.self, forKey: .metafileRasterizationDpi)
-        disable3DText = try values.decode(Bool?.self, forKey: .disable3DText)
-        disableGradientSplit = try values.decode(Bool?.self, forKey: .disableGradientSplit)
-        disableLineEndCropping = try values.decode(Bool?.self, forKey: .disableLineEndCropping)
-        jpegQuality = try values.decode(Int?.self, forKey: .jpegQuality)
-        picturesCompression = try values.decode(PicturesCompression?.self, forKey: .picturesCompression)
-        deletePicturesCroppedAreas = try values.decode(Bool?.self, forKey: .deletePicturesCroppedAreas)
-        externalFontsHandling = try values.decode(ExternalFontsHandling?.self, forKey: .externalFontsHandling)
+        vectorizeText = try? values.decode(Bool.self, forKey: .vectorizeText)
+        metafileRasterizationDpi = try? values.decode(Int.self, forKey: .metafileRasterizationDpi)
+        disable3DText = try? values.decode(Bool.self, forKey: .disable3DText)
+        disableGradientSplit = try? values.decode(Bool.self, forKey: .disableGradientSplit)
+        disableLineEndCropping = try? values.decode(Bool.self, forKey: .disableLineEndCropping)
+        jpegQuality = try? values.decode(Int.self, forKey: .jpegQuality)
+        picturesCompression = try? values.decode(PicturesCompression.self, forKey: .picturesCompression)
+        deletePicturesCroppedAreas = try? values.decode(Bool.self, forKey: .deletePicturesCroppedAreas)
+        externalFontsHandling = try? values.decode(ExternalFontsHandling.self, forKey: .externalFontsHandling)
+        self.format = "svg"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(vectorizeText, forKey: .vectorizeText)
-        try container.encode(metafileRasterizationDpi, forKey: .metafileRasterizationDpi)
-        try container.encode(disable3DText, forKey: .disable3DText)
-        try container.encode(disableGradientSplit, forKey: .disableGradientSplit)
-        try container.encode(disableLineEndCropping, forKey: .disableLineEndCropping)
-        try container.encode(jpegQuality, forKey: .jpegQuality)
-        try container.encode(picturesCompression, forKey: .picturesCompression)
-        try container.encode(deletePicturesCroppedAreas, forKey: .deletePicturesCroppedAreas)
-        try container.encode(externalFontsHandling, forKey: .externalFontsHandling)
+        if (vectorizeText != nil) {
+            try? container.encode(vectorizeText, forKey: .vectorizeText)
+        }
+        if (metafileRasterizationDpi != nil) {
+            try? container.encode(metafileRasterizationDpi, forKey: .metafileRasterizationDpi)
+        }
+        if (disable3DText != nil) {
+            try? container.encode(disable3DText, forKey: .disable3DText)
+        }
+        if (disableGradientSplit != nil) {
+            try? container.encode(disableGradientSplit, forKey: .disableGradientSplit)
+        }
+        if (disableLineEndCropping != nil) {
+            try? container.encode(disableLineEndCropping, forKey: .disableLineEndCropping)
+        }
+        if (jpegQuality != nil) {
+            try? container.encode(jpegQuality, forKey: .jpegQuality)
+        }
+        if (picturesCompression != nil) {
+            try? container.encode(picturesCompression, forKey: .picturesCompression)
+        }
+        if (deletePicturesCroppedAreas != nil) {
+            try? container.encode(deletePicturesCroppedAreas, forKey: .deletePicturesCroppedAreas)
+        }
+        if (externalFontsHandling != nil) {
+            try? container.encode(externalFontsHandling, forKey: .externalFontsHandling)
+        }
     }
-
 
 }
 

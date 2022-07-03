@@ -35,8 +35,33 @@ public class Slides: ResourceBase {
     /** List of slide links. */
     public var slideList: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case slideList
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let slideListValue = source["slideList"]
+        if slideListValue != nil {
+            var slideListArray: [ResourceUri] = []
+            let slideListDictionaryValue = slideListValue! as? [Any]
+            if slideListDictionaryValue != nil {
+                slideListDictionaryValue!.forEach { slideListAnyItem in
+                    let slideListItem = slideListAnyItem as? [String:Any]
+                    var added = false
+                    if slideListItem != nil {
+                        let (slideListInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, slideListItem!)
+                        if error == nil && slideListInstance != nil {
+                            let slideListArrayItem = slideListInstance! as? ResourceUri
+                            if slideListArrayItem != nil {
+                                slideListArray.append(slideListArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        slideListArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.slideList = slideListArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, slideList: [ResourceUri]? = nil) {
@@ -44,18 +69,23 @@ public class Slides: ResourceBase {
         self.slideList = slideList
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case slideList
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        slideList = try values.decode([ResourceUri]?.self, forKey: .slideList)
+        slideList = try? values.decode([ResourceUri].self, forKey: .slideList)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(slideList, forKey: .slideList)
+        if (slideList != nil) {
+            try? container.encode(slideList, forKey: .slideList)
+        }
     }
-
 
 }
 

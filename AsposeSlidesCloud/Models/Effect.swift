@@ -291,22 +291,97 @@ public class Effect: Codable {
     /** Delay time after trigger. */
     public var triggerDelayTime: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case type
-        case subtype
-        case presetClassType
-        case shapeIndex
-        case paragraphIndex
-        case triggerType
-        case accelerate
-        case autoReverse
-        case decelerate
-        case duration
-        case repeatCount
-        case repeatDuration
-        case restart
-        case speed
-        case triggerDelayTime
+    func fillValues(_ source: [String:Any]) throws {
+        let typeValue = source["type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
+        let subtypeValue = source["subtype"]
+        if subtypeValue != nil {
+            let subtypeStringValue = subtypeValue! as? String
+            if subtypeStringValue != nil {
+                let subtypeEnumValue = Subtype(rawValue: subtypeStringValue!)
+                if subtypeEnumValue != nil {
+                    self.subtype = subtypeEnumValue!
+                }
+            }
+        }
+        let presetClassTypeValue = source["presetClassType"]
+        if presetClassTypeValue != nil {
+            let presetClassTypeStringValue = presetClassTypeValue! as? String
+            if presetClassTypeStringValue != nil {
+                let presetClassTypeEnumValue = PresetClassType(rawValue: presetClassTypeStringValue!)
+                if presetClassTypeEnumValue != nil {
+                    self.presetClassType = presetClassTypeEnumValue!
+                }
+            }
+        }
+        let shapeIndexValue = source["shapeIndex"]
+        if shapeIndexValue != nil {
+            self.shapeIndex = shapeIndexValue! as? Int
+        }
+        let paragraphIndexValue = source["paragraphIndex"]
+        if paragraphIndexValue != nil {
+            self.paragraphIndex = paragraphIndexValue! as? Int
+        }
+        let triggerTypeValue = source["triggerType"]
+        if triggerTypeValue != nil {
+            let triggerTypeStringValue = triggerTypeValue! as? String
+            if triggerTypeStringValue != nil {
+                let triggerTypeEnumValue = TriggerType(rawValue: triggerTypeStringValue!)
+                if triggerTypeEnumValue != nil {
+                    self.triggerType = triggerTypeEnumValue!
+                }
+            }
+        }
+        let accelerateValue = source["accelerate"]
+        if accelerateValue != nil {
+            self.accelerate = accelerateValue! as? Double
+        }
+        let autoReverseValue = source["autoReverse"]
+        if autoReverseValue != nil {
+            self.autoReverse = autoReverseValue! as? Bool
+        }
+        let decelerateValue = source["decelerate"]
+        if decelerateValue != nil {
+            self.decelerate = decelerateValue! as? Double
+        }
+        let durationValue = source["duration"]
+        if durationValue != nil {
+            self.duration = durationValue! as? Double
+        }
+        let repeatCountValue = source["repeatCount"]
+        if repeatCountValue != nil {
+            self.repeatCount = repeatCountValue! as? Double
+        }
+        let repeatDurationValue = source["repeatDuration"]
+        if repeatDurationValue != nil {
+            self.repeatDuration = repeatDurationValue! as? Double
+        }
+        let restartValue = source["restart"]
+        if restartValue != nil {
+            let restartStringValue = restartValue! as? String
+            if restartStringValue != nil {
+                let restartEnumValue = Restart(rawValue: restartStringValue!)
+                if restartEnumValue != nil {
+                    self.restart = restartEnumValue!
+                }
+            }
+        }
+        let speedValue = source["speed"]
+        if speedValue != nil {
+            self.speed = speedValue! as? Double
+        }
+        let triggerDelayTimeValue = source["triggerDelayTime"]
+        if triggerDelayTimeValue != nil {
+            self.triggerDelayTime = triggerDelayTimeValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil) {
@@ -327,6 +402,23 @@ public class Effect: Codable {
         self.triggerDelayTime = triggerDelayTime
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case subtype
+        case presetClassType
+        case shapeIndex
+        case paragraphIndex
+        case triggerType
+        case accelerate
+        case autoReverse
+        case decelerate
+        case duration
+        case repeatCount
+        case repeatDuration
+        case restart
+        case speed
+        case triggerDelayTime
+    }
 
 }
 

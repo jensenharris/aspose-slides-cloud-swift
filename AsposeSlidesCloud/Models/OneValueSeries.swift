@@ -53,15 +53,67 @@ public class OneValueSeries: Series {
     /** True if outlier points are shown. Applied to BoxAndWhisker series only. */
     public var showOutlierPoints: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case dataPoints
-        case numberFormatOfValues
-        case showConnectorLines
-        case quartileMethod
-        case showInnerPoints
-        case showMeanLine
-        case showMeanMarkers
-        case showOutlierPoints
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let dataPointsValue = source["dataPoints"]
+        if dataPointsValue != nil {
+            var dataPointsArray: [OneValueChartDataPoint] = []
+            let dataPointsDictionaryValue = dataPointsValue! as? [Any]
+            if dataPointsDictionaryValue != nil {
+                dataPointsDictionaryValue!.forEach { dataPointsAnyItem in
+                    let dataPointsItem = dataPointsAnyItem as? [String:Any]
+                    var added = false
+                    if dataPointsItem != nil {
+                        let (dataPointsInstance, error) = ClassRegistry.getClassFromDictionary(OneValueChartDataPoint.self, dataPointsItem!)
+                        if error == nil && dataPointsInstance != nil {
+                            let dataPointsArrayItem = dataPointsInstance! as? OneValueChartDataPoint
+                            if dataPointsArrayItem != nil {
+                                dataPointsArray.append(dataPointsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        dataPointsArray.append(OneValueChartDataPoint())
+                    }
+                }
+            }
+            self.dataPoints = dataPointsArray
+        }
+        let numberFormatOfValuesValue = source["numberFormatOfValues"]
+        if numberFormatOfValuesValue != nil {
+            self.numberFormatOfValues = numberFormatOfValuesValue! as? String
+        }
+        let showConnectorLinesValue = source["showConnectorLines"]
+        if showConnectorLinesValue != nil {
+            self.showConnectorLines = showConnectorLinesValue! as? Bool
+        }
+        let quartileMethodValue = source["quartileMethod"]
+        if quartileMethodValue != nil {
+            let quartileMethodStringValue = quartileMethodValue! as? String
+            if quartileMethodStringValue != nil {
+                let quartileMethodEnumValue = QuartileMethod(rawValue: quartileMethodStringValue!)
+                if quartileMethodEnumValue != nil {
+                    self.quartileMethod = quartileMethodEnumValue!
+                }
+            }
+        }
+        let showInnerPointsValue = source["showInnerPoints"]
+        if showInnerPointsValue != nil {
+            self.showInnerPoints = showInnerPointsValue! as? Bool
+        }
+        let showMeanLineValue = source["showMeanLine"]
+        if showMeanLineValue != nil {
+            self.showMeanLine = showMeanLineValue! as? Bool
+        }
+        let showMeanMarkersValue = source["showMeanMarkers"]
+        if showMeanMarkersValue != nil {
+            self.showMeanMarkers = showMeanMarkersValue! as? Bool
+        }
+        let showOutlierPointsValue = source["showOutlierPoints"]
+        if showOutlierPointsValue != nil {
+            self.showOutlierPoints = showOutlierPointsValue! as? Bool
+        }
     }
 
     public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, dataPoints: [OneValueChartDataPoint]? = nil, numberFormatOfValues: String? = nil, showConnectorLines: Bool? = nil, quartileMethod: QuartileMethod? = nil, showInnerPoints: Bool? = nil, showMeanLine: Bool? = nil, showMeanMarkers: Bool? = nil, showOutlierPoints: Bool? = nil) {
@@ -74,34 +126,62 @@ public class OneValueSeries: Series {
         self.showMeanLine = showMeanLine
         self.showMeanMarkers = showMeanMarkers
         self.showOutlierPoints = showOutlierPoints
+        self.dataPointType = DataPointType.oneValue
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case dataPoints
+        case numberFormatOfValues
+        case showConnectorLines
+        case quartileMethod
+        case showInnerPoints
+        case showMeanLine
+        case showMeanMarkers
+        case showOutlierPoints
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        dataPoints = try values.decode([OneValueChartDataPoint]?.self, forKey: .dataPoints)
-        numberFormatOfValues = try values.decode(String?.self, forKey: .numberFormatOfValues)
-        showConnectorLines = try values.decode(Bool?.self, forKey: .showConnectorLines)
-        quartileMethod = try values.decode(QuartileMethod?.self, forKey: .quartileMethod)
-        showInnerPoints = try values.decode(Bool?.self, forKey: .showInnerPoints)
-        showMeanLine = try values.decode(Bool?.self, forKey: .showMeanLine)
-        showMeanMarkers = try values.decode(Bool?.self, forKey: .showMeanMarkers)
-        showOutlierPoints = try values.decode(Bool?.self, forKey: .showOutlierPoints)
+        dataPoints = try? values.decode([OneValueChartDataPoint].self, forKey: .dataPoints)
+        numberFormatOfValues = try? values.decode(String.self, forKey: .numberFormatOfValues)
+        showConnectorLines = try? values.decode(Bool.self, forKey: .showConnectorLines)
+        quartileMethod = try? values.decode(QuartileMethod.self, forKey: .quartileMethod)
+        showInnerPoints = try? values.decode(Bool.self, forKey: .showInnerPoints)
+        showMeanLine = try? values.decode(Bool.self, forKey: .showMeanLine)
+        showMeanMarkers = try? values.decode(Bool.self, forKey: .showMeanMarkers)
+        showOutlierPoints = try? values.decode(Bool.self, forKey: .showOutlierPoints)
+        self.dataPointType = DataPointType.oneValue
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(dataPoints, forKey: .dataPoints)
-        try container.encode(numberFormatOfValues, forKey: .numberFormatOfValues)
-        try container.encode(showConnectorLines, forKey: .showConnectorLines)
-        try container.encode(quartileMethod, forKey: .quartileMethod)
-        try container.encode(showInnerPoints, forKey: .showInnerPoints)
-        try container.encode(showMeanLine, forKey: .showMeanLine)
-        try container.encode(showMeanMarkers, forKey: .showMeanMarkers)
-        try container.encode(showOutlierPoints, forKey: .showOutlierPoints)
+        if (dataPoints != nil) {
+            try? container.encode(dataPoints, forKey: .dataPoints)
+        }
+        if (numberFormatOfValues != nil) {
+            try? container.encode(numberFormatOfValues, forKey: .numberFormatOfValues)
+        }
+        if (showConnectorLines != nil) {
+            try? container.encode(showConnectorLines, forKey: .showConnectorLines)
+        }
+        if (quartileMethod != nil) {
+            try? container.encode(quartileMethod, forKey: .quartileMethod)
+        }
+        if (showInnerPoints != nil) {
+            try? container.encode(showInnerPoints, forKey: .showInnerPoints)
+        }
+        if (showMeanLine != nil) {
+            try? container.encode(showMeanLine, forKey: .showMeanLine)
+        }
+        if (showMeanMarkers != nil) {
+            try? container.encode(showMeanMarkers, forKey: .showMeanMarkers)
+        }
+        if (showOutlierPoints != nil) {
+            try? container.encode(showOutlierPoints, forKey: .showOutlierPoints)
+        }
     }
-
 
 }
 

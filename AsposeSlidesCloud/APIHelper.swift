@@ -26,6 +26,7 @@
  */
 
 import Foundation
+import FoundationNetworking
 
 public struct APIHelper {
     public static func rejectNil(_ source: [String:Any?]) -> [String:Any]? {

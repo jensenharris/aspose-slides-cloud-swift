@@ -237,12 +237,67 @@ public class SmartArt: ShapeBase {
     /** The state of the SmartArt diagram with regard to (left-to-right) LTR or (right-to-left) RTL, if the diagram supports reversal. */
     public var isReversed: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case layout
-        case quickStyle
-        case colorStyle
-        case nodes
-        case isReversed
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let layoutValue = source["layout"]
+        if layoutValue != nil {
+            let layoutStringValue = layoutValue! as? String
+            if layoutStringValue != nil {
+                let layoutEnumValue = Layout(rawValue: layoutStringValue!)
+                if layoutEnumValue != nil {
+                    self.layout = layoutEnumValue!
+                }
+            }
+        }
+        let quickStyleValue = source["quickStyle"]
+        if quickStyleValue != nil {
+            let quickStyleStringValue = quickStyleValue! as? String
+            if quickStyleStringValue != nil {
+                let quickStyleEnumValue = QuickStyle(rawValue: quickStyleStringValue!)
+                if quickStyleEnumValue != nil {
+                    self.quickStyle = quickStyleEnumValue!
+                }
+            }
+        }
+        let colorStyleValue = source["colorStyle"]
+        if colorStyleValue != nil {
+            let colorStyleStringValue = colorStyleValue! as? String
+            if colorStyleStringValue != nil {
+                let colorStyleEnumValue = ColorStyle(rawValue: colorStyleStringValue!)
+                if colorStyleEnumValue != nil {
+                    self.colorStyle = colorStyleEnumValue!
+                }
+            }
+        }
+        let nodesValue = source["nodes"]
+        if nodesValue != nil {
+            var nodesArray: [SmartArtNode] = []
+            let nodesDictionaryValue = nodesValue! as? [Any]
+            if nodesDictionaryValue != nil {
+                nodesDictionaryValue!.forEach { nodesAnyItem in
+                    let nodesItem = nodesAnyItem as? [String:Any]
+                    var added = false
+                    if nodesItem != nil {
+                        let (nodesInstance, error) = ClassRegistry.getClassFromDictionary(SmartArtNode.self, nodesItem!)
+                        if error == nil && nodesInstance != nil {
+                            let nodesArrayItem = nodesInstance! as? SmartArtNode
+                            if nodesArrayItem != nil {
+                                nodesArray.append(nodesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        nodesArray.append(SmartArtNode())
+                    }
+                }
+            }
+            self.nodes = nodesArray
+        }
+        let isReversedValue = source["isReversed"]
+        if isReversedValue != nil {
+            self.isReversed = isReversedValue! as? Bool
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, layout: Layout? = nil, quickStyle: QuickStyle? = nil, colorStyle: ColorStyle? = nil, nodes: [SmartArtNode]? = nil, isReversed: Bool? = nil) {
@@ -252,28 +307,47 @@ public class SmartArt: ShapeBase {
         self.colorStyle = colorStyle
         self.nodes = nodes
         self.isReversed = isReversed
+        self.type = ModelType.smartArt
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case layout
+        case quickStyle
+        case colorStyle
+        case nodes
+        case isReversed
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        layout = try values.decode(Layout?.self, forKey: .layout)
-        quickStyle = try values.decode(QuickStyle?.self, forKey: .quickStyle)
-        colorStyle = try values.decode(ColorStyle?.self, forKey: .colorStyle)
-        nodes = try values.decode([SmartArtNode]?.self, forKey: .nodes)
-        isReversed = try values.decode(Bool?.self, forKey: .isReversed)
+        layout = try? values.decode(Layout.self, forKey: .layout)
+        quickStyle = try? values.decode(QuickStyle.self, forKey: .quickStyle)
+        colorStyle = try? values.decode(ColorStyle.self, forKey: .colorStyle)
+        nodes = try? values.decode([SmartArtNode].self, forKey: .nodes)
+        isReversed = try? values.decode(Bool.self, forKey: .isReversed)
+        self.type = ModelType.smartArt
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(layout, forKey: .layout)
-        try container.encode(quickStyle, forKey: .quickStyle)
-        try container.encode(colorStyle, forKey: .colorStyle)
-        try container.encode(nodes, forKey: .nodes)
-        try container.encode(isReversed, forKey: .isReversed)
+        if (layout != nil) {
+            try? container.encode(layout, forKey: .layout)
+        }
+        if (quickStyle != nil) {
+            try? container.encode(quickStyle, forKey: .quickStyle)
+        }
+        if (colorStyle != nil) {
+            try? container.encode(colorStyle, forKey: .colorStyle)
+        }
+        if (nodes != nil) {
+            try? container.encode(nodes, forKey: .nodes)
+        }
+        if (isReversed != nil) {
+            try? container.encode(isReversed, forKey: .isReversed)
+        }
     }
-
 
 }
 

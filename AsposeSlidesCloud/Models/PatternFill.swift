@@ -97,10 +97,26 @@ public class PatternFill: FillFormat {
     /** Gets or sets the style of pattern fill. */
     public var style: Style?
 
-    private enum CodingKeys: String, CodingKey {
-        case backColor
-        case foreColor
-        case style
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let backColorValue = source["backColor"]
+        if backColorValue != nil {
+            self.backColor = backColorValue! as? String
+        }
+        let foreColorValue = source["foreColor"]
+        if foreColorValue != nil {
+            self.foreColor = foreColorValue! as? String
+        }
+        let styleValue = source["style"]
+        if styleValue != nil {
+            let styleStringValue = styleValue! as? String
+            if styleStringValue != nil {
+                let styleEnumValue = Style(rawValue: styleStringValue!)
+                if styleEnumValue != nil {
+                    self.style = styleEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, backColor: String? = nil, foreColor: String? = nil, style: Style? = nil) {
@@ -108,24 +124,37 @@ public class PatternFill: FillFormat {
         self.backColor = backColor
         self.foreColor = foreColor
         self.style = style
+        self.type = ModelType.pattern
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case backColor
+        case foreColor
+        case style
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        backColor = try values.decode(String?.self, forKey: .backColor)
-        foreColor = try values.decode(String?.self, forKey: .foreColor)
-        style = try values.decode(Style?.self, forKey: .style)
+        backColor = try? values.decode(String.self, forKey: .backColor)
+        foreColor = try? values.decode(String.self, forKey: .foreColor)
+        style = try? values.decode(Style.self, forKey: .style)
+        self.type = ModelType.pattern
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(backColor, forKey: .backColor)
-        try container.encode(foreColor, forKey: .foreColor)
-        try container.encode(style, forKey: .style)
+        if (backColor != nil) {
+            try? container.encode(backColor, forKey: .backColor)
+        }
+        if (foreColor != nil) {
+            try? container.encode(foreColor, forKey: .foreColor)
+        }
+        if (style != nil) {
+            try? container.encode(style, forKey: .style)
+        }
     }
-
 
 }
 

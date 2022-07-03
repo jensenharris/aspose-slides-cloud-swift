@@ -39,10 +39,20 @@ public class DocumentProperty: ResourceBase {
     /** True for builtin property. */
     public var builtIn: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case value
-        case builtIn
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let valueValue = source["value"]
+        if valueValue != nil {
+            self.value = valueValue! as? String
+        }
+        let builtInValue = source["builtIn"]
+        if builtInValue != nil {
+            self.builtIn = builtInValue! as? Bool
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, value: String? = nil, builtIn: Bool? = nil) {
@@ -52,22 +62,33 @@ public class DocumentProperty: ResourceBase {
         self.builtIn = builtIn
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case value
+        case builtIn
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decode(String?.self, forKey: .name)
-        value = try values.decode(String?.self, forKey: .value)
-        builtIn = try values.decode(Bool?.self, forKey: .builtIn)
+        name = try? values.decode(String.self, forKey: .name)
+        value = try? values.decode(String.self, forKey: .value)
+        builtIn = try? values.decode(Bool.self, forKey: .builtIn)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(value, forKey: .value)
-        try container.encode(builtIn, forKey: .builtIn)
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
+        if (value != nil) {
+            try? container.encode(value, forKey: .value)
+        }
+        if (builtIn != nil) {
+            try? container.encode(builtIn, forKey: .builtIn)
+        }
     }
-
 
 }
 

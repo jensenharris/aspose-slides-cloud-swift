@@ -35,14 +35,41 @@ public class GeometryPaths: Codable {
     /** List of GeometryPath objects */
     public var paths: [GeometryPath]?
 
-    private enum CodingKeys: String, CodingKey {
-        case paths
+    func fillValues(_ source: [String:Any]) throws {
+        let pathsValue = source["paths"]
+        if pathsValue != nil {
+            var pathsArray: [GeometryPath] = []
+            let pathsDictionaryValue = pathsValue! as? [Any]
+            if pathsDictionaryValue != nil {
+                pathsDictionaryValue!.forEach { pathsAnyItem in
+                    let pathsItem = pathsAnyItem as? [String:Any]
+                    var added = false
+                    if pathsItem != nil {
+                        let (pathsInstance, error) = ClassRegistry.getClassFromDictionary(GeometryPath.self, pathsItem!)
+                        if error == nil && pathsInstance != nil {
+                            let pathsArrayItem = pathsInstance! as? GeometryPath
+                            if pathsArrayItem != nil {
+                                pathsArray.append(pathsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        pathsArray.append(GeometryPath())
+                    }
+                }
+            }
+            self.paths = pathsArray
+        }
     }
 
     public init(paths: [GeometryPath]? = nil) {
         self.paths = paths
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case paths
+    }
 
 }
 

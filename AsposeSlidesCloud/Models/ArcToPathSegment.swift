@@ -41,11 +41,24 @@ public class ArcToPathSegment: PathSegment {
     /** Sweep angle */
     public var sweepAngle: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case width
-        case height
-        case startAngle
-        case sweepAngle
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
+        let startAngleValue = source["startAngle"]
+        if startAngleValue != nil {
+            self.startAngle = startAngleValue! as? Double
+        }
+        let sweepAngleValue = source["sweepAngle"]
+        if sweepAngleValue != nil {
+            self.sweepAngle = sweepAngleValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, width: Double? = nil, height: Double? = nil, startAngle: Double? = nil, sweepAngle: Double? = nil) {
@@ -54,26 +67,42 @@ public class ArcToPathSegment: PathSegment {
         self.height = height
         self.startAngle = startAngle
         self.sweepAngle = sweepAngle
+        self.type = ModelType.arcTo
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case width
+        case height
+        case startAngle
+        case sweepAngle
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        width = try values.decode(Double?.self, forKey: .width)
-        height = try values.decode(Double?.self, forKey: .height)
-        startAngle = try values.decode(Double?.self, forKey: .startAngle)
-        sweepAngle = try values.decode(Double?.self, forKey: .sweepAngle)
+        width = try? values.decode(Double.self, forKey: .width)
+        height = try? values.decode(Double.self, forKey: .height)
+        startAngle = try? values.decode(Double.self, forKey: .startAngle)
+        sweepAngle = try? values.decode(Double.self, forKey: .sweepAngle)
+        self.type = ModelType.arcTo
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
-        try container.encode(startAngle, forKey: .startAngle)
-        try container.encode(sweepAngle, forKey: .sweepAngle)
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
+        if (startAngle != nil) {
+            try? container.encode(startAngle, forKey: .startAngle)
+        }
+        if (sweepAngle != nil) {
+            try? container.encode(sweepAngle, forKey: .sweepAngle)
+        }
     }
-
 
 }
 

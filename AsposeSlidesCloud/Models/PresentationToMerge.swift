@@ -45,11 +45,29 @@ public class PresentationToMerge: Codable {
     /** Merge (request or storage).  */
     public var source: Source?
 
-    private enum CodingKeys: String, CodingKey {
-        case path
-        case password
-        case slides
-        case source
+    func fillValues(_ source: [String:Any]) throws {
+        let pathValue = source["path"]
+        if pathValue != nil {
+            self.path = pathValue! as? String
+        }
+        let passwordValue = source["password"]
+        if passwordValue != nil {
+            self.password = passwordValue! as? String
+        }
+        let slidesValue = source["slides"]
+        if slidesValue != nil {
+            self.slides = slidesValue! as? [Int]
+        }
+        let sourceValue = source["source"]
+        if sourceValue != nil {
+            let sourceStringValue = sourceValue! as? String
+            if sourceStringValue != nil {
+                let sourceEnumValue = Source(rawValue: sourceStringValue!)
+                if sourceEnumValue != nil {
+                    self.source = sourceEnumValue!
+                }
+            }
+        }
     }
 
     public init(path: String? = nil, password: String? = nil, slides: [Int]? = nil, source: Source? = nil) {
@@ -59,6 +77,12 @@ public class PresentationToMerge: Codable {
         self.source = source
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case path
+        case password
+        case slides
+        case source
+    }
 
 }
 

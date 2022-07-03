@@ -33,34 +33,51 @@ import Foundation
 public class PptxExportOptions: ExportOptions {
 
     public enum Conformance: String, Codable { 
-        case ecma3762006 = "Ecma376_2006"
-        case iso295002008Transitional = "Iso29500_2008_Transitional"
-        case iso295002008Strict = "Iso29500_2008_Strict"
+        case ecma376 = "Ecma376"
+        case iso29500Transitional = "Iso29500Transitional"
+        case iso29500Strict = "Iso29500Strict"
     }
     /** The conformance class to which the PresentationML document conforms. Read/write Conformance. */
     public var conformance: Conformance?
 
-    private enum CodingKeys: String, CodingKey {
-        case conformance
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let conformanceValue = source["conformance"]
+        if conformanceValue != nil {
+            let conformanceStringValue = conformanceValue! as? String
+            if conformanceStringValue != nil {
+                let conformanceEnumValue = Conformance(rawValue: conformanceStringValue!)
+                if conformanceEnumValue != nil {
+                    self.conformance = conformanceEnumValue!
+                }
+            }
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, conformance: Conformance? = nil) {
         super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
         self.conformance = conformance
+        self.format = "pptx"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case conformance
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        conformance = try values.decode(Conformance?.self, forKey: .conformance)
+        conformance = try? values.decode(Conformance.self, forKey: .conformance)
+        self.format = "pptx"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(conformance, forKey: .conformance)
+        if (conformance != nil) {
+            try? container.encode(conformance, forKey: .conformance)
+        }
     }
-
 
 }
 

@@ -57,12 +57,51 @@ public class SeriesMarker: Codable {
     /** Get or sets the line format. */
     public var lineFormat: LineFormat?
 
-    private enum CodingKeys: String, CodingKey {
-        case size
-        case symbol
-        case fillFormat
-        case effectFormat
-        case lineFormat
+    func fillValues(_ source: [String:Any]) throws {
+        let sizeValue = source["size"]
+        if sizeValue != nil {
+            self.size = sizeValue! as? Int
+        }
+        let symbolValue = source["symbol"]
+        if symbolValue != nil {
+            let symbolStringValue = symbolValue! as? String
+            if symbolStringValue != nil {
+                let symbolEnumValue = Symbol(rawValue: symbolStringValue!)
+                if symbolEnumValue != nil {
+                    self.symbol = symbolEnumValue!
+                }
+            }
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
     }
 
     public init(size: Int? = nil, symbol: Symbol? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
@@ -73,6 +112,13 @@ public class SeriesMarker: Codable {
         self.lineFormat = lineFormat
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case size
+        case symbol
+        case fillFormat
+        case effectFormat
+        case lineFormat
+    }
 
 }
 

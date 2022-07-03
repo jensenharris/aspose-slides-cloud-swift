@@ -46,12 +46,54 @@ public class SlideCommentBase: Codable {
     public var childComments: [SlideCommentBase]?
     public var type: ModelType?
 
-    private enum CodingKeys: String, CodingKey {
-        case author
-        case text
-        case createdTime
-        case childComments
-        case type
+    func fillValues(_ source: [String:Any]) throws {
+        let authorValue = source["author"]
+        if authorValue != nil {
+            self.author = authorValue! as? String
+        }
+        let textValue = source["text"]
+        if textValue != nil {
+            self.text = textValue! as? String
+        }
+        let createdTimeValue = source["createdTime"]
+        if createdTimeValue != nil {
+            self.createdTime = createdTimeValue! as? String
+        }
+        let childCommentsValue = source["childComments"]
+        if childCommentsValue != nil {
+            var childCommentsArray: [SlideCommentBase] = []
+            let childCommentsDictionaryValue = childCommentsValue! as? [Any]
+            if childCommentsDictionaryValue != nil {
+                childCommentsDictionaryValue!.forEach { childCommentsAnyItem in
+                    let childCommentsItem = childCommentsAnyItem as? [String:Any]
+                    var added = false
+                    if childCommentsItem != nil {
+                        let (childCommentsInstance, error) = ClassRegistry.getClassFromDictionary(SlideCommentBase.self, childCommentsItem!)
+                        if error == nil && childCommentsInstance != nil {
+                            let childCommentsArrayItem = childCommentsInstance! as? SlideCommentBase
+                            if childCommentsArrayItem != nil {
+                                childCommentsArray.append(childCommentsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        childCommentsArray.append(SlideCommentBase())
+                    }
+                }
+            }
+            self.childComments = childCommentsArray
+        }
+        let typeValue = source["type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
     }
 
     public init(author: String? = nil, text: String? = nil, createdTime: String? = nil, childComments: [SlideCommentBase]? = nil, type: ModelType? = nil) {
@@ -62,6 +104,13 @@ public class SlideCommentBase: Codable {
         self.type = type
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case author
+        case text
+        case createdTime
+        case childComments
+        case type
+    }
 
 }
 

@@ -41,11 +41,24 @@ public class ReplaceText: Task {
     /** One-based position of the slide to perform the replace in. 0 to make the replace throughout the presentation. */
     public var slidePosition: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case oldText
-        case newText
-        case ignoreCase
-        case slidePosition
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let oldTextValue = source["oldText"]
+        if oldTextValue != nil {
+            self.oldText = oldTextValue! as? String
+        }
+        let newTextValue = source["newText"]
+        if newTextValue != nil {
+            self.newText = newTextValue! as? String
+        }
+        let ignoreCaseValue = source["ignoreCase"]
+        if ignoreCaseValue != nil {
+            self.ignoreCase = ignoreCaseValue! as? Bool
+        }
+        let slidePositionValue = source["slidePosition"]
+        if slidePositionValue != nil {
+            self.slidePosition = slidePositionValue! as? Int
+        }
     }
 
     public init(type: ModelType? = nil, oldText: String? = nil, newText: String? = nil, ignoreCase: Bool? = nil, slidePosition: Int? = nil) {
@@ -54,26 +67,42 @@ public class ReplaceText: Task {
         self.newText = newText
         self.ignoreCase = ignoreCase
         self.slidePosition = slidePosition
+        self.type = ModelType.replaceText
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case oldText
+        case newText
+        case ignoreCase
+        case slidePosition
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        oldText = try values.decode(String?.self, forKey: .oldText)
-        newText = try values.decode(String?.self, forKey: .newText)
-        ignoreCase = try values.decode(Bool?.self, forKey: .ignoreCase)
-        slidePosition = try values.decode(Int?.self, forKey: .slidePosition)
+        oldText = try? values.decode(String.self, forKey: .oldText)
+        newText = try? values.decode(String.self, forKey: .newText)
+        ignoreCase = try? values.decode(Bool.self, forKey: .ignoreCase)
+        slidePosition = try? values.decode(Int.self, forKey: .slidePosition)
+        self.type = ModelType.replaceText
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(oldText, forKey: .oldText)
-        try container.encode(newText, forKey: .newText)
-        try container.encode(ignoreCase, forKey: .ignoreCase)
-        try container.encode(slidePosition, forKey: .slidePosition)
+        if (oldText != nil) {
+            try? container.encode(oldText, forKey: .oldText)
+        }
+        if (newText != nil) {
+            try? container.encode(newText, forKey: .newText)
+        }
+        if (ignoreCase != nil) {
+            try? container.encode(ignoreCase, forKey: .ignoreCase)
+        }
+        if (slidePosition != nil) {
+            try? container.encode(slidePosition, forKey: .slidePosition)
+        }
     }
-
 
 }
 

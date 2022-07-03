@@ -37,31 +37,54 @@ public class AccentElement: MathElement {
     /** Accent Character */
     public var character: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case character
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let characterValue = source["character"]
+        if characterValue != nil {
+            self.character = characterValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, character: String? = nil) {
         super.init(type: type)
         self.base = base
         self.character = character
+        self.type = ModelType.accent
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case character
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        character = try values.decode(String?.self, forKey: .character)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        character = try? values.decode(String.self, forKey: .character)
+        self.type = ModelType.accent
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(character, forKey: .character)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (character != nil) {
+            try? container.encode(character, forKey: .character)
+        }
     }
-
 
 }
 

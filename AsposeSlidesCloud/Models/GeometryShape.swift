@@ -226,8 +226,18 @@ public class GeometryShape: ShapeBase {
     /** Combined shape type. */
     public var shapeType: ShapeType?
 
-    private enum CodingKeys: String, CodingKey {
-        case shapeType
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let shapeTypeValue = source["shapeType"]
+        if shapeTypeValue != nil {
+            let shapeTypeStringValue = shapeTypeValue! as? String
+            if shapeTypeStringValue != nil {
+                let shapeTypeEnumValue = ShapeType(rawValue: shapeTypeStringValue!)
+                if shapeTypeEnumValue != nil {
+                    self.shapeType = shapeTypeEnumValue!
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil) {
@@ -235,18 +245,23 @@ public class GeometryShape: ShapeBase {
         self.shapeType = shapeType
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case shapeType
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        shapeType = try values.decode(ShapeType?.self, forKey: .shapeType)
+        shapeType = try? values.decode(ShapeType.self, forKey: .shapeType)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(shapeType, forKey: .shapeType)
+        if (shapeType != nil) {
+            try? container.encode(shapeType, forKey: .shapeType)
+        }
     }
-
 
 }
 

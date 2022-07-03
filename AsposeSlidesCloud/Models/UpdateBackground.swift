@@ -37,31 +37,54 @@ public class UpdateBackground: Task {
     /** Background DTO. */
     public var background: SlideBackground?
 
-    private enum CodingKeys: String, CodingKey {
-        case slides
-        case background
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let slidesValue = source["slides"]
+        if slidesValue != nil {
+            self.slides = slidesValue! as? [Int]
+        }
+        let backgroundValue = source["background"]
+        if backgroundValue != nil {
+            let backgroundDictionaryValue = backgroundValue! as? [String:Any]
+            if backgroundDictionaryValue != nil {
+                let (backgroundInstance, error) = ClassRegistry.getClassFromDictionary(SlideBackground.self, backgroundDictionaryValue!)
+                if error == nil && backgroundInstance != nil {
+                    self.background = backgroundInstance! as? SlideBackground
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, slides: [Int]? = nil, background: SlideBackground? = nil) {
         super.init(type: type)
         self.slides = slides
         self.background = background
+        self.type = ModelType.updateBackground
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case slides
+        case background
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        slides = try values.decode([Int]?.self, forKey: .slides)
-        background = try values.decode(SlideBackground?.self, forKey: .background)
+        slides = try? values.decode([Int].self, forKey: .slides)
+        background = try? values.decode(SlideBackground.self, forKey: .background)
+        self.type = ModelType.updateBackground
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(slides, forKey: .slides)
-        try container.encode(background, forKey: .background)
+        if (slides != nil) {
+            try? container.encode(slides, forKey: .slides)
+        }
+        if (background != nil) {
+            try? container.encode(background, forKey: .background)
+        }
     }
-
 
 }
 

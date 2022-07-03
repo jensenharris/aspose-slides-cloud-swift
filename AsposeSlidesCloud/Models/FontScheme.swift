@@ -39,10 +39,32 @@ public class FontScheme: ResourceBase {
     /** Gets or sets the name. */
     public var name: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case major
-        case minor
-        case name
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let majorValue = source["major"]
+        if majorValue != nil {
+            let majorDictionaryValue = majorValue! as? [String:Any]
+            if majorDictionaryValue != nil {
+                let (majorInstance, error) = ClassRegistry.getClassFromDictionary(FontSet.self, majorDictionaryValue!)
+                if error == nil && majorInstance != nil {
+                    self.major = majorInstance! as? FontSet
+                }
+            }
+        }
+        let minorValue = source["minor"]
+        if minorValue != nil {
+            let minorDictionaryValue = minorValue! as? [String:Any]
+            if minorDictionaryValue != nil {
+                let (minorInstance, error) = ClassRegistry.getClassFromDictionary(FontSet.self, minorDictionaryValue!)
+                if error == nil && minorInstance != nil {
+                    self.minor = minorInstance! as? FontSet
+                }
+            }
+        }
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, major: FontSet? = nil, minor: FontSet? = nil, name: String? = nil) {
@@ -52,22 +74,33 @@ public class FontScheme: ResourceBase {
         self.name = name
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case major
+        case minor
+        case name
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        major = try values.decode(FontSet?.self, forKey: .major)
-        minor = try values.decode(FontSet?.self, forKey: .minor)
-        name = try values.decode(String?.self, forKey: .name)
+        major = try? values.decode(FontSet.self, forKey: .major)
+        minor = try? values.decode(FontSet.self, forKey: .minor)
+        name = try? values.decode(String.self, forKey: .name)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(major, forKey: .major)
-        try container.encode(minor, forKey: .minor)
-        try container.encode(name, forKey: .name)
+        if (major != nil) {
+            try? container.encode(major, forKey: .major)
+        }
+        if (minor != nil) {
+            try? container.encode(minor, forKey: .minor)
+        }
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
     }
-
 
 }
 

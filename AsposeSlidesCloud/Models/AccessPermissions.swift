@@ -49,15 +49,39 @@ public class AccessPermissions: Codable {
     /** The user may print the document to a representation from which a faithful digital copy of the PDF content could be generated. When this bit is clear (and bit PrintDocument is set), printing is limited to a low-level representation of the appearance, possibly of degraded quality. */
     public var highQualityPrint: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case printDocument
-        case modifyContent
-        case copyTextAndGraphics
-        case addOrModifyFields
-        case fillExistingFields
-        case extractTextAndGraphics
-        case assembleDocument
-        case highQualityPrint
+    func fillValues(_ source: [String:Any]) throws {
+        let printDocumentValue = source["printDocument"]
+        if printDocumentValue != nil {
+            self.printDocument = printDocumentValue! as? Bool
+        }
+        let modifyContentValue = source["modifyContent"]
+        if modifyContentValue != nil {
+            self.modifyContent = modifyContentValue! as? Bool
+        }
+        let copyTextAndGraphicsValue = source["copyTextAndGraphics"]
+        if copyTextAndGraphicsValue != nil {
+            self.copyTextAndGraphics = copyTextAndGraphicsValue! as? Bool
+        }
+        let addOrModifyFieldsValue = source["addOrModifyFields"]
+        if addOrModifyFieldsValue != nil {
+            self.addOrModifyFields = addOrModifyFieldsValue! as? Bool
+        }
+        let fillExistingFieldsValue = source["fillExistingFields"]
+        if fillExistingFieldsValue != nil {
+            self.fillExistingFields = fillExistingFieldsValue! as? Bool
+        }
+        let extractTextAndGraphicsValue = source["extractTextAndGraphics"]
+        if extractTextAndGraphicsValue != nil {
+            self.extractTextAndGraphics = extractTextAndGraphicsValue! as? Bool
+        }
+        let assembleDocumentValue = source["assembleDocument"]
+        if assembleDocumentValue != nil {
+            self.assembleDocument = assembleDocumentValue! as? Bool
+        }
+        let highQualityPrintValue = source["highQualityPrint"]
+        if highQualityPrintValue != nil {
+            self.highQualityPrint = highQualityPrintValue! as? Bool
+        }
     }
 
     public init(printDocument: Bool? = nil, modifyContent: Bool? = nil, copyTextAndGraphics: Bool? = nil, addOrModifyFields: Bool? = nil, fillExistingFields: Bool? = nil, extractTextAndGraphics: Bool? = nil, assembleDocument: Bool? = nil, highQualityPrint: Bool? = nil) {
@@ -71,6 +95,16 @@ public class AccessPermissions: Codable {
         self.highQualityPrint = highQualityPrint
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case printDocument
+        case modifyContent
+        case copyTextAndGraphics
+        case addOrModifyFields
+        case fillExistingFields
+        case extractTextAndGraphics
+        case assembleDocument
+        case highQualityPrint
+    }
 
 }
 

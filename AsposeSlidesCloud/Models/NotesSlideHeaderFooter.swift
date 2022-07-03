@@ -47,14 +47,36 @@ public class NotesSlideHeaderFooter: ResourceBase {
     /** True if slide number is displayed in the footer */
     public var isSlideNumberVisible: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case isDateTimeVisible
-        case dateTimeText
-        case isFooterVisible
-        case footerText
-        case isHeaderVisible
-        case headerText
-        case isSlideNumberVisible
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let isDateTimeVisibleValue = source["isDateTimeVisible"]
+        if isDateTimeVisibleValue != nil {
+            self.isDateTimeVisible = isDateTimeVisibleValue! as? Bool
+        }
+        let dateTimeTextValue = source["dateTimeText"]
+        if dateTimeTextValue != nil {
+            self.dateTimeText = dateTimeTextValue! as? String
+        }
+        let isFooterVisibleValue = source["isFooterVisible"]
+        if isFooterVisibleValue != nil {
+            self.isFooterVisible = isFooterVisibleValue! as? Bool
+        }
+        let footerTextValue = source["footerText"]
+        if footerTextValue != nil {
+            self.footerText = footerTextValue! as? String
+        }
+        let isHeaderVisibleValue = source["isHeaderVisible"]
+        if isHeaderVisibleValue != nil {
+            self.isHeaderVisible = isHeaderVisibleValue! as? Bool
+        }
+        let headerTextValue = source["headerText"]
+        if headerTextValue != nil {
+            self.headerText = headerTextValue! as? String
+        }
+        let isSlideNumberVisibleValue = source["isSlideNumberVisible"]
+        if isSlideNumberVisibleValue != nil {
+            self.isSlideNumberVisible = isSlideNumberVisibleValue! as? Bool
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, isDateTimeVisible: Bool? = nil, dateTimeText: String? = nil, isFooterVisible: Bool? = nil, footerText: String? = nil, isHeaderVisible: Bool? = nil, headerText: String? = nil, isSlideNumberVisible: Bool? = nil) {
@@ -68,30 +90,53 @@ public class NotesSlideHeaderFooter: ResourceBase {
         self.isSlideNumberVisible = isSlideNumberVisible
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case isDateTimeVisible
+        case dateTimeText
+        case isFooterVisible
+        case footerText
+        case isHeaderVisible
+        case headerText
+        case isSlideNumberVisible
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        isDateTimeVisible = try values.decode(Bool?.self, forKey: .isDateTimeVisible)
-        dateTimeText = try values.decode(String?.self, forKey: .dateTimeText)
-        isFooterVisible = try values.decode(Bool?.self, forKey: .isFooterVisible)
-        footerText = try values.decode(String?.self, forKey: .footerText)
-        isHeaderVisible = try values.decode(Bool?.self, forKey: .isHeaderVisible)
-        headerText = try values.decode(String?.self, forKey: .headerText)
-        isSlideNumberVisible = try values.decode(Bool?.self, forKey: .isSlideNumberVisible)
+        isDateTimeVisible = try? values.decode(Bool.self, forKey: .isDateTimeVisible)
+        dateTimeText = try? values.decode(String.self, forKey: .dateTimeText)
+        isFooterVisible = try? values.decode(Bool.self, forKey: .isFooterVisible)
+        footerText = try? values.decode(String.self, forKey: .footerText)
+        isHeaderVisible = try? values.decode(Bool.self, forKey: .isHeaderVisible)
+        headerText = try? values.decode(String.self, forKey: .headerText)
+        isSlideNumberVisible = try? values.decode(Bool.self, forKey: .isSlideNumberVisible)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(isDateTimeVisible, forKey: .isDateTimeVisible)
-        try container.encode(dateTimeText, forKey: .dateTimeText)
-        try container.encode(isFooterVisible, forKey: .isFooterVisible)
-        try container.encode(footerText, forKey: .footerText)
-        try container.encode(isHeaderVisible, forKey: .isHeaderVisible)
-        try container.encode(headerText, forKey: .headerText)
-        try container.encode(isSlideNumberVisible, forKey: .isSlideNumberVisible)
+        if (isDateTimeVisible != nil) {
+            try? container.encode(isDateTimeVisible, forKey: .isDateTimeVisible)
+        }
+        if (dateTimeText != nil) {
+            try? container.encode(dateTimeText, forKey: .dateTimeText)
+        }
+        if (isFooterVisible != nil) {
+            try? container.encode(isFooterVisible, forKey: .isFooterVisible)
+        }
+        if (footerText != nil) {
+            try? container.encode(footerText, forKey: .footerText)
+        }
+        if (isHeaderVisible != nil) {
+            try? container.encode(isHeaderVisible, forKey: .isHeaderVisible)
+        }
+        if (headerText != nil) {
+            try? container.encode(headerText, forKey: .headerText)
+        }
+        if (isSlideNumberVisible != nil) {
+            try? container.encode(isSlideNumberVisible, forKey: .isSlideNumberVisible)
+        }
     }
-
 
 }
 

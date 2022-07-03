@@ -35,14 +35,20 @@ public class SoftEdgeEffect: Codable {
     /** radius */
     public var radius: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case radius
+    func fillValues(_ source: [String:Any]) throws {
+        let radiusValue = source["radius"]
+        if radiusValue != nil {
+            self.radius = radiusValue! as? Double
+        }
     }
 
     public init(radius: Double? = nil) {
         self.radius = radius
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case radius
+    }
 
 }
 

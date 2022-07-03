@@ -39,10 +39,41 @@ public class Section: ResourceBase {
     /** Links to the shapes contained in the section. */
     public var slideList: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case firstSlideIndex
-        case slideList
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let firstSlideIndexValue = source["firstSlideIndex"]
+        if firstSlideIndexValue != nil {
+            self.firstSlideIndex = firstSlideIndexValue! as? Int
+        }
+        let slideListValue = source["slideList"]
+        if slideListValue != nil {
+            var slideListArray: [ResourceUri] = []
+            let slideListDictionaryValue = slideListValue! as? [Any]
+            if slideListDictionaryValue != nil {
+                slideListDictionaryValue!.forEach { slideListAnyItem in
+                    let slideListItem = slideListAnyItem as? [String:Any]
+                    var added = false
+                    if slideListItem != nil {
+                        let (slideListInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, slideListItem!)
+                        if error == nil && slideListInstance != nil {
+                            let slideListArrayItem = slideListInstance! as? ResourceUri
+                            if slideListArrayItem != nil {
+                                slideListArray.append(slideListArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        slideListArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.slideList = slideListArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, firstSlideIndex: Int? = nil, slideList: [ResourceUri]? = nil) {
@@ -52,22 +83,33 @@ public class Section: ResourceBase {
         self.slideList = slideList
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case firstSlideIndex
+        case slideList
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decode(String?.self, forKey: .name)
-        firstSlideIndex = try values.decode(Int?.self, forKey: .firstSlideIndex)
-        slideList = try values.decode([ResourceUri]?.self, forKey: .slideList)
+        name = try? values.decode(String.self, forKey: .name)
+        firstSlideIndex = try? values.decode(Int.self, forKey: .firstSlideIndex)
+        slideList = try? values.decode([ResourceUri].self, forKey: .slideList)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(firstSlideIndex, forKey: .firstSlideIndex)
-        try container.encode(slideList, forKey: .slideList)
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
+        if (firstSlideIndex != nil) {
+            try? container.encode(firstSlideIndex, forKey: .firstSlideIndex)
+        }
+        if (slideList != nil) {
+            try? container.encode(slideList, forKey: .slideList)
+        }
     }
-
 
 }
 

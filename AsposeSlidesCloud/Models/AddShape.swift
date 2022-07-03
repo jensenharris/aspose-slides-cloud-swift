@@ -37,31 +37,54 @@ public class AddShape: Task {
     /** Shape path for a grouped shape or smart art shape. */
     public var shapePath: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case shape
-        case shapePath
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let shapeValue = source["shape"]
+        if shapeValue != nil {
+            let shapeDictionaryValue = shapeValue! as? [String:Any]
+            if shapeDictionaryValue != nil {
+                let (shapeInstance, error) = ClassRegistry.getClassFromDictionary(ShapeBase.self, shapeDictionaryValue!)
+                if error == nil && shapeInstance != nil {
+                    self.shape = shapeInstance! as? ShapeBase
+                }
+            }
+        }
+        let shapePathValue = source["shapePath"]
+        if shapePathValue != nil {
+            self.shapePath = shapePathValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, shape: ShapeBase? = nil, shapePath: String? = nil) {
         super.init(type: type)
         self.shape = shape
         self.shapePath = shapePath
+        self.type = ModelType.addShape
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case shape
+        case shapePath
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        shape = try values.decode(ShapeBase?.self, forKey: .shape)
-        shapePath = try values.decode(String?.self, forKey: .shapePath)
+        shape = try? values.decode(ShapeBase.self, forKey: .shape)
+        shapePath = try? values.decode(String.self, forKey: .shapePath)
+        self.type = ModelType.addShape
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(shape, forKey: .shape)
-        try container.encode(shapePath, forKey: .shapePath)
+        if (shape != nil) {
+            try? container.encode(shape, forKey: .shape)
+        }
+        if (shapePath != nil) {
+            try? container.encode(shapePath, forKey: .shapePath)
+        }
     }
-
 
 }
 

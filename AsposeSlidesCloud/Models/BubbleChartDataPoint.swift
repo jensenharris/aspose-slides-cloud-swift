@@ -35,8 +35,12 @@ public class BubbleChartDataPoint: ScatterChartDataPoint {
     /** Bubble size. */
     public var bubbleSize: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case bubbleSize
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let bubbleSizeValue = source["bubbleSize"]
+        if bubbleSizeValue != nil {
+            self.bubbleSize = bubbleSizeValue! as? Double
+        }
     }
 
     public init(xValue: Double? = nil, yValue: Double? = nil, bubbleSize: Double? = nil) {
@@ -44,18 +48,23 @@ public class BubbleChartDataPoint: ScatterChartDataPoint {
         self.bubbleSize = bubbleSize
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case bubbleSize
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        bubbleSize = try values.decode(Double?.self, forKey: .bubbleSize)
+        bubbleSize = try? values.decode(Double.self, forKey: .bubbleSize)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(bubbleSize, forKey: .bubbleSize)
+        if (bubbleSize != nil) {
+            try? container.encode(bubbleSize, forKey: .bubbleSize)
+        }
     }
-
 
 }
 

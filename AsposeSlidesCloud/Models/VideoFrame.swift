@@ -63,15 +63,58 @@ public class VideoFrame: GeometryShape {
     /** Picture fill format. */
     public var pictureFillFormat: PictureFill?
 
-    private enum CodingKeys: String, CodingKey {
-        case fullScreenMode
-        case hideAtShowing
-        case playLoopMode
-        case playMode
-        case rewindVideo
-        case volume
-        case base64Data
-        case pictureFillFormat
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let fullScreenModeValue = source["fullScreenMode"]
+        if fullScreenModeValue != nil {
+            self.fullScreenMode = fullScreenModeValue! as? Bool
+        }
+        let hideAtShowingValue = source["hideAtShowing"]
+        if hideAtShowingValue != nil {
+            self.hideAtShowing = hideAtShowingValue! as? Bool
+        }
+        let playLoopModeValue = source["playLoopMode"]
+        if playLoopModeValue != nil {
+            self.playLoopMode = playLoopModeValue! as? Bool
+        }
+        let playModeValue = source["playMode"]
+        if playModeValue != nil {
+            let playModeStringValue = playModeValue! as? String
+            if playModeStringValue != nil {
+                let playModeEnumValue = PlayMode(rawValue: playModeStringValue!)
+                if playModeEnumValue != nil {
+                    self.playMode = playModeEnumValue!
+                }
+            }
+        }
+        let rewindVideoValue = source["rewindVideo"]
+        if rewindVideoValue != nil {
+            self.rewindVideo = rewindVideoValue! as? Bool
+        }
+        let volumeValue = source["volume"]
+        if volumeValue != nil {
+            let volumeStringValue = volumeValue! as? String
+            if volumeStringValue != nil {
+                let volumeEnumValue = Volume(rawValue: volumeStringValue!)
+                if volumeEnumValue != nil {
+                    self.volume = volumeEnumValue!
+                }
+            }
+        }
+        let base64DataValue = source["base64Data"]
+        if base64DataValue != nil {
+            self.base64Data = base64DataValue! as? String
+        }
+        let pictureFillFormatValue = source["pictureFillFormat"]
+        if pictureFillFormatValue != nil {
+            let pictureFillFormatDictionaryValue = pictureFillFormatValue! as? [String:Any]
+            if pictureFillFormatDictionaryValue != nil {
+                let (pictureFillFormatInstance, error) = ClassRegistry.getClassFromDictionary(PictureFill.self, pictureFillFormatDictionaryValue!)
+                if error == nil && pictureFillFormatInstance != nil {
+                    self.pictureFillFormat = pictureFillFormatInstance! as? PictureFill
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, fullScreenMode: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, rewindVideo: Bool? = nil, volume: Volume? = nil, base64Data: String? = nil, pictureFillFormat: PictureFill? = nil) {
@@ -84,34 +127,62 @@ public class VideoFrame: GeometryShape {
         self.volume = volume
         self.base64Data = base64Data
         self.pictureFillFormat = pictureFillFormat
+        self.type = ModelType.videoFrame
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case fullScreenMode
+        case hideAtShowing
+        case playLoopMode
+        case playMode
+        case rewindVideo
+        case volume
+        case base64Data
+        case pictureFillFormat
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        fullScreenMode = try values.decode(Bool?.self, forKey: .fullScreenMode)
-        hideAtShowing = try values.decode(Bool?.self, forKey: .hideAtShowing)
-        playLoopMode = try values.decode(Bool?.self, forKey: .playLoopMode)
-        playMode = try values.decode(PlayMode?.self, forKey: .playMode)
-        rewindVideo = try values.decode(Bool?.self, forKey: .rewindVideo)
-        volume = try values.decode(Volume?.self, forKey: .volume)
-        base64Data = try values.decode(String?.self, forKey: .base64Data)
-        pictureFillFormat = try values.decode(PictureFill?.self, forKey: .pictureFillFormat)
+        fullScreenMode = try? values.decode(Bool.self, forKey: .fullScreenMode)
+        hideAtShowing = try? values.decode(Bool.self, forKey: .hideAtShowing)
+        playLoopMode = try? values.decode(Bool.self, forKey: .playLoopMode)
+        playMode = try? values.decode(PlayMode.self, forKey: .playMode)
+        rewindVideo = try? values.decode(Bool.self, forKey: .rewindVideo)
+        volume = try? values.decode(Volume.self, forKey: .volume)
+        base64Data = try? values.decode(String.self, forKey: .base64Data)
+        pictureFillFormat = try? values.decode(PictureFill.self, forKey: .pictureFillFormat)
+        self.type = ModelType.videoFrame
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(fullScreenMode, forKey: .fullScreenMode)
-        try container.encode(hideAtShowing, forKey: .hideAtShowing)
-        try container.encode(playLoopMode, forKey: .playLoopMode)
-        try container.encode(playMode, forKey: .playMode)
-        try container.encode(rewindVideo, forKey: .rewindVideo)
-        try container.encode(volume, forKey: .volume)
-        try container.encode(base64Data, forKey: .base64Data)
-        try container.encode(pictureFillFormat, forKey: .pictureFillFormat)
+        if (fullScreenMode != nil) {
+            try? container.encode(fullScreenMode, forKey: .fullScreenMode)
+        }
+        if (hideAtShowing != nil) {
+            try? container.encode(hideAtShowing, forKey: .hideAtShowing)
+        }
+        if (playLoopMode != nil) {
+            try? container.encode(playLoopMode, forKey: .playLoopMode)
+        }
+        if (playMode != nil) {
+            try? container.encode(playMode, forKey: .playMode)
+        }
+        if (rewindVideo != nil) {
+            try? container.encode(rewindVideo, forKey: .rewindVideo)
+        }
+        if (volume != nil) {
+            try? container.encode(volume, forKey: .volume)
+        }
+        if (base64Data != nil) {
+            try? container.encode(base64Data, forKey: .base64Data)
+        }
+        if (pictureFillFormat != nil) {
+            try? container.encode(pictureFillFormat, forKey: .pictureFillFormat)
+        }
     }
-
 
 }
 

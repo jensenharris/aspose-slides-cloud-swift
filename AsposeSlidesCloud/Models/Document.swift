@@ -45,13 +45,68 @@ public class Document: ResourceBase {
     /** Link to master slides collection. */
     public var masterSlides: ResourceUri?
 
-    private enum CodingKeys: String, CodingKey {
-        case documentProperties
-        case viewProperties
-        case slides
-        case images
-        case layoutSlides
-        case masterSlides
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let documentPropertiesValue = source["documentProperties"]
+        if documentPropertiesValue != nil {
+            let documentPropertiesDictionaryValue = documentPropertiesValue! as? [String:Any]
+            if documentPropertiesDictionaryValue != nil {
+                let (documentPropertiesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, documentPropertiesDictionaryValue!)
+                if error == nil && documentPropertiesInstance != nil {
+                    self.documentProperties = documentPropertiesInstance! as? ResourceUri
+                }
+            }
+        }
+        let viewPropertiesValue = source["viewProperties"]
+        if viewPropertiesValue != nil {
+            let viewPropertiesDictionaryValue = viewPropertiesValue! as? [String:Any]
+            if viewPropertiesDictionaryValue != nil {
+                let (viewPropertiesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, viewPropertiesDictionaryValue!)
+                if error == nil && viewPropertiesInstance != nil {
+                    self.viewProperties = viewPropertiesInstance! as? ResourceUri
+                }
+            }
+        }
+        let slidesValue = source["slides"]
+        if slidesValue != nil {
+            let slidesDictionaryValue = slidesValue! as? [String:Any]
+            if slidesDictionaryValue != nil {
+                let (slidesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, slidesDictionaryValue!)
+                if error == nil && slidesInstance != nil {
+                    self.slides = slidesInstance! as? ResourceUri
+                }
+            }
+        }
+        let imagesValue = source["images"]
+        if imagesValue != nil {
+            let imagesDictionaryValue = imagesValue! as? [String:Any]
+            if imagesDictionaryValue != nil {
+                let (imagesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, imagesDictionaryValue!)
+                if error == nil && imagesInstance != nil {
+                    self.images = imagesInstance! as? ResourceUri
+                }
+            }
+        }
+        let layoutSlidesValue = source["layoutSlides"]
+        if layoutSlidesValue != nil {
+            let layoutSlidesDictionaryValue = layoutSlidesValue! as? [String:Any]
+            if layoutSlidesDictionaryValue != nil {
+                let (layoutSlidesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, layoutSlidesDictionaryValue!)
+                if error == nil && layoutSlidesInstance != nil {
+                    self.layoutSlides = layoutSlidesInstance! as? ResourceUri
+                }
+            }
+        }
+        let masterSlidesValue = source["masterSlides"]
+        if masterSlidesValue != nil {
+            let masterSlidesDictionaryValue = masterSlidesValue! as? [String:Any]
+            if masterSlidesDictionaryValue != nil {
+                let (masterSlidesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, masterSlidesDictionaryValue!)
+                if error == nil && masterSlidesInstance != nil {
+                    self.masterSlides = masterSlidesInstance! as? ResourceUri
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, documentProperties: ResourceUri? = nil, viewProperties: ResourceUri? = nil, slides: ResourceUri? = nil, images: ResourceUri? = nil, layoutSlides: ResourceUri? = nil, masterSlides: ResourceUri? = nil) {
@@ -64,28 +119,48 @@ public class Document: ResourceBase {
         self.masterSlides = masterSlides
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case documentProperties
+        case viewProperties
+        case slides
+        case images
+        case layoutSlides
+        case masterSlides
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        documentProperties = try values.decode(ResourceUri?.self, forKey: .documentProperties)
-        viewProperties = try values.decode(ResourceUri?.self, forKey: .viewProperties)
-        slides = try values.decode(ResourceUri?.self, forKey: .slides)
-        images = try values.decode(ResourceUri?.self, forKey: .images)
-        layoutSlides = try values.decode(ResourceUri?.self, forKey: .layoutSlides)
-        masterSlides = try values.decode(ResourceUri?.self, forKey: .masterSlides)
+        documentProperties = try? values.decode(ResourceUri.self, forKey: .documentProperties)
+        viewProperties = try? values.decode(ResourceUri.self, forKey: .viewProperties)
+        slides = try? values.decode(ResourceUri.self, forKey: .slides)
+        images = try? values.decode(ResourceUri.self, forKey: .images)
+        layoutSlides = try? values.decode(ResourceUri.self, forKey: .layoutSlides)
+        masterSlides = try? values.decode(ResourceUri.self, forKey: .masterSlides)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(documentProperties, forKey: .documentProperties)
-        try container.encode(viewProperties, forKey: .viewProperties)
-        try container.encode(slides, forKey: .slides)
-        try container.encode(images, forKey: .images)
-        try container.encode(layoutSlides, forKey: .layoutSlides)
-        try container.encode(masterSlides, forKey: .masterSlides)
+        if (documentProperties != nil) {
+            try? container.encode(documentProperties, forKey: .documentProperties)
+        }
+        if (viewProperties != nil) {
+            try? container.encode(viewProperties, forKey: .viewProperties)
+        }
+        if (slides != nil) {
+            try? container.encode(slides, forKey: .slides)
+        }
+        if (images != nil) {
+            try? container.encode(images, forKey: .images)
+        }
+        if (layoutSlides != nil) {
+            try? container.encode(layoutSlides, forKey: .layoutSlides)
+        }
+        if (masterSlides != nil) {
+            try? container.encode(masterSlides, forKey: .masterSlides)
+        }
     }
-
 
 }
 

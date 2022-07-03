@@ -35,27 +35,44 @@ public class PictureFrame: GeometryShape {
     /** Fill format. */
     public var pictureFillFormat: PictureFill?
 
-    private enum CodingKeys: String, CodingKey {
-        case pictureFillFormat
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let pictureFillFormatValue = source["pictureFillFormat"]
+        if pictureFillFormatValue != nil {
+            let pictureFillFormatDictionaryValue = pictureFillFormatValue! as? [String:Any]
+            if pictureFillFormatDictionaryValue != nil {
+                let (pictureFillFormatInstance, error) = ClassRegistry.getClassFromDictionary(PictureFill.self, pictureFillFormatDictionaryValue!)
+                if error == nil && pictureFillFormatInstance != nil {
+                    self.pictureFillFormat = pictureFillFormatInstance! as? PictureFill
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, pictureFillFormat: PictureFill? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type, shapeType: shapeType)
         self.pictureFillFormat = pictureFillFormat
+        self.type = ModelType.pictureFrame
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case pictureFillFormat
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        pictureFillFormat = try values.decode(PictureFill?.self, forKey: .pictureFillFormat)
+        pictureFillFormat = try? values.decode(PictureFill.self, forKey: .pictureFillFormat)
+        self.type = ModelType.pictureFrame
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(pictureFillFormat, forKey: .pictureFillFormat)
+        if (pictureFillFormat != nil) {
+            try? container.encode(pictureFillFormat, forKey: .pictureFillFormat)
+        }
     }
-
 
 }
 

@@ -35,8 +35,33 @@ public class Images: ResourceBase {
     /** Image list. */
     public var list: [Image]?
 
-    private enum CodingKeys: String, CodingKey {
-        case list
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let listValue = source["list"]
+        if listValue != nil {
+            var listArray: [Image] = []
+            let listDictionaryValue = listValue! as? [Any]
+            if listDictionaryValue != nil {
+                listDictionaryValue!.forEach { listAnyItem in
+                    let listItem = listAnyItem as? [String:Any]
+                    var added = false
+                    if listItem != nil {
+                        let (listInstance, error) = ClassRegistry.getClassFromDictionary(Image.self, listItem!)
+                        if error == nil && listInstance != nil {
+                            let listArrayItem = listInstance! as? Image
+                            if listArrayItem != nil {
+                                listArray.append(listArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        listArray.append(Image())
+                    }
+                }
+            }
+            self.list = listArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, list: [Image]? = nil) {
@@ -44,18 +69,23 @@ public class Images: ResourceBase {
         self.list = list
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case list
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        list = try values.decode([Image]?.self, forKey: .list)
+        list = try? values.decode([Image].self, forKey: .list)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(list, forKey: .list)
+        if (list != nil) {
+            try? container.encode(list, forKey: .list)
+        }
     }
-
 
 }
 

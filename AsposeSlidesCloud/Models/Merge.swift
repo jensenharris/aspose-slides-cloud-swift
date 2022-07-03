@@ -35,27 +35,59 @@ public class Merge: Task {
     /** Information about documents and slides being merging sources. */
     public var presentations: [MergingSource]?
 
-    private enum CodingKeys: String, CodingKey {
-        case presentations
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let presentationsValue = source["presentations"]
+        if presentationsValue != nil {
+            var presentationsArray: [MergingSource] = []
+            let presentationsDictionaryValue = presentationsValue! as? [Any]
+            if presentationsDictionaryValue != nil {
+                presentationsDictionaryValue!.forEach { presentationsAnyItem in
+                    let presentationsItem = presentationsAnyItem as? [String:Any]
+                    var added = false
+                    if presentationsItem != nil {
+                        let (presentationsInstance, error) = ClassRegistry.getClassFromDictionary(MergingSource.self, presentationsItem!)
+                        if error == nil && presentationsInstance != nil {
+                            let presentationsArrayItem = presentationsInstance! as? MergingSource
+                            if presentationsArrayItem != nil {
+                                presentationsArray.append(presentationsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        presentationsArray.append(MergingSource())
+                    }
+                }
+            }
+            self.presentations = presentationsArray
+        }
     }
 
     public init(type: ModelType? = nil, presentations: [MergingSource]? = nil) {
         super.init(type: type)
         self.presentations = presentations
+        self.type = ModelType.merge
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case presentations
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        presentations = try values.decode([MergingSource]?.self, forKey: .presentations)
+        presentations = try? values.decode([MergingSource].self, forKey: .presentations)
+        self.type = ModelType.merge
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(presentations, forKey: .presentations)
+        if (presentations != nil) {
+            try? container.encode(presentations, forKey: .presentations)
+        }
     }
-
 
 }
 

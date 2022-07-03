@@ -37,9 +37,16 @@ public class ScatterChartDataPoint: DataPoint {
     /** Y-value */
     public var yValue: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case xValue
-        case yValue
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let xValueValue = source["xValue"]
+        if xValueValue != nil {
+            self.xValue = xValueValue! as? Double
+        }
+        let yValueValue = source["yValue"]
+        if yValueValue != nil {
+            self.yValue = yValueValue! as? Double
+        }
     }
 
     public init(xValue: Double? = nil, yValue: Double? = nil) {
@@ -48,20 +55,28 @@ public class ScatterChartDataPoint: DataPoint {
         self.yValue = yValue
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case xValue
+        case yValue
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        xValue = try values.decode(Double?.self, forKey: .xValue)
-        yValue = try values.decode(Double?.self, forKey: .yValue)
+        xValue = try? values.decode(Double.self, forKey: .xValue)
+        yValue = try? values.decode(Double.self, forKey: .yValue)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(xValue, forKey: .xValue)
-        try container.encode(yValue, forKey: .yValue)
+        if (xValue != nil) {
+            try? container.encode(xValue, forKey: .xValue)
+        }
+        if (yValue != nil) {
+            try? container.encode(yValue, forKey: .yValue)
+        }
     }
-
 
 }
 

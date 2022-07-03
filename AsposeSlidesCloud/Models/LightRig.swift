@@ -84,12 +84,39 @@ public class LightRig: Codable {
     /** ZRotation */
     public var zRotation: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case direction
-        case lightType
-        case xRotation
-        case yRotation
-        case zRotation
+    func fillValues(_ source: [String:Any]) throws {
+        let directionValue = source["direction"]
+        if directionValue != nil {
+            let directionStringValue = directionValue! as? String
+            if directionStringValue != nil {
+                let directionEnumValue = Direction(rawValue: directionStringValue!)
+                if directionEnumValue != nil {
+                    self.direction = directionEnumValue!
+                }
+            }
+        }
+        let lightTypeValue = source["lightType"]
+        if lightTypeValue != nil {
+            let lightTypeStringValue = lightTypeValue! as? String
+            if lightTypeStringValue != nil {
+                let lightTypeEnumValue = LightType(rawValue: lightTypeStringValue!)
+                if lightTypeEnumValue != nil {
+                    self.lightType = lightTypeEnumValue!
+                }
+            }
+        }
+        let xRotationValue = source["xRotation"]
+        if xRotationValue != nil {
+            self.xRotation = xRotationValue! as? Double
+        }
+        let yRotationValue = source["yRotation"]
+        if yRotationValue != nil {
+            self.yRotation = yRotationValue! as? Double
+        }
+        let zRotationValue = source["zRotation"]
+        if zRotationValue != nil {
+            self.zRotation = zRotationValue! as? Double
+        }
     }
 
     public init(direction: Direction? = nil, lightType: LightType? = nil, xRotation: Double? = nil, yRotation: Double? = nil, zRotation: Double? = nil) {
@@ -100,6 +127,13 @@ public class LightRig: Codable {
         self.zRotation = zRotation
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case direction
+        case lightType
+        case xRotation
+        case yRotation
+        case zRotation
+    }
 
 }
 

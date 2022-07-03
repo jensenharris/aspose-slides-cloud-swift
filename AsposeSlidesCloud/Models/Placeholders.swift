@@ -35,8 +35,33 @@ public class Placeholders: ResourceBase {
     /** List for placeholder links. */
     public var placeholderLinks: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case placeholderLinks
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let placeholderLinksValue = source["placeholderLinks"]
+        if placeholderLinksValue != nil {
+            var placeholderLinksArray: [ResourceUri] = []
+            let placeholderLinksDictionaryValue = placeholderLinksValue! as? [Any]
+            if placeholderLinksDictionaryValue != nil {
+                placeholderLinksDictionaryValue!.forEach { placeholderLinksAnyItem in
+                    let placeholderLinksItem = placeholderLinksAnyItem as? [String:Any]
+                    var added = false
+                    if placeholderLinksItem != nil {
+                        let (placeholderLinksInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, placeholderLinksItem!)
+                        if error == nil && placeholderLinksInstance != nil {
+                            let placeholderLinksArrayItem = placeholderLinksInstance! as? ResourceUri
+                            if placeholderLinksArrayItem != nil {
+                                placeholderLinksArray.append(placeholderLinksArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        placeholderLinksArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.placeholderLinks = placeholderLinksArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, placeholderLinks: [ResourceUri]? = nil) {
@@ -44,18 +69,23 @@ public class Placeholders: ResourceBase {
         self.placeholderLinks = placeholderLinks
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case placeholderLinks
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        placeholderLinks = try values.decode([ResourceUri]?.self, forKey: .placeholderLinks)
+        placeholderLinks = try? values.decode([ResourceUri].self, forKey: .placeholderLinks)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(placeholderLinks, forKey: .placeholderLinks)
+        if (placeholderLinks != nil) {
+            try? container.encode(placeholderLinks, forKey: .placeholderLinks)
+        }
     }
-
 
 }
 

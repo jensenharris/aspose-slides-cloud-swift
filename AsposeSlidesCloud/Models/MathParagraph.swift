@@ -43,9 +43,42 @@ public class MathParagraph: Codable {
     /** Justification of the math paragraph */
     public var justification: Justification?
 
-    private enum CodingKeys: String, CodingKey {
-        case mathBlockList
-        case justification
+    func fillValues(_ source: [String:Any]) throws {
+        let mathBlockListValue = source["mathBlockList"]
+        if mathBlockListValue != nil {
+            var mathBlockListArray: [BlockElement] = []
+            let mathBlockListDictionaryValue = mathBlockListValue! as? [Any]
+            if mathBlockListDictionaryValue != nil {
+                mathBlockListDictionaryValue!.forEach { mathBlockListAnyItem in
+                    let mathBlockListItem = mathBlockListAnyItem as? [String:Any]
+                    var added = false
+                    if mathBlockListItem != nil {
+                        let (mathBlockListInstance, error) = ClassRegistry.getClassFromDictionary(BlockElement.self, mathBlockListItem!)
+                        if error == nil && mathBlockListInstance != nil {
+                            let mathBlockListArrayItem = mathBlockListInstance! as? BlockElement
+                            if mathBlockListArrayItem != nil {
+                                mathBlockListArray.append(mathBlockListArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        mathBlockListArray.append(BlockElement())
+                    }
+                }
+            }
+            self.mathBlockList = mathBlockListArray
+        }
+        let justificationValue = source["justification"]
+        if justificationValue != nil {
+            let justificationStringValue = justificationValue! as? String
+            if justificationStringValue != nil {
+                let justificationEnumValue = Justification(rawValue: justificationStringValue!)
+                if justificationEnumValue != nil {
+                    self.justification = justificationEnumValue!
+                }
+            }
+        }
     }
 
     public init(mathBlockList: [BlockElement]? = nil, justification: Justification? = nil) {
@@ -53,6 +86,10 @@ public class MathParagraph: Codable {
         self.justification = justification
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case mathBlockList
+        case justification
+    }
 
 }
 

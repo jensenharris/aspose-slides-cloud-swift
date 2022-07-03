@@ -37,9 +37,21 @@ public class MergingSource: Codable {
     /** Indices of slides to be merged. */
     public var slides: [Int]?
 
-    private enum CodingKeys: String, CodingKey {
-        case input
-        case slides
+    func fillValues(_ source: [String:Any]) throws {
+        let inputValue = source["input"]
+        if inputValue != nil {
+            let inputDictionaryValue = inputValue! as? [String:Any]
+            if inputDictionaryValue != nil {
+                let (inputInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, inputDictionaryValue!)
+                if error == nil && inputInstance != nil {
+                    self.input = inputInstance! as? InputFile
+                }
+            }
+        }
+        let slidesValue = source["slides"]
+        if slidesValue != nil {
+            self.slides = slidesValue! as? [Int]
+        }
     }
 
     public init(input: InputFile? = nil, slides: [Int]? = nil) {
@@ -47,6 +59,10 @@ public class MergingSource: Codable {
         self.slides = slides
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case input
+        case slides
+    }
 
 }
 

@@ -41,31 +41,75 @@ public class SummaryZoomFrame: ShapeBase {
     /** Zoom frame sections */
     public var sections: [SummaryZoomSection]?
 
-    private enum CodingKeys: String, CodingKey {
-        case zoomLayout
-        case sections
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let zoomLayoutValue = source["zoomLayout"]
+        if zoomLayoutValue != nil {
+            let zoomLayoutStringValue = zoomLayoutValue! as? String
+            if zoomLayoutStringValue != nil {
+                let zoomLayoutEnumValue = ZoomLayout(rawValue: zoomLayoutStringValue!)
+                if zoomLayoutEnumValue != nil {
+                    self.zoomLayout = zoomLayoutEnumValue!
+                }
+            }
+        }
+        let sectionsValue = source["sections"]
+        if sectionsValue != nil {
+            var sectionsArray: [SummaryZoomSection] = []
+            let sectionsDictionaryValue = sectionsValue! as? [Any]
+            if sectionsDictionaryValue != nil {
+                sectionsDictionaryValue!.forEach { sectionsAnyItem in
+                    let sectionsItem = sectionsAnyItem as? [String:Any]
+                    var added = false
+                    if sectionsItem != nil {
+                        let (sectionsInstance, error) = ClassRegistry.getClassFromDictionary(SummaryZoomSection.self, sectionsItem!)
+                        if error == nil && sectionsInstance != nil {
+                            let sectionsArrayItem = sectionsInstance! as? SummaryZoomSection
+                            if sectionsArrayItem != nil {
+                                sectionsArray.append(sectionsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        sectionsArray.append(SummaryZoomSection())
+                    }
+                }
+            }
+            self.sections = sectionsArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, zoomLayout: ZoomLayout? = nil, sections: [SummaryZoomSection]? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type)
         self.zoomLayout = zoomLayout
         self.sections = sections
+        self.type = ModelType.summaryZoomFrame
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case zoomLayout
+        case sections
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        zoomLayout = try values.decode(ZoomLayout?.self, forKey: .zoomLayout)
-        sections = try values.decode([SummaryZoomSection]?.self, forKey: .sections)
+        zoomLayout = try? values.decode(ZoomLayout.self, forKey: .zoomLayout)
+        sections = try? values.decode([SummaryZoomSection].self, forKey: .sections)
+        self.type = ModelType.summaryZoomFrame
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(zoomLayout, forKey: .zoomLayout)
-        try container.encode(sections, forKey: .sections)
+        if (zoomLayout != nil) {
+            try? container.encode(zoomLayout, forKey: .zoomLayout)
+        }
+        if (sections != nil) {
+            try? container.encode(sections, forKey: .sections)
+        }
     }
-
 
 }
 

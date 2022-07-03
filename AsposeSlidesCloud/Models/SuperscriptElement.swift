@@ -37,31 +37,60 @@ public class SuperscriptElement: MathElement {
     /** Superscript */
     public var superscript: MathElement?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case superscript
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let superscriptValue = source["superscript"]
+        if superscriptValue != nil {
+            let superscriptDictionaryValue = superscriptValue! as? [String:Any]
+            if superscriptDictionaryValue != nil {
+                let (superscriptInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, superscriptDictionaryValue!)
+                if error == nil && superscriptInstance != nil {
+                    self.superscript = superscriptInstance! as? MathElement
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, superscript: MathElement? = nil) {
         super.init(type: type)
         self.base = base
         self.superscript = superscript
+        self.type = ModelType.superscriptElement
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case superscript
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        superscript = try values.decode(MathElement?.self, forKey: .superscript)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        superscript = try? values.decode(MathElement.self, forKey: .superscript)
+        self.type = ModelType.superscriptElement
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(superscript, forKey: .superscript)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (superscript != nil) {
+            try? container.encode(superscript, forKey: .superscript)
+        }
     }
-
 
 }
 

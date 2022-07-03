@@ -43,12 +43,33 @@ public class StorageFile: Codable {
     /** File or folder path. */
     public var path: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case isFolder
-        case modifiedDate
-        case size
-        case path
+    func fillValues(_ source: [String:Any]) throws {
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let isFolderValue = source["isFolder"]
+        if isFolderValue != nil {
+            self.isFolder = isFolderValue! as? Bool
+        }
+        let modifiedDateValue = source["modifiedDate"]
+        if modifiedDateValue != nil {
+            let modifiedDateDictionaryValue = modifiedDateValue! as? [String:Any]
+            if modifiedDateDictionaryValue != nil {
+                let (modifiedDateInstance, error) = ClassRegistry.getClassFromDictionary(Date.self, modifiedDateDictionaryValue!)
+                if error == nil && modifiedDateInstance != nil {
+                    self.modifiedDate = modifiedDateInstance! as? Date
+                }
+            }
+        }
+        let sizeValue = source["size"]
+        if sizeValue != nil {
+            self.size = sizeValue! as? Int64
+        }
+        let pathValue = source["path"]
+        if pathValue != nil {
+            self.path = pathValue! as? String
+        }
     }
 
     public init(name: String? = nil, isFolder: Bool? = nil, modifiedDate: Date? = nil, size: Int64? = nil, path: String? = nil) {
@@ -59,6 +80,13 @@ public class StorageFile: Codable {
         self.path = path
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case isFolder
+        case modifiedDate
+        case size
+        case path
+    }
 
 }
 

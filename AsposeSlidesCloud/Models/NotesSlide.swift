@@ -37,9 +37,22 @@ public class NotesSlide: ResourceBase {
     /** Get or sets the  link to list notes slide shapes. */
     public var shapes: ResourceUri?
 
-    private enum CodingKeys: String, CodingKey {
-        case text
-        case shapes
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let textValue = source["text"]
+        if textValue != nil {
+            self.text = textValue! as? String
+        }
+        let shapesValue = source["shapes"]
+        if shapesValue != nil {
+            let shapesDictionaryValue = shapesValue! as? [String:Any]
+            if shapesDictionaryValue != nil {
+                let (shapesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, shapesDictionaryValue!)
+                if error == nil && shapesInstance != nil {
+                    self.shapes = shapesInstance! as? ResourceUri
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, text: String? = nil, shapes: ResourceUri? = nil) {
@@ -48,20 +61,28 @@ public class NotesSlide: ResourceBase {
         self.shapes = shapes
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case text
+        case shapes
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        text = try values.decode(String?.self, forKey: .text)
-        shapes = try values.decode(ResourceUri?.self, forKey: .shapes)
+        text = try? values.decode(String.self, forKey: .text)
+        shapes = try? values.decode(ResourceUri.self, forKey: .shapes)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(text, forKey: .text)
-        try container.encode(shapes, forKey: .shapes)
+        if (text != nil) {
+            try? container.encode(text, forKey: .text)
+        }
+        if (shapes != nil) {
+            try? container.encode(shapes, forKey: .shapes)
+        }
     }
-
 
 }
 

@@ -35,14 +35,41 @@ public class FileVersions: Codable {
     /** File versions FileVersion. */
     public var value: [FileVersion]?
 
-    private enum CodingKeys: String, CodingKey {
-        case value
+    func fillValues(_ source: [String:Any]) throws {
+        let valueValue = source["value"]
+        if valueValue != nil {
+            var valueArray: [FileVersion] = []
+            let valueDictionaryValue = valueValue! as? [Any]
+            if valueDictionaryValue != nil {
+                valueDictionaryValue!.forEach { valueAnyItem in
+                    let valueItem = valueAnyItem as? [String:Any]
+                    var added = false
+                    if valueItem != nil {
+                        let (valueInstance, error) = ClassRegistry.getClassFromDictionary(FileVersion.self, valueItem!)
+                        if error == nil && valueInstance != nil {
+                            let valueArrayItem = valueInstance! as? FileVersion
+                            if valueArrayItem != nil {
+                                valueArray.append(valueArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        valueArray.append(FileVersion())
+                    }
+                }
+            }
+            self.value = valueArray
+        }
     }
 
     public init(value: [FileVersion]? = nil) {
         self.value = value
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case value
+    }
 
 }
 

@@ -35,27 +35,38 @@ public class SolidFill: FillFormat {
     /** Color. */
     public var color: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case color
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let colorValue = source["color"]
+        if colorValue != nil {
+            self.color = colorValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, color: String? = nil) {
         super.init(type: type)
         self.color = color
+        self.type = ModelType.solid
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case color
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        color = try values.decode(String?.self, forKey: .color)
+        color = try? values.decode(String.self, forKey: .color)
+        self.type = ModelType.solid
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(color, forKey: .color)
+        if (color != nil) {
+            try? container.encode(color, forKey: .color)
+        }
     }
-
 
 }
 

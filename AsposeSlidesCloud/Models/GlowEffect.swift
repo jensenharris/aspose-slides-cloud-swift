@@ -37,9 +37,15 @@ public class GlowEffect: Codable {
     /** color */
     public var color: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case radius
-        case color
+    func fillValues(_ source: [String:Any]) throws {
+        let radiusValue = source["radius"]
+        if radiusValue != nil {
+            self.radius = radiusValue! as? Double
+        }
+        let colorValue = source["color"]
+        if colorValue != nil {
+            self.color = colorValue! as? String
+        }
     }
 
     public init(radius: Double? = nil, color: String? = nil) {
@@ -47,6 +53,10 @@ public class GlowEffect: Codable {
         self.color = color
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case radius
+        case color
+    }
 
 }
 

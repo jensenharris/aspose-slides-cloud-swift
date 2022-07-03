@@ -26,6 +26,7 @@
  */
 
 import Foundation
+import FoundationNetworking
 
 class AlamofireRequestBuilderFactory: RequestBuilderFactory {
     func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {
@@ -272,10 +273,9 @@ open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilde
                         completion(nil, ErrorResponse.error(-1, nil, AlamofireDecodableRequestBuilderError.emptyDataResponse))
                     } else {
                         var responseObj: Response<T>? = nil
-
-                        let decodeResult: (decodableObj: T?, error: Error?) = CodableHelper.decode(T.self, from: data!)
+                        let decodeResult: (decodableObj: Decodable?, error: Error?) = ClassRegistry.getClassInstance(T.self, data!)
                         if decodeResult.error == nil {
-                            responseObj = Response(response: dataResponse, body: decodeResult.decodableObj)
+                            responseObj = Response(response: dataResponse, body: decodeResult.decodableObj as? T)
                         }
                         completion(responseObj, decodeResult.error)
                     }

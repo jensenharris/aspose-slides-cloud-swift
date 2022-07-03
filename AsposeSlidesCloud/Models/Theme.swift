@@ -41,11 +41,42 @@ public class Theme: ResourceBase {
     /** Format scheme. */
     public var formatScheme: ResourceUri?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case colorScheme
-        case fontScheme
-        case formatScheme
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let colorSchemeValue = source["colorScheme"]
+        if colorSchemeValue != nil {
+            let colorSchemeDictionaryValue = colorSchemeValue! as? [String:Any]
+            if colorSchemeDictionaryValue != nil {
+                let (colorSchemeInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, colorSchemeDictionaryValue!)
+                if error == nil && colorSchemeInstance != nil {
+                    self.colorScheme = colorSchemeInstance! as? ResourceUri
+                }
+            }
+        }
+        let fontSchemeValue = source["fontScheme"]
+        if fontSchemeValue != nil {
+            let fontSchemeDictionaryValue = fontSchemeValue! as? [String:Any]
+            if fontSchemeDictionaryValue != nil {
+                let (fontSchemeInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, fontSchemeDictionaryValue!)
+                if error == nil && fontSchemeInstance != nil {
+                    self.fontScheme = fontSchemeInstance! as? ResourceUri
+                }
+            }
+        }
+        let formatSchemeValue = source["formatScheme"]
+        if formatSchemeValue != nil {
+            let formatSchemeDictionaryValue = formatSchemeValue! as? [String:Any]
+            if formatSchemeDictionaryValue != nil {
+                let (formatSchemeInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, formatSchemeDictionaryValue!)
+                if error == nil && formatSchemeInstance != nil {
+                    self.formatScheme = formatSchemeInstance! as? ResourceUri
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, colorScheme: ResourceUri? = nil, fontScheme: ResourceUri? = nil, formatScheme: ResourceUri? = nil) {
@@ -56,24 +87,38 @@ public class Theme: ResourceBase {
         self.formatScheme = formatScheme
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case colorScheme
+        case fontScheme
+        case formatScheme
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decode(String?.self, forKey: .name)
-        colorScheme = try values.decode(ResourceUri?.self, forKey: .colorScheme)
-        fontScheme = try values.decode(ResourceUri?.self, forKey: .fontScheme)
-        formatScheme = try values.decode(ResourceUri?.self, forKey: .formatScheme)
+        name = try? values.decode(String.self, forKey: .name)
+        colorScheme = try? values.decode(ResourceUri.self, forKey: .colorScheme)
+        fontScheme = try? values.decode(ResourceUri.self, forKey: .fontScheme)
+        formatScheme = try? values.decode(ResourceUri.self, forKey: .formatScheme)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(colorScheme, forKey: .colorScheme)
-        try container.encode(fontScheme, forKey: .fontScheme)
-        try container.encode(formatScheme, forKey: .formatScheme)
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
+        if (colorScheme != nil) {
+            try? container.encode(colorScheme, forKey: .colorScheme)
+        }
+        if (fontScheme != nil) {
+            try? container.encode(fontScheme, forKey: .fontScheme)
+        }
+        if (formatScheme != nil) {
+            try? container.encode(formatScheme, forKey: .formatScheme)
+        }
     }
-
 
 }
 

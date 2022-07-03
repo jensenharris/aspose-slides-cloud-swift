@@ -49,12 +49,51 @@ public class ChartWall: Codable {
     /** Get or sets mode of bar picture filling. */
     public var pictureType: PictureType?
 
-    private enum CodingKeys: String, CodingKey {
-        case fillFormat
-        case effectFormat
-        case lineFormat
-        case thickness
-        case pictureType
+    func fillValues(_ source: [String:Any]) throws {
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
+        let thicknessValue = source["thickness"]
+        if thicknessValue != nil {
+            self.thickness = thicknessValue! as? Int
+        }
+        let pictureTypeValue = source["pictureType"]
+        if pictureTypeValue != nil {
+            let pictureTypeStringValue = pictureTypeValue! as? String
+            if pictureTypeStringValue != nil {
+                let pictureTypeEnumValue = PictureType(rawValue: pictureTypeStringValue!)
+                if pictureTypeEnumValue != nil {
+                    self.pictureType = pictureTypeEnumValue!
+                }
+            }
+        }
     }
 
     public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, thickness: Int? = nil, pictureType: PictureType? = nil) {
@@ -65,6 +104,13 @@ public class ChartWall: Codable {
         self.pictureType = pictureType
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case fillFormat
+        case effectFormat
+        case lineFormat
+        case thickness
+        case pictureType
+    }
 
 }
 

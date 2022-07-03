@@ -60,10 +60,37 @@ public class ArrowHeadProperties: Codable {
     /** Width. */
     public var width: Width?
 
-    private enum CodingKeys: String, CodingKey {
-        case length
-        case style
-        case width
+    func fillValues(_ source: [String:Any]) throws {
+        let lengthValue = source["length"]
+        if lengthValue != nil {
+            let lengthStringValue = lengthValue! as? String
+            if lengthStringValue != nil {
+                let lengthEnumValue = Length(rawValue: lengthStringValue!)
+                if lengthEnumValue != nil {
+                    self.length = lengthEnumValue!
+                }
+            }
+        }
+        let styleValue = source["style"]
+        if styleValue != nil {
+            let styleStringValue = styleValue! as? String
+            if styleStringValue != nil {
+                let styleEnumValue = Style(rawValue: styleStringValue!)
+                if styleEnumValue != nil {
+                    self.style = styleEnumValue!
+                }
+            }
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            let widthStringValue = widthValue! as? String
+            if widthStringValue != nil {
+                let widthEnumValue = Width(rawValue: widthStringValue!)
+                if widthEnumValue != nil {
+                    self.width = widthEnumValue!
+                }
+            }
+        }
     }
 
     public init(length: Length? = nil, style: Style? = nil, width: Width? = nil) {
@@ -72,6 +99,11 @@ public class ArrowHeadProperties: Codable {
         self.width = width
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case length
+        case style
+        case width
+    }
 
 }
 

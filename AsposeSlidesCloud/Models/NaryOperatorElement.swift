@@ -54,15 +54,64 @@ public class NaryOperatorElement: MathElement {
     /** Hide Superscript */
     public var hideSuperscript: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case _subscript
-        case superscript
-        case _operator
-        case limitLocation
-        case growToMatchOperandHeight
-        case hideSubscript
-        case hideSuperscript
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let _subscriptValue = source["_subscript"]
+        if _subscriptValue != nil {
+            let _subscriptDictionaryValue = _subscriptValue! as? [String:Any]
+            if _subscriptDictionaryValue != nil {
+                let (_subscriptInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, _subscriptDictionaryValue!)
+                if error == nil && _subscriptInstance != nil {
+                    self._subscript = _subscriptInstance! as? MathElement
+                }
+            }
+        }
+        let superscriptValue = source["superscript"]
+        if superscriptValue != nil {
+            let superscriptDictionaryValue = superscriptValue! as? [String:Any]
+            if superscriptDictionaryValue != nil {
+                let (superscriptInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, superscriptDictionaryValue!)
+                if error == nil && superscriptInstance != nil {
+                    self.superscript = superscriptInstance! as? MathElement
+                }
+            }
+        }
+        let _operatorValue = source["_operator"]
+        if _operatorValue != nil {
+            self._operator = _operatorValue! as? String
+        }
+        let limitLocationValue = source["limitLocation"]
+        if limitLocationValue != nil {
+            let limitLocationStringValue = limitLocationValue! as? String
+            if limitLocationStringValue != nil {
+                let limitLocationEnumValue = LimitLocation(rawValue: limitLocationStringValue!)
+                if limitLocationEnumValue != nil {
+                    self.limitLocation = limitLocationEnumValue!
+                }
+            }
+        }
+        let growToMatchOperandHeightValue = source["growToMatchOperandHeight"]
+        if growToMatchOperandHeightValue != nil {
+            self.growToMatchOperandHeight = growToMatchOperandHeightValue! as? Bool
+        }
+        let hideSubscriptValue = source["hideSubscript"]
+        if hideSubscriptValue != nil {
+            self.hideSubscript = hideSubscriptValue! as? Bool
+        }
+        let hideSuperscriptValue = source["hideSuperscript"]
+        if hideSuperscriptValue != nil {
+            self.hideSuperscript = hideSuperscriptValue! as? Bool
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, _subscript: MathElement? = nil, superscript: MathElement? = nil, _operator: String? = nil, limitLocation: LimitLocation? = nil, growToMatchOperandHeight: Bool? = nil, hideSubscript: Bool? = nil, hideSuperscript: Bool? = nil) {
@@ -75,34 +124,62 @@ public class NaryOperatorElement: MathElement {
         self.growToMatchOperandHeight = growToMatchOperandHeight
         self.hideSubscript = hideSubscript
         self.hideSuperscript = hideSuperscript
+        self.type = ModelType.naryOperator
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case _subscript
+        case superscript
+        case _operator
+        case limitLocation
+        case growToMatchOperandHeight
+        case hideSubscript
+        case hideSuperscript
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        _subscript = try values.decode(MathElement?.self, forKey: ._subscript)
-        superscript = try values.decode(MathElement?.self, forKey: .superscript)
-        _operator = try values.decode(String?.self, forKey: ._operator)
-        limitLocation = try values.decode(LimitLocation?.self, forKey: .limitLocation)
-        growToMatchOperandHeight = try values.decode(Bool?.self, forKey: .growToMatchOperandHeight)
-        hideSubscript = try values.decode(Bool?.self, forKey: .hideSubscript)
-        hideSuperscript = try values.decode(Bool?.self, forKey: .hideSuperscript)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        _subscript = try? values.decode(MathElement.self, forKey: ._subscript)
+        superscript = try? values.decode(MathElement.self, forKey: .superscript)
+        _operator = try? values.decode(String.self, forKey: ._operator)
+        limitLocation = try? values.decode(LimitLocation.self, forKey: .limitLocation)
+        growToMatchOperandHeight = try? values.decode(Bool.self, forKey: .growToMatchOperandHeight)
+        hideSubscript = try? values.decode(Bool.self, forKey: .hideSubscript)
+        hideSuperscript = try? values.decode(Bool.self, forKey: .hideSuperscript)
+        self.type = ModelType.naryOperator
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(_subscript, forKey: ._subscript)
-        try container.encode(superscript, forKey: .superscript)
-        try container.encode(_operator, forKey: ._operator)
-        try container.encode(limitLocation, forKey: .limitLocation)
-        try container.encode(growToMatchOperandHeight, forKey: .growToMatchOperandHeight)
-        try container.encode(hideSubscript, forKey: .hideSubscript)
-        try container.encode(hideSuperscript, forKey: .hideSuperscript)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (_subscript != nil) {
+            try? container.encode(_subscript, forKey: ._subscript)
+        }
+        if (superscript != nil) {
+            try? container.encode(superscript, forKey: .superscript)
+        }
+        if (_operator != nil) {
+            try? container.encode(_operator, forKey: ._operator)
+        }
+        if (limitLocation != nil) {
+            try? container.encode(limitLocation, forKey: .limitLocation)
+        }
+        if (growToMatchOperandHeight != nil) {
+            try? container.encode(growToMatchOperandHeight, forKey: .growToMatchOperandHeight)
+        }
+        if (hideSubscript != nil) {
+            try? container.encode(hideSubscript, forKey: .hideSubscript)
+        }
+        if (hideSuperscript != nil) {
+            try? container.encode(hideSuperscript, forKey: .hideSuperscript)
+        }
     }
-
 
 }
 

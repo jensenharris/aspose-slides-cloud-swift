@@ -33,7 +33,11 @@ import Foundation
 public class DataPoint: Codable {
 
 
+    func fillValues(_ source: [String:Any]) throws {
+    }
 
+    public init() {
+    }
 
 }
 

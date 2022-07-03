@@ -37,9 +37,27 @@ public class ChartLinesFormat: Codable {
     /** Get or sets the line format. */
     public var lineFormat: LineFormat?
 
-    private enum CodingKeys: String, CodingKey {
-        case effectFormat
-        case lineFormat
+    func fillValues(_ source: [String:Any]) throws {
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
     }
 
     public init(effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
@@ -47,6 +65,10 @@ public class ChartLinesFormat: Codable {
         self.lineFormat = lineFormat
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case effectFormat
+        case lineFormat
+    }
 
 }
 

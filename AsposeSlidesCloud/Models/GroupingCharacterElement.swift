@@ -51,11 +51,42 @@ public class GroupingCharacterElement: MathElement {
     /** Vertical justification of group character. */
     public var verticalJustification: VerticalJustification?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case character
-        case position
-        case verticalJustification
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let characterValue = source["character"]
+        if characterValue != nil {
+            self.character = characterValue! as? String
+        }
+        let positionValue = source["position"]
+        if positionValue != nil {
+            let positionStringValue = positionValue! as? String
+            if positionStringValue != nil {
+                let positionEnumValue = Position(rawValue: positionStringValue!)
+                if positionEnumValue != nil {
+                    self.position = positionEnumValue!
+                }
+            }
+        }
+        let verticalJustificationValue = source["verticalJustification"]
+        if verticalJustificationValue != nil {
+            let verticalJustificationStringValue = verticalJustificationValue! as? String
+            if verticalJustificationStringValue != nil {
+                let verticalJustificationEnumValue = VerticalJustification(rawValue: verticalJustificationStringValue!)
+                if verticalJustificationEnumValue != nil {
+                    self.verticalJustification = verticalJustificationEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, character: String? = nil, position: Position? = nil, verticalJustification: VerticalJustification? = nil) {
@@ -64,26 +95,42 @@ public class GroupingCharacterElement: MathElement {
         self.character = character
         self.position = position
         self.verticalJustification = verticalJustification
+        self.type = ModelType.groupingCharacter
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case character
+        case position
+        case verticalJustification
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        character = try values.decode(String?.self, forKey: .character)
-        position = try values.decode(Position?.self, forKey: .position)
-        verticalJustification = try values.decode(VerticalJustification?.self, forKey: .verticalJustification)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        character = try? values.decode(String.self, forKey: .character)
+        position = try? values.decode(Position.self, forKey: .position)
+        verticalJustification = try? values.decode(VerticalJustification.self, forKey: .verticalJustification)
+        self.type = ModelType.groupingCharacter
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(character, forKey: .character)
-        try container.encode(position, forKey: .position)
-        try container.encode(verticalJustification, forKey: .verticalJustification)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (character != nil) {
+            try? container.encode(character, forKey: .character)
+        }
+        if (position != nil) {
+            try? container.encode(position, forKey: .position)
+        }
+        if (verticalJustification != nil) {
+            try? container.encode(verticalJustification, forKey: .verticalJustification)
+        }
     }
-
 
 }
 

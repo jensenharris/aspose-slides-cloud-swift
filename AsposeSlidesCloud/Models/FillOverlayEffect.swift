@@ -42,14 +42,26 @@ public class FillOverlayEffect: Codable {
     /** blend mode */
     public var blend: Blend?
 
-    private enum CodingKeys: String, CodingKey {
-        case blend
+    func fillValues(_ source: [String:Any]) throws {
+        let blendValue = source["blend"]
+        if blendValue != nil {
+            let blendStringValue = blendValue! as? String
+            if blendStringValue != nil {
+                let blendEnumValue = Blend(rawValue: blendStringValue!)
+                if blendEnumValue != nil {
+                    self.blend = blendEnumValue!
+                }
+            }
+        }
     }
 
     public init(blend: Blend? = nil) {
         self.blend = blend
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case blend
+    }
 
 }
 

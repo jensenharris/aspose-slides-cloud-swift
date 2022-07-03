@@ -37,9 +37,15 @@ public class ChartTitle: Codable {
     /** Get or sets value determines visibility of title */
     public var hasTitle: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case text
-        case hasTitle
+    func fillValues(_ source: [String:Any]) throws {
+        let textValue = source["text"]
+        if textValue != nil {
+            self.text = textValue! as? String
+        }
+        let hasTitleValue = source["hasTitle"]
+        if hasTitleValue != nil {
+            self.hasTitle = hasTitleValue! as? Bool
+        }
     }
 
     public init(text: String? = nil, hasTitle: Bool? = nil) {
@@ -47,6 +53,10 @@ public class ChartTitle: Codable {
         self.hasTitle = hasTitle
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case text
+        case hasTitle
+    }
 
 }
 

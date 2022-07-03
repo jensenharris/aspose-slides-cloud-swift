@@ -45,13 +45,31 @@ public class ResourceUri: Codable {
     /** Resource shape index. */
     public var shapeIndex: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case href
-        case relation
-        case linkType
-        case title
-        case slideIndex
-        case shapeIndex
+    func fillValues(_ source: [String:Any]) throws {
+        let hrefValue = source["href"]
+        if hrefValue != nil {
+            self.href = hrefValue! as? String
+        }
+        let relationValue = source["relation"]
+        if relationValue != nil {
+            self.relation = relationValue! as? String
+        }
+        let linkTypeValue = source["linkType"]
+        if linkTypeValue != nil {
+            self.linkType = linkTypeValue! as? String
+        }
+        let titleValue = source["title"]
+        if titleValue != nil {
+            self.title = titleValue! as? String
+        }
+        let slideIndexValue = source["slideIndex"]
+        if slideIndexValue != nil {
+            self.slideIndex = slideIndexValue! as? Int
+        }
+        let shapeIndexValue = source["shapeIndex"]
+        if shapeIndexValue != nil {
+            self.shapeIndex = shapeIndexValue! as? Int
+        }
     }
 
     public init(href: String? = nil, relation: String? = nil, linkType: String? = nil, title: String? = nil, slideIndex: Int? = nil, shapeIndex: Int? = nil) {
@@ -63,6 +81,14 @@ public class ResourceUri: Codable {
         self.shapeIndex = shapeIndex
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case href
+        case relation
+        case linkType
+        case title
+        case slideIndex
+        case shapeIndex
+    }
 
 }
 

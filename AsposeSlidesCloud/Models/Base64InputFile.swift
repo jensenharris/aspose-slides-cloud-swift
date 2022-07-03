@@ -35,27 +35,38 @@ public class Base64InputFile: InputFile {
     /** Get or sets base64 data. */
     public var data: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case data
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let dataValue = source["data"]
+        if dataValue != nil {
+            self.data = dataValue! as? String
+        }
     }
 
     public init(password: String? = nil, type: ModelType? = nil, data: String? = nil) {
         super.init(password: password, type: type)
         self.data = data
+        self.type = ModelType.base64
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case data
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        data = try values.decode(String?.self, forKey: .data)
+        data = try? values.decode(String.self, forKey: .data)
+        self.type = ModelType.base64
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(data, forKey: .data)
+        if (data != nil) {
+            try? container.encode(data, forKey: .data)
+        }
     }
-
 
 }
 

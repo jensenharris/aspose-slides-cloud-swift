@@ -37,9 +37,15 @@ public class DiscUsage: Codable {
     /** Total disc space. */
     public var totalSize: Int64?
 
-    private enum CodingKeys: String, CodingKey {
-        case usedSize
-        case totalSize
+    func fillValues(_ source: [String:Any]) throws {
+        let usedSizeValue = source["usedSize"]
+        if usedSizeValue != nil {
+            self.usedSize = usedSizeValue! as? Int64
+        }
+        let totalSizeValue = source["totalSize"]
+        if totalSizeValue != nil {
+            self.totalSize = totalSizeValue! as? Int64
+        }
     }
 
     public init(usedSize: Int64? = nil, totalSize: Int64? = nil) {
@@ -47,6 +53,10 @@ public class DiscUsage: Codable {
         self.totalSize = totalSize
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case usedSize
+        case totalSize
+    }
 
 }
 

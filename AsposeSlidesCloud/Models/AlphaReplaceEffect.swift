@@ -35,27 +35,38 @@ public class AlphaReplaceEffect: ImageTransformEffect {
     /** The new opacity value. */
     public var alpha: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case alpha
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let alphaValue = source["alpha"]
+        if alphaValue != nil {
+            self.alpha = alphaValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, alpha: Double? = nil) {
         super.init(type: type)
         self.alpha = alpha
+        self.type = ModelType.alphaReplace
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case alpha
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        alpha = try values.decode(Double?.self, forKey: .alpha)
+        alpha = try? values.decode(Double.self, forKey: .alpha)
+        self.type = ModelType.alphaReplace
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(alpha, forKey: .alpha)
+        if (alpha != nil) {
+            try? container.encode(alpha, forKey: .alpha)
+        }
     }
-
 
 }
 

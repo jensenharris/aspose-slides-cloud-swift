@@ -45,13 +45,32 @@ public class ProtectionProperties: ResourceBase {
     /** Returns true if the presentation protected for reading.  */
     public var isEncrypted: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case encryptDocumentProperties
-        case readOnlyRecommended
-        case readPassword
-        case writePassword
-        case isWriteProtected
-        case isEncrypted
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let encryptDocumentPropertiesValue = source["encryptDocumentProperties"]
+        if encryptDocumentPropertiesValue != nil {
+            self.encryptDocumentProperties = encryptDocumentPropertiesValue! as? Bool
+        }
+        let readOnlyRecommendedValue = source["readOnlyRecommended"]
+        if readOnlyRecommendedValue != nil {
+            self.readOnlyRecommended = readOnlyRecommendedValue! as? Bool
+        }
+        let readPasswordValue = source["readPassword"]
+        if readPasswordValue != nil {
+            self.readPassword = readPasswordValue! as? String
+        }
+        let writePasswordValue = source["writePassword"]
+        if writePasswordValue != nil {
+            self.writePassword = writePasswordValue! as? String
+        }
+        let isWriteProtectedValue = source["isWriteProtected"]
+        if isWriteProtectedValue != nil {
+            self.isWriteProtected = isWriteProtectedValue! as? Bool
+        }
+        let isEncryptedValue = source["isEncrypted"]
+        if isEncryptedValue != nil {
+            self.isEncrypted = isEncryptedValue! as? Bool
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, encryptDocumentProperties: Bool? = nil, readOnlyRecommended: Bool? = nil, readPassword: String? = nil, writePassword: String? = nil, isWriteProtected: Bool? = nil, isEncrypted: Bool? = nil) {
@@ -64,28 +83,48 @@ public class ProtectionProperties: ResourceBase {
         self.isEncrypted = isEncrypted
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case encryptDocumentProperties
+        case readOnlyRecommended
+        case readPassword
+        case writePassword
+        case isWriteProtected
+        case isEncrypted
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        encryptDocumentProperties = try values.decode(Bool?.self, forKey: .encryptDocumentProperties)
-        readOnlyRecommended = try values.decode(Bool?.self, forKey: .readOnlyRecommended)
-        readPassword = try values.decode(String?.self, forKey: .readPassword)
-        writePassword = try values.decode(String?.self, forKey: .writePassword)
-        isWriteProtected = try values.decode(Bool?.self, forKey: .isWriteProtected)
-        isEncrypted = try values.decode(Bool?.self, forKey: .isEncrypted)
+        encryptDocumentProperties = try? values.decode(Bool.self, forKey: .encryptDocumentProperties)
+        readOnlyRecommended = try? values.decode(Bool.self, forKey: .readOnlyRecommended)
+        readPassword = try? values.decode(String.self, forKey: .readPassword)
+        writePassword = try? values.decode(String.self, forKey: .writePassword)
+        isWriteProtected = try? values.decode(Bool.self, forKey: .isWriteProtected)
+        isEncrypted = try? values.decode(Bool.self, forKey: .isEncrypted)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(encryptDocumentProperties, forKey: .encryptDocumentProperties)
-        try container.encode(readOnlyRecommended, forKey: .readOnlyRecommended)
-        try container.encode(readPassword, forKey: .readPassword)
-        try container.encode(writePassword, forKey: .writePassword)
-        try container.encode(isWriteProtected, forKey: .isWriteProtected)
-        try container.encode(isEncrypted, forKey: .isEncrypted)
+        if (encryptDocumentProperties != nil) {
+            try? container.encode(encryptDocumentProperties, forKey: .encryptDocumentProperties)
+        }
+        if (readOnlyRecommended != nil) {
+            try? container.encode(readOnlyRecommended, forKey: .readOnlyRecommended)
+        }
+        if (readPassword != nil) {
+            try? container.encode(readPassword, forKey: .readPassword)
+        }
+        if (writePassword != nil) {
+            try? container.encode(writePassword, forKey: .writePassword)
+        }
+        if (isWriteProtected != nil) {
+            try? container.encode(isWriteProtected, forKey: .isWriteProtected)
+        }
+        if (isEncrypted != nil) {
+            try? container.encode(isEncrypted, forKey: .isEncrypted)
+        }
     }
-
 
 }
 

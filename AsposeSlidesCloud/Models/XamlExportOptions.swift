@@ -35,27 +35,38 @@ public class XamlExportOptions: ExportOptions {
     /** Export hidden slides */
     public var exportHiddenSlides: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case exportHiddenSlides
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let exportHiddenSlidesValue = source["exportHiddenSlides"]
+        if exportHiddenSlidesValue != nil {
+            self.exportHiddenSlides = exportHiddenSlidesValue! as? Bool
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
         super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
         self.exportHiddenSlides = exportHiddenSlides
+        self.format = "xaml"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case exportHiddenSlides
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        exportHiddenSlides = try values.decode(Bool?.self, forKey: .exportHiddenSlides)
+        exportHiddenSlides = try? values.decode(Bool.self, forKey: .exportHiddenSlides)
+        self.format = "xaml"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
+        if (exportHiddenSlides != nil) {
+            try? container.encode(exportHiddenSlides, forKey: .exportHiddenSlides)
+        }
     }
-
 
 }
 

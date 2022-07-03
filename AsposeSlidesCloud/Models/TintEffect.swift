@@ -37,31 +37,48 @@ public class TintEffect: ImageTransformEffect {
     /** Amount */
     public var amount: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case hue
-        case amount
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let hueValue = source["hue"]
+        if hueValue != nil {
+            self.hue = hueValue! as? Double
+        }
+        let amountValue = source["amount"]
+        if amountValue != nil {
+            self.amount = amountValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, hue: Double? = nil, amount: Double? = nil) {
         super.init(type: type)
         self.hue = hue
         self.amount = amount
+        self.type = ModelType.tint
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hue
+        case amount
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        hue = try values.decode(Double?.self, forKey: .hue)
-        amount = try values.decode(Double?.self, forKey: .amount)
+        hue = try? values.decode(Double.self, forKey: .hue)
+        amount = try? values.decode(Double.self, forKey: .amount)
+        self.type = ModelType.tint
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(hue, forKey: .hue)
-        try container.encode(amount, forKey: .amount)
+        if (hue != nil) {
+            try? container.encode(hue, forKey: .hue)
+        }
+        if (amount != nil) {
+            try? container.encode(amount, forKey: .amount)
+        }
     }
-
 
 }
 

@@ -110,13 +110,37 @@ public class Camera: Codable {
     /** ZRotation */
     public var zRotation: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case cameraType
-        case fieldOfViewAngle
-        case zoom
-        case xRotation
-        case yRotation
-        case zRotation
+    func fillValues(_ source: [String:Any]) throws {
+        let cameraTypeValue = source["cameraType"]
+        if cameraTypeValue != nil {
+            let cameraTypeStringValue = cameraTypeValue! as? String
+            if cameraTypeStringValue != nil {
+                let cameraTypeEnumValue = CameraType(rawValue: cameraTypeStringValue!)
+                if cameraTypeEnumValue != nil {
+                    self.cameraType = cameraTypeEnumValue!
+                }
+            }
+        }
+        let fieldOfViewAngleValue = source["fieldOfViewAngle"]
+        if fieldOfViewAngleValue != nil {
+            self.fieldOfViewAngle = fieldOfViewAngleValue! as? Double
+        }
+        let zoomValue = source["zoom"]
+        if zoomValue != nil {
+            self.zoom = zoomValue! as? Double
+        }
+        let xRotationValue = source["xRotation"]
+        if xRotationValue != nil {
+            self.xRotation = xRotationValue! as? Double
+        }
+        let yRotationValue = source["yRotation"]
+        if yRotationValue != nil {
+            self.yRotation = yRotationValue! as? Double
+        }
+        let zRotationValue = source["zRotation"]
+        if zRotationValue != nil {
+            self.zRotation = zRotationValue! as? Double
+        }
     }
 
     public init(cameraType: CameraType? = nil, fieldOfViewAngle: Double? = nil, zoom: Double? = nil, xRotation: Double? = nil, yRotation: Double? = nil, zRotation: Double? = nil) {
@@ -128,6 +152,14 @@ public class Camera: Codable {
         self.zRotation = zRotation
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case cameraType
+        case fieldOfViewAngle
+        case zoom
+        case xRotation
+        case yRotation
+        case zRotation
+    }
 
 }
 

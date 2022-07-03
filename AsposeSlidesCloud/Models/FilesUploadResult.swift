@@ -37,9 +37,36 @@ public class FilesUploadResult: Codable {
     /** List of errors. */
     public var errors: [ModelError]?
 
-    private enum CodingKeys: String, CodingKey {
-        case uploaded
-        case errors
+    func fillValues(_ source: [String:Any]) throws {
+        let uploadedValue = source["uploaded"]
+        if uploadedValue != nil {
+            self.uploaded = uploadedValue! as? [String]
+        }
+        let errorsValue = source["errors"]
+        if errorsValue != nil {
+            var errorsArray: [ModelError] = []
+            let errorsDictionaryValue = errorsValue! as? [Any]
+            if errorsDictionaryValue != nil {
+                errorsDictionaryValue!.forEach { errorsAnyItem in
+                    let errorsItem = errorsAnyItem as? [String:Any]
+                    var added = false
+                    if errorsItem != nil {
+                        let (errorsInstance, error) = ClassRegistry.getClassFromDictionary(ModelError.self, errorsItem!)
+                        if error == nil && errorsInstance != nil {
+                            let errorsArrayItem = errorsInstance! as? ModelError
+                            if errorsArrayItem != nil {
+                                errorsArray.append(errorsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        errorsArray.append(ModelError())
+                    }
+                }
+            }
+            self.errors = errorsArray
+        }
     }
 
     public init(uploaded: [String]? = nil, errors: [ModelError]? = nil) {
@@ -47,6 +74,10 @@ public class FilesUploadResult: Codable {
         self.errors = errors
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case uploaded
+        case errors
+    }
 
 }
 

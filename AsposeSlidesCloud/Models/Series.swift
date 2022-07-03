@@ -149,21 +149,99 @@ public class Series: Codable {
     public var lineFormat: LineFormat?
     public var dataPointType: DataPointType?
 
-    private enum CodingKeys: String, CodingKey {
-        case type
-        case name
-        case isColorVaried
-        case invertedSolidFillColor
-        case smooth
-        case plotOnSecondAxis
-        case order
-        case invertIfNegative
-        case explosion
-        case marker
-        case fillFormat
-        case effectFormat
-        case lineFormat
-        case dataPointType
+    func fillValues(_ source: [String:Any]) throws {
+        let typeValue = source["type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let isColorVariedValue = source["isColorVaried"]
+        if isColorVariedValue != nil {
+            self.isColorVaried = isColorVariedValue! as? Bool
+        }
+        let invertedSolidFillColorValue = source["invertedSolidFillColor"]
+        if invertedSolidFillColorValue != nil {
+            self.invertedSolidFillColor = invertedSolidFillColorValue! as? String
+        }
+        let smoothValue = source["smooth"]
+        if smoothValue != nil {
+            self.smooth = smoothValue! as? Bool
+        }
+        let plotOnSecondAxisValue = source["plotOnSecondAxis"]
+        if plotOnSecondAxisValue != nil {
+            self.plotOnSecondAxis = plotOnSecondAxisValue! as? Bool
+        }
+        let orderValue = source["order"]
+        if orderValue != nil {
+            self.order = orderValue! as? Int
+        }
+        let invertIfNegativeValue = source["invertIfNegative"]
+        if invertIfNegativeValue != nil {
+            self.invertIfNegative = invertIfNegativeValue! as? Bool
+        }
+        let explosionValue = source["explosion"]
+        if explosionValue != nil {
+            self.explosion = explosionValue! as? Int
+        }
+        let markerValue = source["marker"]
+        if markerValue != nil {
+            let markerDictionaryValue = markerValue! as? [String:Any]
+            if markerDictionaryValue != nil {
+                let (markerInstance, error) = ClassRegistry.getClassFromDictionary(SeriesMarker.self, markerDictionaryValue!)
+                if error == nil && markerInstance != nil {
+                    self.marker = markerInstance! as? SeriesMarker
+                }
+            }
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
+        let dataPointTypeValue = source["dataPointType"]
+        if dataPointTypeValue != nil {
+            let dataPointTypeStringValue = dataPointTypeValue! as? String
+            if dataPointTypeStringValue != nil {
+                let dataPointTypeEnumValue = DataPointType(rawValue: dataPointTypeStringValue!)
+                if dataPointTypeEnumValue != nil {
+                    self.dataPointType = dataPointTypeEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil) {
@@ -183,6 +261,22 @@ public class Series: Codable {
         self.dataPointType = dataPointType
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case name
+        case isColorVaried
+        case invertedSolidFillColor
+        case smooth
+        case plotOnSecondAxis
+        case order
+        case invertIfNegative
+        case explosion
+        case marker
+        case fillFormat
+        case effectFormat
+        case lineFormat
+        case dataPointType
+    }
 
 }
 

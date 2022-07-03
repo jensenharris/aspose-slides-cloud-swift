@@ -37,9 +37,15 @@ public class PresentationsMergeRequest: Codable {
     /** Gets or sets the presentation passwords. */
     public var presentationPasswords: [String]?
 
-    private enum CodingKeys: String, CodingKey {
-        case presentationPaths
-        case presentationPasswords
+    func fillValues(_ source: [String:Any]) throws {
+        let presentationPathsValue = source["presentationPaths"]
+        if presentationPathsValue != nil {
+            self.presentationPaths = presentationPathsValue! as? [String]
+        }
+        let presentationPasswordsValue = source["presentationPasswords"]
+        if presentationPasswordsValue != nil {
+            self.presentationPasswords = presentationPasswordsValue! as? [String]
+        }
     }
 
     public init(presentationPaths: [String]? = nil, presentationPasswords: [String]? = nil) {
@@ -47,6 +53,10 @@ public class PresentationsMergeRequest: Codable {
         self.presentationPasswords = presentationPasswords
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case presentationPaths
+        case presentationPasswords
+    }
 
 }
 

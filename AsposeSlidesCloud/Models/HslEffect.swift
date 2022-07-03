@@ -39,10 +39,20 @@ public class HslEffect: ImageTransformEffect {
     /** Luminance */
     public var luminance: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case hue
-        case saturation
-        case luminance
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let hueValue = source["hue"]
+        if hueValue != nil {
+            self.hue = hueValue! as? Double
+        }
+        let saturationValue = source["saturation"]
+        if saturationValue != nil {
+            self.saturation = saturationValue! as? Double
+        }
+        let luminanceValue = source["luminance"]
+        if luminanceValue != nil {
+            self.luminance = luminanceValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, hue: Double? = nil, saturation: Double? = nil, luminance: Double? = nil) {
@@ -50,24 +60,37 @@ public class HslEffect: ImageTransformEffect {
         self.hue = hue
         self.saturation = saturation
         self.luminance = luminance
+        self.type = ModelType.hsl
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hue
+        case saturation
+        case luminance
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        hue = try values.decode(Double?.self, forKey: .hue)
-        saturation = try values.decode(Double?.self, forKey: .saturation)
-        luminance = try values.decode(Double?.self, forKey: .luminance)
+        hue = try? values.decode(Double.self, forKey: .hue)
+        saturation = try? values.decode(Double.self, forKey: .saturation)
+        luminance = try? values.decode(Double.self, forKey: .luminance)
+        self.type = ModelType.hsl
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(hue, forKey: .hue)
-        try container.encode(saturation, forKey: .saturation)
-        try container.encode(luminance, forKey: .luminance)
+        if (hue != nil) {
+            try? container.encode(hue, forKey: .hue)
+        }
+        if (saturation != nil) {
+            try? container.encode(saturation, forKey: .saturation)
+        }
+        if (luminance != nil) {
+            try? container.encode(luminance, forKey: .luminance)
+        }
     }
-
 
 }
 

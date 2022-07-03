@@ -39,10 +39,32 @@ public class Shape: GeometryShape {
     /** Returns TextFrame&#39;s formatting properties. */
     public var textFrameFormat: TextFrameFormat?
 
-    private enum CodingKeys: String, CodingKey {
-        case text
-        case paragraphs
-        case textFrameFormat
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let textValue = source["text"]
+        if textValue != nil {
+            self.text = textValue! as? String
+        }
+        let paragraphsValue = source["paragraphs"]
+        if paragraphsValue != nil {
+            let paragraphsDictionaryValue = paragraphsValue! as? [String:Any]
+            if paragraphsDictionaryValue != nil {
+                let (paragraphsInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, paragraphsDictionaryValue!)
+                if error == nil && paragraphsInstance != nil {
+                    self.paragraphs = paragraphsInstance! as? ResourceUri
+                }
+            }
+        }
+        let textFrameFormatValue = source["textFrameFormat"]
+        if textFrameFormatValue != nil {
+            let textFrameFormatDictionaryValue = textFrameFormatValue! as? [String:Any]
+            if textFrameFormatDictionaryValue != nil {
+                let (textFrameFormatInstance, error) = ClassRegistry.getClassFromDictionary(TextFrameFormat.self, textFrameFormatDictionaryValue!)
+                if error == nil && textFrameFormatInstance != nil {
+                    self.textFrameFormat = textFrameFormatInstance! as? TextFrameFormat
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, text: String? = nil, paragraphs: ResourceUri? = nil, textFrameFormat: TextFrameFormat? = nil) {
@@ -50,24 +72,37 @@ public class Shape: GeometryShape {
         self.text = text
         self.paragraphs = paragraphs
         self.textFrameFormat = textFrameFormat
+        self.type = ModelType.shape
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case text
+        case paragraphs
+        case textFrameFormat
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        text = try values.decode(String?.self, forKey: .text)
-        paragraphs = try values.decode(ResourceUri?.self, forKey: .paragraphs)
-        textFrameFormat = try values.decode(TextFrameFormat?.self, forKey: .textFrameFormat)
+        text = try? values.decode(String.self, forKey: .text)
+        paragraphs = try? values.decode(ResourceUri.self, forKey: .paragraphs)
+        textFrameFormat = try? values.decode(TextFrameFormat.self, forKey: .textFrameFormat)
+        self.type = ModelType.shape
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(text, forKey: .text)
-        try container.encode(paragraphs, forKey: .paragraphs)
-        try container.encode(textFrameFormat, forKey: .textFrameFormat)
+        if (text != nil) {
+            try? container.encode(text, forKey: .text)
+        }
+        if (paragraphs != nil) {
+            try? container.encode(paragraphs, forKey: .paragraphs)
+        }
+        if (textFrameFormat != nil) {
+            try? container.encode(textFrameFormat, forKey: .textFrameFormat)
+        }
     }
-
 
 }
 

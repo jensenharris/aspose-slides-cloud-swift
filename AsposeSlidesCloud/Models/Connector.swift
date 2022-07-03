@@ -41,11 +41,36 @@ public class Connector: GeometryShape {
     /** End shape index. */
     public var endShapeConnectedToIndex: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case startShapeConnectedTo
-        case startShapeConnectedToIndex
-        case endShapeConnectedTo
-        case endShapeConnectedToIndex
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let startShapeConnectedToValue = source["startShapeConnectedTo"]
+        if startShapeConnectedToValue != nil {
+            let startShapeConnectedToDictionaryValue = startShapeConnectedToValue! as? [String:Any]
+            if startShapeConnectedToDictionaryValue != nil {
+                let (startShapeConnectedToInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, startShapeConnectedToDictionaryValue!)
+                if error == nil && startShapeConnectedToInstance != nil {
+                    self.startShapeConnectedTo = startShapeConnectedToInstance! as? ResourceUri
+                }
+            }
+        }
+        let startShapeConnectedToIndexValue = source["startShapeConnectedToIndex"]
+        if startShapeConnectedToIndexValue != nil {
+            self.startShapeConnectedToIndex = startShapeConnectedToIndexValue! as? Int
+        }
+        let endShapeConnectedToValue = source["endShapeConnectedTo"]
+        if endShapeConnectedToValue != nil {
+            let endShapeConnectedToDictionaryValue = endShapeConnectedToValue! as? [String:Any]
+            if endShapeConnectedToDictionaryValue != nil {
+                let (endShapeConnectedToInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, endShapeConnectedToDictionaryValue!)
+                if error == nil && endShapeConnectedToInstance != nil {
+                    self.endShapeConnectedTo = endShapeConnectedToInstance! as? ResourceUri
+                }
+            }
+        }
+        let endShapeConnectedToIndexValue = source["endShapeConnectedToIndex"]
+        if endShapeConnectedToIndexValue != nil {
+            self.endShapeConnectedToIndex = endShapeConnectedToIndexValue! as? Int
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, startShapeConnectedTo: ResourceUri? = nil, startShapeConnectedToIndex: Int? = nil, endShapeConnectedTo: ResourceUri? = nil, endShapeConnectedToIndex: Int? = nil) {
@@ -54,26 +79,42 @@ public class Connector: GeometryShape {
         self.startShapeConnectedToIndex = startShapeConnectedToIndex
         self.endShapeConnectedTo = endShapeConnectedTo
         self.endShapeConnectedToIndex = endShapeConnectedToIndex
+        self.type = ModelType.connector
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case startShapeConnectedTo
+        case startShapeConnectedToIndex
+        case endShapeConnectedTo
+        case endShapeConnectedToIndex
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        startShapeConnectedTo = try values.decode(ResourceUri?.self, forKey: .startShapeConnectedTo)
-        startShapeConnectedToIndex = try values.decode(Int?.self, forKey: .startShapeConnectedToIndex)
-        endShapeConnectedTo = try values.decode(ResourceUri?.self, forKey: .endShapeConnectedTo)
-        endShapeConnectedToIndex = try values.decode(Int?.self, forKey: .endShapeConnectedToIndex)
+        startShapeConnectedTo = try? values.decode(ResourceUri.self, forKey: .startShapeConnectedTo)
+        startShapeConnectedToIndex = try? values.decode(Int.self, forKey: .startShapeConnectedToIndex)
+        endShapeConnectedTo = try? values.decode(ResourceUri.self, forKey: .endShapeConnectedTo)
+        endShapeConnectedToIndex = try? values.decode(Int.self, forKey: .endShapeConnectedToIndex)
+        self.type = ModelType.connector
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(startShapeConnectedTo, forKey: .startShapeConnectedTo)
-        try container.encode(startShapeConnectedToIndex, forKey: .startShapeConnectedToIndex)
-        try container.encode(endShapeConnectedTo, forKey: .endShapeConnectedTo)
-        try container.encode(endShapeConnectedToIndex, forKey: .endShapeConnectedToIndex)
+        if (startShapeConnectedTo != nil) {
+            try? container.encode(startShapeConnectedTo, forKey: .startShapeConnectedTo)
+        }
+        if (startShapeConnectedToIndex != nil) {
+            try? container.encode(startShapeConnectedToIndex, forKey: .startShapeConnectedToIndex)
+        }
+        if (endShapeConnectedTo != nil) {
+            try? container.encode(endShapeConnectedTo, forKey: .endShapeConnectedTo)
+        }
+        if (endShapeConnectedToIndex != nil) {
+            try? container.encode(endShapeConnectedToIndex, forKey: .endShapeConnectedToIndex)
+        }
     }
-
 
 }
 

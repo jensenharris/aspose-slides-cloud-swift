@@ -37,31 +37,48 @@ public class DuotoneEffect: ImageTransformEffect {
     /** Returns target color format for light pixels. */
     public var color2: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case color1
-        case color2
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let color1Value = source["color1"]
+        if color1Value != nil {
+            self.color1 = color1Value! as? String
+        }
+        let color2Value = source["color2"]
+        if color2Value != nil {
+            self.color2 = color2Value! as? String
+        }
     }
 
     public init(type: ModelType? = nil, color1: String? = nil, color2: String? = nil) {
         super.init(type: type)
         self.color1 = color1
         self.color2 = color2
+        self.type = ModelType.duotone
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case color1
+        case color2
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        color1 = try values.decode(String?.self, forKey: .color1)
-        color2 = try values.decode(String?.self, forKey: .color2)
+        color1 = try? values.decode(String.self, forKey: .color1)
+        color2 = try? values.decode(String.self, forKey: .color2)
+        self.type = ModelType.duotone
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(color1, forKey: .color1)
-        try container.encode(color2, forKey: .color2)
+        if (color1 != nil) {
+            try? container.encode(color1, forKey: .color1)
+        }
+        if (color2 != nil) {
+            try? container.encode(color2, forKey: .color2)
+        }
     }
-
 
 }
 

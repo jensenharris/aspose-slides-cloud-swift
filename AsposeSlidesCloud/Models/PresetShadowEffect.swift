@@ -63,11 +63,29 @@ public class PresetShadowEffect: Codable {
     /** shadow color */
     public var shadowColor: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case direction
-        case distance
-        case preset
-        case shadowColor
+    func fillValues(_ source: [String:Any]) throws {
+        let directionValue = source["direction"]
+        if directionValue != nil {
+            self.direction = directionValue! as? Double
+        }
+        let distanceValue = source["distance"]
+        if distanceValue != nil {
+            self.distance = distanceValue! as? Double
+        }
+        let presetValue = source["preset"]
+        if presetValue != nil {
+            let presetStringValue = presetValue! as? String
+            if presetStringValue != nil {
+                let presetEnumValue = Preset(rawValue: presetStringValue!)
+                if presetEnumValue != nil {
+                    self.preset = presetEnumValue!
+                }
+            }
+        }
+        let shadowColorValue = source["shadowColor"]
+        if shadowColorValue != nil {
+            self.shadowColor = shadowColorValue! as? String
+        }
     }
 
     public init(direction: Double? = nil, distance: Double? = nil, preset: Preset? = nil, shadowColor: String? = nil) {
@@ -77,6 +95,12 @@ public class PresetShadowEffect: Codable {
         self.shadowColor = shadowColor
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case direction
+        case distance
+        case preset
+        case shadowColor
+    }
 
 }
 

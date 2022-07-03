@@ -37,31 +37,48 @@ public class LineToPathSegment: PathSegment {
     /** Y coordinate of the end point of the line */
     public var Y: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case X
-        case Y
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let XValue = source["X"]
+        if XValue != nil {
+            self.X = XValue! as? Double
+        }
+        let YValue = source["Y"]
+        if YValue != nil {
+            self.Y = YValue! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, X: Double? = nil, Y: Double? = nil) {
         super.init(type: type)
         self.X = X
         self.Y = Y
+        self.type = ModelType.lineTo
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case X
+        case Y
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        X = try values.decode(Double?.self, forKey: .X)
-        Y = try values.decode(Double?.self, forKey: .Y)
+        X = try? values.decode(Double.self, forKey: .X)
+        Y = try? values.decode(Double.self, forKey: .Y)
+        self.type = ModelType.lineTo
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(X, forKey: .X)
-        try container.encode(Y, forKey: .Y)
+        if (X != nil) {
+            try? container.encode(X, forKey: .X)
+        }
+        if (Y != nil) {
+            try? container.encode(Y, forKey: .Y)
+        }
     }
-
 
 }
 

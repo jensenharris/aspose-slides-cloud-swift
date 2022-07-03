@@ -37,9 +37,42 @@ public class Pipeline: Codable {
     /** Get or sets list of tasks representing pipeline. */
     public var tasks: [Task]?
 
-    private enum CodingKeys: String, CodingKey {
-        case input
-        case tasks
+    func fillValues(_ source: [String:Any]) throws {
+        let inputValue = source["input"]
+        if inputValue != nil {
+            let inputDictionaryValue = inputValue! as? [String:Any]
+            if inputDictionaryValue != nil {
+                let (inputInstance, error) = ClassRegistry.getClassFromDictionary(Input.self, inputDictionaryValue!)
+                if error == nil && inputInstance != nil {
+                    self.input = inputInstance! as? Input
+                }
+            }
+        }
+        let tasksValue = source["tasks"]
+        if tasksValue != nil {
+            var tasksArray: [Task] = []
+            let tasksDictionaryValue = tasksValue! as? [Any]
+            if tasksDictionaryValue != nil {
+                tasksDictionaryValue!.forEach { tasksAnyItem in
+                    let tasksItem = tasksAnyItem as? [String:Any]
+                    var added = false
+                    if tasksItem != nil {
+                        let (tasksInstance, error) = ClassRegistry.getClassFromDictionary(Task.self, tasksItem!)
+                        if error == nil && tasksInstance != nil {
+                            let tasksArrayItem = tasksInstance! as? Task
+                            if tasksArrayItem != nil {
+                                tasksArray.append(tasksArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        tasksArray.append(Task())
+                    }
+                }
+            }
+            self.tasks = tasksArray
+        }
     }
 
     public init(input: Input? = nil, tasks: [Task]? = nil) {
@@ -47,6 +80,10 @@ public class Pipeline: Codable {
         self.tasks = tasks
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case input
+        case tasks
+    }
 
 }
 

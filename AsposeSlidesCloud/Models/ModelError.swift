@@ -41,11 +41,29 @@ public class ModelError: Codable {
     /** Inner Error              */
     public var innerError: ErrorDetails?
 
-    private enum CodingKeys: String, CodingKey {
-        case code
-        case message
-        case description
-        case innerError
+    func fillValues(_ source: [String:Any]) throws {
+        let codeValue = source["code"]
+        if codeValue != nil {
+            self.code = codeValue! as? String
+        }
+        let messageValue = source["message"]
+        if messageValue != nil {
+            self.message = messageValue! as? String
+        }
+        let descriptionValue = source["description"]
+        if descriptionValue != nil {
+            self.description = descriptionValue! as? String
+        }
+        let innerErrorValue = source["innerError"]
+        if innerErrorValue != nil {
+            let innerErrorDictionaryValue = innerErrorValue! as? [String:Any]
+            if innerErrorDictionaryValue != nil {
+                let (innerErrorInstance, error) = ClassRegistry.getClassFromDictionary(ErrorDetails.self, innerErrorDictionaryValue!)
+                if error == nil && innerErrorInstance != nil {
+                    self.innerError = innerErrorInstance! as? ErrorDetails
+                }
+            }
+        }
     }
 
     public init(code: String? = nil, message: String? = nil, description: String? = nil, innerError: ErrorDetails? = nil) {
@@ -55,6 +73,12 @@ public class ModelError: Codable {
         self.innerError = innerError
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case code
+        case message
+        case description
+        case innerError
+    }
 
 }
 

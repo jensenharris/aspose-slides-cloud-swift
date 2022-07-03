@@ -47,14 +47,74 @@ public class ChartCategory: Codable {
     /** Gets or sets the data points for chart data */
     public var dataPoints: [OneValueChartDataPoint]?
 
-    private enum CodingKeys: String, CodingKey {
-        case parentCategories
-        case level
-        case value
-        case fillFormat
-        case effectFormat
-        case lineFormat
-        case dataPoints
+    func fillValues(_ source: [String:Any]) throws {
+        let parentCategoriesValue = source["parentCategories"]
+        if parentCategoriesValue != nil {
+            self.parentCategories = parentCategoriesValue! as? [String]
+        }
+        let levelValue = source["level"]
+        if levelValue != nil {
+            self.level = levelValue! as? Int
+        }
+        let valueValue = source["value"]
+        if valueValue != nil {
+            self.value = valueValue! as? String
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
+        let dataPointsValue = source["dataPoints"]
+        if dataPointsValue != nil {
+            var dataPointsArray: [OneValueChartDataPoint] = []
+            let dataPointsDictionaryValue = dataPointsValue! as? [Any]
+            if dataPointsDictionaryValue != nil {
+                dataPointsDictionaryValue!.forEach { dataPointsAnyItem in
+                    let dataPointsItem = dataPointsAnyItem as? [String:Any]
+                    var added = false
+                    if dataPointsItem != nil {
+                        let (dataPointsInstance, error) = ClassRegistry.getClassFromDictionary(OneValueChartDataPoint.self, dataPointsItem!)
+                        if error == nil && dataPointsInstance != nil {
+                            let dataPointsArrayItem = dataPointsInstance! as? OneValueChartDataPoint
+                            if dataPointsArrayItem != nil {
+                                dataPointsArray.append(dataPointsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        dataPointsArray.append(OneValueChartDataPoint())
+                    }
+                }
+            }
+            self.dataPoints = dataPointsArray
+        }
     }
 
     public init(parentCategories: [String]? = nil, level: Int? = nil, value: String? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPoints: [OneValueChartDataPoint]? = nil) {
@@ -67,6 +127,15 @@ public class ChartCategory: Codable {
         self.dataPoints = dataPoints
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case parentCategories
+        case level
+        case value
+        case fillFormat
+        case effectFormat
+        case lineFormat
+        case dataPoints
+    }
 
 }
 

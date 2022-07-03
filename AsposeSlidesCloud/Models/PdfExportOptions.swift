@@ -91,26 +91,114 @@ public class PdfExportOptions: ExportOptions {
     /** Access permissions that should be granted when the document is opened with user access.  Default is AccessPermissions.None.              */
     public var accessPermissions: AccessPermissions?
 
-    private enum CodingKeys: String, CodingKey {
-        case textCompression
-        case embedFullFonts
-        case compliance
-        case sufficientResolution
-        case jpegQuality
-        case drawSlidesFrame
-        case showHiddenSlides
-        case saveMetafilesAsPng
-        case password
-        case embedTrueTypeFontsForASCII
-        case additionalCommonFontFamilies
-        case notesPosition
-        case commentsPosition
-        case commentsAreaWidth
-        case commentsAreaColor
-        case showCommentsByNoAuthor
-        case imageTransparentColor
-        case applyImageTransparent
-        case accessPermissions
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let textCompressionValue = source["textCompression"]
+        if textCompressionValue != nil {
+            let textCompressionStringValue = textCompressionValue! as? String
+            if textCompressionStringValue != nil {
+                let textCompressionEnumValue = TextCompression(rawValue: textCompressionStringValue!)
+                if textCompressionEnumValue != nil {
+                    self.textCompression = textCompressionEnumValue!
+                }
+            }
+        }
+        let embedFullFontsValue = source["embedFullFonts"]
+        if embedFullFontsValue != nil {
+            self.embedFullFonts = embedFullFontsValue! as? Bool
+        }
+        let complianceValue = source["compliance"]
+        if complianceValue != nil {
+            let complianceStringValue = complianceValue! as? String
+            if complianceStringValue != nil {
+                let complianceEnumValue = Compliance(rawValue: complianceStringValue!)
+                if complianceEnumValue != nil {
+                    self.compliance = complianceEnumValue!
+                }
+            }
+        }
+        let sufficientResolutionValue = source["sufficientResolution"]
+        if sufficientResolutionValue != nil {
+            self.sufficientResolution = sufficientResolutionValue! as? Double
+        }
+        let jpegQualityValue = source["jpegQuality"]
+        if jpegQualityValue != nil {
+            self.jpegQuality = jpegQualityValue! as? Int
+        }
+        let drawSlidesFrameValue = source["drawSlidesFrame"]
+        if drawSlidesFrameValue != nil {
+            self.drawSlidesFrame = drawSlidesFrameValue! as? Bool
+        }
+        let showHiddenSlidesValue = source["showHiddenSlides"]
+        if showHiddenSlidesValue != nil {
+            self.showHiddenSlides = showHiddenSlidesValue! as? Bool
+        }
+        let saveMetafilesAsPngValue = source["saveMetafilesAsPng"]
+        if saveMetafilesAsPngValue != nil {
+            self.saveMetafilesAsPng = saveMetafilesAsPngValue! as? Bool
+        }
+        let passwordValue = source["password"]
+        if passwordValue != nil {
+            self.password = passwordValue! as? String
+        }
+        let embedTrueTypeFontsForASCIIValue = source["embedTrueTypeFontsForASCII"]
+        if embedTrueTypeFontsForASCIIValue != nil {
+            self.embedTrueTypeFontsForASCII = embedTrueTypeFontsForASCIIValue! as? Bool
+        }
+        let additionalCommonFontFamiliesValue = source["additionalCommonFontFamilies"]
+        if additionalCommonFontFamiliesValue != nil {
+            self.additionalCommonFontFamilies = additionalCommonFontFamiliesValue! as? [String]
+        }
+        let notesPositionValue = source["notesPosition"]
+        if notesPositionValue != nil {
+            let notesPositionStringValue = notesPositionValue! as? String
+            if notesPositionStringValue != nil {
+                let notesPositionEnumValue = NotesPosition(rawValue: notesPositionStringValue!)
+                if notesPositionEnumValue != nil {
+                    self.notesPosition = notesPositionEnumValue!
+                }
+            }
+        }
+        let commentsPositionValue = source["commentsPosition"]
+        if commentsPositionValue != nil {
+            let commentsPositionStringValue = commentsPositionValue! as? String
+            if commentsPositionStringValue != nil {
+                let commentsPositionEnumValue = CommentsPosition(rawValue: commentsPositionStringValue!)
+                if commentsPositionEnumValue != nil {
+                    self.commentsPosition = commentsPositionEnumValue!
+                }
+            }
+        }
+        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        if commentsAreaWidthValue != nil {
+            self.commentsAreaWidth = commentsAreaWidthValue! as? Int
+        }
+        let commentsAreaColorValue = source["commentsAreaColor"]
+        if commentsAreaColorValue != nil {
+            self.commentsAreaColor = commentsAreaColorValue! as? String
+        }
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        if showCommentsByNoAuthorValue != nil {
+            self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
+        }
+        let imageTransparentColorValue = source["imageTransparentColor"]
+        if imageTransparentColorValue != nil {
+            self.imageTransparentColor = imageTransparentColorValue! as? String
+        }
+        let applyImageTransparentValue = source["applyImageTransparent"]
+        if applyImageTransparentValue != nil {
+            self.applyImageTransparent = applyImageTransparentValue! as? Bool
+        }
+        let accessPermissionsValue = source["accessPermissions"]
+        if accessPermissionsValue != nil {
+            let accessPermissionsDictionaryValue = accessPermissionsValue! as? [String:Any]
+            if accessPermissionsDictionaryValue != nil {
+                let (accessPermissionsInstance, error) = ClassRegistry.getClassFromDictionary(AccessPermissions.self, accessPermissionsDictionaryValue!)
+                if error == nil && accessPermissionsInstance != nil {
+                    self.accessPermissions = accessPermissionsInstance! as? AccessPermissions
+                }
+            }
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, textCompression: TextCompression? = nil, embedFullFonts: Bool? = nil, compliance: Compliance? = nil, sufficientResolution: Double? = nil, jpegQuality: Int? = nil, drawSlidesFrame: Bool? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, password: String? = nil, embedTrueTypeFontsForASCII: Bool? = nil, additionalCommonFontFamilies: [String]? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil, imageTransparentColor: String? = nil, applyImageTransparent: Bool? = nil, accessPermissions: AccessPermissions? = nil) {
@@ -134,56 +222,117 @@ public class PdfExportOptions: ExportOptions {
         self.imageTransparentColor = imageTransparentColor
         self.applyImageTransparent = applyImageTransparent
         self.accessPermissions = accessPermissions
+        self.format = "pdf"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case textCompression
+        case embedFullFonts
+        case compliance
+        case sufficientResolution
+        case jpegQuality
+        case drawSlidesFrame
+        case showHiddenSlides
+        case saveMetafilesAsPng
+        case password
+        case embedTrueTypeFontsForASCII
+        case additionalCommonFontFamilies
+        case notesPosition
+        case commentsPosition
+        case commentsAreaWidth
+        case commentsAreaColor
+        case showCommentsByNoAuthor
+        case imageTransparentColor
+        case applyImageTransparent
+        case accessPermissions
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        textCompression = try values.decode(TextCompression?.self, forKey: .textCompression)
-        embedFullFonts = try values.decode(Bool?.self, forKey: .embedFullFonts)
-        compliance = try values.decode(Compliance?.self, forKey: .compliance)
-        sufficientResolution = try values.decode(Double?.self, forKey: .sufficientResolution)
-        jpegQuality = try values.decode(Int?.self, forKey: .jpegQuality)
-        drawSlidesFrame = try values.decode(Bool?.self, forKey: .drawSlidesFrame)
-        showHiddenSlides = try values.decode(Bool?.self, forKey: .showHiddenSlides)
-        saveMetafilesAsPng = try values.decode(Bool?.self, forKey: .saveMetafilesAsPng)
-        password = try values.decode(String?.self, forKey: .password)
-        embedTrueTypeFontsForASCII = try values.decode(Bool?.self, forKey: .embedTrueTypeFontsForASCII)
-        additionalCommonFontFamilies = try values.decode([String]?.self, forKey: .additionalCommonFontFamilies)
-        notesPosition = try values.decode(NotesPosition?.self, forKey: .notesPosition)
-        commentsPosition = try values.decode(CommentsPosition?.self, forKey: .commentsPosition)
-        commentsAreaWidth = try values.decode(Int?.self, forKey: .commentsAreaWidth)
-        commentsAreaColor = try values.decode(String?.self, forKey: .commentsAreaColor)
-        showCommentsByNoAuthor = try values.decode(Bool?.self, forKey: .showCommentsByNoAuthor)
-        imageTransparentColor = try values.decode(String?.self, forKey: .imageTransparentColor)
-        applyImageTransparent = try values.decode(Bool?.self, forKey: .applyImageTransparent)
-        accessPermissions = try values.decode(AccessPermissions?.self, forKey: .accessPermissions)
+        textCompression = try? values.decode(TextCompression.self, forKey: .textCompression)
+        embedFullFonts = try? values.decode(Bool.self, forKey: .embedFullFonts)
+        compliance = try? values.decode(Compliance.self, forKey: .compliance)
+        sufficientResolution = try? values.decode(Double.self, forKey: .sufficientResolution)
+        jpegQuality = try? values.decode(Int.self, forKey: .jpegQuality)
+        drawSlidesFrame = try? values.decode(Bool.self, forKey: .drawSlidesFrame)
+        showHiddenSlides = try? values.decode(Bool.self, forKey: .showHiddenSlides)
+        saveMetafilesAsPng = try? values.decode(Bool.self, forKey: .saveMetafilesAsPng)
+        password = try? values.decode(String.self, forKey: .password)
+        embedTrueTypeFontsForASCII = try? values.decode(Bool.self, forKey: .embedTrueTypeFontsForASCII)
+        additionalCommonFontFamilies = try? values.decode([String].self, forKey: .additionalCommonFontFamilies)
+        notesPosition = try? values.decode(NotesPosition.self, forKey: .notesPosition)
+        commentsPosition = try? values.decode(CommentsPosition.self, forKey: .commentsPosition)
+        commentsAreaWidth = try? values.decode(Int.self, forKey: .commentsAreaWidth)
+        commentsAreaColor = try? values.decode(String.self, forKey: .commentsAreaColor)
+        showCommentsByNoAuthor = try? values.decode(Bool.self, forKey: .showCommentsByNoAuthor)
+        imageTransparentColor = try? values.decode(String.self, forKey: .imageTransparentColor)
+        applyImageTransparent = try? values.decode(Bool.self, forKey: .applyImageTransparent)
+        accessPermissions = try? values.decode(AccessPermissions.self, forKey: .accessPermissions)
+        self.format = "pdf"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(textCompression, forKey: .textCompression)
-        try container.encode(embedFullFonts, forKey: .embedFullFonts)
-        try container.encode(compliance, forKey: .compliance)
-        try container.encode(sufficientResolution, forKey: .sufficientResolution)
-        try container.encode(jpegQuality, forKey: .jpegQuality)
-        try container.encode(drawSlidesFrame, forKey: .drawSlidesFrame)
-        try container.encode(showHiddenSlides, forKey: .showHiddenSlides)
-        try container.encode(saveMetafilesAsPng, forKey: .saveMetafilesAsPng)
-        try container.encode(password, forKey: .password)
-        try container.encode(embedTrueTypeFontsForASCII, forKey: .embedTrueTypeFontsForASCII)
-        try container.encode(additionalCommonFontFamilies, forKey: .additionalCommonFontFamilies)
-        try container.encode(notesPosition, forKey: .notesPosition)
-        try container.encode(commentsPosition, forKey: .commentsPosition)
-        try container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
-        try container.encode(commentsAreaColor, forKey: .commentsAreaColor)
-        try container.encode(showCommentsByNoAuthor, forKey: .showCommentsByNoAuthor)
-        try container.encode(imageTransparentColor, forKey: .imageTransparentColor)
-        try container.encode(applyImageTransparent, forKey: .applyImageTransparent)
-        try container.encode(accessPermissions, forKey: .accessPermissions)
+        if (textCompression != nil) {
+            try? container.encode(textCompression, forKey: .textCompression)
+        }
+        if (embedFullFonts != nil) {
+            try? container.encode(embedFullFonts, forKey: .embedFullFonts)
+        }
+        if (compliance != nil) {
+            try? container.encode(compliance, forKey: .compliance)
+        }
+        if (sufficientResolution != nil) {
+            try? container.encode(sufficientResolution, forKey: .sufficientResolution)
+        }
+        if (jpegQuality != nil) {
+            try? container.encode(jpegQuality, forKey: .jpegQuality)
+        }
+        if (drawSlidesFrame != nil) {
+            try? container.encode(drawSlidesFrame, forKey: .drawSlidesFrame)
+        }
+        if (showHiddenSlides != nil) {
+            try? container.encode(showHiddenSlides, forKey: .showHiddenSlides)
+        }
+        if (saveMetafilesAsPng != nil) {
+            try? container.encode(saveMetafilesAsPng, forKey: .saveMetafilesAsPng)
+        }
+        if (password != nil) {
+            try? container.encode(password, forKey: .password)
+        }
+        if (embedTrueTypeFontsForASCII != nil) {
+            try? container.encode(embedTrueTypeFontsForASCII, forKey: .embedTrueTypeFontsForASCII)
+        }
+        if (additionalCommonFontFamilies != nil) {
+            try? container.encode(additionalCommonFontFamilies, forKey: .additionalCommonFontFamilies)
+        }
+        if (notesPosition != nil) {
+            try? container.encode(notesPosition, forKey: .notesPosition)
+        }
+        if (commentsPosition != nil) {
+            try? container.encode(commentsPosition, forKey: .commentsPosition)
+        }
+        if (commentsAreaWidth != nil) {
+            try? container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
+        }
+        if (commentsAreaColor != nil) {
+            try? container.encode(commentsAreaColor, forKey: .commentsAreaColor)
+        }
+        if (showCommentsByNoAuthor != nil) {
+            try? container.encode(showCommentsByNoAuthor, forKey: .showCommentsByNoAuthor)
+        }
+        if (imageTransparentColor != nil) {
+            try? container.encode(imageTransparentColor, forKey: .imageTransparentColor)
+        }
+        if (applyImageTransparent != nil) {
+            try? container.encode(applyImageTransparent, forKey: .applyImageTransparent)
+        }
+        if (accessPermissions != nil) {
+            try? container.encode(accessPermissions, forKey: .accessPermissions)
+        }
     }
-
 
 }
 

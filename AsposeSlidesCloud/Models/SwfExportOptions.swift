@@ -83,27 +83,100 @@ public class SwfExportOptions: ExportOptions {
     /** True if comments that have no author are displayed. (Applies only if comments are displayed). */
     public var showCommentsByNoAuthor: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case showHiddenSlides
-        case compressed
-        case viewerIncluded
-        case showPageBorder
-        case showFullScreen
-        case showPageStepper
-        case showSearch
-        case showTopPane
-        case showBottomPane
-        case showLeftPane
-        case startOpenLeftPane
-        case enableContextMenu
-        case logoImage
-        case logoLink
-        case jpegQuality
-        case notesPosition
-        case commentsPosition
-        case commentsAreaWidth
-        case commentsAreaColor
-        case showCommentsByNoAuthor
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let showHiddenSlidesValue = source["showHiddenSlides"]
+        if showHiddenSlidesValue != nil {
+            self.showHiddenSlides = showHiddenSlidesValue! as? Bool
+        }
+        let compressedValue = source["compressed"]
+        if compressedValue != nil {
+            self.compressed = compressedValue! as? Bool
+        }
+        let viewerIncludedValue = source["viewerIncluded"]
+        if viewerIncludedValue != nil {
+            self.viewerIncluded = viewerIncludedValue! as? Bool
+        }
+        let showPageBorderValue = source["showPageBorder"]
+        if showPageBorderValue != nil {
+            self.showPageBorder = showPageBorderValue! as? Bool
+        }
+        let showFullScreenValue = source["showFullScreen"]
+        if showFullScreenValue != nil {
+            self.showFullScreen = showFullScreenValue! as? Bool
+        }
+        let showPageStepperValue = source["showPageStepper"]
+        if showPageStepperValue != nil {
+            self.showPageStepper = showPageStepperValue! as? Bool
+        }
+        let showSearchValue = source["showSearch"]
+        if showSearchValue != nil {
+            self.showSearch = showSearchValue! as? Bool
+        }
+        let showTopPaneValue = source["showTopPane"]
+        if showTopPaneValue != nil {
+            self.showTopPane = showTopPaneValue! as? Bool
+        }
+        let showBottomPaneValue = source["showBottomPane"]
+        if showBottomPaneValue != nil {
+            self.showBottomPane = showBottomPaneValue! as? Bool
+        }
+        let showLeftPaneValue = source["showLeftPane"]
+        if showLeftPaneValue != nil {
+            self.showLeftPane = showLeftPaneValue! as? Bool
+        }
+        let startOpenLeftPaneValue = source["startOpenLeftPane"]
+        if startOpenLeftPaneValue != nil {
+            self.startOpenLeftPane = startOpenLeftPaneValue! as? Bool
+        }
+        let enableContextMenuValue = source["enableContextMenu"]
+        if enableContextMenuValue != nil {
+            self.enableContextMenu = enableContextMenuValue! as? Bool
+        }
+        let logoImageValue = source["logoImage"]
+        if logoImageValue != nil {
+            self.logoImage = logoImageValue! as? String
+        }
+        let logoLinkValue = source["logoLink"]
+        if logoLinkValue != nil {
+            self.logoLink = logoLinkValue! as? String
+        }
+        let jpegQualityValue = source["jpegQuality"]
+        if jpegQualityValue != nil {
+            self.jpegQuality = jpegQualityValue! as? Int
+        }
+        let notesPositionValue = source["notesPosition"]
+        if notesPositionValue != nil {
+            let notesPositionStringValue = notesPositionValue! as? String
+            if notesPositionStringValue != nil {
+                let notesPositionEnumValue = NotesPosition(rawValue: notesPositionStringValue!)
+                if notesPositionEnumValue != nil {
+                    self.notesPosition = notesPositionEnumValue!
+                }
+            }
+        }
+        let commentsPositionValue = source["commentsPosition"]
+        if commentsPositionValue != nil {
+            let commentsPositionStringValue = commentsPositionValue! as? String
+            if commentsPositionStringValue != nil {
+                let commentsPositionEnumValue = CommentsPosition(rawValue: commentsPositionStringValue!)
+                if commentsPositionEnumValue != nil {
+                    self.commentsPosition = commentsPositionEnumValue!
+                }
+            }
+        }
+        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        if commentsAreaWidthValue != nil {
+            self.commentsAreaWidth = commentsAreaWidthValue! as? Int
+        }
+        let commentsAreaColorValue = source["commentsAreaColor"]
+        if commentsAreaColorValue != nil {
+            self.commentsAreaColor = commentsAreaColorValue! as? String
+        }
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        if showCommentsByNoAuthorValue != nil {
+            self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, compressed: Bool? = nil, viewerIncluded: Bool? = nil, showPageBorder: Bool? = nil, showFullScreen: Bool? = nil, showPageStepper: Bool? = nil, showSearch: Bool? = nil, showTopPane: Bool? = nil, showBottomPane: Bool? = nil, showLeftPane: Bool? = nil, startOpenLeftPane: Bool? = nil, enableContextMenu: Bool? = nil, logoImage: String? = nil, logoLink: String? = nil, jpegQuality: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
@@ -128,58 +201,122 @@ public class SwfExportOptions: ExportOptions {
         self.commentsAreaWidth = commentsAreaWidth
         self.commentsAreaColor = commentsAreaColor
         self.showCommentsByNoAuthor = showCommentsByNoAuthor
+        self.format = "swf"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case showHiddenSlides
+        case compressed
+        case viewerIncluded
+        case showPageBorder
+        case showFullScreen
+        case showPageStepper
+        case showSearch
+        case showTopPane
+        case showBottomPane
+        case showLeftPane
+        case startOpenLeftPane
+        case enableContextMenu
+        case logoImage
+        case logoLink
+        case jpegQuality
+        case notesPosition
+        case commentsPosition
+        case commentsAreaWidth
+        case commentsAreaColor
+        case showCommentsByNoAuthor
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        showHiddenSlides = try values.decode(Bool?.self, forKey: .showHiddenSlides)
-        compressed = try values.decode(Bool?.self, forKey: .compressed)
-        viewerIncluded = try values.decode(Bool?.self, forKey: .viewerIncluded)
-        showPageBorder = try values.decode(Bool?.self, forKey: .showPageBorder)
-        showFullScreen = try values.decode(Bool?.self, forKey: .showFullScreen)
-        showPageStepper = try values.decode(Bool?.self, forKey: .showPageStepper)
-        showSearch = try values.decode(Bool?.self, forKey: .showSearch)
-        showTopPane = try values.decode(Bool?.self, forKey: .showTopPane)
-        showBottomPane = try values.decode(Bool?.self, forKey: .showBottomPane)
-        showLeftPane = try values.decode(Bool?.self, forKey: .showLeftPane)
-        startOpenLeftPane = try values.decode(Bool?.self, forKey: .startOpenLeftPane)
-        enableContextMenu = try values.decode(Bool?.self, forKey: .enableContextMenu)
-        logoImage = try values.decode(String?.self, forKey: .logoImage)
-        logoLink = try values.decode(String?.self, forKey: .logoLink)
-        jpegQuality = try values.decode(Int?.self, forKey: .jpegQuality)
-        notesPosition = try values.decode(NotesPosition?.self, forKey: .notesPosition)
-        commentsPosition = try values.decode(CommentsPosition?.self, forKey: .commentsPosition)
-        commentsAreaWidth = try values.decode(Int?.self, forKey: .commentsAreaWidth)
-        commentsAreaColor = try values.decode(String?.self, forKey: .commentsAreaColor)
-        showCommentsByNoAuthor = try values.decode(Bool?.self, forKey: .showCommentsByNoAuthor)
+        showHiddenSlides = try? values.decode(Bool.self, forKey: .showHiddenSlides)
+        compressed = try? values.decode(Bool.self, forKey: .compressed)
+        viewerIncluded = try? values.decode(Bool.self, forKey: .viewerIncluded)
+        showPageBorder = try? values.decode(Bool.self, forKey: .showPageBorder)
+        showFullScreen = try? values.decode(Bool.self, forKey: .showFullScreen)
+        showPageStepper = try? values.decode(Bool.self, forKey: .showPageStepper)
+        showSearch = try? values.decode(Bool.self, forKey: .showSearch)
+        showTopPane = try? values.decode(Bool.self, forKey: .showTopPane)
+        showBottomPane = try? values.decode(Bool.self, forKey: .showBottomPane)
+        showLeftPane = try? values.decode(Bool.self, forKey: .showLeftPane)
+        startOpenLeftPane = try? values.decode(Bool.self, forKey: .startOpenLeftPane)
+        enableContextMenu = try? values.decode(Bool.self, forKey: .enableContextMenu)
+        logoImage = try? values.decode(String.self, forKey: .logoImage)
+        logoLink = try? values.decode(String.self, forKey: .logoLink)
+        jpegQuality = try? values.decode(Int.self, forKey: .jpegQuality)
+        notesPosition = try? values.decode(NotesPosition.self, forKey: .notesPosition)
+        commentsPosition = try? values.decode(CommentsPosition.self, forKey: .commentsPosition)
+        commentsAreaWidth = try? values.decode(Int.self, forKey: .commentsAreaWidth)
+        commentsAreaColor = try? values.decode(String.self, forKey: .commentsAreaColor)
+        showCommentsByNoAuthor = try? values.decode(Bool.self, forKey: .showCommentsByNoAuthor)
+        self.format = "swf"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(showHiddenSlides, forKey: .showHiddenSlides)
-        try container.encode(compressed, forKey: .compressed)
-        try container.encode(viewerIncluded, forKey: .viewerIncluded)
-        try container.encode(showPageBorder, forKey: .showPageBorder)
-        try container.encode(showFullScreen, forKey: .showFullScreen)
-        try container.encode(showPageStepper, forKey: .showPageStepper)
-        try container.encode(showSearch, forKey: .showSearch)
-        try container.encode(showTopPane, forKey: .showTopPane)
-        try container.encode(showBottomPane, forKey: .showBottomPane)
-        try container.encode(showLeftPane, forKey: .showLeftPane)
-        try container.encode(startOpenLeftPane, forKey: .startOpenLeftPane)
-        try container.encode(enableContextMenu, forKey: .enableContextMenu)
-        try container.encode(logoImage, forKey: .logoImage)
-        try container.encode(logoLink, forKey: .logoLink)
-        try container.encode(jpegQuality, forKey: .jpegQuality)
-        try container.encode(notesPosition, forKey: .notesPosition)
-        try container.encode(commentsPosition, forKey: .commentsPosition)
-        try container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
-        try container.encode(commentsAreaColor, forKey: .commentsAreaColor)
-        try container.encode(showCommentsByNoAuthor, forKey: .showCommentsByNoAuthor)
+        if (showHiddenSlides != nil) {
+            try? container.encode(showHiddenSlides, forKey: .showHiddenSlides)
+        }
+        if (compressed != nil) {
+            try? container.encode(compressed, forKey: .compressed)
+        }
+        if (viewerIncluded != nil) {
+            try? container.encode(viewerIncluded, forKey: .viewerIncluded)
+        }
+        if (showPageBorder != nil) {
+            try? container.encode(showPageBorder, forKey: .showPageBorder)
+        }
+        if (showFullScreen != nil) {
+            try? container.encode(showFullScreen, forKey: .showFullScreen)
+        }
+        if (showPageStepper != nil) {
+            try? container.encode(showPageStepper, forKey: .showPageStepper)
+        }
+        if (showSearch != nil) {
+            try? container.encode(showSearch, forKey: .showSearch)
+        }
+        if (showTopPane != nil) {
+            try? container.encode(showTopPane, forKey: .showTopPane)
+        }
+        if (showBottomPane != nil) {
+            try? container.encode(showBottomPane, forKey: .showBottomPane)
+        }
+        if (showLeftPane != nil) {
+            try? container.encode(showLeftPane, forKey: .showLeftPane)
+        }
+        if (startOpenLeftPane != nil) {
+            try? container.encode(startOpenLeftPane, forKey: .startOpenLeftPane)
+        }
+        if (enableContextMenu != nil) {
+            try? container.encode(enableContextMenu, forKey: .enableContextMenu)
+        }
+        if (logoImage != nil) {
+            try? container.encode(logoImage, forKey: .logoImage)
+        }
+        if (logoLink != nil) {
+            try? container.encode(logoLink, forKey: .logoLink)
+        }
+        if (jpegQuality != nil) {
+            try? container.encode(jpegQuality, forKey: .jpegQuality)
+        }
+        if (notesPosition != nil) {
+            try? container.encode(notesPosition, forKey: .notesPosition)
+        }
+        if (commentsPosition != nil) {
+            try? container.encode(commentsPosition, forKey: .commentsPosition)
+        }
+        if (commentsAreaWidth != nil) {
+            try? container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
+        }
+        if (commentsAreaColor != nil) {
+            try? container.encode(commentsAreaColor, forKey: .commentsAreaColor)
+        }
+        if (showCommentsByNoAuthor != nil) {
+            try? container.encode(showCommentsByNoAuthor, forKey: .showCommentsByNoAuthor)
+        }
     }
-
 
 }
 

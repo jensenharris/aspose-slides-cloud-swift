@@ -37,9 +37,16 @@ public class XYSeries: Series {
     /** The number format for the series x values. */
     public var numberFormatOfXValues: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case numberFormatOfYValues
-        case numberFormatOfXValues
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let numberFormatOfYValuesValue = source["numberFormatOfYValues"]
+        if numberFormatOfYValuesValue != nil {
+            self.numberFormatOfYValues = numberFormatOfYValuesValue! as? String
+        }
+        let numberFormatOfXValuesValue = source["numberFormatOfXValues"]
+        if numberFormatOfXValuesValue != nil {
+            self.numberFormatOfXValues = numberFormatOfXValuesValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil) {
@@ -48,20 +55,28 @@ public class XYSeries: Series {
         self.numberFormatOfXValues = numberFormatOfXValues
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case numberFormatOfYValues
+        case numberFormatOfXValues
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        numberFormatOfYValues = try values.decode(String?.self, forKey: .numberFormatOfYValues)
-        numberFormatOfXValues = try values.decode(String?.self, forKey: .numberFormatOfXValues)
+        numberFormatOfYValues = try? values.decode(String.self, forKey: .numberFormatOfYValues)
+        numberFormatOfXValues = try? values.decode(String.self, forKey: .numberFormatOfXValues)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(numberFormatOfYValues, forKey: .numberFormatOfYValues)
-        try container.encode(numberFormatOfXValues, forKey: .numberFormatOfXValues)
+        if (numberFormatOfYValues != nil) {
+            try? container.encode(numberFormatOfYValues, forKey: .numberFormatOfYValues)
+        }
+        if (numberFormatOfXValues != nil) {
+            try? container.encode(numberFormatOfXValues, forKey: .numberFormatOfXValues)
+        }
     }
-
 
 }
 

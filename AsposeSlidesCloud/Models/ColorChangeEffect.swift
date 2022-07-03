@@ -37,31 +37,48 @@ public class ColorChangeEffect: ImageTransformEffect {
     /** Color which will replace. */
     public var toColor: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case fromColor
-        case toColor
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let fromColorValue = source["fromColor"]
+        if fromColorValue != nil {
+            self.fromColor = fromColorValue! as? String
+        }
+        let toColorValue = source["toColor"]
+        if toColorValue != nil {
+            self.toColor = toColorValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, fromColor: String? = nil, toColor: String? = nil) {
         super.init(type: type)
         self.fromColor = fromColor
         self.toColor = toColor
+        self.type = ModelType.colorChange
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case fromColor
+        case toColor
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        fromColor = try values.decode(String?.self, forKey: .fromColor)
-        toColor = try values.decode(String?.self, forKey: .toColor)
+        fromColor = try? values.decode(String.self, forKey: .fromColor)
+        toColor = try? values.decode(String.self, forKey: .toColor)
+        self.type = ModelType.colorChange
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(fromColor, forKey: .fromColor)
-        try container.encode(toColor, forKey: .toColor)
+        if (fromColor != nil) {
+            try? container.encode(fromColor, forKey: .fromColor)
+        }
+        if (toColor != nil) {
+            try? container.encode(toColor, forKey: .toColor)
+        }
     }
-
 
 }
 

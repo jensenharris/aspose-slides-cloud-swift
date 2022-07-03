@@ -87,25 +87,133 @@ public class TableCell: Codable {
     /** Cell row index */
     public var rowIndex: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case text
-        case rowSpan
-        case colSpan
-        case marginTop
-        case marginRight
-        case marginLeft
-        case marginBottom
-        case textAnchorType
-        case textVerticalType
-        case fillFormat
-        case borderTop
-        case borderRight
-        case borderLeft
-        case borderBottom
-        case borderDiagonalUp
-        case borderDiagonalDown
-        case columnIndex
-        case rowIndex
+    func fillValues(_ source: [String:Any]) throws {
+        let textValue = source["text"]
+        if textValue != nil {
+            self.text = textValue! as? String
+        }
+        let rowSpanValue = source["rowSpan"]
+        if rowSpanValue != nil {
+            self.rowSpan = rowSpanValue! as? Int
+        }
+        let colSpanValue = source["colSpan"]
+        if colSpanValue != nil {
+            self.colSpan = colSpanValue! as? Int
+        }
+        let marginTopValue = source["marginTop"]
+        if marginTopValue != nil {
+            self.marginTop = marginTopValue! as? Double
+        }
+        let marginRightValue = source["marginRight"]
+        if marginRightValue != nil {
+            self.marginRight = marginRightValue! as? Double
+        }
+        let marginLeftValue = source["marginLeft"]
+        if marginLeftValue != nil {
+            self.marginLeft = marginLeftValue! as? Double
+        }
+        let marginBottomValue = source["marginBottom"]
+        if marginBottomValue != nil {
+            self.marginBottom = marginBottomValue! as? Double
+        }
+        let textAnchorTypeValue = source["textAnchorType"]
+        if textAnchorTypeValue != nil {
+            let textAnchorTypeStringValue = textAnchorTypeValue! as? String
+            if textAnchorTypeStringValue != nil {
+                let textAnchorTypeEnumValue = TextAnchorType(rawValue: textAnchorTypeStringValue!)
+                if textAnchorTypeEnumValue != nil {
+                    self.textAnchorType = textAnchorTypeEnumValue!
+                }
+            }
+        }
+        let textVerticalTypeValue = source["textVerticalType"]
+        if textVerticalTypeValue != nil {
+            let textVerticalTypeStringValue = textVerticalTypeValue! as? String
+            if textVerticalTypeStringValue != nil {
+                let textVerticalTypeEnumValue = TextVerticalType(rawValue: textVerticalTypeStringValue!)
+                if textVerticalTypeEnumValue != nil {
+                    self.textVerticalType = textVerticalTypeEnumValue!
+                }
+            }
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let borderTopValue = source["borderTop"]
+        if borderTopValue != nil {
+            let borderTopDictionaryValue = borderTopValue! as? [String:Any]
+            if borderTopDictionaryValue != nil {
+                let (borderTopInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, borderTopDictionaryValue!)
+                if error == nil && borderTopInstance != nil {
+                    self.borderTop = borderTopInstance! as? LineFormat
+                }
+            }
+        }
+        let borderRightValue = source["borderRight"]
+        if borderRightValue != nil {
+            let borderRightDictionaryValue = borderRightValue! as? [String:Any]
+            if borderRightDictionaryValue != nil {
+                let (borderRightInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, borderRightDictionaryValue!)
+                if error == nil && borderRightInstance != nil {
+                    self.borderRight = borderRightInstance! as? LineFormat
+                }
+            }
+        }
+        let borderLeftValue = source["borderLeft"]
+        if borderLeftValue != nil {
+            let borderLeftDictionaryValue = borderLeftValue! as? [String:Any]
+            if borderLeftDictionaryValue != nil {
+                let (borderLeftInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, borderLeftDictionaryValue!)
+                if error == nil && borderLeftInstance != nil {
+                    self.borderLeft = borderLeftInstance! as? LineFormat
+                }
+            }
+        }
+        let borderBottomValue = source["borderBottom"]
+        if borderBottomValue != nil {
+            let borderBottomDictionaryValue = borderBottomValue! as? [String:Any]
+            if borderBottomDictionaryValue != nil {
+                let (borderBottomInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, borderBottomDictionaryValue!)
+                if error == nil && borderBottomInstance != nil {
+                    self.borderBottom = borderBottomInstance! as? LineFormat
+                }
+            }
+        }
+        let borderDiagonalUpValue = source["borderDiagonalUp"]
+        if borderDiagonalUpValue != nil {
+            let borderDiagonalUpDictionaryValue = borderDiagonalUpValue! as? [String:Any]
+            if borderDiagonalUpDictionaryValue != nil {
+                let (borderDiagonalUpInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, borderDiagonalUpDictionaryValue!)
+                if error == nil && borderDiagonalUpInstance != nil {
+                    self.borderDiagonalUp = borderDiagonalUpInstance! as? LineFormat
+                }
+            }
+        }
+        let borderDiagonalDownValue = source["borderDiagonalDown"]
+        if borderDiagonalDownValue != nil {
+            let borderDiagonalDownDictionaryValue = borderDiagonalDownValue! as? [String:Any]
+            if borderDiagonalDownDictionaryValue != nil {
+                let (borderDiagonalDownInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, borderDiagonalDownDictionaryValue!)
+                if error == nil && borderDiagonalDownInstance != nil {
+                    self.borderDiagonalDown = borderDiagonalDownInstance! as? LineFormat
+                }
+            }
+        }
+        let columnIndexValue = source["columnIndex"]
+        if columnIndexValue != nil {
+            self.columnIndex = columnIndexValue! as? Int
+        }
+        let rowIndexValue = source["rowIndex"]
+        if rowIndexValue != nil {
+            self.rowIndex = rowIndexValue! as? Int
+        }
     }
 
     public init(text: String? = nil, rowSpan: Int? = nil, colSpan: Int? = nil, marginTop: Double? = nil, marginRight: Double? = nil, marginLeft: Double? = nil, marginBottom: Double? = nil, textAnchorType: TextAnchorType? = nil, textVerticalType: TextVerticalType? = nil, fillFormat: FillFormat? = nil, borderTop: LineFormat? = nil, borderRight: LineFormat? = nil, borderLeft: LineFormat? = nil, borderBottom: LineFormat? = nil, borderDiagonalUp: LineFormat? = nil, borderDiagonalDown: LineFormat? = nil, columnIndex: Int? = nil, rowIndex: Int? = nil) {
@@ -129,6 +237,26 @@ public class TableCell: Codable {
         self.rowIndex = rowIndex
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case text
+        case rowSpan
+        case colSpan
+        case marginTop
+        case marginRight
+        case marginLeft
+        case marginBottom
+        case textAnchorType
+        case textVerticalType
+        case fillFormat
+        case borderTop
+        case borderRight
+        case borderLeft
+        case borderBottom
+        case borderDiagonalUp
+        case borderDiagonalDown
+        case columnIndex
+        case rowIndex
+    }
 
 }
 

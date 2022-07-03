@@ -82,9 +82,27 @@ public class TextFrameFormat: Codable {
     /** Gets or sets text wrapping shape. */
     public var transform: Transform?
 
-    private enum CodingKeys: String, CodingKey {
-        case threeDFormat
-        case transform
+    func fillValues(_ source: [String:Any]) throws {
+        let threeDFormatValue = source["threeDFormat"]
+        if threeDFormatValue != nil {
+            let threeDFormatDictionaryValue = threeDFormatValue! as? [String:Any]
+            if threeDFormatDictionaryValue != nil {
+                let (threeDFormatInstance, error) = ClassRegistry.getClassFromDictionary(ThreeDFormat.self, threeDFormatDictionaryValue!)
+                if error == nil && threeDFormatInstance != nil {
+                    self.threeDFormat = threeDFormatInstance! as? ThreeDFormat
+                }
+            }
+        }
+        let transformValue = source["transform"]
+        if transformValue != nil {
+            let transformStringValue = transformValue! as? String
+            if transformStringValue != nil {
+                let transformEnumValue = Transform(rawValue: transformStringValue!)
+                if transformEnumValue != nil {
+                    self.transform = transformEnumValue!
+                }
+            }
+        }
     }
 
     public init(threeDFormat: ThreeDFormat? = nil, transform: Transform? = nil) {
@@ -92,6 +110,10 @@ public class TextFrameFormat: Codable {
         self.transform = transform
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case threeDFormat
+        case transform
+    }
 
 }
 

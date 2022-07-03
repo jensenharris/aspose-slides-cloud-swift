@@ -39,10 +39,40 @@ public class TableRow: Codable {
     /** Height of the row. */
     public var height: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case cells
-        case minimalHeight
-        case height
+    func fillValues(_ source: [String:Any]) throws {
+        let cellsValue = source["cells"]
+        if cellsValue != nil {
+            var cellsArray: [TableCell] = []
+            let cellsDictionaryValue = cellsValue! as? [Any]
+            if cellsDictionaryValue != nil {
+                cellsDictionaryValue!.forEach { cellsAnyItem in
+                    let cellsItem = cellsAnyItem as? [String:Any]
+                    var added = false
+                    if cellsItem != nil {
+                        let (cellsInstance, error) = ClassRegistry.getClassFromDictionary(TableCell.self, cellsItem!)
+                        if error == nil && cellsInstance != nil {
+                            let cellsArrayItem = cellsInstance! as? TableCell
+                            if cellsArrayItem != nil {
+                                cellsArray.append(cellsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        cellsArray.append(TableCell())
+                    }
+                }
+            }
+            self.cells = cellsArray
+        }
+        let minimalHeightValue = source["minimalHeight"]
+        if minimalHeightValue != nil {
+            self.minimalHeight = minimalHeightValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
     }
 
     public init(cells: [TableCell]? = nil, minimalHeight: Double? = nil, height: Double? = nil) {
@@ -51,6 +81,11 @@ public class TableRow: Codable {
         self.height = height
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case cells
+        case minimalHeight
+        case height
+    }
 
 }
 

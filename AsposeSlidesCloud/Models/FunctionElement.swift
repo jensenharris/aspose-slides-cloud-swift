@@ -37,31 +37,60 @@ public class FunctionElement: MathElement {
     /** Function Argument */
     public var base: MathElement?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case base
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let nameValue = source["name"]
+        if nameValue != nil {
+            let nameDictionaryValue = nameValue! as? [String:Any]
+            if nameDictionaryValue != nil {
+                let (nameInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, nameDictionaryValue!)
+                if error == nil && nameInstance != nil {
+                    self.name = nameInstance! as? MathElement
+                }
+            }
+        }
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, name: MathElement? = nil, base: MathElement? = nil) {
         super.init(type: type)
         self.name = name
         self.base = base
+        self.type = ModelType.function
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case base
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decode(MathElement?.self, forKey: .name)
-        base = try values.decode(MathElement?.self, forKey: .base)
+        name = try? values.decode(MathElement.self, forKey: .name)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        self.type = ModelType.function
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(base, forKey: .base)
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
     }
-
 
 }
 

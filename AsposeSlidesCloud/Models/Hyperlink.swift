@@ -75,17 +75,59 @@ public class Hyperlink: Codable {
     /** Represents the source of hyperlink color */
     public var colorSource: ColorSource?
 
-    private enum CodingKeys: String, CodingKey {
-        case isDisabled
-        case actionType
-        case externalUrl
-        case targetSlideIndex
-        case targetFrame
-        case tooltip
-        case history
-        case highlightClick
-        case stopSoundOnClick
-        case colorSource
+    func fillValues(_ source: [String:Any]) throws {
+        let isDisabledValue = source["isDisabled"]
+        if isDisabledValue != nil {
+            self.isDisabled = isDisabledValue! as? Bool
+        }
+        let actionTypeValue = source["actionType"]
+        if actionTypeValue != nil {
+            let actionTypeStringValue = actionTypeValue! as? String
+            if actionTypeStringValue != nil {
+                let actionTypeEnumValue = ActionType(rawValue: actionTypeStringValue!)
+                if actionTypeEnumValue != nil {
+                    self.actionType = actionTypeEnumValue!
+                }
+            }
+        }
+        let externalUrlValue = source["externalUrl"]
+        if externalUrlValue != nil {
+            self.externalUrl = externalUrlValue! as? String
+        }
+        let targetSlideIndexValue = source["targetSlideIndex"]
+        if targetSlideIndexValue != nil {
+            self.targetSlideIndex = targetSlideIndexValue! as? Int
+        }
+        let targetFrameValue = source["targetFrame"]
+        if targetFrameValue != nil {
+            self.targetFrame = targetFrameValue! as? String
+        }
+        let tooltipValue = source["tooltip"]
+        if tooltipValue != nil {
+            self.tooltip = tooltipValue! as? String
+        }
+        let historyValue = source["history"]
+        if historyValue != nil {
+            self.history = historyValue! as? Bool
+        }
+        let highlightClickValue = source["highlightClick"]
+        if highlightClickValue != nil {
+            self.highlightClick = highlightClickValue! as? Bool
+        }
+        let stopSoundOnClickValue = source["stopSoundOnClick"]
+        if stopSoundOnClickValue != nil {
+            self.stopSoundOnClick = stopSoundOnClickValue! as? Bool
+        }
+        let colorSourceValue = source["colorSource"]
+        if colorSourceValue != nil {
+            let colorSourceStringValue = colorSourceValue! as? String
+            if colorSourceStringValue != nil {
+                let colorSourceEnumValue = ColorSource(rawValue: colorSourceStringValue!)
+                if colorSourceEnumValue != nil {
+                    self.colorSource = colorSourceEnumValue!
+                }
+            }
+        }
     }
 
     public init(isDisabled: Bool? = nil, actionType: ActionType? = nil, externalUrl: String? = nil, targetSlideIndex: Int? = nil, targetFrame: String? = nil, tooltip: String? = nil, history: Bool? = nil, highlightClick: Bool? = nil, stopSoundOnClick: Bool? = nil, colorSource: ColorSource? = nil) {
@@ -101,6 +143,18 @@ public class Hyperlink: Codable {
         self.colorSource = colorSource
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case isDisabled
+        case actionType
+        case externalUrl
+        case targetSlideIndex
+        case targetFrame
+        case tooltip
+        case history
+        case highlightClick
+        case stopSoundOnClick
+        case colorSource
+    }
 
 }
 

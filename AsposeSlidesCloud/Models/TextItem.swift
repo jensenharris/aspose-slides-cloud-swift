@@ -37,9 +37,21 @@ public class TextItem: Codable {
     /** Gets or sets the text. */
     public var text: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case uri
-        case text
+    func fillValues(_ source: [String:Any]) throws {
+        let uriValue = source["uri"]
+        if uriValue != nil {
+            let uriDictionaryValue = uriValue! as? [String:Any]
+            if uriDictionaryValue != nil {
+                let (uriInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, uriDictionaryValue!)
+                if error == nil && uriInstance != nil {
+                    self.uri = uriInstance! as? ResourceUri
+                }
+            }
+        }
+        let textValue = source["text"]
+        if textValue != nil {
+            self.text = textValue! as? String
+        }
     }
 
     public init(uri: ResourceUri? = nil, text: String? = nil) {
@@ -47,6 +59,10 @@ public class TextItem: Codable {
         self.text = text
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case uri
+        case text
+    }
 
 }
 

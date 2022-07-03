@@ -37,31 +37,48 @@ public class ReorderSlide: Task {
     /** New position. */
     public var newPosition: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case oldPosition
-        case newPosition
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let oldPositionValue = source["oldPosition"]
+        if oldPositionValue != nil {
+            self.oldPosition = oldPositionValue! as? Int
+        }
+        let newPositionValue = source["newPosition"]
+        if newPositionValue != nil {
+            self.newPosition = newPositionValue! as? Int
+        }
     }
 
     public init(type: ModelType? = nil, oldPosition: Int? = nil, newPosition: Int? = nil) {
         super.init(type: type)
         self.oldPosition = oldPosition
         self.newPosition = newPosition
+        self.type = ModelType.reoderSlide
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case oldPosition
+        case newPosition
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        oldPosition = try values.decode(Int?.self, forKey: .oldPosition)
-        newPosition = try values.decode(Int?.self, forKey: .newPosition)
+        oldPosition = try? values.decode(Int.self, forKey: .oldPosition)
+        newPosition = try? values.decode(Int.self, forKey: .newPosition)
+        self.type = ModelType.reoderSlide
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(oldPosition, forKey: .oldPosition)
-        try container.encode(newPosition, forKey: .newPosition)
+        if (oldPosition != nil) {
+            try? container.encode(oldPosition, forKey: .oldPosition)
+        }
+        if (newPosition != nil) {
+            try? container.encode(newPosition, forKey: .newPosition)
+        }
     }
-
 
 }
 

@@ -35,8 +35,12 @@ public class DocumentReplaceResult: Document {
     /** Gets or sets the number of matches  */
     public var matches: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case matches
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let matchesValue = source["matches"]
+        if matchesValue != nil {
+            self.matches = matchesValue! as? Int
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, documentProperties: ResourceUri? = nil, viewProperties: ResourceUri? = nil, slides: ResourceUri? = nil, images: ResourceUri? = nil, layoutSlides: ResourceUri? = nil, masterSlides: ResourceUri? = nil, matches: Int? = nil) {
@@ -44,18 +48,23 @@ public class DocumentReplaceResult: Document {
         self.matches = matches
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case matches
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        matches = try values.decode(Int?.self, forKey: .matches)
+        matches = try? values.decode(Int.self, forKey: .matches)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(matches, forKey: .matches)
+        if (matches != nil) {
+            try? container.encode(matches, forKey: .matches)
+        }
     }
-
 
 }
 

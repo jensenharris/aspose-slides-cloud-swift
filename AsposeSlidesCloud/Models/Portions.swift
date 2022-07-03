@@ -35,8 +35,33 @@ public class Portions: ResourceBase {
     /** List of portion links. */
     public var items: [Portion]?
 
-    private enum CodingKeys: String, CodingKey {
-        case items
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let itemsValue = source["items"]
+        if itemsValue != nil {
+            var itemsArray: [Portion] = []
+            let itemsDictionaryValue = itemsValue! as? [Any]
+            if itemsDictionaryValue != nil {
+                itemsDictionaryValue!.forEach { itemsAnyItem in
+                    let itemsItem = itemsAnyItem as? [String:Any]
+                    var added = false
+                    if itemsItem != nil {
+                        let (itemsInstance, error) = ClassRegistry.getClassFromDictionary(Portion.self, itemsItem!)
+                        if error == nil && itemsInstance != nil {
+                            let itemsArrayItem = itemsInstance! as? Portion
+                            if itemsArrayItem != nil {
+                                itemsArray.append(itemsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        itemsArray.append(Portion())
+                    }
+                }
+            }
+            self.items = itemsArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, items: [Portion]? = nil) {
@@ -44,18 +69,23 @@ public class Portions: ResourceBase {
         self.items = items
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case items
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        items = try values.decode([Portion]?.self, forKey: .items)
+        items = try? values.decode([Portion].self, forKey: .items)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(items, forKey: .items)
+        if (items != nil) {
+            try? container.encode(items, forKey: .items)
+        }
     }
-
 
 }
 

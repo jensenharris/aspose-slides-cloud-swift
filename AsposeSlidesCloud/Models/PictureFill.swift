@@ -57,17 +57,81 @@ public class PictureFill: FillFormat {
     /** Image transform effects. */
     public var imageTransformList: [ImageTransformEffect]?
 
-    private enum CodingKeys: String, CodingKey {
-        case cropBottom
-        case cropLeft
-        case cropRight
-        case cropTop
-        case dpi
-        case image
-        case base64Data
-        case svgData
-        case pictureFillMode
-        case imageTransformList
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let cropBottomValue = source["cropBottom"]
+        if cropBottomValue != nil {
+            self.cropBottom = cropBottomValue! as? Double
+        }
+        let cropLeftValue = source["cropLeft"]
+        if cropLeftValue != nil {
+            self.cropLeft = cropLeftValue! as? Double
+        }
+        let cropRightValue = source["cropRight"]
+        if cropRightValue != nil {
+            self.cropRight = cropRightValue! as? Double
+        }
+        let cropTopValue = source["cropTop"]
+        if cropTopValue != nil {
+            self.cropTop = cropTopValue! as? Double
+        }
+        let dpiValue = source["dpi"]
+        if dpiValue != nil {
+            self.dpi = dpiValue! as? Int
+        }
+        let imageValue = source["image"]
+        if imageValue != nil {
+            let imageDictionaryValue = imageValue! as? [String:Any]
+            if imageDictionaryValue != nil {
+                let (imageInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, imageDictionaryValue!)
+                if error == nil && imageInstance != nil {
+                    self.image = imageInstance! as? ResourceUri
+                }
+            }
+        }
+        let base64DataValue = source["base64Data"]
+        if base64DataValue != nil {
+            self.base64Data = base64DataValue! as? String
+        }
+        let svgDataValue = source["svgData"]
+        if svgDataValue != nil {
+            self.svgData = svgDataValue! as? String
+        }
+        let pictureFillModeValue = source["pictureFillMode"]
+        if pictureFillModeValue != nil {
+            let pictureFillModeStringValue = pictureFillModeValue! as? String
+            if pictureFillModeStringValue != nil {
+                let pictureFillModeEnumValue = PictureFillMode(rawValue: pictureFillModeStringValue!)
+                if pictureFillModeEnumValue != nil {
+                    self.pictureFillMode = pictureFillModeEnumValue!
+                }
+            }
+        }
+        let imageTransformListValue = source["imageTransformList"]
+        if imageTransformListValue != nil {
+            var imageTransformListArray: [ImageTransformEffect] = []
+            let imageTransformListDictionaryValue = imageTransformListValue! as? [Any]
+            if imageTransformListDictionaryValue != nil {
+                imageTransformListDictionaryValue!.forEach { imageTransformListAnyItem in
+                    let imageTransformListItem = imageTransformListAnyItem as? [String:Any]
+                    var added = false
+                    if imageTransformListItem != nil {
+                        let (imageTransformListInstance, error) = ClassRegistry.getClassFromDictionary(ImageTransformEffect.self, imageTransformListItem!)
+                        if error == nil && imageTransformListInstance != nil {
+                            let imageTransformListArrayItem = imageTransformListInstance! as? ImageTransformEffect
+                            if imageTransformListArrayItem != nil {
+                                imageTransformListArray.append(imageTransformListArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        imageTransformListArray.append(ImageTransformEffect())
+                    }
+                }
+            }
+            self.imageTransformList = imageTransformListArray
+        }
     }
 
     public init(type: ModelType? = nil, cropBottom: Double? = nil, cropLeft: Double? = nil, cropRight: Double? = nil, cropTop: Double? = nil, dpi: Int? = nil, image: ResourceUri? = nil, base64Data: String? = nil, svgData: String? = nil, pictureFillMode: PictureFillMode? = nil, imageTransformList: [ImageTransformEffect]? = nil) {
@@ -82,38 +146,72 @@ public class PictureFill: FillFormat {
         self.svgData = svgData
         self.pictureFillMode = pictureFillMode
         self.imageTransformList = imageTransformList
+        self.type = ModelType.picture
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case cropBottom
+        case cropLeft
+        case cropRight
+        case cropTop
+        case dpi
+        case image
+        case base64Data
+        case svgData
+        case pictureFillMode
+        case imageTransformList
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        cropBottom = try values.decode(Double?.self, forKey: .cropBottom)
-        cropLeft = try values.decode(Double?.self, forKey: .cropLeft)
-        cropRight = try values.decode(Double?.self, forKey: .cropRight)
-        cropTop = try values.decode(Double?.self, forKey: .cropTop)
-        dpi = try values.decode(Int?.self, forKey: .dpi)
-        image = try values.decode(ResourceUri?.self, forKey: .image)
-        base64Data = try values.decode(String?.self, forKey: .base64Data)
-        svgData = try values.decode(String?.self, forKey: .svgData)
-        pictureFillMode = try values.decode(PictureFillMode?.self, forKey: .pictureFillMode)
-        imageTransformList = try values.decode([ImageTransformEffect]?.self, forKey: .imageTransformList)
+        cropBottom = try? values.decode(Double.self, forKey: .cropBottom)
+        cropLeft = try? values.decode(Double.self, forKey: .cropLeft)
+        cropRight = try? values.decode(Double.self, forKey: .cropRight)
+        cropTop = try? values.decode(Double.self, forKey: .cropTop)
+        dpi = try? values.decode(Int.self, forKey: .dpi)
+        image = try? values.decode(ResourceUri.self, forKey: .image)
+        base64Data = try? values.decode(String.self, forKey: .base64Data)
+        svgData = try? values.decode(String.self, forKey: .svgData)
+        pictureFillMode = try? values.decode(PictureFillMode.self, forKey: .pictureFillMode)
+        imageTransformList = try? values.decode([ImageTransformEffect].self, forKey: .imageTransformList)
+        self.type = ModelType.picture
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(cropBottom, forKey: .cropBottom)
-        try container.encode(cropLeft, forKey: .cropLeft)
-        try container.encode(cropRight, forKey: .cropRight)
-        try container.encode(cropTop, forKey: .cropTop)
-        try container.encode(dpi, forKey: .dpi)
-        try container.encode(image, forKey: .image)
-        try container.encode(base64Data, forKey: .base64Data)
-        try container.encode(svgData, forKey: .svgData)
-        try container.encode(pictureFillMode, forKey: .pictureFillMode)
-        try container.encode(imageTransformList, forKey: .imageTransformList)
+        if (cropBottom != nil) {
+            try? container.encode(cropBottom, forKey: .cropBottom)
+        }
+        if (cropLeft != nil) {
+            try? container.encode(cropLeft, forKey: .cropLeft)
+        }
+        if (cropRight != nil) {
+            try? container.encode(cropRight, forKey: .cropRight)
+        }
+        if (cropTop != nil) {
+            try? container.encode(cropTop, forKey: .cropTop)
+        }
+        if (dpi != nil) {
+            try? container.encode(dpi, forKey: .dpi)
+        }
+        if (image != nil) {
+            try? container.encode(image, forKey: .image)
+        }
+        if (base64Data != nil) {
+            try? container.encode(base64Data, forKey: .base64Data)
+        }
+        if (svgData != nil) {
+            try? container.encode(svgData, forKey: .svgData)
+        }
+        if (pictureFillMode != nil) {
+            try? container.encode(pictureFillMode, forKey: .pictureFillMode)
+        }
+        if (imageTransformList != nil) {
+            try? container.encode(imageTransformList, forKey: .imageTransformList)
+        }
     }
-
 
 }
 

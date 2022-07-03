@@ -78,17 +78,72 @@ public class TiffExportOptions: ImageExportOptionsBase {
     /** True if comments that have no author are displayed. (Applies only if comments are displayed). */
     public var showCommentsByNoAuthor: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case compression
-        case dpiX
-        case dpiY
-        case showHiddenSlides
-        case pixelFormat
-        case notesPosition
-        case commentsPosition
-        case commentsAreaWidth
-        case commentsAreaColor
-        case showCommentsByNoAuthor
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let compressionValue = source["compression"]
+        if compressionValue != nil {
+            let compressionStringValue = compressionValue! as? String
+            if compressionStringValue != nil {
+                let compressionEnumValue = Compression(rawValue: compressionStringValue!)
+                if compressionEnumValue != nil {
+                    self.compression = compressionEnumValue!
+                }
+            }
+        }
+        let dpiXValue = source["dpiX"]
+        if dpiXValue != nil {
+            self.dpiX = dpiXValue! as? Int
+        }
+        let dpiYValue = source["dpiY"]
+        if dpiYValue != nil {
+            self.dpiY = dpiYValue! as? Int
+        }
+        let showHiddenSlidesValue = source["showHiddenSlides"]
+        if showHiddenSlidesValue != nil {
+            self.showHiddenSlides = showHiddenSlidesValue! as? Bool
+        }
+        let pixelFormatValue = source["pixelFormat"]
+        if pixelFormatValue != nil {
+            let pixelFormatStringValue = pixelFormatValue! as? String
+            if pixelFormatStringValue != nil {
+                let pixelFormatEnumValue = PixelFormat(rawValue: pixelFormatStringValue!)
+                if pixelFormatEnumValue != nil {
+                    self.pixelFormat = pixelFormatEnumValue!
+                }
+            }
+        }
+        let notesPositionValue = source["notesPosition"]
+        if notesPositionValue != nil {
+            let notesPositionStringValue = notesPositionValue! as? String
+            if notesPositionStringValue != nil {
+                let notesPositionEnumValue = NotesPosition(rawValue: notesPositionStringValue!)
+                if notesPositionEnumValue != nil {
+                    self.notesPosition = notesPositionEnumValue!
+                }
+            }
+        }
+        let commentsPositionValue = source["commentsPosition"]
+        if commentsPositionValue != nil {
+            let commentsPositionStringValue = commentsPositionValue! as? String
+            if commentsPositionStringValue != nil {
+                let commentsPositionEnumValue = CommentsPosition(rawValue: commentsPositionStringValue!)
+                if commentsPositionEnumValue != nil {
+                    self.commentsPosition = commentsPositionEnumValue!
+                }
+            }
+        }
+        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        if commentsAreaWidthValue != nil {
+            self.commentsAreaWidth = commentsAreaWidthValue! as? Int
+        }
+        let commentsAreaColorValue = source["commentsAreaColor"]
+        if commentsAreaColorValue != nil {
+            self.commentsAreaColor = commentsAreaColorValue! as? String
+        }
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        if showCommentsByNoAuthorValue != nil {
+            self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, compression: Compression? = nil, dpiX: Int? = nil, dpiY: Int? = nil, showHiddenSlides: Bool? = nil, pixelFormat: PixelFormat? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
@@ -103,38 +158,72 @@ public class TiffExportOptions: ImageExportOptionsBase {
         self.commentsAreaWidth = commentsAreaWidth
         self.commentsAreaColor = commentsAreaColor
         self.showCommentsByNoAuthor = showCommentsByNoAuthor
+        self.format = "tiff"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case compression
+        case dpiX
+        case dpiY
+        case showHiddenSlides
+        case pixelFormat
+        case notesPosition
+        case commentsPosition
+        case commentsAreaWidth
+        case commentsAreaColor
+        case showCommentsByNoAuthor
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        compression = try values.decode(Compression?.self, forKey: .compression)
-        dpiX = try values.decode(Int?.self, forKey: .dpiX)
-        dpiY = try values.decode(Int?.self, forKey: .dpiY)
-        showHiddenSlides = try values.decode(Bool?.self, forKey: .showHiddenSlides)
-        pixelFormat = try values.decode(PixelFormat?.self, forKey: .pixelFormat)
-        notesPosition = try values.decode(NotesPosition?.self, forKey: .notesPosition)
-        commentsPosition = try values.decode(CommentsPosition?.self, forKey: .commentsPosition)
-        commentsAreaWidth = try values.decode(Int?.self, forKey: .commentsAreaWidth)
-        commentsAreaColor = try values.decode(String?.self, forKey: .commentsAreaColor)
-        showCommentsByNoAuthor = try values.decode(Bool?.self, forKey: .showCommentsByNoAuthor)
+        compression = try? values.decode(Compression.self, forKey: .compression)
+        dpiX = try? values.decode(Int.self, forKey: .dpiX)
+        dpiY = try? values.decode(Int.self, forKey: .dpiY)
+        showHiddenSlides = try? values.decode(Bool.self, forKey: .showHiddenSlides)
+        pixelFormat = try? values.decode(PixelFormat.self, forKey: .pixelFormat)
+        notesPosition = try? values.decode(NotesPosition.self, forKey: .notesPosition)
+        commentsPosition = try? values.decode(CommentsPosition.self, forKey: .commentsPosition)
+        commentsAreaWidth = try? values.decode(Int.self, forKey: .commentsAreaWidth)
+        commentsAreaColor = try? values.decode(String.self, forKey: .commentsAreaColor)
+        showCommentsByNoAuthor = try? values.decode(Bool.self, forKey: .showCommentsByNoAuthor)
+        self.format = "tiff"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(compression, forKey: .compression)
-        try container.encode(dpiX, forKey: .dpiX)
-        try container.encode(dpiY, forKey: .dpiY)
-        try container.encode(showHiddenSlides, forKey: .showHiddenSlides)
-        try container.encode(pixelFormat, forKey: .pixelFormat)
-        try container.encode(notesPosition, forKey: .notesPosition)
-        try container.encode(commentsPosition, forKey: .commentsPosition)
-        try container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
-        try container.encode(commentsAreaColor, forKey: .commentsAreaColor)
-        try container.encode(showCommentsByNoAuthor, forKey: .showCommentsByNoAuthor)
+        if (compression != nil) {
+            try? container.encode(compression, forKey: .compression)
+        }
+        if (dpiX != nil) {
+            try? container.encode(dpiX, forKey: .dpiX)
+        }
+        if (dpiY != nil) {
+            try? container.encode(dpiY, forKey: .dpiY)
+        }
+        if (showHiddenSlides != nil) {
+            try? container.encode(showHiddenSlides, forKey: .showHiddenSlides)
+        }
+        if (pixelFormat != nil) {
+            try? container.encode(pixelFormat, forKey: .pixelFormat)
+        }
+        if (notesPosition != nil) {
+            try? container.encode(notesPosition, forKey: .notesPosition)
+        }
+        if (commentsPosition != nil) {
+            try? container.encode(commentsPosition, forKey: .commentsPosition)
+        }
+        if (commentsAreaWidth != nil) {
+            try? container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
+        }
+        if (commentsAreaColor != nil) {
+            try? container.encode(commentsAreaColor, forKey: .commentsAreaColor)
+        }
+        if (showCommentsByNoAuthor != nil) {
+            try? container.encode(showCommentsByNoAuthor, forKey: .showCommentsByNoAuthor)
+        }
     }
-
 
 }
 

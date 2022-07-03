@@ -37,9 +37,42 @@ public class ResourceBase: Codable {
     /** List of alternate links. */
     public var alternateLinks: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case selfUri
-        case alternateLinks
+    func fillValues(_ source: [String:Any]) throws {
+        let selfUriValue = source["selfUri"]
+        if selfUriValue != nil {
+            let selfUriDictionaryValue = selfUriValue! as? [String:Any]
+            if selfUriDictionaryValue != nil {
+                let (selfUriInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, selfUriDictionaryValue!)
+                if error == nil && selfUriInstance != nil {
+                    self.selfUri = selfUriInstance! as? ResourceUri
+                }
+            }
+        }
+        let alternateLinksValue = source["alternateLinks"]
+        if alternateLinksValue != nil {
+            var alternateLinksArray: [ResourceUri] = []
+            let alternateLinksDictionaryValue = alternateLinksValue! as? [Any]
+            if alternateLinksDictionaryValue != nil {
+                alternateLinksDictionaryValue!.forEach { alternateLinksAnyItem in
+                    let alternateLinksItem = alternateLinksAnyItem as? [String:Any]
+                    var added = false
+                    if alternateLinksItem != nil {
+                        let (alternateLinksInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, alternateLinksItem!)
+                        if error == nil && alternateLinksInstance != nil {
+                            let alternateLinksArrayItem = alternateLinksInstance! as? ResourceUri
+                            if alternateLinksArrayItem != nil {
+                                alternateLinksArray.append(alternateLinksArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        alternateLinksArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.alternateLinks = alternateLinksArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil) {
@@ -47,6 +80,10 @@ public class ResourceBase: Codable {
         self.alternateLinks = alternateLinks
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case selfUri
+        case alternateLinks
+    }
 
 }
 

@@ -35,27 +35,59 @@ public class BlockElement: MathElement {
     /** List of math elements. */
     public var mathElementList: [MathElement]?
 
-    private enum CodingKeys: String, CodingKey {
-        case mathElementList
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let mathElementListValue = source["mathElementList"]
+        if mathElementListValue != nil {
+            var mathElementListArray: [MathElement] = []
+            let mathElementListDictionaryValue = mathElementListValue! as? [Any]
+            if mathElementListDictionaryValue != nil {
+                mathElementListDictionaryValue!.forEach { mathElementListAnyItem in
+                    let mathElementListItem = mathElementListAnyItem as? [String:Any]
+                    var added = false
+                    if mathElementListItem != nil {
+                        let (mathElementListInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, mathElementListItem!)
+                        if error == nil && mathElementListInstance != nil {
+                            let mathElementListArrayItem = mathElementListInstance! as? MathElement
+                            if mathElementListArrayItem != nil {
+                                mathElementListArray.append(mathElementListArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        mathElementListArray.append(MathElement())
+                    }
+                }
+            }
+            self.mathElementList = mathElementListArray
+        }
     }
 
     public init(type: ModelType? = nil, mathElementList: [MathElement]? = nil) {
         super.init(type: type)
         self.mathElementList = mathElementList
+        self.type = ModelType.block
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case mathElementList
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        mathElementList = try values.decode([MathElement]?.self, forKey: .mathElementList)
+        mathElementList = try? values.decode([MathElement].self, forKey: .mathElementList)
+        self.type = ModelType.block
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(mathElementList, forKey: .mathElementList)
+        if (mathElementList != nil) {
+            try? container.encode(mathElementList, forKey: .mathElementList)
+        }
     }
-
 
 }
 

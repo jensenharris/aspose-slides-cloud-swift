@@ -35,14 +35,20 @@ public class TableColumn: Codable {
     /** Width. */
     public var width: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case width
+    func fillValues(_ source: [String:Any]) throws {
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
     }
 
     public init(width: Double? = nil) {
         self.width = width
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case width
+    }
 
 }
 

@@ -37,31 +37,54 @@ public class AddLayoutSlide: Task {
     /** Source layout slide position. */
     public var cloneFromPosition: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case cloneFromFile
-        case cloneFromPosition
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let cloneFromFileValue = source["cloneFromFile"]
+        if cloneFromFileValue != nil {
+            let cloneFromFileDictionaryValue = cloneFromFileValue! as? [String:Any]
+            if cloneFromFileDictionaryValue != nil {
+                let (cloneFromFileInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, cloneFromFileDictionaryValue!)
+                if error == nil && cloneFromFileInstance != nil {
+                    self.cloneFromFile = cloneFromFileInstance! as? InputFile
+                }
+            }
+        }
+        let cloneFromPositionValue = source["cloneFromPosition"]
+        if cloneFromPositionValue != nil {
+            self.cloneFromPosition = cloneFromPositionValue! as? Int
+        }
     }
 
     public init(type: ModelType? = nil, cloneFromFile: InputFile? = nil, cloneFromPosition: Int? = nil) {
         super.init(type: type)
         self.cloneFromFile = cloneFromFile
         self.cloneFromPosition = cloneFromPosition
+        self.type = ModelType.addLayoutSlide
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case cloneFromFile
+        case cloneFromPosition
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        cloneFromFile = try values.decode(InputFile?.self, forKey: .cloneFromFile)
-        cloneFromPosition = try values.decode(Int?.self, forKey: .cloneFromPosition)
+        cloneFromFile = try? values.decode(InputFile.self, forKey: .cloneFromFile)
+        cloneFromPosition = try? values.decode(Int.self, forKey: .cloneFromPosition)
+        self.type = ModelType.addLayoutSlide
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(cloneFromFile, forKey: .cloneFromFile)
-        try container.encode(cloneFromPosition, forKey: .cloneFromPosition)
+        if (cloneFromFile != nil) {
+            try? container.encode(cloneFromFile, forKey: .cloneFromFile)
+        }
+        if (cloneFromPosition != nil) {
+            try? container.encode(cloneFromPosition, forKey: .cloneFromPosition)
+        }
     }
-
 
 }
 

@@ -39,10 +39,20 @@ public class XpsExportOptions: ExportOptions {
     /** True to draw black frame around each slide. */
     public var drawSlidesFrame: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case showHiddenSlides
-        case saveMetafilesAsPng
-        case drawSlidesFrame
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let showHiddenSlidesValue = source["showHiddenSlides"]
+        if showHiddenSlidesValue != nil {
+            self.showHiddenSlides = showHiddenSlidesValue! as? Bool
+        }
+        let saveMetafilesAsPngValue = source["saveMetafilesAsPng"]
+        if saveMetafilesAsPngValue != nil {
+            self.saveMetafilesAsPng = saveMetafilesAsPngValue! as? Bool
+        }
+        let drawSlidesFrameValue = source["drawSlidesFrame"]
+        if drawSlidesFrameValue != nil {
+            self.drawSlidesFrame = drawSlidesFrameValue! as? Bool
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, drawSlidesFrame: Bool? = nil) {
@@ -50,24 +60,37 @@ public class XpsExportOptions: ExportOptions {
         self.showHiddenSlides = showHiddenSlides
         self.saveMetafilesAsPng = saveMetafilesAsPng
         self.drawSlidesFrame = drawSlidesFrame
+        self.format = "xps"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case showHiddenSlides
+        case saveMetafilesAsPng
+        case drawSlidesFrame
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        showHiddenSlides = try values.decode(Bool?.self, forKey: .showHiddenSlides)
-        saveMetafilesAsPng = try values.decode(Bool?.self, forKey: .saveMetafilesAsPng)
-        drawSlidesFrame = try values.decode(Bool?.self, forKey: .drawSlidesFrame)
+        showHiddenSlides = try? values.decode(Bool.self, forKey: .showHiddenSlides)
+        saveMetafilesAsPng = try? values.decode(Bool.self, forKey: .saveMetafilesAsPng)
+        drawSlidesFrame = try? values.decode(Bool.self, forKey: .drawSlidesFrame)
+        self.format = "xps"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(showHiddenSlides, forKey: .showHiddenSlides)
-        try container.encode(saveMetafilesAsPng, forKey: .saveMetafilesAsPng)
-        try container.encode(drawSlidesFrame, forKey: .drawSlidesFrame)
+        if (showHiddenSlides != nil) {
+            try? container.encode(showHiddenSlides, forKey: .showHiddenSlides)
+        }
+        if (saveMetafilesAsPng != nil) {
+            try? container.encode(saveMetafilesAsPng, forKey: .saveMetafilesAsPng)
+        }
+        if (drawSlidesFrame != nil) {
+            try? container.encode(drawSlidesFrame, forKey: .drawSlidesFrame)
+        }
     }
-
 
 }
 

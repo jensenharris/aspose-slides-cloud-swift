@@ -47,10 +47,46 @@ public class GeometryPath: Codable {
     /** List of PathSegmen objects */
     public var pathData: [PathSegment]?
 
-    private enum CodingKeys: String, CodingKey {
-        case fillMode
-        case stroke
-        case pathData
+    func fillValues(_ source: [String:Any]) throws {
+        let fillModeValue = source["fillMode"]
+        if fillModeValue != nil {
+            let fillModeStringValue = fillModeValue! as? String
+            if fillModeStringValue != nil {
+                let fillModeEnumValue = FillMode(rawValue: fillModeStringValue!)
+                if fillModeEnumValue != nil {
+                    self.fillMode = fillModeEnumValue!
+                }
+            }
+        }
+        let strokeValue = source["stroke"]
+        if strokeValue != nil {
+            self.stroke = strokeValue! as? Bool
+        }
+        let pathDataValue = source["pathData"]
+        if pathDataValue != nil {
+            var pathDataArray: [PathSegment] = []
+            let pathDataDictionaryValue = pathDataValue! as? [Any]
+            if pathDataDictionaryValue != nil {
+                pathDataDictionaryValue!.forEach { pathDataAnyItem in
+                    let pathDataItem = pathDataAnyItem as? [String:Any]
+                    var added = false
+                    if pathDataItem != nil {
+                        let (pathDataInstance, error) = ClassRegistry.getClassFromDictionary(PathSegment.self, pathDataItem!)
+                        if error == nil && pathDataInstance != nil {
+                            let pathDataArrayItem = pathDataInstance! as? PathSegment
+                            if pathDataArrayItem != nil {
+                                pathDataArray.append(pathDataArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        pathDataArray.append(PathSegment())
+                    }
+                }
+            }
+            self.pathData = pathDataArray
+        }
     }
 
     public init(fillMode: FillMode? = nil, stroke: Bool? = nil, pathData: [PathSegment]? = nil) {
@@ -59,6 +95,11 @@ public class GeometryPath: Codable {
         self.pathData = pathData
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case fillMode
+        case stroke
+        case pathData
+    }
 
 }
 

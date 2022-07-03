@@ -41,11 +41,42 @@ public class RightSubSuperscriptElement: MathElement {
     /** Alignment of subscript/superscript. */
     public var alignScripts: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case _subscript
-        case superscript
-        case alignScripts
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let _subscriptValue = source["_subscript"]
+        if _subscriptValue != nil {
+            let _subscriptDictionaryValue = _subscriptValue! as? [String:Any]
+            if _subscriptDictionaryValue != nil {
+                let (_subscriptInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, _subscriptDictionaryValue!)
+                if error == nil && _subscriptInstance != nil {
+                    self._subscript = _subscriptInstance! as? MathElement
+                }
+            }
+        }
+        let superscriptValue = source["superscript"]
+        if superscriptValue != nil {
+            let superscriptDictionaryValue = superscriptValue! as? [String:Any]
+            if superscriptDictionaryValue != nil {
+                let (superscriptInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, superscriptDictionaryValue!)
+                if error == nil && superscriptInstance != nil {
+                    self.superscript = superscriptInstance! as? MathElement
+                }
+            }
+        }
+        let alignScriptsValue = source["alignScripts"]
+        if alignScriptsValue != nil {
+            self.alignScripts = alignScriptsValue! as? Bool
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, _subscript: MathElement? = nil, superscript: MathElement? = nil, alignScripts: Bool? = nil) {
@@ -54,26 +85,42 @@ public class RightSubSuperscriptElement: MathElement {
         self._subscript = _subscript
         self.superscript = superscript
         self.alignScripts = alignScripts
+        self.type = ModelType.rightSubSuperscriptElement
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case _subscript
+        case superscript
+        case alignScripts
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        _subscript = try values.decode(MathElement?.self, forKey: ._subscript)
-        superscript = try values.decode(MathElement?.self, forKey: .superscript)
-        alignScripts = try values.decode(Bool?.self, forKey: .alignScripts)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        _subscript = try? values.decode(MathElement.self, forKey: ._subscript)
+        superscript = try? values.decode(MathElement.self, forKey: .superscript)
+        alignScripts = try? values.decode(Bool.self, forKey: .alignScripts)
+        self.type = ModelType.rightSubSuperscriptElement
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(_subscript, forKey: ._subscript)
-        try container.encode(superscript, forKey: .superscript)
-        try container.encode(alignScripts, forKey: .alignScripts)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (_subscript != nil) {
+            try? container.encode(_subscript, forKey: ._subscript)
+        }
+        if (superscript != nil) {
+            try? container.encode(superscript, forKey: .superscript)
+        }
+        if (alignScripts != nil) {
+            try? container.encode(alignScripts, forKey: .alignScripts)
+        }
     }
-
 
 }
 

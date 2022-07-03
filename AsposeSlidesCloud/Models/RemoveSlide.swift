@@ -35,27 +35,38 @@ public class RemoveSlide: Task {
     /** Position of slide to be removed. */
     public var position: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case position
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let positionValue = source["position"]
+        if positionValue != nil {
+            self.position = positionValue! as? Int
+        }
     }
 
     public init(type: ModelType? = nil, position: Int? = nil) {
         super.init(type: type)
         self.position = position
+        self.type = ModelType.removeSlide
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case position
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        position = try values.decode(Int?.self, forKey: .position)
+        position = try? values.decode(Int.self, forKey: .position)
+        self.type = ModelType.removeSlide
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(position, forKey: .position)
+        if (position != nil) {
+            try? container.encode(position, forKey: .position)
+        }
     }
-
 
 }
 

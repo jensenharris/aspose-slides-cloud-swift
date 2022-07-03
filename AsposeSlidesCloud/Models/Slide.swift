@@ -55,18 +55,100 @@ public class Slide: ResourceBase {
     /** Get or sets the link to notes slide. */
     public var notesSlide: ResourceUri?
 
-    private enum CodingKeys: String, CodingKey {
-        case width
-        case height
-        case showMasterShapes
-        case layoutSlide
-        case shapes
-        case theme
-        case placeholders
-        case images
-        case comments
-        case background
-        case notesSlide
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
+        let showMasterShapesValue = source["showMasterShapes"]
+        if showMasterShapesValue != nil {
+            self.showMasterShapes = showMasterShapesValue! as? Bool
+        }
+        let layoutSlideValue = source["layoutSlide"]
+        if layoutSlideValue != nil {
+            let layoutSlideDictionaryValue = layoutSlideValue! as? [String:Any]
+            if layoutSlideDictionaryValue != nil {
+                let (layoutSlideInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, layoutSlideDictionaryValue!)
+                if error == nil && layoutSlideInstance != nil {
+                    self.layoutSlide = layoutSlideInstance! as? ResourceUri
+                }
+            }
+        }
+        let shapesValue = source["shapes"]
+        if shapesValue != nil {
+            let shapesDictionaryValue = shapesValue! as? [String:Any]
+            if shapesDictionaryValue != nil {
+                let (shapesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, shapesDictionaryValue!)
+                if error == nil && shapesInstance != nil {
+                    self.shapes = shapesInstance! as? ResourceUri
+                }
+            }
+        }
+        let themeValue = source["theme"]
+        if themeValue != nil {
+            let themeDictionaryValue = themeValue! as? [String:Any]
+            if themeDictionaryValue != nil {
+                let (themeInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, themeDictionaryValue!)
+                if error == nil && themeInstance != nil {
+                    self.theme = themeInstance! as? ResourceUri
+                }
+            }
+        }
+        let placeholdersValue = source["placeholders"]
+        if placeholdersValue != nil {
+            let placeholdersDictionaryValue = placeholdersValue! as? [String:Any]
+            if placeholdersDictionaryValue != nil {
+                let (placeholdersInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, placeholdersDictionaryValue!)
+                if error == nil && placeholdersInstance != nil {
+                    self.placeholders = placeholdersInstance! as? ResourceUri
+                }
+            }
+        }
+        let imagesValue = source["images"]
+        if imagesValue != nil {
+            let imagesDictionaryValue = imagesValue! as? [String:Any]
+            if imagesDictionaryValue != nil {
+                let (imagesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, imagesDictionaryValue!)
+                if error == nil && imagesInstance != nil {
+                    self.images = imagesInstance! as? ResourceUri
+                }
+            }
+        }
+        let commentsValue = source["comments"]
+        if commentsValue != nil {
+            let commentsDictionaryValue = commentsValue! as? [String:Any]
+            if commentsDictionaryValue != nil {
+                let (commentsInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, commentsDictionaryValue!)
+                if error == nil && commentsInstance != nil {
+                    self.comments = commentsInstance! as? ResourceUri
+                }
+            }
+        }
+        let backgroundValue = source["background"]
+        if backgroundValue != nil {
+            let backgroundDictionaryValue = backgroundValue! as? [String:Any]
+            if backgroundDictionaryValue != nil {
+                let (backgroundInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, backgroundDictionaryValue!)
+                if error == nil && backgroundInstance != nil {
+                    self.background = backgroundInstance! as? ResourceUri
+                }
+            }
+        }
+        let notesSlideValue = source["notesSlide"]
+        if notesSlideValue != nil {
+            let notesSlideDictionaryValue = notesSlideValue! as? [String:Any]
+            if notesSlideDictionaryValue != nil {
+                let (notesSlideInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, notesSlideDictionaryValue!)
+                if error == nil && notesSlideInstance != nil {
+                    self.notesSlide = notesSlideInstance! as? ResourceUri
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, width: Double? = nil, height: Double? = nil, showMasterShapes: Bool? = nil, layoutSlide: ResourceUri? = nil, shapes: ResourceUri? = nil, theme: ResourceUri? = nil, placeholders: ResourceUri? = nil, images: ResourceUri? = nil, comments: ResourceUri? = nil, background: ResourceUri? = nil, notesSlide: ResourceUri? = nil) {
@@ -84,38 +166,73 @@ public class Slide: ResourceBase {
         self.notesSlide = notesSlide
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case width
+        case height
+        case showMasterShapes
+        case layoutSlide
+        case shapes
+        case theme
+        case placeholders
+        case images
+        case comments
+        case background
+        case notesSlide
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        width = try values.decode(Double?.self, forKey: .width)
-        height = try values.decode(Double?.self, forKey: .height)
-        showMasterShapes = try values.decode(Bool?.self, forKey: .showMasterShapes)
-        layoutSlide = try values.decode(ResourceUri?.self, forKey: .layoutSlide)
-        shapes = try values.decode(ResourceUri?.self, forKey: .shapes)
-        theme = try values.decode(ResourceUri?.self, forKey: .theme)
-        placeholders = try values.decode(ResourceUri?.self, forKey: .placeholders)
-        images = try values.decode(ResourceUri?.self, forKey: .images)
-        comments = try values.decode(ResourceUri?.self, forKey: .comments)
-        background = try values.decode(ResourceUri?.self, forKey: .background)
-        notesSlide = try values.decode(ResourceUri?.self, forKey: .notesSlide)
+        width = try? values.decode(Double.self, forKey: .width)
+        height = try? values.decode(Double.self, forKey: .height)
+        showMasterShapes = try? values.decode(Bool.self, forKey: .showMasterShapes)
+        layoutSlide = try? values.decode(ResourceUri.self, forKey: .layoutSlide)
+        shapes = try? values.decode(ResourceUri.self, forKey: .shapes)
+        theme = try? values.decode(ResourceUri.self, forKey: .theme)
+        placeholders = try? values.decode(ResourceUri.self, forKey: .placeholders)
+        images = try? values.decode(ResourceUri.self, forKey: .images)
+        comments = try? values.decode(ResourceUri.self, forKey: .comments)
+        background = try? values.decode(ResourceUri.self, forKey: .background)
+        notesSlide = try? values.decode(ResourceUri.self, forKey: .notesSlide)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
-        try container.encode(showMasterShapes, forKey: .showMasterShapes)
-        try container.encode(layoutSlide, forKey: .layoutSlide)
-        try container.encode(shapes, forKey: .shapes)
-        try container.encode(theme, forKey: .theme)
-        try container.encode(placeholders, forKey: .placeholders)
-        try container.encode(images, forKey: .images)
-        try container.encode(comments, forKey: .comments)
-        try container.encode(background, forKey: .background)
-        try container.encode(notesSlide, forKey: .notesSlide)
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
+        if (showMasterShapes != nil) {
+            try? container.encode(showMasterShapes, forKey: .showMasterShapes)
+        }
+        if (layoutSlide != nil) {
+            try? container.encode(layoutSlide, forKey: .layoutSlide)
+        }
+        if (shapes != nil) {
+            try? container.encode(shapes, forKey: .shapes)
+        }
+        if (theme != nil) {
+            try? container.encode(theme, forKey: .theme)
+        }
+        if (placeholders != nil) {
+            try? container.encode(placeholders, forKey: .placeholders)
+        }
+        if (images != nil) {
+            try? container.encode(images, forKey: .images)
+        }
+        if (comments != nil) {
+            try? container.encode(comments, forKey: .comments)
+        }
+        if (background != nil) {
+            try? container.encode(background, forKey: .background)
+        }
+        if (notesSlide != nil) {
+            try? container.encode(notesSlide, forKey: .notesSlide)
+        }
     }
-
 
 }
 

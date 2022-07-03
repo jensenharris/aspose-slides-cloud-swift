@@ -69,13 +69,50 @@ public class SaveSlide: Task {
     /** Slide index. */
     public var position: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case output
-        case format
-        case options
-        case width
-        case height
-        case position
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let outputValue = source["output"]
+        if outputValue != nil {
+            let outputDictionaryValue = outputValue! as? [String:Any]
+            if outputDictionaryValue != nil {
+                let (outputInstance, error) = ClassRegistry.getClassFromDictionary(OutputFile.self, outputDictionaryValue!)
+                if error == nil && outputInstance != nil {
+                    self.output = outputInstance! as? OutputFile
+                }
+            }
+        }
+        let formatValue = source["format"]
+        if formatValue != nil {
+            let formatStringValue = formatValue! as? String
+            if formatStringValue != nil {
+                let formatEnumValue = Format(rawValue: formatStringValue!)
+                if formatEnumValue != nil {
+                    self.format = formatEnumValue!
+                }
+            }
+        }
+        let optionsValue = source["options"]
+        if optionsValue != nil {
+            let optionsDictionaryValue = optionsValue! as? [String:Any]
+            if optionsDictionaryValue != nil {
+                let (optionsInstance, error) = ClassRegistry.getClassFromDictionary(ExportOptions.self, optionsDictionaryValue!)
+                if error == nil && optionsInstance != nil {
+                    self.options = optionsInstance! as? ExportOptions
+                }
+            }
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Int
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Int
+        }
+        let positionValue = source["position"]
+        if positionValue != nil {
+            self.position = positionValue! as? Int
+        }
     }
 
     public init(type: ModelType? = nil, output: OutputFile? = nil, format: Format? = nil, options: ExportOptions? = nil, width: Int? = nil, height: Int? = nil, position: Int? = nil) {
@@ -86,30 +123,52 @@ public class SaveSlide: Task {
         self.width = width
         self.height = height
         self.position = position
+        self.type = ModelType.saveSlide
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case output
+        case format
+        case options
+        case width
+        case height
+        case position
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        output = try values.decode(OutputFile?.self, forKey: .output)
-        format = try values.decode(Format?.self, forKey: .format)
-        options = try values.decode(ExportOptions?.self, forKey: .options)
-        width = try values.decode(Int?.self, forKey: .width)
-        height = try values.decode(Int?.self, forKey: .height)
-        position = try values.decode(Int?.self, forKey: .position)
+        output = try? values.decode(OutputFile.self, forKey: .output)
+        format = try? values.decode(Format.self, forKey: .format)
+        options = try? values.decode(ExportOptions.self, forKey: .options)
+        width = try? values.decode(Int.self, forKey: .width)
+        height = try? values.decode(Int.self, forKey: .height)
+        position = try? values.decode(Int.self, forKey: .position)
+        self.type = ModelType.saveSlide
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(output, forKey: .output)
-        try container.encode(format, forKey: .format)
-        try container.encode(options, forKey: .options)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
-        try container.encode(position, forKey: .position)
+        if (output != nil) {
+            try? container.encode(output, forKey: .output)
+        }
+        if (format != nil) {
+            try? container.encode(format, forKey: .format)
+        }
+        if (options != nil) {
+            try? container.encode(options, forKey: .options)
+        }
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
+        if (position != nil) {
+            try? container.encode(position, forKey: .position)
+        }
     }
-
 
 }
 

@@ -41,11 +41,24 @@ public class QuadraticBezierToPathSegment: PathSegment {
     /** Y coordinate of end point */
     public var y2: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case x1
-        case y1
-        case x2
-        case y2
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let x1Value = source["x1"]
+        if x1Value != nil {
+            self.x1 = x1Value! as? Double
+        }
+        let y1Value = source["y1"]
+        if y1Value != nil {
+            self.y1 = y1Value! as? Double
+        }
+        let x2Value = source["x2"]
+        if x2Value != nil {
+            self.x2 = x2Value! as? Double
+        }
+        let y2Value = source["y2"]
+        if y2Value != nil {
+            self.y2 = y2Value! as? Double
+        }
     }
 
     public init(type: ModelType? = nil, x1: Double? = nil, y1: Double? = nil, x2: Double? = nil, y2: Double? = nil) {
@@ -54,26 +67,42 @@ public class QuadraticBezierToPathSegment: PathSegment {
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
+        self.type = ModelType.quadBezierTo
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case x1
+        case y1
+        case x2
+        case y2
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        x1 = try values.decode(Double?.self, forKey: .x1)
-        y1 = try values.decode(Double?.self, forKey: .y1)
-        x2 = try values.decode(Double?.self, forKey: .x2)
-        y2 = try values.decode(Double?.self, forKey: .y2)
+        x1 = try? values.decode(Double.self, forKey: .x1)
+        y1 = try? values.decode(Double.self, forKey: .y1)
+        x2 = try? values.decode(Double.self, forKey: .x2)
+        y2 = try? values.decode(Double.self, forKey: .y2)
+        self.type = ModelType.quadBezierTo
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(x1, forKey: .x1)
-        try container.encode(y1, forKey: .y1)
-        try container.encode(x2, forKey: .x2)
-        try container.encode(y2, forKey: .y2)
+        if (x1 != nil) {
+            try? container.encode(x1, forKey: .x1)
+        }
+        if (y1 != nil) {
+            try? container.encode(y1, forKey: .y1)
+        }
+        if (x2 != nil) {
+            try? container.encode(x2, forKey: .x2)
+        }
+        if (y2 != nil) {
+            try? container.encode(y2, forKey: .y2)
+        }
     }
-
 
 }
 

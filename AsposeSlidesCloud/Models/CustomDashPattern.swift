@@ -35,14 +35,20 @@ public class CustomDashPattern: Codable {
     /** Pattern items. */
     public var items: [Double]?
 
-    private enum CodingKeys: String, CodingKey {
-        case items
+    func fillValues(_ source: [String:Any]) throws {
+        let itemsValue = source["items"]
+        if itemsValue != nil {
+            self.items = itemsValue! as? [Double]
+        }
     }
 
     public init(items: [Double]? = nil) {
         self.items = items
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case items
+    }
 
 }
 

@@ -82,23 +82,114 @@ public class ShapeBase: ResourceBase {
     public var hyperlinkMouseOver: Hyperlink?
     public var type: ModelType?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case width
-        case height
-        case alternativeText
-        case alternativeTextTitle
-        case hidden
-        case X
-        case Y
-        case zOrderPosition
-        case fillFormat
-        case effectFormat
-        case threeDFormat
-        case lineFormat
-        case hyperlinkClick
-        case hyperlinkMouseOver
-        case type
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
+        let alternativeTextValue = source["alternativeText"]
+        if alternativeTextValue != nil {
+            self.alternativeText = alternativeTextValue! as? String
+        }
+        let alternativeTextTitleValue = source["alternativeTextTitle"]
+        if alternativeTextTitleValue != nil {
+            self.alternativeTextTitle = alternativeTextTitleValue! as? String
+        }
+        let hiddenValue = source["hidden"]
+        if hiddenValue != nil {
+            self.hidden = hiddenValue! as? Bool
+        }
+        let XValue = source["X"]
+        if XValue != nil {
+            self.X = XValue! as? Double
+        }
+        let YValue = source["Y"]
+        if YValue != nil {
+            self.Y = YValue! as? Double
+        }
+        let zOrderPositionValue = source["zOrderPosition"]
+        if zOrderPositionValue != nil {
+            self.zOrderPosition = zOrderPositionValue! as? Int
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let threeDFormatValue = source["threeDFormat"]
+        if threeDFormatValue != nil {
+            let threeDFormatDictionaryValue = threeDFormatValue! as? [String:Any]
+            if threeDFormatDictionaryValue != nil {
+                let (threeDFormatInstance, error) = ClassRegistry.getClassFromDictionary(ThreeDFormat.self, threeDFormatDictionaryValue!)
+                if error == nil && threeDFormatInstance != nil {
+                    self.threeDFormat = threeDFormatInstance! as? ThreeDFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
+        let hyperlinkClickValue = source["hyperlinkClick"]
+        if hyperlinkClickValue != nil {
+            let hyperlinkClickDictionaryValue = hyperlinkClickValue! as? [String:Any]
+            if hyperlinkClickDictionaryValue != nil {
+                let (hyperlinkClickInstance, error) = ClassRegistry.getClassFromDictionary(Hyperlink.self, hyperlinkClickDictionaryValue!)
+                if error == nil && hyperlinkClickInstance != nil {
+                    self.hyperlinkClick = hyperlinkClickInstance! as? Hyperlink
+                }
+            }
+        }
+        let hyperlinkMouseOverValue = source["hyperlinkMouseOver"]
+        if hyperlinkMouseOverValue != nil {
+            let hyperlinkMouseOverDictionaryValue = hyperlinkMouseOverValue! as? [String:Any]
+            if hyperlinkMouseOverDictionaryValue != nil {
+                let (hyperlinkMouseOverInstance, error) = ClassRegistry.getClassFromDictionary(Hyperlink.self, hyperlinkMouseOverDictionaryValue!)
+                if error == nil && hyperlinkMouseOverInstance != nil {
+                    self.hyperlinkMouseOver = hyperlinkMouseOverInstance! as? Hyperlink
+                }
+            }
+        }
+        let typeValue = source["type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil) {
@@ -121,48 +212,98 @@ public class ShapeBase: ResourceBase {
         self.type = type
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case width
+        case height
+        case alternativeText
+        case alternativeTextTitle
+        case hidden
+        case X
+        case Y
+        case zOrderPosition
+        case fillFormat
+        case effectFormat
+        case threeDFormat
+        case lineFormat
+        case hyperlinkClick
+        case hyperlinkMouseOver
+        case type
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decode(String?.self, forKey: .name)
-        width = try values.decode(Double?.self, forKey: .width)
-        height = try values.decode(Double?.self, forKey: .height)
-        alternativeText = try values.decode(String?.self, forKey: .alternativeText)
-        alternativeTextTitle = try values.decode(String?.self, forKey: .alternativeTextTitle)
-        hidden = try values.decode(Bool?.self, forKey: .hidden)
-        X = try values.decode(Double?.self, forKey: .X)
-        Y = try values.decode(Double?.self, forKey: .Y)
-        zOrderPosition = try values.decode(Int?.self, forKey: .zOrderPosition)
-        fillFormat = try values.decode(FillFormat?.self, forKey: .fillFormat)
-        effectFormat = try values.decode(EffectFormat?.self, forKey: .effectFormat)
-        threeDFormat = try values.decode(ThreeDFormat?.self, forKey: .threeDFormat)
-        lineFormat = try values.decode(LineFormat?.self, forKey: .lineFormat)
-        hyperlinkClick = try values.decode(Hyperlink?.self, forKey: .hyperlinkClick)
-        hyperlinkMouseOver = try values.decode(Hyperlink?.self, forKey: .hyperlinkMouseOver)
-        type = try values.decode(ModelType?.self, forKey: .type)
+        name = try? values.decode(String.self, forKey: .name)
+        width = try? values.decode(Double.self, forKey: .width)
+        height = try? values.decode(Double.self, forKey: .height)
+        alternativeText = try? values.decode(String.self, forKey: .alternativeText)
+        alternativeTextTitle = try? values.decode(String.self, forKey: .alternativeTextTitle)
+        hidden = try? values.decode(Bool.self, forKey: .hidden)
+        X = try? values.decode(Double.self, forKey: .X)
+        Y = try? values.decode(Double.self, forKey: .Y)
+        zOrderPosition = try? values.decode(Int.self, forKey: .zOrderPosition)
+        fillFormat = try? values.decode(FillFormat.self, forKey: .fillFormat)
+        effectFormat = try? values.decode(EffectFormat.self, forKey: .effectFormat)
+        threeDFormat = try? values.decode(ThreeDFormat.self, forKey: .threeDFormat)
+        lineFormat = try? values.decode(LineFormat.self, forKey: .lineFormat)
+        hyperlinkClick = try? values.decode(Hyperlink.self, forKey: .hyperlinkClick)
+        hyperlinkMouseOver = try? values.decode(Hyperlink.self, forKey: .hyperlinkMouseOver)
+        type = try? values.decode(ModelType.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
-        try container.encode(alternativeText, forKey: .alternativeText)
-        try container.encode(alternativeTextTitle, forKey: .alternativeTextTitle)
-        try container.encode(hidden, forKey: .hidden)
-        try container.encode(X, forKey: .X)
-        try container.encode(Y, forKey: .Y)
-        try container.encode(zOrderPosition, forKey: .zOrderPosition)
-        try container.encode(fillFormat, forKey: .fillFormat)
-        try container.encode(effectFormat, forKey: .effectFormat)
-        try container.encode(threeDFormat, forKey: .threeDFormat)
-        try container.encode(lineFormat, forKey: .lineFormat)
-        try container.encode(hyperlinkClick, forKey: .hyperlinkClick)
-        try container.encode(hyperlinkMouseOver, forKey: .hyperlinkMouseOver)
-        try container.encode(type, forKey: .type)
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
+        if (alternativeText != nil) {
+            try? container.encode(alternativeText, forKey: .alternativeText)
+        }
+        if (alternativeTextTitle != nil) {
+            try? container.encode(alternativeTextTitle, forKey: .alternativeTextTitle)
+        }
+        if (hidden != nil) {
+            try? container.encode(hidden, forKey: .hidden)
+        }
+        if (X != nil) {
+            try? container.encode(X, forKey: .X)
+        }
+        if (Y != nil) {
+            try? container.encode(Y, forKey: .Y)
+        }
+        if (zOrderPosition != nil) {
+            try? container.encode(zOrderPosition, forKey: .zOrderPosition)
+        }
+        if (fillFormat != nil) {
+            try? container.encode(fillFormat, forKey: .fillFormat)
+        }
+        if (effectFormat != nil) {
+            try? container.encode(effectFormat, forKey: .effectFormat)
+        }
+        if (threeDFormat != nil) {
+            try? container.encode(threeDFormat, forKey: .threeDFormat)
+        }
+        if (lineFormat != nil) {
+            try? container.encode(lineFormat, forKey: .lineFormat)
+        }
+        if (hyperlinkClick != nil) {
+            try? container.encode(hyperlinkClick, forKey: .hyperlinkClick)
+        }
+        if (hyperlinkMouseOver != nil) {
+            try? container.encode(hyperlinkMouseOver, forKey: .hyperlinkMouseOver)
+        }
+        if (type != nil) {
+            try? container.encode(type, forKey: .type)
+        }
     }
-
 
 }
 

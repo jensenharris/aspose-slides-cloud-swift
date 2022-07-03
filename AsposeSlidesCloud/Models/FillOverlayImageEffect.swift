@@ -44,31 +44,60 @@ public class FillOverlayImageEffect: ImageTransformEffect {
     /** Fill format. */
     public var fillFormat: FillFormat?
 
-    private enum CodingKeys: String, CodingKey {
-        case blend
-        case fillFormat
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let blendValue = source["blend"]
+        if blendValue != nil {
+            let blendStringValue = blendValue! as? String
+            if blendStringValue != nil {
+                let blendEnumValue = Blend(rawValue: blendStringValue!)
+                if blendEnumValue != nil {
+                    self.blend = blendEnumValue!
+                }
+            }
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, blend: Blend? = nil, fillFormat: FillFormat? = nil) {
         super.init(type: type)
         self.blend = blend
         self.fillFormat = fillFormat
+        self.type = ModelType.fillOverlay
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case blend
+        case fillFormat
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        blend = try values.decode(Blend?.self, forKey: .blend)
-        fillFormat = try values.decode(FillFormat?.self, forKey: .fillFormat)
+        blend = try? values.decode(Blend.self, forKey: .blend)
+        fillFormat = try? values.decode(FillFormat.self, forKey: .fillFormat)
+        self.type = ModelType.fillOverlay
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(blend, forKey: .blend)
-        try container.encode(fillFormat, forKey: .fillFormat)
+        if (blend != nil) {
+            try? container.encode(blend, forKey: .blend)
+        }
+        if (fillFormat != nil) {
+            try? container.encode(fillFormat, forKey: .fillFormat)
+        }
     }
-
 
 }
 

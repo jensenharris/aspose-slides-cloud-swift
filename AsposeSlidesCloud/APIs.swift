@@ -26,6 +26,7 @@
  */
 
 import Foundation
+import FoundationNetworking
 
 open class AsposeSlidesCloudAPI {
     public static var basePath = "https://api.aspose.cloud"
@@ -66,7 +67,7 @@ open class RequestBuilder<T> {
         self.headers = headers
     }
     
-    open func authenticate(completion: @escaping(() -> Void)) {
+    open func authenticate(completion: @escaping((_ error: Error?) -> Void)) {
         if AsposeSlidesCloudAPI.appSid != "" && AsposeSlidesCloudAPI.authToken == nil {
             var request = URLRequest(url: URL(string: "\(AsposeSlidesCloudAPI.authBasePath)/connect/token")!)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -75,7 +76,10 @@ open class RequestBuilder<T> {
             request.httpBody = postString.data(using: String.Encoding.utf8);
 
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if error == nil && (200 ... 299) ~= (response as? HTTPURLResponse)!.statusCode && data != nil {
+                if error != nil {
+                    completion(ErrorResponse.error(401, data, AlamofireDecodableRequestBuilderError.httpError))
+                }
+                else if (200 ... 299) ~= (response as? HTTPURLResponse)!.statusCode && data != nil {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
                         if json != nil {
@@ -83,32 +87,56 @@ open class RequestBuilder<T> {
                         }
                     } catch {
                     }
+                    completion(nil)
+                } else {
+                    completion(ErrorResponse.error(401, data, AlamofireDecodableRequestBuilderError.httpError))
                 }
-                completion()
             }
             task.resume()
         }
         else {
-            completion()
+            completion(nil)
         }
     }
     
     open func executeAuthorized(_ completion: @escaping (_ response: Response<T>?, _ error: Error?) -> Void) {
-        authenticate() {
-            if AsposeSlidesCloudAPI.authToken != nil {
-                self.headers["Authorization"] = "Bearer " + AsposeSlidesCloudAPI.authToken!
+        let wasToken = AsposeSlidesCloudAPI.authToken != nil
+        var needRepeat = false
+        authenticate() { (error) -> Void in
+            if (error != nil) {
+                completion(nil, error)
             }
-            self.headers["x-aspose-client"] = "swift sdk"
-            self.headers["x-aspose-version"] = Configuration.apiVersion
-            if AsposeSlidesCloudAPI.timeout > 0 {
-                self.headers["x-aspose-timeout"] = String(AsposeSlidesCloudAPI.timeout)
-            }
-            for (header, value) in AsposeSlidesCloudAPI.customHeaders {
-                self.headers[header] = value
-            }
-            self.execute() {
-                (response, error) in
-                completion(response, error)
+            else {
+                if AsposeSlidesCloudAPI.authToken != nil {
+                    self.headers["Authorization"] = "Bearer " + AsposeSlidesCloudAPI.authToken!
+                }
+                self.headers["x-aspose-client"] = "swift sdk"
+                self.headers["x-aspose-version"] = Configuration.apiVersion
+                if AsposeSlidesCloudAPI.timeout > 0 {
+                    self.headers["x-aspose-timeout"] = String(AsposeSlidesCloudAPI.timeout)
+                }
+                for (header, value) in AsposeSlidesCloudAPI.customHeaders {
+                    self.headers[header] = value
+                }
+                self.execute() {
+                    (response, error) in
+                    if (wasToken && error != nil) {
+                        switch (error!) {
+                        case ErrorResponse.error(let actualCode, _, _):
+                            if (actualCode == 401) {
+                                needRepeat = true
+                                AsposeSlidesCloudAPI.authToken = nil
+                            }
+                        default:
+                            break;
+                        }
+                    }
+                    if (needRepeat) {
+                        self.executeAuthorized(completion)
+                    } else {
+                        completion(response, error)
+                    }
+                }
             }
         }
     }

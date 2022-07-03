@@ -73,13 +73,50 @@ public class SlideProperties: ResourceBase {
     /** Height. */
     public var height: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case firstSlideNumber
-        case orientation
-        case scaleType
-        case sizeType
-        case width
-        case height
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let firstSlideNumberValue = source["firstSlideNumber"]
+        if firstSlideNumberValue != nil {
+            self.firstSlideNumber = firstSlideNumberValue! as? Int
+        }
+        let orientationValue = source["orientation"]
+        if orientationValue != nil {
+            let orientationStringValue = orientationValue! as? String
+            if orientationStringValue != nil {
+                let orientationEnumValue = Orientation(rawValue: orientationStringValue!)
+                if orientationEnumValue != nil {
+                    self.orientation = orientationEnumValue!
+                }
+            }
+        }
+        let scaleTypeValue = source["scaleType"]
+        if scaleTypeValue != nil {
+            let scaleTypeStringValue = scaleTypeValue! as? String
+            if scaleTypeStringValue != nil {
+                let scaleTypeEnumValue = ScaleType(rawValue: scaleTypeStringValue!)
+                if scaleTypeEnumValue != nil {
+                    self.scaleType = scaleTypeEnumValue!
+                }
+            }
+        }
+        let sizeTypeValue = source["sizeType"]
+        if sizeTypeValue != nil {
+            let sizeTypeStringValue = sizeTypeValue! as? String
+            if sizeTypeStringValue != nil {
+                let sizeTypeEnumValue = SizeType(rawValue: sizeTypeStringValue!)
+                if sizeTypeEnumValue != nil {
+                    self.sizeType = sizeTypeEnumValue!
+                }
+            }
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Int
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Int
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, firstSlideNumber: Int? = nil, orientation: Orientation? = nil, scaleType: ScaleType? = nil, sizeType: SizeType? = nil, width: Int? = nil, height: Int? = nil) {
@@ -92,28 +129,48 @@ public class SlideProperties: ResourceBase {
         self.height = height
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case firstSlideNumber
+        case orientation
+        case scaleType
+        case sizeType
+        case width
+        case height
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        firstSlideNumber = try values.decode(Int?.self, forKey: .firstSlideNumber)
-        orientation = try values.decode(Orientation?.self, forKey: .orientation)
-        scaleType = try values.decode(ScaleType?.self, forKey: .scaleType)
-        sizeType = try values.decode(SizeType?.self, forKey: .sizeType)
-        width = try values.decode(Int?.self, forKey: .width)
-        height = try values.decode(Int?.self, forKey: .height)
+        firstSlideNumber = try? values.decode(Int.self, forKey: .firstSlideNumber)
+        orientation = try? values.decode(Orientation.self, forKey: .orientation)
+        scaleType = try? values.decode(ScaleType.self, forKey: .scaleType)
+        sizeType = try? values.decode(SizeType.self, forKey: .sizeType)
+        width = try? values.decode(Int.self, forKey: .width)
+        height = try? values.decode(Int.self, forKey: .height)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(firstSlideNumber, forKey: .firstSlideNumber)
-        try container.encode(orientation, forKey: .orientation)
-        try container.encode(scaleType, forKey: .scaleType)
-        try container.encode(sizeType, forKey: .sizeType)
-        try container.encode(width, forKey: .width)
-        try container.encode(height, forKey: .height)
+        if (firstSlideNumber != nil) {
+            try? container.encode(firstSlideNumber, forKey: .firstSlideNumber)
+        }
+        if (orientation != nil) {
+            try? container.encode(orientation, forKey: .orientation)
+        }
+        if (scaleType != nil) {
+            try? container.encode(scaleType, forKey: .scaleType)
+        }
+        if (sizeType != nil) {
+            try? container.encode(sizeType, forKey: .sizeType)
+        }
+        if (width != nil) {
+            try? container.encode(width, forKey: .width)
+        }
+        if (height != nil) {
+            try? container.encode(height, forKey: .height)
+        }
     }
-
 
 }
 

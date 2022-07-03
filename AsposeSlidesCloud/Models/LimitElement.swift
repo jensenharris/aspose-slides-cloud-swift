@@ -39,10 +39,32 @@ public class LimitElement: MathElement {
     /** Specifies upper or lower limit */
     public var upperLimit: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case base
-        case limit
-        case upperLimit
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let baseValue = source["base"]
+        if baseValue != nil {
+            let baseDictionaryValue = baseValue! as? [String:Any]
+            if baseDictionaryValue != nil {
+                let (baseInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, baseDictionaryValue!)
+                if error == nil && baseInstance != nil {
+                    self.base = baseInstance! as? MathElement
+                }
+            }
+        }
+        let limitValue = source["limit"]
+        if limitValue != nil {
+            let limitDictionaryValue = limitValue! as? [String:Any]
+            if limitDictionaryValue != nil {
+                let (limitInstance, error) = ClassRegistry.getClassFromDictionary(MathElement.self, limitDictionaryValue!)
+                if error == nil && limitInstance != nil {
+                    self.limit = limitInstance! as? MathElement
+                }
+            }
+        }
+        let upperLimitValue = source["upperLimit"]
+        if upperLimitValue != nil {
+            self.upperLimit = upperLimitValue! as? Bool
+        }
     }
 
     public init(type: ModelType? = nil, base: MathElement? = nil, limit: MathElement? = nil, upperLimit: Bool? = nil) {
@@ -50,24 +72,37 @@ public class LimitElement: MathElement {
         self.base = base
         self.limit = limit
         self.upperLimit = upperLimit
+        self.type = ModelType.limit
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case base
+        case limit
+        case upperLimit
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        base = try values.decode(MathElement?.self, forKey: .base)
-        limit = try values.decode(MathElement?.self, forKey: .limit)
-        upperLimit = try values.decode(Bool?.self, forKey: .upperLimit)
+        base = try? values.decode(MathElement.self, forKey: .base)
+        limit = try? values.decode(MathElement.self, forKey: .limit)
+        upperLimit = try? values.decode(Bool.self, forKey: .upperLimit)
+        self.type = ModelType.limit
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(base, forKey: .base)
-        try container.encode(limit, forKey: .limit)
-        try container.encode(upperLimit, forKey: .upperLimit)
+        if (base != nil) {
+            try? container.encode(base, forKey: .base)
+        }
+        if (limit != nil) {
+            try? container.encode(limit, forKey: .limit)
+        }
+        if (upperLimit != nil) {
+            try? container.encode(upperLimit, forKey: .upperLimit)
+        }
     }
-
 
 }
 

@@ -69,15 +69,57 @@ public class MatrixElement: MathElement {
     /** Matrix items */
     public var items: [[MathElement]]?
 
-    private enum CodingKeys: String, CodingKey {
-        case hidePlaceholders
-        case baseJustification
-        case minColumnWidth
-        case columnGapRule
-        case columnGap
-        case rowGapRule
-        case rowGap
-        case items
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let hidePlaceholdersValue = source["hidePlaceholders"]
+        if hidePlaceholdersValue != nil {
+            self.hidePlaceholders = hidePlaceholdersValue! as? Bool
+        }
+        let baseJustificationValue = source["baseJustification"]
+        if baseJustificationValue != nil {
+            let baseJustificationStringValue = baseJustificationValue! as? String
+            if baseJustificationStringValue != nil {
+                let baseJustificationEnumValue = BaseJustification(rawValue: baseJustificationStringValue!)
+                if baseJustificationEnumValue != nil {
+                    self.baseJustification = baseJustificationEnumValue!
+                }
+            }
+        }
+        let minColumnWidthValue = source["minColumnWidth"]
+        if minColumnWidthValue != nil {
+            self.minColumnWidth = minColumnWidthValue! as? Int
+        }
+        let columnGapRuleValue = source["columnGapRule"]
+        if columnGapRuleValue != nil {
+            let columnGapRuleStringValue = columnGapRuleValue! as? String
+            if columnGapRuleStringValue != nil {
+                let columnGapRuleEnumValue = ColumnGapRule(rawValue: columnGapRuleStringValue!)
+                if columnGapRuleEnumValue != nil {
+                    self.columnGapRule = columnGapRuleEnumValue!
+                }
+            }
+        }
+        let columnGapValue = source["columnGap"]
+        if columnGapValue != nil {
+            self.columnGap = columnGapValue! as? Int
+        }
+        let rowGapRuleValue = source["rowGapRule"]
+        if rowGapRuleValue != nil {
+            let rowGapRuleStringValue = rowGapRuleValue! as? String
+            if rowGapRuleStringValue != nil {
+                let rowGapRuleEnumValue = RowGapRule(rawValue: rowGapRuleStringValue!)
+                if rowGapRuleEnumValue != nil {
+                    self.rowGapRule = rowGapRuleEnumValue!
+                }
+            }
+        }
+        let rowGapValue = source["rowGap"]
+        if rowGapValue != nil {
+            self.rowGap = rowGapValue! as? Int
+        }
+        let itemsValue = source["items"]
+        if itemsValue != nil {
+        }
     }
 
     public init(type: ModelType? = nil, hidePlaceholders: Bool? = nil, baseJustification: BaseJustification? = nil, minColumnWidth: Int? = nil, columnGapRule: ColumnGapRule? = nil, columnGap: Int? = nil, rowGapRule: RowGapRule? = nil, rowGap: Int? = nil, items: [[MathElement]]? = nil) {
@@ -90,34 +132,62 @@ public class MatrixElement: MathElement {
         self.rowGapRule = rowGapRule
         self.rowGap = rowGap
         self.items = items
+        self.type = ModelType.matrix
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case hidePlaceholders
+        case baseJustification
+        case minColumnWidth
+        case columnGapRule
+        case columnGap
+        case rowGapRule
+        case rowGap
+        case items
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        hidePlaceholders = try values.decode(Bool?.self, forKey: .hidePlaceholders)
-        baseJustification = try values.decode(BaseJustification?.self, forKey: .baseJustification)
-        minColumnWidth = try values.decode(Int?.self, forKey: .minColumnWidth)
-        columnGapRule = try values.decode(ColumnGapRule?.self, forKey: .columnGapRule)
-        columnGap = try values.decode(Int?.self, forKey: .columnGap)
-        rowGapRule = try values.decode(RowGapRule?.self, forKey: .rowGapRule)
-        rowGap = try values.decode(Int?.self, forKey: .rowGap)
-        items = try values.decode([[MathElement]]?.self, forKey: .items)
+        hidePlaceholders = try? values.decode(Bool.self, forKey: .hidePlaceholders)
+        baseJustification = try? values.decode(BaseJustification.self, forKey: .baseJustification)
+        minColumnWidth = try? values.decode(Int.self, forKey: .minColumnWidth)
+        columnGapRule = try? values.decode(ColumnGapRule.self, forKey: .columnGapRule)
+        columnGap = try? values.decode(Int.self, forKey: .columnGap)
+        rowGapRule = try? values.decode(RowGapRule.self, forKey: .rowGapRule)
+        rowGap = try? values.decode(Int.self, forKey: .rowGap)
+        items = try? values.decode([[MathElement]].self, forKey: .items)
+        self.type = ModelType.matrix
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(hidePlaceholders, forKey: .hidePlaceholders)
-        try container.encode(baseJustification, forKey: .baseJustification)
-        try container.encode(minColumnWidth, forKey: .minColumnWidth)
-        try container.encode(columnGapRule, forKey: .columnGapRule)
-        try container.encode(columnGap, forKey: .columnGap)
-        try container.encode(rowGapRule, forKey: .rowGapRule)
-        try container.encode(rowGap, forKey: .rowGap)
-        try container.encode(items, forKey: .items)
+        if (hidePlaceholders != nil) {
+            try? container.encode(hidePlaceholders, forKey: .hidePlaceholders)
+        }
+        if (baseJustification != nil) {
+            try? container.encode(baseJustification, forKey: .baseJustification)
+        }
+        if (minColumnWidth != nil) {
+            try? container.encode(minColumnWidth, forKey: .minColumnWidth)
+        }
+        if (columnGapRule != nil) {
+            try? container.encode(columnGapRule, forKey: .columnGapRule)
+        }
+        if (columnGap != nil) {
+            try? container.encode(columnGap, forKey: .columnGap)
+        }
+        if (rowGapRule != nil) {
+            try? container.encode(rowGapRule, forKey: .rowGapRule)
+        }
+        if (rowGap != nil) {
+            try? container.encode(rowGap, forKey: .rowGap)
+        }
+        if (items != nil) {
+            try? container.encode(items, forKey: .items)
+        }
     }
-
 
 }
 

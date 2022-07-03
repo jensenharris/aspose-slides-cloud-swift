@@ -41,11 +41,23 @@ public class TextBounds: Codable {
     /** Height of the text bounds. */
     public var height: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case X
-        case Y
-        case width
-        case height
+    func fillValues(_ source: [String:Any]) throws {
+        let XValue = source["X"]
+        if XValue != nil {
+            self.X = XValue! as? Double
+        }
+        let YValue = source["Y"]
+        if YValue != nil {
+            self.Y = YValue! as? Double
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
     }
 
     public init(X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil) {
@@ -55,6 +67,12 @@ public class TextBounds: Codable {
         self.height = height
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case X
+        case Y
+        case width
+        case height
+    }
 
 }
 

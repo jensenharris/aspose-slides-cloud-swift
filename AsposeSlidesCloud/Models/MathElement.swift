@@ -55,14 +55,26 @@ public class MathElement: Codable {
     }
     public var type: ModelType?
 
-    private enum CodingKeys: String, CodingKey {
-        case type
+    func fillValues(_ source: [String:Any]) throws {
+        let typeValue = source["type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil) {
         self.type = type
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case type
+    }
 
 }
 

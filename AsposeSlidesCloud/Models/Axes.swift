@@ -41,11 +41,47 @@ public class Axes: Codable {
     /** Gets or sets the secondary vertical axis. */
     public var secondaryVerticalAxis: Axis?
 
-    private enum CodingKeys: String, CodingKey {
-        case horizontalAxis
-        case verticalAxis
-        case secondaryHorizontalAxis
-        case secondaryVerticalAxis
+    func fillValues(_ source: [String:Any]) throws {
+        let horizontalAxisValue = source["horizontalAxis"]
+        if horizontalAxisValue != nil {
+            let horizontalAxisDictionaryValue = horizontalAxisValue! as? [String:Any]
+            if horizontalAxisDictionaryValue != nil {
+                let (horizontalAxisInstance, error) = ClassRegistry.getClassFromDictionary(Axis.self, horizontalAxisDictionaryValue!)
+                if error == nil && horizontalAxisInstance != nil {
+                    self.horizontalAxis = horizontalAxisInstance! as? Axis
+                }
+            }
+        }
+        let verticalAxisValue = source["verticalAxis"]
+        if verticalAxisValue != nil {
+            let verticalAxisDictionaryValue = verticalAxisValue! as? [String:Any]
+            if verticalAxisDictionaryValue != nil {
+                let (verticalAxisInstance, error) = ClassRegistry.getClassFromDictionary(Axis.self, verticalAxisDictionaryValue!)
+                if error == nil && verticalAxisInstance != nil {
+                    self.verticalAxis = verticalAxisInstance! as? Axis
+                }
+            }
+        }
+        let secondaryHorizontalAxisValue = source["secondaryHorizontalAxis"]
+        if secondaryHorizontalAxisValue != nil {
+            let secondaryHorizontalAxisDictionaryValue = secondaryHorizontalAxisValue! as? [String:Any]
+            if secondaryHorizontalAxisDictionaryValue != nil {
+                let (secondaryHorizontalAxisInstance, error) = ClassRegistry.getClassFromDictionary(Axis.self, secondaryHorizontalAxisDictionaryValue!)
+                if error == nil && secondaryHorizontalAxisInstance != nil {
+                    self.secondaryHorizontalAxis = secondaryHorizontalAxisInstance! as? Axis
+                }
+            }
+        }
+        let secondaryVerticalAxisValue = source["secondaryVerticalAxis"]
+        if secondaryVerticalAxisValue != nil {
+            let secondaryVerticalAxisDictionaryValue = secondaryVerticalAxisValue! as? [String:Any]
+            if secondaryVerticalAxisDictionaryValue != nil {
+                let (secondaryVerticalAxisInstance, error) = ClassRegistry.getClassFromDictionary(Axis.self, secondaryVerticalAxisDictionaryValue!)
+                if error == nil && secondaryVerticalAxisInstance != nil {
+                    self.secondaryVerticalAxis = secondaryVerticalAxisInstance! as? Axis
+                }
+            }
+        }
     }
 
     public init(horizontalAxis: Axis? = nil, verticalAxis: Axis? = nil, secondaryHorizontalAxis: Axis? = nil, secondaryVerticalAxis: Axis? = nil) {
@@ -55,6 +91,12 @@ public class Axes: Codable {
         self.secondaryVerticalAxis = secondaryVerticalAxis
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case horizontalAxis
+        case verticalAxis
+        case secondaryHorizontalAxis
+        case secondaryVerticalAxis
+    }
 
 }
 

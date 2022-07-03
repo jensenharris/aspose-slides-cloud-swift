@@ -37,31 +37,48 @@ public class PathInputFile: InputFile {
     /** Get or sets name of storage. */
     public var storage: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case path
-        case storage
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let pathValue = source["path"]
+        if pathValue != nil {
+            self.path = pathValue! as? String
+        }
+        let storageValue = source["storage"]
+        if storageValue != nil {
+            self.storage = storageValue! as? String
+        }
     }
 
     public init(password: String? = nil, type: ModelType? = nil, path: String? = nil, storage: String? = nil) {
         super.init(password: password, type: type)
         self.path = path
         self.storage = storage
+        self.type = ModelType.path
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case path
+        case storage
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        path = try values.decode(String?.self, forKey: .path)
-        storage = try values.decode(String?.self, forKey: .storage)
+        path = try? values.decode(String.self, forKey: .path)
+        storage = try? values.decode(String.self, forKey: .storage)
+        self.type = ModelType.path
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(path, forKey: .path)
-        try container.encode(storage, forKey: .storage)
+        if (path != nil) {
+            try? container.encode(path, forKey: .path)
+        }
+        if (storage != nil) {
+            try? container.encode(storage, forKey: .storage)
+        }
     }
-
 
 }
 

@@ -37,9 +37,15 @@ public class ObjectExist: Codable {
     /** True if it is a folder, false if it is a file. */
     public var isFolder: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case exists
-        case isFolder
+    func fillValues(_ source: [String:Any]) throws {
+        let existsValue = source["exists"]
+        if existsValue != nil {
+            self.exists = existsValue! as? Bool
+        }
+        let isFolderValue = source["isFolder"]
+        if isFolderValue != nil {
+            self.isFolder = isFolderValue! as? Bool
+        }
     }
 
     public init(exists: Bool? = nil, isFolder: Bool? = nil) {
@@ -47,6 +53,10 @@ public class ObjectExist: Codable {
         self.isFolder = isFolder
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case exists
+        case isFolder
+    }
 
 }
 

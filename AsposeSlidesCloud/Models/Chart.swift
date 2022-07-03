@@ -138,6 +138,195 @@ public class Chart: ShapeBase {
     public var axes: Axes?
     /** Gets or sets the plot area. */
     public var plotArea: PlotArea?
+    /** Specifies the chart area shall have rounded corners. */
+    public var hasRoundedCorners: Bool?
+    /** Gets groups of series.  */
+    public var seriesGroups: [ChartSeriesGroup]?
+
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let chartTypeValue = source["chartType"]
+        if chartTypeValue != nil {
+            let chartTypeStringValue = chartTypeValue! as? String
+            if chartTypeStringValue != nil {
+                let chartTypeEnumValue = ChartType(rawValue: chartTypeStringValue!)
+                if chartTypeEnumValue != nil {
+                    self.chartType = chartTypeEnumValue!
+                }
+            }
+        }
+        let showDataLabelsOverMaximumValue = source["showDataLabelsOverMaximum"]
+        if showDataLabelsOverMaximumValue != nil {
+            self.showDataLabelsOverMaximum = showDataLabelsOverMaximumValue! as? Bool
+        }
+        let seriesValue = source["series"]
+        if seriesValue != nil {
+            var seriesArray: [Series] = []
+            let seriesDictionaryValue = seriesValue! as? [Any]
+            if seriesDictionaryValue != nil {
+                seriesDictionaryValue!.forEach { seriesAnyItem in
+                    let seriesItem = seriesAnyItem as? [String:Any]
+                    var added = false
+                    if seriesItem != nil {
+                        let (seriesInstance, error) = ClassRegistry.getClassFromDictionary(Series.self, seriesItem!)
+                        if error == nil && seriesInstance != nil {
+                            let seriesArrayItem = seriesInstance! as? Series
+                            if seriesArrayItem != nil {
+                                seriesArray.append(seriesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        seriesArray.append(Series())
+                    }
+                }
+            }
+            self.series = seriesArray
+        }
+        let categoriesValue = source["categories"]
+        if categoriesValue != nil {
+            var categoriesArray: [ChartCategory] = []
+            let categoriesDictionaryValue = categoriesValue! as? [Any]
+            if categoriesDictionaryValue != nil {
+                categoriesDictionaryValue!.forEach { categoriesAnyItem in
+                    let categoriesItem = categoriesAnyItem as? [String:Any]
+                    var added = false
+                    if categoriesItem != nil {
+                        let (categoriesInstance, error) = ClassRegistry.getClassFromDictionary(ChartCategory.self, categoriesItem!)
+                        if error == nil && categoriesInstance != nil {
+                            let categoriesArrayItem = categoriesInstance! as? ChartCategory
+                            if categoriesArrayItem != nil {
+                                categoriesArray.append(categoriesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        categoriesArray.append(ChartCategory())
+                    }
+                }
+            }
+            self.categories = categoriesArray
+        }
+        let titleValue = source["title"]
+        if titleValue != nil {
+            let titleDictionaryValue = titleValue! as? [String:Any]
+            if titleDictionaryValue != nil {
+                let (titleInstance, error) = ClassRegistry.getClassFromDictionary(ChartTitle.self, titleDictionaryValue!)
+                if error == nil && titleInstance != nil {
+                    self.title = titleInstance! as? ChartTitle
+                }
+            }
+        }
+        let backWallValue = source["backWall"]
+        if backWallValue != nil {
+            let backWallDictionaryValue = backWallValue! as? [String:Any]
+            if backWallDictionaryValue != nil {
+                let (backWallInstance, error) = ClassRegistry.getClassFromDictionary(ChartWall.self, backWallDictionaryValue!)
+                if error == nil && backWallInstance != nil {
+                    self.backWall = backWallInstance! as? ChartWall
+                }
+            }
+        }
+        let sideWallValue = source["sideWall"]
+        if sideWallValue != nil {
+            let sideWallDictionaryValue = sideWallValue! as? [String:Any]
+            if sideWallDictionaryValue != nil {
+                let (sideWallInstance, error) = ClassRegistry.getClassFromDictionary(ChartWall.self, sideWallDictionaryValue!)
+                if error == nil && sideWallInstance != nil {
+                    self.sideWall = sideWallInstance! as? ChartWall
+                }
+            }
+        }
+        let floorValue = source["floor"]
+        if floorValue != nil {
+            let floorDictionaryValue = floorValue! as? [String:Any]
+            if floorDictionaryValue != nil {
+                let (floorInstance, error) = ClassRegistry.getClassFromDictionary(ChartWall.self, floorDictionaryValue!)
+                if error == nil && floorInstance != nil {
+                    self.floor = floorInstance! as? ChartWall
+                }
+            }
+        }
+        let legendValue = source["legend"]
+        if legendValue != nil {
+            let legendDictionaryValue = legendValue! as? [String:Any]
+            if legendDictionaryValue != nil {
+                let (legendInstance, error) = ClassRegistry.getClassFromDictionary(Legend.self, legendDictionaryValue!)
+                if error == nil && legendInstance != nil {
+                    self.legend = legendInstance! as? Legend
+                }
+            }
+        }
+        let axesValue = source["axes"]
+        if axesValue != nil {
+            let axesDictionaryValue = axesValue! as? [String:Any]
+            if axesDictionaryValue != nil {
+                let (axesInstance, error) = ClassRegistry.getClassFromDictionary(Axes.self, axesDictionaryValue!)
+                if error == nil && axesInstance != nil {
+                    self.axes = axesInstance! as? Axes
+                }
+            }
+        }
+        let plotAreaValue = source["plotArea"]
+        if plotAreaValue != nil {
+            let plotAreaDictionaryValue = plotAreaValue! as? [String:Any]
+            if plotAreaDictionaryValue != nil {
+                let (plotAreaInstance, error) = ClassRegistry.getClassFromDictionary(PlotArea.self, plotAreaDictionaryValue!)
+                if error == nil && plotAreaInstance != nil {
+                    self.plotArea = plotAreaInstance! as? PlotArea
+                }
+            }
+        }
+        let hasRoundedCornersValue = source["hasRoundedCorners"]
+        if hasRoundedCornersValue != nil {
+            self.hasRoundedCorners = hasRoundedCornersValue! as? Bool
+        }
+        let seriesGroupsValue = source["seriesGroups"]
+        if seriesGroupsValue != nil {
+            var seriesGroupsArray: [ChartSeriesGroup] = []
+            let seriesGroupsDictionaryValue = seriesGroupsValue! as? [Any]
+            if seriesGroupsDictionaryValue != nil {
+                seriesGroupsDictionaryValue!.forEach { seriesGroupsAnyItem in
+                    let seriesGroupsItem = seriesGroupsAnyItem as? [String:Any]
+                    var added = false
+                    if seriesGroupsItem != nil {
+                        let (seriesGroupsInstance, error) = ClassRegistry.getClassFromDictionary(ChartSeriesGroup.self, seriesGroupsItem!)
+                        if error == nil && seriesGroupsInstance != nil {
+                            let seriesGroupsArrayItem = seriesGroupsInstance! as? ChartSeriesGroup
+                            if seriesGroupsArrayItem != nil {
+                                seriesGroupsArray.append(seriesGroupsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        seriesGroupsArray.append(ChartSeriesGroup())
+                    }
+                }
+            }
+            self.seriesGroups = seriesGroupsArray
+        }
+    }
+
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, chartType: ChartType? = nil, showDataLabelsOverMaximum: Bool? = nil, series: [Series]? = nil, categories: [ChartCategory]? = nil, title: ChartTitle? = nil, backWall: ChartWall? = nil, sideWall: ChartWall? = nil, floor: ChartWall? = nil, legend: Legend? = nil, axes: Axes? = nil, plotArea: PlotArea? = nil, hasRoundedCorners: Bool? = nil, seriesGroups: [ChartSeriesGroup]? = nil) {
+        super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type)
+        self.chartType = chartType
+        self.showDataLabelsOverMaximum = showDataLabelsOverMaximum
+        self.series = series
+        self.categories = categories
+        self.title = title
+        self.backWall = backWall
+        self.sideWall = sideWall
+        self.floor = floor
+        self.legend = legend
+        self.axes = axes
+        self.plotArea = plotArea
+        self.hasRoundedCorners = hasRoundedCorners
+        self.seriesGroups = seriesGroups
+        self.type = ModelType.chart
+    }
 
     private enum CodingKeys: String, CodingKey {
         case chartType
@@ -151,55 +340,72 @@ public class Chart: ShapeBase {
         case legend
         case axes
         case plotArea
-    }
-
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, chartType: ChartType? = nil, showDataLabelsOverMaximum: Bool? = nil, series: [Series]? = nil, categories: [ChartCategory]? = nil, title: ChartTitle? = nil, backWall: ChartWall? = nil, sideWall: ChartWall? = nil, floor: ChartWall? = nil, legend: Legend? = nil, axes: Axes? = nil, plotArea: PlotArea? = nil) {
-        super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, X: X, Y: Y, zOrderPosition: zOrderPosition, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type)
-        self.chartType = chartType
-        self.showDataLabelsOverMaximum = showDataLabelsOverMaximum
-        self.series = series
-        self.categories = categories
-        self.title = title
-        self.backWall = backWall
-        self.sideWall = sideWall
-        self.floor = floor
-        self.legend = legend
-        self.axes = axes
-        self.plotArea = plotArea
+        case hasRoundedCorners
+        case seriesGroups
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        chartType = try values.decode(ChartType?.self, forKey: .chartType)
-        showDataLabelsOverMaximum = try values.decode(Bool?.self, forKey: .showDataLabelsOverMaximum)
-        series = try values.decode([Series]?.self, forKey: .series)
-        categories = try values.decode([ChartCategory]?.self, forKey: .categories)
-        title = try values.decode(ChartTitle?.self, forKey: .title)
-        backWall = try values.decode(ChartWall?.self, forKey: .backWall)
-        sideWall = try values.decode(ChartWall?.self, forKey: .sideWall)
-        floor = try values.decode(ChartWall?.self, forKey: .floor)
-        legend = try values.decode(Legend?.self, forKey: .legend)
-        axes = try values.decode(Axes?.self, forKey: .axes)
-        plotArea = try values.decode(PlotArea?.self, forKey: .plotArea)
+        chartType = try? values.decode(ChartType.self, forKey: .chartType)
+        showDataLabelsOverMaximum = try? values.decode(Bool.self, forKey: .showDataLabelsOverMaximum)
+        series = try? values.decode([Series].self, forKey: .series)
+        categories = try? values.decode([ChartCategory].self, forKey: .categories)
+        title = try? values.decode(ChartTitle.self, forKey: .title)
+        backWall = try? values.decode(ChartWall.self, forKey: .backWall)
+        sideWall = try? values.decode(ChartWall.self, forKey: .sideWall)
+        floor = try? values.decode(ChartWall.self, forKey: .floor)
+        legend = try? values.decode(Legend.self, forKey: .legend)
+        axes = try? values.decode(Axes.self, forKey: .axes)
+        plotArea = try? values.decode(PlotArea.self, forKey: .plotArea)
+        hasRoundedCorners = try? values.decode(Bool.self, forKey: .hasRoundedCorners)
+        seriesGroups = try? values.decode([ChartSeriesGroup].self, forKey: .seriesGroups)
+        self.type = ModelType.chart
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(chartType, forKey: .chartType)
-        try container.encode(showDataLabelsOverMaximum, forKey: .showDataLabelsOverMaximum)
-        try container.encode(series, forKey: .series)
-        try container.encode(categories, forKey: .categories)
-        try container.encode(title, forKey: .title)
-        try container.encode(backWall, forKey: .backWall)
-        try container.encode(sideWall, forKey: .sideWall)
-        try container.encode(floor, forKey: .floor)
-        try container.encode(legend, forKey: .legend)
-        try container.encode(axes, forKey: .axes)
-        try container.encode(plotArea, forKey: .plotArea)
+        if (chartType != nil) {
+            try? container.encode(chartType, forKey: .chartType)
+        }
+        if (showDataLabelsOverMaximum != nil) {
+            try? container.encode(showDataLabelsOverMaximum, forKey: .showDataLabelsOverMaximum)
+        }
+        if (series != nil) {
+            try? container.encode(series, forKey: .series)
+        }
+        if (categories != nil) {
+            try? container.encode(categories, forKey: .categories)
+        }
+        if (title != nil) {
+            try? container.encode(title, forKey: .title)
+        }
+        if (backWall != nil) {
+            try? container.encode(backWall, forKey: .backWall)
+        }
+        if (sideWall != nil) {
+            try? container.encode(sideWall, forKey: .sideWall)
+        }
+        if (floor != nil) {
+            try? container.encode(floor, forKey: .floor)
+        }
+        if (legend != nil) {
+            try? container.encode(legend, forKey: .legend)
+        }
+        if (axes != nil) {
+            try? container.encode(axes, forKey: .axes)
+        }
+        if (plotArea != nil) {
+            try? container.encode(plotArea, forKey: .plotArea)
+        }
+        if (hasRoundedCorners != nil) {
+            try? container.encode(hasRoundedCorners, forKey: .hasRoundedCorners)
+        }
+        if (seriesGroups != nil) {
+            try? container.encode(seriesGroups, forKey: .seriesGroups)
+        }
     }
-
 
 }
 

@@ -37,9 +37,15 @@ public class GradientFillStop: Codable {
     /** Stop position (0..1). */
     public var position: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case color
-        case position
+    func fillValues(_ source: [String:Any]) throws {
+        let colorValue = source["color"]
+        if colorValue != nil {
+            self.color = colorValue! as? String
+        }
+        let positionValue = source["position"]
+        if positionValue != nil {
+            self.position = positionValue! as? Double
+        }
     }
 
     public init(color: String? = nil, position: Double? = nil) {
@@ -47,6 +53,10 @@ public class GradientFillStop: Codable {
         self.position = position
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case color
+        case position
+    }
 
 }
 

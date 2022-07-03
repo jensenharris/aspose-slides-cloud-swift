@@ -36,32 +36,59 @@ public class OneValueChartDataPoint: DataPoint {
     public var value: Double?
     /** SetAsTotal. Applied to Waterfall data points only. */
     public var setAsTotal: Bool?
+    /** True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series. */
+    public var invertIfNegative: Bool?
+
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let valueValue = source["value"]
+        if valueValue != nil {
+            self.value = valueValue! as? Double
+        }
+        let setAsTotalValue = source["setAsTotal"]
+        if setAsTotalValue != nil {
+            self.setAsTotal = setAsTotalValue! as? Bool
+        }
+        let invertIfNegativeValue = source["invertIfNegative"]
+        if invertIfNegativeValue != nil {
+            self.invertIfNegative = invertIfNegativeValue! as? Bool
+        }
+    }
+
+    public init(value: Double? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
+        super.init()
+        self.value = value
+        self.setAsTotal = setAsTotal
+        self.invertIfNegative = invertIfNegative
+    }
 
     private enum CodingKeys: String, CodingKey {
         case value
         case setAsTotal
-    }
-
-    public init(value: Double? = nil, setAsTotal: Bool? = nil) {
-        super.init()
-        self.value = value
-        self.setAsTotal = setAsTotal
+        case invertIfNegative
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        value = try values.decode(Double?.self, forKey: .value)
-        setAsTotal = try values.decode(Bool?.self, forKey: .setAsTotal)
+        value = try? values.decode(Double.self, forKey: .value)
+        setAsTotal = try? values.decode(Bool.self, forKey: .setAsTotal)
+        invertIfNegative = try? values.decode(Bool.self, forKey: .invertIfNegative)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(value, forKey: .value)
-        try container.encode(setAsTotal, forKey: .setAsTotal)
+        if (value != nil) {
+            try? container.encode(value, forKey: .value)
+        }
+        if (setAsTotal != nil) {
+            try? container.encode(setAsTotal, forKey: .setAsTotal)
+        }
+        if (invertIfNegative != nil) {
+            try? container.encode(invertIfNegative, forKey: .invertIfNegative)
+        }
     }
-
 
 }
 

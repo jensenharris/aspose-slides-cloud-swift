@@ -35,8 +35,33 @@ public class Sections: ResourceBase {
     /** List of slide links. */
     public var sectionList: [Section]?
 
-    private enum CodingKeys: String, CodingKey {
-        case sectionList
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let sectionListValue = source["sectionList"]
+        if sectionListValue != nil {
+            var sectionListArray: [Section] = []
+            let sectionListDictionaryValue = sectionListValue! as? [Any]
+            if sectionListDictionaryValue != nil {
+                sectionListDictionaryValue!.forEach { sectionListAnyItem in
+                    let sectionListItem = sectionListAnyItem as? [String:Any]
+                    var added = false
+                    if sectionListItem != nil {
+                        let (sectionListInstance, error) = ClassRegistry.getClassFromDictionary(Section.self, sectionListItem!)
+                        if error == nil && sectionListInstance != nil {
+                            let sectionListArrayItem = sectionListInstance! as? Section
+                            if sectionListArrayItem != nil {
+                                sectionListArray.append(sectionListArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        sectionListArray.append(Section())
+                    }
+                }
+            }
+            self.sectionList = sectionListArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, sectionList: [Section]? = nil) {
@@ -44,18 +69,23 @@ public class Sections: ResourceBase {
         self.sectionList = sectionList
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case sectionList
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        sectionList = try values.decode([Section]?.self, forKey: .sectionList)
+        sectionList = try? values.decode([Section].self, forKey: .sectionList)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(sectionList, forKey: .sectionList)
+        if (sectionList != nil) {
+            try? container.encode(sectionList, forKey: .sectionList)
+        }
     }
-
 
 }
 

@@ -45,10 +45,26 @@ public class SlideModernComment: SlideCommentBase {
     /** Returns or sets the status of the comment. Read/write ModernCommentStatus. */
     public var status: Status?
 
-    private enum CodingKeys: String, CodingKey {
-        case textSelectionStart
-        case textSelectionLength
-        case status
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let textSelectionStartValue = source["textSelectionStart"]
+        if textSelectionStartValue != nil {
+            self.textSelectionStart = textSelectionStartValue! as? Int
+        }
+        let textSelectionLengthValue = source["textSelectionLength"]
+        if textSelectionLengthValue != nil {
+            self.textSelectionLength = textSelectionLengthValue! as? Int
+        }
+        let statusValue = source["status"]
+        if statusValue != nil {
+            let statusStringValue = statusValue! as? String
+            if statusStringValue != nil {
+                let statusEnumValue = Status(rawValue: statusStringValue!)
+                if statusEnumValue != nil {
+                    self.status = statusEnumValue!
+                }
+            }
+        }
     }
 
     public init(author: String? = nil, text: String? = nil, createdTime: String? = nil, childComments: [SlideCommentBase]? = nil, type: ModelType? = nil, textSelectionStart: Int? = nil, textSelectionLength: Int? = nil, status: Status? = nil) {
@@ -56,24 +72,37 @@ public class SlideModernComment: SlideCommentBase {
         self.textSelectionStart = textSelectionStart
         self.textSelectionLength = textSelectionLength
         self.status = status
+        self.type = ModelType.modern
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case textSelectionStart
+        case textSelectionLength
+        case status
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        textSelectionStart = try values.decode(Int?.self, forKey: .textSelectionStart)
-        textSelectionLength = try values.decode(Int?.self, forKey: .textSelectionLength)
-        status = try values.decode(Status?.self, forKey: .status)
+        textSelectionStart = try? values.decode(Int.self, forKey: .textSelectionStart)
+        textSelectionLength = try? values.decode(Int.self, forKey: .textSelectionLength)
+        status = try? values.decode(Status.self, forKey: .status)
+        self.type = ModelType.modern
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(textSelectionStart, forKey: .textSelectionStart)
-        try container.encode(textSelectionLength, forKey: .textSelectionLength)
-        try container.encode(status, forKey: .status)
+        if (textSelectionStart != nil) {
+            try? container.encode(textSelectionStart, forKey: .textSelectionStart)
+        }
+        if (textSelectionLength != nil) {
+            try? container.encode(textSelectionLength, forKey: .textSelectionLength)
+        }
+        if (status != nil) {
+            try? container.encode(status, forKey: .status)
+        }
     }
-
 
 }
 

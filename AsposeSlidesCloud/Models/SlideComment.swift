@@ -33,15 +33,23 @@ import Foundation
 public class SlideComment: SlideCommentBase {
 
 
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+    }
+
+    public override init(author: String? = nil, text: String? = nil, createdTime: String? = nil, childComments: [SlideCommentBase]? = nil, type: ModelType? = nil) {
+        super.init(author: author, text: text, createdTime: createdTime, childComments: childComments, type: type)
+        self.type = ModelType.regular
+    }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+        self.type = ModelType.regular
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
     }
-
 
 }
 

@@ -77,16 +77,92 @@ public class ViewProperties: ResourceBase {
     /** True if the comments should be shown. */
     public var showComments: ShowComments?
 
-    private enum CodingKeys: String, CodingKey {
-        case lastView
-        case horizontalBarState
-        case verticalBarState
-        case preferSingleView
-        case restoredLeft
-        case restoredTop
-        case slideViewProperties
-        case notesViewProperties
-        case showComments
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let lastViewValue = source["lastView"]
+        if lastViewValue != nil {
+            let lastViewStringValue = lastViewValue! as? String
+            if lastViewStringValue != nil {
+                let lastViewEnumValue = LastView(rawValue: lastViewStringValue!)
+                if lastViewEnumValue != nil {
+                    self.lastView = lastViewEnumValue!
+                }
+            }
+        }
+        let horizontalBarStateValue = source["horizontalBarState"]
+        if horizontalBarStateValue != nil {
+            let horizontalBarStateStringValue = horizontalBarStateValue! as? String
+            if horizontalBarStateStringValue != nil {
+                let horizontalBarStateEnumValue = HorizontalBarState(rawValue: horizontalBarStateStringValue!)
+                if horizontalBarStateEnumValue != nil {
+                    self.horizontalBarState = horizontalBarStateEnumValue!
+                }
+            }
+        }
+        let verticalBarStateValue = source["verticalBarState"]
+        if verticalBarStateValue != nil {
+            let verticalBarStateStringValue = verticalBarStateValue! as? String
+            if verticalBarStateStringValue != nil {
+                let verticalBarStateEnumValue = VerticalBarState(rawValue: verticalBarStateStringValue!)
+                if verticalBarStateEnumValue != nil {
+                    self.verticalBarState = verticalBarStateEnumValue!
+                }
+            }
+        }
+        let preferSingleViewValue = source["preferSingleView"]
+        if preferSingleViewValue != nil {
+            self.preferSingleView = preferSingleViewValue! as? Bool
+        }
+        let restoredLeftValue = source["restoredLeft"]
+        if restoredLeftValue != nil {
+            let restoredLeftDictionaryValue = restoredLeftValue! as? [String:Any]
+            if restoredLeftDictionaryValue != nil {
+                let (restoredLeftInstance, error) = ClassRegistry.getClassFromDictionary(NormalViewRestoredProperties.self, restoredLeftDictionaryValue!)
+                if error == nil && restoredLeftInstance != nil {
+                    self.restoredLeft = restoredLeftInstance! as? NormalViewRestoredProperties
+                }
+            }
+        }
+        let restoredTopValue = source["restoredTop"]
+        if restoredTopValue != nil {
+            let restoredTopDictionaryValue = restoredTopValue! as? [String:Any]
+            if restoredTopDictionaryValue != nil {
+                let (restoredTopInstance, error) = ClassRegistry.getClassFromDictionary(NormalViewRestoredProperties.self, restoredTopDictionaryValue!)
+                if error == nil && restoredTopInstance != nil {
+                    self.restoredTop = restoredTopInstance! as? NormalViewRestoredProperties
+                }
+            }
+        }
+        let slideViewPropertiesValue = source["slideViewProperties"]
+        if slideViewPropertiesValue != nil {
+            let slideViewPropertiesDictionaryValue = slideViewPropertiesValue! as? [String:Any]
+            if slideViewPropertiesDictionaryValue != nil {
+                let (slideViewPropertiesInstance, error) = ClassRegistry.getClassFromDictionary(CommonSlideViewProperties.self, slideViewPropertiesDictionaryValue!)
+                if error == nil && slideViewPropertiesInstance != nil {
+                    self.slideViewProperties = slideViewPropertiesInstance! as? CommonSlideViewProperties
+                }
+            }
+        }
+        let notesViewPropertiesValue = source["notesViewProperties"]
+        if notesViewPropertiesValue != nil {
+            let notesViewPropertiesDictionaryValue = notesViewPropertiesValue! as? [String:Any]
+            if notesViewPropertiesDictionaryValue != nil {
+                let (notesViewPropertiesInstance, error) = ClassRegistry.getClassFromDictionary(CommonSlideViewProperties.self, notesViewPropertiesDictionaryValue!)
+                if error == nil && notesViewPropertiesInstance != nil {
+                    self.notesViewProperties = notesViewPropertiesInstance! as? CommonSlideViewProperties
+                }
+            }
+        }
+        let showCommentsValue = source["showComments"]
+        if showCommentsValue != nil {
+            let showCommentsStringValue = showCommentsValue! as? String
+            if showCommentsStringValue != nil {
+                let showCommentsEnumValue = ShowComments(rawValue: showCommentsStringValue!)
+                if showCommentsEnumValue != nil {
+                    self.showComments = showCommentsEnumValue!
+                }
+            }
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, lastView: LastView? = nil, horizontalBarState: HorizontalBarState? = nil, verticalBarState: VerticalBarState? = nil, preferSingleView: Bool? = nil, restoredLeft: NormalViewRestoredProperties? = nil, restoredTop: NormalViewRestoredProperties? = nil, slideViewProperties: CommonSlideViewProperties? = nil, notesViewProperties: CommonSlideViewProperties? = nil, showComments: ShowComments? = nil) {
@@ -102,34 +178,63 @@ public class ViewProperties: ResourceBase {
         self.showComments = showComments
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case lastView
+        case horizontalBarState
+        case verticalBarState
+        case preferSingleView
+        case restoredLeft
+        case restoredTop
+        case slideViewProperties
+        case notesViewProperties
+        case showComments
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        lastView = try values.decode(LastView?.self, forKey: .lastView)
-        horizontalBarState = try values.decode(HorizontalBarState?.self, forKey: .horizontalBarState)
-        verticalBarState = try values.decode(VerticalBarState?.self, forKey: .verticalBarState)
-        preferSingleView = try values.decode(Bool?.self, forKey: .preferSingleView)
-        restoredLeft = try values.decode(NormalViewRestoredProperties?.self, forKey: .restoredLeft)
-        restoredTop = try values.decode(NormalViewRestoredProperties?.self, forKey: .restoredTop)
-        slideViewProperties = try values.decode(CommonSlideViewProperties?.self, forKey: .slideViewProperties)
-        notesViewProperties = try values.decode(CommonSlideViewProperties?.self, forKey: .notesViewProperties)
-        showComments = try values.decode(ShowComments?.self, forKey: .showComments)
+        lastView = try? values.decode(LastView.self, forKey: .lastView)
+        horizontalBarState = try? values.decode(HorizontalBarState.self, forKey: .horizontalBarState)
+        verticalBarState = try? values.decode(VerticalBarState.self, forKey: .verticalBarState)
+        preferSingleView = try? values.decode(Bool.self, forKey: .preferSingleView)
+        restoredLeft = try? values.decode(NormalViewRestoredProperties.self, forKey: .restoredLeft)
+        restoredTop = try? values.decode(NormalViewRestoredProperties.self, forKey: .restoredTop)
+        slideViewProperties = try? values.decode(CommonSlideViewProperties.self, forKey: .slideViewProperties)
+        notesViewProperties = try? values.decode(CommonSlideViewProperties.self, forKey: .notesViewProperties)
+        showComments = try? values.decode(ShowComments.self, forKey: .showComments)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(lastView, forKey: .lastView)
-        try container.encode(horizontalBarState, forKey: .horizontalBarState)
-        try container.encode(verticalBarState, forKey: .verticalBarState)
-        try container.encode(preferSingleView, forKey: .preferSingleView)
-        try container.encode(restoredLeft, forKey: .restoredLeft)
-        try container.encode(restoredTop, forKey: .restoredTop)
-        try container.encode(slideViewProperties, forKey: .slideViewProperties)
-        try container.encode(notesViewProperties, forKey: .notesViewProperties)
-        try container.encode(showComments, forKey: .showComments)
+        if (lastView != nil) {
+            try? container.encode(lastView, forKey: .lastView)
+        }
+        if (horizontalBarState != nil) {
+            try? container.encode(horizontalBarState, forKey: .horizontalBarState)
+        }
+        if (verticalBarState != nil) {
+            try? container.encode(verticalBarState, forKey: .verticalBarState)
+        }
+        if (preferSingleView != nil) {
+            try? container.encode(preferSingleView, forKey: .preferSingleView)
+        }
+        if (restoredLeft != nil) {
+            try? container.encode(restoredLeft, forKey: .restoredLeft)
+        }
+        if (restoredTop != nil) {
+            try? container.encode(restoredTop, forKey: .restoredTop)
+        }
+        if (slideViewProperties != nil) {
+            try? container.encode(slideViewProperties, forKey: .slideViewProperties)
+        }
+        if (notesViewProperties != nil) {
+            try? container.encode(notesViewProperties, forKey: .notesViewProperties)
+        }
+        if (showComments != nil) {
+            try? container.encode(showComments, forKey: .showComments)
+        }
     }
-
 
 }
 

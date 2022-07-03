@@ -131,17 +131,96 @@ public class Table: ShapeBase {
     /** Determines whether the even columns has to be drawn with a different formatting. */
     public var verticalBanding: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case style
-        case rows
-        case columns
-        case firstCol
-        case firstRow
-        case horizontalBanding
-        case lastCol
-        case lastRow
-        case rightToLeft
-        case verticalBanding
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let styleValue = source["style"]
+        if styleValue != nil {
+            let styleStringValue = styleValue! as? String
+            if styleStringValue != nil {
+                let styleEnumValue = Style(rawValue: styleStringValue!)
+                if styleEnumValue != nil {
+                    self.style = styleEnumValue!
+                }
+            }
+        }
+        let rowsValue = source["rows"]
+        if rowsValue != nil {
+            var rowsArray: [TableRow] = []
+            let rowsDictionaryValue = rowsValue! as? [Any]
+            if rowsDictionaryValue != nil {
+                rowsDictionaryValue!.forEach { rowsAnyItem in
+                    let rowsItem = rowsAnyItem as? [String:Any]
+                    var added = false
+                    if rowsItem != nil {
+                        let (rowsInstance, error) = ClassRegistry.getClassFromDictionary(TableRow.self, rowsItem!)
+                        if error == nil && rowsInstance != nil {
+                            let rowsArrayItem = rowsInstance! as? TableRow
+                            if rowsArrayItem != nil {
+                                rowsArray.append(rowsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        rowsArray.append(TableRow())
+                    }
+                }
+            }
+            self.rows = rowsArray
+        }
+        let columnsValue = source["columns"]
+        if columnsValue != nil {
+            var columnsArray: [TableColumn] = []
+            let columnsDictionaryValue = columnsValue! as? [Any]
+            if columnsDictionaryValue != nil {
+                columnsDictionaryValue!.forEach { columnsAnyItem in
+                    let columnsItem = columnsAnyItem as? [String:Any]
+                    var added = false
+                    if columnsItem != nil {
+                        let (columnsInstance, error) = ClassRegistry.getClassFromDictionary(TableColumn.self, columnsItem!)
+                        if error == nil && columnsInstance != nil {
+                            let columnsArrayItem = columnsInstance! as? TableColumn
+                            if columnsArrayItem != nil {
+                                columnsArray.append(columnsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        columnsArray.append(TableColumn())
+                    }
+                }
+            }
+            self.columns = columnsArray
+        }
+        let firstColValue = source["firstCol"]
+        if firstColValue != nil {
+            self.firstCol = firstColValue! as? Bool
+        }
+        let firstRowValue = source["firstRow"]
+        if firstRowValue != nil {
+            self.firstRow = firstRowValue! as? Bool
+        }
+        let horizontalBandingValue = source["horizontalBanding"]
+        if horizontalBandingValue != nil {
+            self.horizontalBanding = horizontalBandingValue! as? Bool
+        }
+        let lastColValue = source["lastCol"]
+        if lastColValue != nil {
+            self.lastCol = lastColValue! as? Bool
+        }
+        let lastRowValue = source["lastRow"]
+        if lastRowValue != nil {
+            self.lastRow = lastRowValue! as? Bool
+        }
+        let rightToLeftValue = source["rightToLeft"]
+        if rightToLeftValue != nil {
+            self.rightToLeft = rightToLeftValue! as? Bool
+        }
+        let verticalBandingValue = source["verticalBanding"]
+        if verticalBandingValue != nil {
+            self.verticalBanding = verticalBandingValue! as? Bool
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, style: Style? = nil, rows: [TableRow]? = nil, columns: [TableColumn]? = nil, firstCol: Bool? = nil, firstRow: Bool? = nil, horizontalBanding: Bool? = nil, lastCol: Bool? = nil, lastRow: Bool? = nil, rightToLeft: Bool? = nil, verticalBanding: Bool? = nil) {
@@ -156,38 +235,72 @@ public class Table: ShapeBase {
         self.lastRow = lastRow
         self.rightToLeft = rightToLeft
         self.verticalBanding = verticalBanding
+        self.type = ModelType.table
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case style
+        case rows
+        case columns
+        case firstCol
+        case firstRow
+        case horizontalBanding
+        case lastCol
+        case lastRow
+        case rightToLeft
+        case verticalBanding
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        style = try values.decode(Style?.self, forKey: .style)
-        rows = try values.decode([TableRow]?.self, forKey: .rows)
-        columns = try values.decode([TableColumn]?.self, forKey: .columns)
-        firstCol = try values.decode(Bool?.self, forKey: .firstCol)
-        firstRow = try values.decode(Bool?.self, forKey: .firstRow)
-        horizontalBanding = try values.decode(Bool?.self, forKey: .horizontalBanding)
-        lastCol = try values.decode(Bool?.self, forKey: .lastCol)
-        lastRow = try values.decode(Bool?.self, forKey: .lastRow)
-        rightToLeft = try values.decode(Bool?.self, forKey: .rightToLeft)
-        verticalBanding = try values.decode(Bool?.self, forKey: .verticalBanding)
+        style = try? values.decode(Style.self, forKey: .style)
+        rows = try? values.decode([TableRow].self, forKey: .rows)
+        columns = try? values.decode([TableColumn].self, forKey: .columns)
+        firstCol = try? values.decode(Bool.self, forKey: .firstCol)
+        firstRow = try? values.decode(Bool.self, forKey: .firstRow)
+        horizontalBanding = try? values.decode(Bool.self, forKey: .horizontalBanding)
+        lastCol = try? values.decode(Bool.self, forKey: .lastCol)
+        lastRow = try? values.decode(Bool.self, forKey: .lastRow)
+        rightToLeft = try? values.decode(Bool.self, forKey: .rightToLeft)
+        verticalBanding = try? values.decode(Bool.self, forKey: .verticalBanding)
+        self.type = ModelType.table
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(style, forKey: .style)
-        try container.encode(rows, forKey: .rows)
-        try container.encode(columns, forKey: .columns)
-        try container.encode(firstCol, forKey: .firstCol)
-        try container.encode(firstRow, forKey: .firstRow)
-        try container.encode(horizontalBanding, forKey: .horizontalBanding)
-        try container.encode(lastCol, forKey: .lastCol)
-        try container.encode(lastRow, forKey: .lastRow)
-        try container.encode(rightToLeft, forKey: .rightToLeft)
-        try container.encode(verticalBanding, forKey: .verticalBanding)
+        if (style != nil) {
+            try? container.encode(style, forKey: .style)
+        }
+        if (rows != nil) {
+            try? container.encode(rows, forKey: .rows)
+        }
+        if (columns != nil) {
+            try? container.encode(columns, forKey: .columns)
+        }
+        if (firstCol != nil) {
+            try? container.encode(firstCol, forKey: .firstCol)
+        }
+        if (firstRow != nil) {
+            try? container.encode(firstRow, forKey: .firstRow)
+        }
+        if (horizontalBanding != nil) {
+            try? container.encode(horizontalBanding, forKey: .horizontalBanding)
+        }
+        if (lastCol != nil) {
+            try? container.encode(lastCol, forKey: .lastCol)
+        }
+        if (lastRow != nil) {
+            try? container.encode(lastRow, forKey: .lastRow)
+        }
+        if (rightToLeft != nil) {
+            try? container.encode(rightToLeft, forKey: .rightToLeft)
+        }
+        if (verticalBanding != nil) {
+            try? container.encode(verticalBanding, forKey: .verticalBanding)
+        }
     }
-
 
 }
 

@@ -35,14 +35,20 @@ public class StorageExist: Codable {
     /** Shows that the storage exists.              */
     public var exists: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case exists
+    func fillValues(_ source: [String:Any]) throws {
+        let existsValue = source["exists"]
+        if existsValue != nil {
+            self.exists = existsValue! as? Bool
+        }
     }
 
     public init(exists: Bool? = nil) {
         self.exists = exists
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case exists
+    }
 
 }
 

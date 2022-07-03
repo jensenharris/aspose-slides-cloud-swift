@@ -37,31 +37,48 @@ public class Html5ExportOptions: ExportOptions {
     /** Gets or sets shapes animation option. */
     public var animateShapes: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case animateTransitions
-        case animateShapes
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let animateTransitionsValue = source["animateTransitions"]
+        if animateTransitionsValue != nil {
+            self.animateTransitions = animateTransitionsValue! as? Bool
+        }
+        let animateShapesValue = source["animateShapes"]
+        if animateShapesValue != nil {
+            self.animateShapes = animateShapesValue! as? Bool
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, animateTransitions: Bool? = nil, animateShapes: Bool? = nil) {
         super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
         self.animateTransitions = animateTransitions
         self.animateShapes = animateShapes
+        self.format = "html5"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case animateTransitions
+        case animateShapes
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        animateTransitions = try values.decode(Bool?.self, forKey: .animateTransitions)
-        animateShapes = try values.decode(Bool?.self, forKey: .animateShapes)
+        animateTransitions = try? values.decode(Bool.self, forKey: .animateTransitions)
+        animateShapes = try? values.decode(Bool.self, forKey: .animateShapes)
+        self.format = "html5"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(animateTransitions, forKey: .animateTransitions)
-        try container.encode(animateShapes, forKey: .animateShapes)
+        if (animateTransitions != nil) {
+            try? container.encode(animateTransitions, forKey: .animateTransitions)
+        }
+        if (animateShapes != nil) {
+            try? container.encode(animateShapes, forKey: .animateShapes)
+        }
     }
-
 
 }
 

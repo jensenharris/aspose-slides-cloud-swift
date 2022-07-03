@@ -39,10 +39,26 @@ public class AddMasterSlide: Task {
     /** True if cloned master slide is applied to all slides. */
     public var applyToAll: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case cloneFromFile
-        case cloneFromPosition
-        case applyToAll
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let cloneFromFileValue = source["cloneFromFile"]
+        if cloneFromFileValue != nil {
+            let cloneFromFileDictionaryValue = cloneFromFileValue! as? [String:Any]
+            if cloneFromFileDictionaryValue != nil {
+                let (cloneFromFileInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, cloneFromFileDictionaryValue!)
+                if error == nil && cloneFromFileInstance != nil {
+                    self.cloneFromFile = cloneFromFileInstance! as? InputFile
+                }
+            }
+        }
+        let cloneFromPositionValue = source["cloneFromPosition"]
+        if cloneFromPositionValue != nil {
+            self.cloneFromPosition = cloneFromPositionValue! as? Int
+        }
+        let applyToAllValue = source["applyToAll"]
+        if applyToAllValue != nil {
+            self.applyToAll = applyToAllValue! as? Bool
+        }
     }
 
     public init(type: ModelType? = nil, cloneFromFile: InputFile? = nil, cloneFromPosition: Int? = nil, applyToAll: Bool? = nil) {
@@ -50,24 +66,37 @@ public class AddMasterSlide: Task {
         self.cloneFromFile = cloneFromFile
         self.cloneFromPosition = cloneFromPosition
         self.applyToAll = applyToAll
+        self.type = ModelType.addMasterSlide
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case cloneFromFile
+        case cloneFromPosition
+        case applyToAll
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        cloneFromFile = try values.decode(InputFile?.self, forKey: .cloneFromFile)
-        cloneFromPosition = try values.decode(Int?.self, forKey: .cloneFromPosition)
-        applyToAll = try values.decode(Bool?.self, forKey: .applyToAll)
+        cloneFromFile = try? values.decode(InputFile.self, forKey: .cloneFromFile)
+        cloneFromPosition = try? values.decode(Int.self, forKey: .cloneFromPosition)
+        applyToAll = try? values.decode(Bool.self, forKey: .applyToAll)
+        self.type = ModelType.addMasterSlide
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(cloneFromFile, forKey: .cloneFromFile)
-        try container.encode(cloneFromPosition, forKey: .cloneFromPosition)
-        try container.encode(applyToAll, forKey: .applyToAll)
+        if (cloneFromFile != nil) {
+            try? container.encode(cloneFromFile, forKey: .cloneFromFile)
+        }
+        if (cloneFromPosition != nil) {
+            try? container.encode(cloneFromPosition, forKey: .cloneFromPosition)
+        }
+        if (applyToAll != nil) {
+            try? container.encode(applyToAll, forKey: .applyToAll)
+        }
     }
-
 
 }
 

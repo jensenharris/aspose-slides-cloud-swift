@@ -35,27 +35,38 @@ public class TextElement: MathElement {
     /** Value */
     public var value: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case value
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let valueValue = source["value"]
+        if valueValue != nil {
+            self.value = valueValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, value: String? = nil) {
         super.init(type: type)
         self.value = value
+        self.type = ModelType.text
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case value
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        value = try values.decode(String?.self, forKey: .value)
+        value = try? values.decode(String.self, forKey: .value)
+        self.type = ModelType.text
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(value, forKey: .value)
+        if (value != nil) {
+            try? container.encode(value, forKey: .value)
+        }
     }
-
 
 }
 

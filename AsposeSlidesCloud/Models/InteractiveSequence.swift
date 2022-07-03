@@ -37,9 +37,36 @@ public class InteractiveSequence: Codable {
     /** Index of the shape that triggers the sequence. */
     public var triggerShapeIndex: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case effects
-        case triggerShapeIndex
+    func fillValues(_ source: [String:Any]) throws {
+        let effectsValue = source["effects"]
+        if effectsValue != nil {
+            var effectsArray: [Effect] = []
+            let effectsDictionaryValue = effectsValue! as? [Any]
+            if effectsDictionaryValue != nil {
+                effectsDictionaryValue!.forEach { effectsAnyItem in
+                    let effectsItem = effectsAnyItem as? [String:Any]
+                    var added = false
+                    if effectsItem != nil {
+                        let (effectsInstance, error) = ClassRegistry.getClassFromDictionary(Effect.self, effectsItem!)
+                        if error == nil && effectsInstance != nil {
+                            let effectsArrayItem = effectsInstance! as? Effect
+                            if effectsArrayItem != nil {
+                                effectsArray.append(effectsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        effectsArray.append(Effect())
+                    }
+                }
+            }
+            self.effects = effectsArray
+        }
+        let triggerShapeIndexValue = source["triggerShapeIndex"]
+        if triggerShapeIndexValue != nil {
+            self.triggerShapeIndex = triggerShapeIndexValue! as? Int
+        }
     }
 
     public init(effects: [Effect]? = nil, triggerShapeIndex: Int? = nil) {
@@ -47,6 +74,10 @@ public class InteractiveSequence: Codable {
         self.triggerShapeIndex = triggerShapeIndex
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case effects
+        case triggerShapeIndex
+    }
 
 }
 

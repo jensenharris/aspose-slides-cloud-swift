@@ -39,10 +39,62 @@ public class MasterSlide: ResourceBase {
     /** List of depending slide links. */
     public var dependingSlides: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case layoutSlides
-        case dependingSlides
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let nameValue = source["name"]
+        if nameValue != nil {
+            self.name = nameValue! as? String
+        }
+        let layoutSlidesValue = source["layoutSlides"]
+        if layoutSlidesValue != nil {
+            var layoutSlidesArray: [ResourceUri] = []
+            let layoutSlidesDictionaryValue = layoutSlidesValue! as? [Any]
+            if layoutSlidesDictionaryValue != nil {
+                layoutSlidesDictionaryValue!.forEach { layoutSlidesAnyItem in
+                    let layoutSlidesItem = layoutSlidesAnyItem as? [String:Any]
+                    var added = false
+                    if layoutSlidesItem != nil {
+                        let (layoutSlidesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, layoutSlidesItem!)
+                        if error == nil && layoutSlidesInstance != nil {
+                            let layoutSlidesArrayItem = layoutSlidesInstance! as? ResourceUri
+                            if layoutSlidesArrayItem != nil {
+                                layoutSlidesArray.append(layoutSlidesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        layoutSlidesArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.layoutSlides = layoutSlidesArray
+        }
+        let dependingSlidesValue = source["dependingSlides"]
+        if dependingSlidesValue != nil {
+            var dependingSlidesArray: [ResourceUri] = []
+            let dependingSlidesDictionaryValue = dependingSlidesValue! as? [Any]
+            if dependingSlidesDictionaryValue != nil {
+                dependingSlidesDictionaryValue!.forEach { dependingSlidesAnyItem in
+                    let dependingSlidesItem = dependingSlidesAnyItem as? [String:Any]
+                    var added = false
+                    if dependingSlidesItem != nil {
+                        let (dependingSlidesInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, dependingSlidesItem!)
+                        if error == nil && dependingSlidesInstance != nil {
+                            let dependingSlidesArrayItem = dependingSlidesInstance! as? ResourceUri
+                            if dependingSlidesArrayItem != nil {
+                                dependingSlidesArray.append(dependingSlidesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        dependingSlidesArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.dependingSlides = dependingSlidesArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, layoutSlides: [ResourceUri]? = nil, dependingSlides: [ResourceUri]? = nil) {
@@ -52,22 +104,33 @@ public class MasterSlide: ResourceBase {
         self.dependingSlides = dependingSlides
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case layoutSlides
+        case dependingSlides
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        name = try values.decode(String?.self, forKey: .name)
-        layoutSlides = try values.decode([ResourceUri]?.self, forKey: .layoutSlides)
-        dependingSlides = try values.decode([ResourceUri]?.self, forKey: .dependingSlides)
+        name = try? values.decode(String.self, forKey: .name)
+        layoutSlides = try? values.decode([ResourceUri].self, forKey: .layoutSlides)
+        dependingSlides = try? values.decode([ResourceUri].self, forKey: .dependingSlides)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(layoutSlides, forKey: .layoutSlides)
-        try container.encode(dependingSlides, forKey: .dependingSlides)
+        if (name != nil) {
+            try? container.encode(name, forKey: .name)
+        }
+        if (layoutSlides != nil) {
+            try? container.encode(layoutSlides, forKey: .layoutSlides)
+        }
+        if (dependingSlides != nil) {
+            try? container.encode(dependingSlides, forKey: .dependingSlides)
+        }
     }
-
 
 }
 

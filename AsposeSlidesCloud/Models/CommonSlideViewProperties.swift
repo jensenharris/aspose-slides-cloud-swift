@@ -37,9 +37,15 @@ public class CommonSlideViewProperties: Codable {
     /** True if the view content should automatically scale to best fit the current window size. */
     public var variableScale: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case scale
-        case variableScale
+    func fillValues(_ source: [String:Any]) throws {
+        let scaleValue = source["scale"]
+        if scaleValue != nil {
+            self.scale = scaleValue! as? Int
+        }
+        let variableScaleValue = source["variableScale"]
+        if variableScaleValue != nil {
+            self.variableScale = variableScaleValue! as? Bool
+        }
     }
 
     public init(scale: Int? = nil, variableScale: Bool? = nil) {
@@ -47,6 +53,10 @@ public class CommonSlideViewProperties: Codable {
         self.variableScale = variableScale
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case scale
+        case variableScale
+    }
 
 }
 

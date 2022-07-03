@@ -38,10 +38,40 @@ public class ExportOptions: Codable {
     public var fontFallbackRules: [FontFallbackRule]?
     public var format: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case defaultRegularFont
-        case fontFallbackRules
-        case format
+    func fillValues(_ source: [String:Any]) throws {
+        let defaultRegularFontValue = source["defaultRegularFont"]
+        if defaultRegularFontValue != nil {
+            self.defaultRegularFont = defaultRegularFontValue! as? String
+        }
+        let fontFallbackRulesValue = source["fontFallbackRules"]
+        if fontFallbackRulesValue != nil {
+            var fontFallbackRulesArray: [FontFallbackRule] = []
+            let fontFallbackRulesDictionaryValue = fontFallbackRulesValue! as? [Any]
+            if fontFallbackRulesDictionaryValue != nil {
+                fontFallbackRulesDictionaryValue!.forEach { fontFallbackRulesAnyItem in
+                    let fontFallbackRulesItem = fontFallbackRulesAnyItem as? [String:Any]
+                    var added = false
+                    if fontFallbackRulesItem != nil {
+                        let (fontFallbackRulesInstance, error) = ClassRegistry.getClassFromDictionary(FontFallbackRule.self, fontFallbackRulesItem!)
+                        if error == nil && fontFallbackRulesInstance != nil {
+                            let fontFallbackRulesArrayItem = fontFallbackRulesInstance! as? FontFallbackRule
+                            if fontFallbackRulesArrayItem != nil {
+                                fontFallbackRulesArray.append(fontFallbackRulesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        fontFallbackRulesArray.append(FontFallbackRule())
+                    }
+                }
+            }
+            self.fontFallbackRules = fontFallbackRulesArray
+        }
+        let formatValue = source["format"]
+        if formatValue != nil {
+            self.format = formatValue! as? String
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil) {
@@ -50,6 +80,11 @@ public class ExportOptions: Codable {
         self.format = format
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case defaultRegularFont
+        case fontFallbackRules
+        case format
+    }
 
 }
 

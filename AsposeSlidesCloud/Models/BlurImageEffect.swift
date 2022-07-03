@@ -37,31 +37,48 @@ public class BlurImageEffect: ImageTransformEffect {
     /** Determines whether the bounds of the object should be grown as a result of the blurring. True indicates the bounds are grown while false indicates that they are not. */
     public var grow: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case radius
-        case grow
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let radiusValue = source["radius"]
+        if radiusValue != nil {
+            self.radius = radiusValue! as? Double
+        }
+        let growValue = source["grow"]
+        if growValue != nil {
+            self.grow = growValue! as? Bool
+        }
     }
 
     public init(type: ModelType? = nil, radius: Double? = nil, grow: Bool? = nil) {
         super.init(type: type)
         self.radius = radius
         self.grow = grow
+        self.type = ModelType.blur
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case radius
+        case grow
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        radius = try values.decode(Double?.self, forKey: .radius)
-        grow = try values.decode(Bool?.self, forKey: .grow)
+        radius = try? values.decode(Double.self, forKey: .radius)
+        grow = try? values.decode(Bool.self, forKey: .grow)
+        self.type = ModelType.blur
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(radius, forKey: .radius)
-        try container.encode(grow, forKey: .grow)
+        if (radius != nil) {
+            try? container.encode(radius, forKey: .radius)
+        }
+        if (grow != nil) {
+            try? container.encode(grow, forKey: .grow)
+        }
     }
-
 
 }
 

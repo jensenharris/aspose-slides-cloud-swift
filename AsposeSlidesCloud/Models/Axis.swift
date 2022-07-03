@@ -173,45 +173,249 @@ public class Axis: Codable {
     /** Get or sets the format of major grid lines. */
     public var minorGridLinesFormat: ChartLinesFormat?
 
-    private enum CodingKeys: String, CodingKey {
-        case isVisible
-        case hasTitle
-        case position
-        case displayUnit
-        case baseUnitScale
-        case isAutomaticMajorUnit
-        case majorUnit
-        case majorUnitScale
-        case majorTickMark
-        case isAutomaticMinorUnit
-        case minorUnit
-        case minorUnitScale
-        case minorTickMark
-        case isAutomaticMaxValue
-        case maxValue
-        case isAutomaticMinValue
-        case minValue
-        case isLogarithmic
-        case logBase
-        case categoryAxisType
-        case axisBetweenCategories
-        case labelOffset
-        case isPlotOrderReversed
-        case isNumberFormatLinkedToSource
-        case numberFormat
-        case crossType
-        case crossAt
-        case isAutomaticTickMarksSpacing
-        case tickMarksSpacing
-        case isAutomaticTickLabelSpacing
-        case tickLabelSpacing
-        case tickLabelPosition
-        case tickLabelRotationAngle
-        case fillFormat
-        case effectFormat
-        case lineFormat
-        case majorGridLinesFormat
-        case minorGridLinesFormat
+    func fillValues(_ source: [String:Any]) throws {
+        let isVisibleValue = source["isVisible"]
+        if isVisibleValue != nil {
+            self.isVisible = isVisibleValue! as? Bool
+        }
+        let hasTitleValue = source["hasTitle"]
+        if hasTitleValue != nil {
+            self.hasTitle = hasTitleValue! as? Bool
+        }
+        let positionValue = source["position"]
+        if positionValue != nil {
+            let positionStringValue = positionValue! as? String
+            if positionStringValue != nil {
+                let positionEnumValue = Position(rawValue: positionStringValue!)
+                if positionEnumValue != nil {
+                    self.position = positionEnumValue!
+                }
+            }
+        }
+        let displayUnitValue = source["displayUnit"]
+        if displayUnitValue != nil {
+            let displayUnitStringValue = displayUnitValue! as? String
+            if displayUnitStringValue != nil {
+                let displayUnitEnumValue = DisplayUnit(rawValue: displayUnitStringValue!)
+                if displayUnitEnumValue != nil {
+                    self.displayUnit = displayUnitEnumValue!
+                }
+            }
+        }
+        let baseUnitScaleValue = source["baseUnitScale"]
+        if baseUnitScaleValue != nil {
+            let baseUnitScaleStringValue = baseUnitScaleValue! as? String
+            if baseUnitScaleStringValue != nil {
+                let baseUnitScaleEnumValue = BaseUnitScale(rawValue: baseUnitScaleStringValue!)
+                if baseUnitScaleEnumValue != nil {
+                    self.baseUnitScale = baseUnitScaleEnumValue!
+                }
+            }
+        }
+        let isAutomaticMajorUnitValue = source["isAutomaticMajorUnit"]
+        if isAutomaticMajorUnitValue != nil {
+            self.isAutomaticMajorUnit = isAutomaticMajorUnitValue! as? Bool
+        }
+        let majorUnitValue = source["majorUnit"]
+        if majorUnitValue != nil {
+            self.majorUnit = majorUnitValue! as? Double
+        }
+        let majorUnitScaleValue = source["majorUnitScale"]
+        if majorUnitScaleValue != nil {
+            let majorUnitScaleStringValue = majorUnitScaleValue! as? String
+            if majorUnitScaleStringValue != nil {
+                let majorUnitScaleEnumValue = MajorUnitScale(rawValue: majorUnitScaleStringValue!)
+                if majorUnitScaleEnumValue != nil {
+                    self.majorUnitScale = majorUnitScaleEnumValue!
+                }
+            }
+        }
+        let majorTickMarkValue = source["majorTickMark"]
+        if majorTickMarkValue != nil {
+            let majorTickMarkStringValue = majorTickMarkValue! as? String
+            if majorTickMarkStringValue != nil {
+                let majorTickMarkEnumValue = MajorTickMark(rawValue: majorTickMarkStringValue!)
+                if majorTickMarkEnumValue != nil {
+                    self.majorTickMark = majorTickMarkEnumValue!
+                }
+            }
+        }
+        let isAutomaticMinorUnitValue = source["isAutomaticMinorUnit"]
+        if isAutomaticMinorUnitValue != nil {
+            self.isAutomaticMinorUnit = isAutomaticMinorUnitValue! as? Bool
+        }
+        let minorUnitValue = source["minorUnit"]
+        if minorUnitValue != nil {
+            self.minorUnit = minorUnitValue! as? Double
+        }
+        let minorUnitScaleValue = source["minorUnitScale"]
+        if minorUnitScaleValue != nil {
+            let minorUnitScaleStringValue = minorUnitScaleValue! as? String
+            if minorUnitScaleStringValue != nil {
+                let minorUnitScaleEnumValue = MinorUnitScale(rawValue: minorUnitScaleStringValue!)
+                if minorUnitScaleEnumValue != nil {
+                    self.minorUnitScale = minorUnitScaleEnumValue!
+                }
+            }
+        }
+        let minorTickMarkValue = source["minorTickMark"]
+        if minorTickMarkValue != nil {
+            let minorTickMarkStringValue = minorTickMarkValue! as? String
+            if minorTickMarkStringValue != nil {
+                let minorTickMarkEnumValue = MinorTickMark(rawValue: minorTickMarkStringValue!)
+                if minorTickMarkEnumValue != nil {
+                    self.minorTickMark = minorTickMarkEnumValue!
+                }
+            }
+        }
+        let isAutomaticMaxValueValue = source["isAutomaticMaxValue"]
+        if isAutomaticMaxValueValue != nil {
+            self.isAutomaticMaxValue = isAutomaticMaxValueValue! as? Bool
+        }
+        let maxValueValue = source["maxValue"]
+        if maxValueValue != nil {
+            self.maxValue = maxValueValue! as? Double
+        }
+        let isAutomaticMinValueValue = source["isAutomaticMinValue"]
+        if isAutomaticMinValueValue != nil {
+            self.isAutomaticMinValue = isAutomaticMinValueValue! as? Bool
+        }
+        let minValueValue = source["minValue"]
+        if minValueValue != nil {
+            self.minValue = minValueValue! as? Double
+        }
+        let isLogarithmicValue = source["isLogarithmic"]
+        if isLogarithmicValue != nil {
+            self.isLogarithmic = isLogarithmicValue! as? Bool
+        }
+        let logBaseValue = source["logBase"]
+        if logBaseValue != nil {
+            self.logBase = logBaseValue! as? Double
+        }
+        let categoryAxisTypeValue = source["categoryAxisType"]
+        if categoryAxisTypeValue != nil {
+            let categoryAxisTypeStringValue = categoryAxisTypeValue! as? String
+            if categoryAxisTypeStringValue != nil {
+                let categoryAxisTypeEnumValue = CategoryAxisType(rawValue: categoryAxisTypeStringValue!)
+                if categoryAxisTypeEnumValue != nil {
+                    self.categoryAxisType = categoryAxisTypeEnumValue!
+                }
+            }
+        }
+        let axisBetweenCategoriesValue = source["axisBetweenCategories"]
+        if axisBetweenCategoriesValue != nil {
+            self.axisBetweenCategories = axisBetweenCategoriesValue! as? Bool
+        }
+        let labelOffsetValue = source["labelOffset"]
+        if labelOffsetValue != nil {
+            self.labelOffset = labelOffsetValue! as? Int
+        }
+        let isPlotOrderReversedValue = source["isPlotOrderReversed"]
+        if isPlotOrderReversedValue != nil {
+            self.isPlotOrderReversed = isPlotOrderReversedValue! as? Bool
+        }
+        let isNumberFormatLinkedToSourceValue = source["isNumberFormatLinkedToSource"]
+        if isNumberFormatLinkedToSourceValue != nil {
+            self.isNumberFormatLinkedToSource = isNumberFormatLinkedToSourceValue! as? Bool
+        }
+        let numberFormatValue = source["numberFormat"]
+        if numberFormatValue != nil {
+            self.numberFormat = numberFormatValue! as? String
+        }
+        let crossTypeValue = source["crossType"]
+        if crossTypeValue != nil {
+            let crossTypeStringValue = crossTypeValue! as? String
+            if crossTypeStringValue != nil {
+                let crossTypeEnumValue = CrossType(rawValue: crossTypeStringValue!)
+                if crossTypeEnumValue != nil {
+                    self.crossType = crossTypeEnumValue!
+                }
+            }
+        }
+        let crossAtValue = source["crossAt"]
+        if crossAtValue != nil {
+            self.crossAt = crossAtValue! as? Double
+        }
+        let isAutomaticTickMarksSpacingValue = source["isAutomaticTickMarksSpacing"]
+        if isAutomaticTickMarksSpacingValue != nil {
+            self.isAutomaticTickMarksSpacing = isAutomaticTickMarksSpacingValue! as? Bool
+        }
+        let tickMarksSpacingValue = source["tickMarksSpacing"]
+        if tickMarksSpacingValue != nil {
+            self.tickMarksSpacing = tickMarksSpacingValue! as? Int
+        }
+        let isAutomaticTickLabelSpacingValue = source["isAutomaticTickLabelSpacing"]
+        if isAutomaticTickLabelSpacingValue != nil {
+            self.isAutomaticTickLabelSpacing = isAutomaticTickLabelSpacingValue! as? Bool
+        }
+        let tickLabelSpacingValue = source["tickLabelSpacing"]
+        if tickLabelSpacingValue != nil {
+            self.tickLabelSpacing = tickLabelSpacingValue! as? Int
+        }
+        let tickLabelPositionValue = source["tickLabelPosition"]
+        if tickLabelPositionValue != nil {
+            let tickLabelPositionStringValue = tickLabelPositionValue! as? String
+            if tickLabelPositionStringValue != nil {
+                let tickLabelPositionEnumValue = TickLabelPosition(rawValue: tickLabelPositionStringValue!)
+                if tickLabelPositionEnumValue != nil {
+                    self.tickLabelPosition = tickLabelPositionEnumValue!
+                }
+            }
+        }
+        let tickLabelRotationAngleValue = source["tickLabelRotationAngle"]
+        if tickLabelRotationAngleValue != nil {
+            self.tickLabelRotationAngle = tickLabelRotationAngleValue! as? Double
+        }
+        let fillFormatValue = source["fillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
+        let majorGridLinesFormatValue = source["majorGridLinesFormat"]
+        if majorGridLinesFormatValue != nil {
+            let majorGridLinesFormatDictionaryValue = majorGridLinesFormatValue! as? [String:Any]
+            if majorGridLinesFormatDictionaryValue != nil {
+                let (majorGridLinesFormatInstance, error) = ClassRegistry.getClassFromDictionary(ChartLinesFormat.self, majorGridLinesFormatDictionaryValue!)
+                if error == nil && majorGridLinesFormatInstance != nil {
+                    self.majorGridLinesFormat = majorGridLinesFormatInstance! as? ChartLinesFormat
+                }
+            }
+        }
+        let minorGridLinesFormatValue = source["minorGridLinesFormat"]
+        if minorGridLinesFormatValue != nil {
+            let minorGridLinesFormatDictionaryValue = minorGridLinesFormatValue! as? [String:Any]
+            if minorGridLinesFormatDictionaryValue != nil {
+                let (minorGridLinesFormatInstance, error) = ClassRegistry.getClassFromDictionary(ChartLinesFormat.self, minorGridLinesFormatDictionaryValue!)
+                if error == nil && minorGridLinesFormatInstance != nil {
+                    self.minorGridLinesFormat = minorGridLinesFormatInstance! as? ChartLinesFormat
+                }
+            }
+        }
     }
 
     public init(isVisible: Bool? = nil, hasTitle: Bool? = nil, position: Position? = nil, displayUnit: DisplayUnit? = nil, baseUnitScale: BaseUnitScale? = nil, isAutomaticMajorUnit: Bool? = nil, majorUnit: Double? = nil, majorUnitScale: MajorUnitScale? = nil, majorTickMark: MajorTickMark? = nil, isAutomaticMinorUnit: Bool? = nil, minorUnit: Double? = nil, minorUnitScale: MinorUnitScale? = nil, minorTickMark: MinorTickMark? = nil, isAutomaticMaxValue: Bool? = nil, maxValue: Double? = nil, isAutomaticMinValue: Bool? = nil, minValue: Double? = nil, isLogarithmic: Bool? = nil, logBase: Double? = nil, categoryAxisType: CategoryAxisType? = nil, axisBetweenCategories: Bool? = nil, labelOffset: Int? = nil, isPlotOrderReversed: Bool? = nil, isNumberFormatLinkedToSource: Bool? = nil, numberFormat: String? = nil, crossType: CrossType? = nil, crossAt: Double? = nil, isAutomaticTickMarksSpacing: Bool? = nil, tickMarksSpacing: Int? = nil, isAutomaticTickLabelSpacing: Bool? = nil, tickLabelSpacing: Int? = nil, tickLabelPosition: TickLabelPosition? = nil, tickLabelRotationAngle: Double? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, majorGridLinesFormat: ChartLinesFormat? = nil, minorGridLinesFormat: ChartLinesFormat? = nil) {
@@ -255,6 +459,46 @@ public class Axis: Codable {
         self.minorGridLinesFormat = minorGridLinesFormat
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case isVisible
+        case hasTitle
+        case position
+        case displayUnit
+        case baseUnitScale
+        case isAutomaticMajorUnit
+        case majorUnit
+        case majorUnitScale
+        case majorTickMark
+        case isAutomaticMinorUnit
+        case minorUnit
+        case minorUnitScale
+        case minorTickMark
+        case isAutomaticMaxValue
+        case maxValue
+        case isAutomaticMinValue
+        case minValue
+        case isLogarithmic
+        case logBase
+        case categoryAxisType
+        case axisBetweenCategories
+        case labelOffset
+        case isPlotOrderReversed
+        case isNumberFormatLinkedToSource
+        case numberFormat
+        case crossType
+        case crossAt
+        case isAutomaticTickMarksSpacing
+        case tickMarksSpacing
+        case isAutomaticTickLabelSpacing
+        case tickLabelSpacing
+        case tickLabelPosition
+        case tickLabelRotationAngle
+        case fillFormat
+        case effectFormat
+        case lineFormat
+        case majorGridLinesFormat
+        case minorGridLinesFormat
+    }
 
 }
 

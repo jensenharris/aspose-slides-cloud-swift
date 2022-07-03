@@ -37,9 +37,15 @@ public class NormalViewRestoredProperties: Codable {
     /** The size of the slide region. */
     public var dimensionSize: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case autoAdjust
-        case dimensionSize
+    func fillValues(_ source: [String:Any]) throws {
+        let autoAdjustValue = source["autoAdjust"]
+        if autoAdjustValue != nil {
+            self.autoAdjust = autoAdjustValue! as? Bool
+        }
+        let dimensionSizeValue = source["dimensionSize"]
+        if dimensionSizeValue != nil {
+            self.dimensionSize = dimensionSizeValue! as? Double
+        }
     }
 
     public init(autoAdjust: Bool? = nil, dimensionSize: Double? = nil) {
@@ -47,6 +53,10 @@ public class NormalViewRestoredProperties: Codable {
         self.dimensionSize = dimensionSize
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case autoAdjust
+        case dimensionSize
+    }
 
 }
 

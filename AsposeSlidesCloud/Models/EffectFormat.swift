@@ -49,15 +49,87 @@ public class EffectFormat: Codable {
     /** fill overlay effect */
     public var fillOverlay: FillOverlayEffect?
 
-    private enum CodingKeys: String, CodingKey {
-        case blur
-        case glow
-        case innerShadow
-        case outerShadow
-        case presetShadow
-        case softEdge
-        case reflection
-        case fillOverlay
+    func fillValues(_ source: [String:Any]) throws {
+        let blurValue = source["blur"]
+        if blurValue != nil {
+            let blurDictionaryValue = blurValue! as? [String:Any]
+            if blurDictionaryValue != nil {
+                let (blurInstance, error) = ClassRegistry.getClassFromDictionary(BlurEffect.self, blurDictionaryValue!)
+                if error == nil && blurInstance != nil {
+                    self.blur = blurInstance! as? BlurEffect
+                }
+            }
+        }
+        let glowValue = source["glow"]
+        if glowValue != nil {
+            let glowDictionaryValue = glowValue! as? [String:Any]
+            if glowDictionaryValue != nil {
+                let (glowInstance, error) = ClassRegistry.getClassFromDictionary(GlowEffect.self, glowDictionaryValue!)
+                if error == nil && glowInstance != nil {
+                    self.glow = glowInstance! as? GlowEffect
+                }
+            }
+        }
+        let innerShadowValue = source["innerShadow"]
+        if innerShadowValue != nil {
+            let innerShadowDictionaryValue = innerShadowValue! as? [String:Any]
+            if innerShadowDictionaryValue != nil {
+                let (innerShadowInstance, error) = ClassRegistry.getClassFromDictionary(InnerShadowEffect.self, innerShadowDictionaryValue!)
+                if error == nil && innerShadowInstance != nil {
+                    self.innerShadow = innerShadowInstance! as? InnerShadowEffect
+                }
+            }
+        }
+        let outerShadowValue = source["outerShadow"]
+        if outerShadowValue != nil {
+            let outerShadowDictionaryValue = outerShadowValue! as? [String:Any]
+            if outerShadowDictionaryValue != nil {
+                let (outerShadowInstance, error) = ClassRegistry.getClassFromDictionary(OuterShadowEffect.self, outerShadowDictionaryValue!)
+                if error == nil && outerShadowInstance != nil {
+                    self.outerShadow = outerShadowInstance! as? OuterShadowEffect
+                }
+            }
+        }
+        let presetShadowValue = source["presetShadow"]
+        if presetShadowValue != nil {
+            let presetShadowDictionaryValue = presetShadowValue! as? [String:Any]
+            if presetShadowDictionaryValue != nil {
+                let (presetShadowInstance, error) = ClassRegistry.getClassFromDictionary(PresetShadowEffect.self, presetShadowDictionaryValue!)
+                if error == nil && presetShadowInstance != nil {
+                    self.presetShadow = presetShadowInstance! as? PresetShadowEffect
+                }
+            }
+        }
+        let softEdgeValue = source["softEdge"]
+        if softEdgeValue != nil {
+            let softEdgeDictionaryValue = softEdgeValue! as? [String:Any]
+            if softEdgeDictionaryValue != nil {
+                let (softEdgeInstance, error) = ClassRegistry.getClassFromDictionary(SoftEdgeEffect.self, softEdgeDictionaryValue!)
+                if error == nil && softEdgeInstance != nil {
+                    self.softEdge = softEdgeInstance! as? SoftEdgeEffect
+                }
+            }
+        }
+        let reflectionValue = source["reflection"]
+        if reflectionValue != nil {
+            let reflectionDictionaryValue = reflectionValue! as? [String:Any]
+            if reflectionDictionaryValue != nil {
+                let (reflectionInstance, error) = ClassRegistry.getClassFromDictionary(ReflectionEffect.self, reflectionDictionaryValue!)
+                if error == nil && reflectionInstance != nil {
+                    self.reflection = reflectionInstance! as? ReflectionEffect
+                }
+            }
+        }
+        let fillOverlayValue = source["fillOverlay"]
+        if fillOverlayValue != nil {
+            let fillOverlayDictionaryValue = fillOverlayValue! as? [String:Any]
+            if fillOverlayDictionaryValue != nil {
+                let (fillOverlayInstance, error) = ClassRegistry.getClassFromDictionary(FillOverlayEffect.self, fillOverlayDictionaryValue!)
+                if error == nil && fillOverlayInstance != nil {
+                    self.fillOverlay = fillOverlayInstance! as? FillOverlayEffect
+                }
+            }
+        }
     }
 
     public init(blur: BlurEffect? = nil, glow: GlowEffect? = nil, innerShadow: InnerShadowEffect? = nil, outerShadow: OuterShadowEffect? = nil, presetShadow: PresetShadowEffect? = nil, softEdge: SoftEdgeEffect? = nil, reflection: ReflectionEffect? = nil, fillOverlay: FillOverlayEffect? = nil) {
@@ -71,6 +143,16 @@ public class EffectFormat: Codable {
         self.fillOverlay = fillOverlay
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case blur
+        case glow
+        case innerShadow
+        case outerShadow
+        case presetShadow
+        case softEdge
+        case reflection
+        case fillOverlay
+    }
 
 }
 

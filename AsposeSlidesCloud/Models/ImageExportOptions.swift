@@ -51,11 +51,36 @@ public class ImageExportOptions: ImageExportOptionsBase {
     /** Gets or sets the color of comments area (Applies only if comments are displayed on the right). */
     public var commentsAreaColor: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case notesPosition
-        case commentsPosition
-        case commentsAreaWidth
-        case commentsAreaColor
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let notesPositionValue = source["notesPosition"]
+        if notesPositionValue != nil {
+            let notesPositionStringValue = notesPositionValue! as? String
+            if notesPositionStringValue != nil {
+                let notesPositionEnumValue = NotesPosition(rawValue: notesPositionStringValue!)
+                if notesPositionEnumValue != nil {
+                    self.notesPosition = notesPositionEnumValue!
+                }
+            }
+        }
+        let commentsPositionValue = source["commentsPosition"]
+        if commentsPositionValue != nil {
+            let commentsPositionStringValue = commentsPositionValue! as? String
+            if commentsPositionStringValue != nil {
+                let commentsPositionEnumValue = CommentsPosition(rawValue: commentsPositionStringValue!)
+                if commentsPositionEnumValue != nil {
+                    self.commentsPosition = commentsPositionEnumValue!
+                }
+            }
+        }
+        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        if commentsAreaWidthValue != nil {
+            self.commentsAreaWidth = commentsAreaWidthValue! as? Int
+        }
+        let commentsAreaColorValue = source["commentsAreaColor"]
+        if commentsAreaColorValue != nil {
+            self.commentsAreaColor = commentsAreaColorValue! as? String
+        }
     }
 
     public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
@@ -64,26 +89,42 @@ public class ImageExportOptions: ImageExportOptionsBase {
         self.commentsPosition = commentsPosition
         self.commentsAreaWidth = commentsAreaWidth
         self.commentsAreaColor = commentsAreaColor
+        self.format = "image"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case notesPosition
+        case commentsPosition
+        case commentsAreaWidth
+        case commentsAreaColor
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        notesPosition = try values.decode(NotesPosition?.self, forKey: .notesPosition)
-        commentsPosition = try values.decode(CommentsPosition?.self, forKey: .commentsPosition)
-        commentsAreaWidth = try values.decode(Int?.self, forKey: .commentsAreaWidth)
-        commentsAreaColor = try values.decode(String?.self, forKey: .commentsAreaColor)
+        notesPosition = try? values.decode(NotesPosition.self, forKey: .notesPosition)
+        commentsPosition = try? values.decode(CommentsPosition.self, forKey: .commentsPosition)
+        commentsAreaWidth = try? values.decode(Int.self, forKey: .commentsAreaWidth)
+        commentsAreaColor = try? values.decode(String.self, forKey: .commentsAreaColor)
+        self.format = "image"
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(notesPosition, forKey: .notesPosition)
-        try container.encode(commentsPosition, forKey: .commentsPosition)
-        try container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
-        try container.encode(commentsAreaColor, forKey: .commentsAreaColor)
+        if (notesPosition != nil) {
+            try? container.encode(notesPosition, forKey: .notesPosition)
+        }
+        if (commentsPosition != nil) {
+            try? container.encode(commentsPosition, forKey: .commentsPosition)
+        }
+        if (commentsAreaWidth != nil) {
+            try? container.encode(commentsAreaWidth, forKey: .commentsAreaWidth)
+        }
+        if (commentsAreaColor != nil) {
+            try? container.encode(commentsAreaColor, forKey: .commentsAreaColor)
+        }
     }
-
 
 }
 

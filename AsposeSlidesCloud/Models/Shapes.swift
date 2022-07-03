@@ -35,8 +35,33 @@ public class Shapes: ResourceBase {
     /** List of shape links. */
     public var shapesLinks: [ResourceUri]?
 
-    private enum CodingKeys: String, CodingKey {
-        case shapesLinks
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let shapesLinksValue = source["shapesLinks"]
+        if shapesLinksValue != nil {
+            var shapesLinksArray: [ResourceUri] = []
+            let shapesLinksDictionaryValue = shapesLinksValue! as? [Any]
+            if shapesLinksDictionaryValue != nil {
+                shapesLinksDictionaryValue!.forEach { shapesLinksAnyItem in
+                    let shapesLinksItem = shapesLinksAnyItem as? [String:Any]
+                    var added = false
+                    if shapesLinksItem != nil {
+                        let (shapesLinksInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, shapesLinksItem!)
+                        if error == nil && shapesLinksInstance != nil {
+                            let shapesLinksArrayItem = shapesLinksInstance! as? ResourceUri
+                            if shapesLinksArrayItem != nil {
+                                shapesLinksArray.append(shapesLinksArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        shapesLinksArray.append(ResourceUri())
+                    }
+                }
+            }
+            self.shapesLinks = shapesLinksArray
+        }
     }
 
     public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, shapesLinks: [ResourceUri]? = nil) {
@@ -44,18 +69,23 @@ public class Shapes: ResourceBase {
         self.shapesLinks = shapesLinks
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case shapesLinks
+    }
+
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        shapesLinks = try values.decode([ResourceUri]?.self, forKey: .shapesLinks)
+        shapesLinks = try? values.decode([ResourceUri].self, forKey: .shapesLinks)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(shapesLinks, forKey: .shapesLinks)
+        if (shapesLinks != nil) {
+            try? container.encode(shapesLinks, forKey: .shapesLinks)
+        }
     }
-
 
 }
 

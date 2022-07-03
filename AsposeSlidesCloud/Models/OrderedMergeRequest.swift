@@ -35,14 +35,41 @@ public class OrderedMergeRequest: Codable {
     /** Gets or sets the presentation paths. */
     public var presentations: [PresentationToMerge]?
 
-    private enum CodingKeys: String, CodingKey {
-        case presentations
+    func fillValues(_ source: [String:Any]) throws {
+        let presentationsValue = source["presentations"]
+        if presentationsValue != nil {
+            var presentationsArray: [PresentationToMerge] = []
+            let presentationsDictionaryValue = presentationsValue! as? [Any]
+            if presentationsDictionaryValue != nil {
+                presentationsDictionaryValue!.forEach { presentationsAnyItem in
+                    let presentationsItem = presentationsAnyItem as? [String:Any]
+                    var added = false
+                    if presentationsItem != nil {
+                        let (presentationsInstance, error) = ClassRegistry.getClassFromDictionary(PresentationToMerge.self, presentationsItem!)
+                        if error == nil && presentationsInstance != nil {
+                            let presentationsArrayItem = presentationsInstance! as? PresentationToMerge
+                            if presentationsArrayItem != nil {
+                                presentationsArray.append(presentationsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        presentationsArray.append(PresentationToMerge())
+                    }
+                }
+            }
+            self.presentations = presentationsArray
+        }
     }
 
     public init(presentations: [PresentationToMerge]? = nil) {
         self.presentations = presentations
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case presentations
+    }
 
 }
 

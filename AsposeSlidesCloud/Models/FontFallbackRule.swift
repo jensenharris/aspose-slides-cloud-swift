@@ -39,10 +39,19 @@ public class FontFallbackRule: Codable {
     /** List of fallback font links. */
     public var fallbackFontList: [String]?
 
-    private enum CodingKeys: String, CodingKey {
-        case rangeStartIndex
-        case rangeEndIndex
-        case fallbackFontList
+    func fillValues(_ source: [String:Any]) throws {
+        let rangeStartIndexValue = source["rangeStartIndex"]
+        if rangeStartIndexValue != nil {
+            self.rangeStartIndex = rangeStartIndexValue! as? Int
+        }
+        let rangeEndIndexValue = source["rangeEndIndex"]
+        if rangeEndIndexValue != nil {
+            self.rangeEndIndex = rangeEndIndexValue! as? Int
+        }
+        let fallbackFontListValue = source["fallbackFontList"]
+        if fallbackFontListValue != nil {
+            self.fallbackFontList = fallbackFontListValue! as? [String]
+        }
     }
 
     public init(rangeStartIndex: Int? = nil, rangeEndIndex: Int? = nil, fallbackFontList: [String]? = nil) {
@@ -51,6 +60,11 @@ public class FontFallbackRule: Codable {
         self.fallbackFontList = fallbackFontList
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case rangeStartIndex
+        case rangeEndIndex
+        case fallbackFontList
+    }
 
 }
 

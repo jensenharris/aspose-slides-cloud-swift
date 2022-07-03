@@ -37,9 +37,15 @@ public class BlurEffect: Codable {
     /** true if the bounds are grown */
     public var grow: Bool?
 
-    private enum CodingKeys: String, CodingKey {
-        case radius
-        case grow
+    func fillValues(_ source: [String:Any]) throws {
+        let radiusValue = source["radius"]
+        if radiusValue != nil {
+            self.radius = radiusValue! as? Double
+        }
+        let growValue = source["grow"]
+        if growValue != nil {
+            self.grow = growValue! as? Bool
+        }
     }
 
     public init(radius: Double? = nil, grow: Bool? = nil) {
@@ -47,6 +53,10 @@ public class BlurEffect: Codable {
         self.grow = grow
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case radius
+        case grow
+    }
 
 }
 

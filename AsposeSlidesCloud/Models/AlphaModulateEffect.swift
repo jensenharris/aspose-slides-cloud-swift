@@ -33,15 +33,23 @@ import Foundation
 public class AlphaModulateEffect: ImageTransformEffect {
 
 
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+    }
+
+    public override init(type: ModelType? = nil) {
+        super.init(type: type)
+        self.type = ModelType.alphaModulate
+    }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+        self.type = ModelType.alphaModulate
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
     }
-
 
 }
 

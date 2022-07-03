@@ -54,10 +54,25 @@ public class ShapeBevel: Codable {
     /** Bevel height */
     public var height: Double?
 
-    private enum CodingKeys: String, CodingKey {
-        case bevelType
-        case width
-        case height
+    func fillValues(_ source: [String:Any]) throws {
+        let bevelTypeValue = source["bevelType"]
+        if bevelTypeValue != nil {
+            let bevelTypeStringValue = bevelTypeValue! as? String
+            if bevelTypeStringValue != nil {
+                let bevelTypeEnumValue = BevelType(rawValue: bevelTypeStringValue!)
+                if bevelTypeEnumValue != nil {
+                    self.bevelType = bevelTypeEnumValue!
+                }
+            }
+        }
+        let widthValue = source["width"]
+        if widthValue != nil {
+            self.width = widthValue! as? Double
+        }
+        let heightValue = source["height"]
+        if heightValue != nil {
+            self.height = heightValue! as? Double
+        }
     }
 
     public init(bevelType: BevelType? = nil, width: Double? = nil, height: Double? = nil) {
@@ -66,6 +81,11 @@ public class ShapeBevel: Codable {
         self.height = height
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case bevelType
+        case width
+        case height
+    }
 
 }
 

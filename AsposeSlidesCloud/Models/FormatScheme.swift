@@ -32,14 +32,126 @@ import Foundation
 /** Represents Format Scheme for slide&#39;s theme */
 public class FormatScheme: ResourceBase {
 
-    /** Background style links. */
-    public var backgroundStyles: [ResourceUri]?
-    /** Effect style links. */
-    public var effectStyles: [ResourceUri]?
-    /** Fill style links. */
-    public var fillStyles: [ResourceUri]?
-    /** Line style links. */
-    public var lineStyles: [ResourceUri]?
+    /** Background styles. */
+    public var backgroundStyles: [FillFormat]?
+    /** Effect styles. */
+    public var effectStyles: [EffectFormat]?
+    /** Fill styles. */
+    public var fillStyles: [FillFormat]?
+    /** Line style. */
+    public var lineStyles: [LineFormat]?
+
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let backgroundStylesValue = source["backgroundStyles"]
+        if backgroundStylesValue != nil {
+            var backgroundStylesArray: [FillFormat] = []
+            let backgroundStylesDictionaryValue = backgroundStylesValue! as? [Any]
+            if backgroundStylesDictionaryValue != nil {
+                backgroundStylesDictionaryValue!.forEach { backgroundStylesAnyItem in
+                    let backgroundStylesItem = backgroundStylesAnyItem as? [String:Any]
+                    var added = false
+                    if backgroundStylesItem != nil {
+                        let (backgroundStylesInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, backgroundStylesItem!)
+                        if error == nil && backgroundStylesInstance != nil {
+                            let backgroundStylesArrayItem = backgroundStylesInstance! as? FillFormat
+                            if backgroundStylesArrayItem != nil {
+                                backgroundStylesArray.append(backgroundStylesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        backgroundStylesArray.append(FillFormat())
+                    }
+                }
+            }
+            self.backgroundStyles = backgroundStylesArray
+        }
+        let effectStylesValue = source["effectStyles"]
+        if effectStylesValue != nil {
+            var effectStylesArray: [EffectFormat] = []
+            let effectStylesDictionaryValue = effectStylesValue! as? [Any]
+            if effectStylesDictionaryValue != nil {
+                effectStylesDictionaryValue!.forEach { effectStylesAnyItem in
+                    let effectStylesItem = effectStylesAnyItem as? [String:Any]
+                    var added = false
+                    if effectStylesItem != nil {
+                        let (effectStylesInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectStylesItem!)
+                        if error == nil && effectStylesInstance != nil {
+                            let effectStylesArrayItem = effectStylesInstance! as? EffectFormat
+                            if effectStylesArrayItem != nil {
+                                effectStylesArray.append(effectStylesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        effectStylesArray.append(EffectFormat())
+                    }
+                }
+            }
+            self.effectStyles = effectStylesArray
+        }
+        let fillStylesValue = source["fillStyles"]
+        if fillStylesValue != nil {
+            var fillStylesArray: [FillFormat] = []
+            let fillStylesDictionaryValue = fillStylesValue! as? [Any]
+            if fillStylesDictionaryValue != nil {
+                fillStylesDictionaryValue!.forEach { fillStylesAnyItem in
+                    let fillStylesItem = fillStylesAnyItem as? [String:Any]
+                    var added = false
+                    if fillStylesItem != nil {
+                        let (fillStylesInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillStylesItem!)
+                        if error == nil && fillStylesInstance != nil {
+                            let fillStylesArrayItem = fillStylesInstance! as? FillFormat
+                            if fillStylesArrayItem != nil {
+                                fillStylesArray.append(fillStylesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        fillStylesArray.append(FillFormat())
+                    }
+                }
+            }
+            self.fillStyles = fillStylesArray
+        }
+        let lineStylesValue = source["lineStyles"]
+        if lineStylesValue != nil {
+            var lineStylesArray: [LineFormat] = []
+            let lineStylesDictionaryValue = lineStylesValue! as? [Any]
+            if lineStylesDictionaryValue != nil {
+                lineStylesDictionaryValue!.forEach { lineStylesAnyItem in
+                    let lineStylesItem = lineStylesAnyItem as? [String:Any]
+                    var added = false
+                    if lineStylesItem != nil {
+                        let (lineStylesInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineStylesItem!)
+                        if error == nil && lineStylesInstance != nil {
+                            let lineStylesArrayItem = lineStylesInstance! as? LineFormat
+                            if lineStylesArrayItem != nil {
+                                lineStylesArray.append(lineStylesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        lineStylesArray.append(LineFormat())
+                    }
+                }
+            }
+            self.lineStyles = lineStylesArray
+        }
+    }
+
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, backgroundStyles: [FillFormat]? = nil, effectStyles: [EffectFormat]? = nil, fillStyles: [FillFormat]? = nil, lineStyles: [LineFormat]? = nil) {
+        super.init(selfUri: selfUri, alternateLinks: alternateLinks)
+        self.backgroundStyles = backgroundStyles
+        self.effectStyles = effectStyles
+        self.fillStyles = fillStyles
+        self.lineStyles = lineStyles
+    }
 
     private enum CodingKeys: String, CodingKey {
         case backgroundStyles
@@ -48,32 +160,31 @@ public class FormatScheme: ResourceBase {
         case lineStyles
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, backgroundStyles: [ResourceUri]? = nil, effectStyles: [ResourceUri]? = nil, fillStyles: [ResourceUri]? = nil, lineStyles: [ResourceUri]? = nil) {
-        super.init(selfUri: selfUri, alternateLinks: alternateLinks)
-        self.backgroundStyles = backgroundStyles
-        self.effectStyles = effectStyles
-        self.fillStyles = fillStyles
-        self.lineStyles = lineStyles
-    }
-
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        backgroundStyles = try values.decode([ResourceUri]?.self, forKey: .backgroundStyles)
-        effectStyles = try values.decode([ResourceUri]?.self, forKey: .effectStyles)
-        fillStyles = try values.decode([ResourceUri]?.self, forKey: .fillStyles)
-        lineStyles = try values.decode([ResourceUri]?.self, forKey: .lineStyles)
+        backgroundStyles = try? values.decode([FillFormat].self, forKey: .backgroundStyles)
+        effectStyles = try? values.decode([EffectFormat].self, forKey: .effectStyles)
+        fillStyles = try? values.decode([FillFormat].self, forKey: .fillStyles)
+        lineStyles = try? values.decode([LineFormat].self, forKey: .lineStyles)
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(backgroundStyles, forKey: .backgroundStyles)
-        try container.encode(effectStyles, forKey: .effectStyles)
-        try container.encode(fillStyles, forKey: .fillStyles)
-        try container.encode(lineStyles, forKey: .lineStyles)
+        if (backgroundStyles != nil) {
+            try? container.encode(backgroundStyles, forKey: .backgroundStyles)
+        }
+        if (effectStyles != nil) {
+            try? container.encode(effectStyles, forKey: .effectStyles)
+        }
+        if (fillStyles != nil) {
+            try? container.encode(fillStyles, forKey: .fillStyles)
+        }
+        if (lineStyles != nil) {
+            try? container.encode(lineStyles, forKey: .lineStyles)
+        }
     }
-
 
 }
 

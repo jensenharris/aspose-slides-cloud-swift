@@ -67,13 +67,71 @@ public class GradientFill: FillFormat {
     /** Gradient flipping mode. */
     public var tileFlip: TileFlip?
 
-    private enum CodingKeys: String, CodingKey {
-        case direction
-        case shape
-        case stops
-        case linearAngle
-        case isScaled
-        case tileFlip
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let directionValue = source["direction"]
+        if directionValue != nil {
+            let directionStringValue = directionValue! as? String
+            if directionStringValue != nil {
+                let directionEnumValue = Direction(rawValue: directionStringValue!)
+                if directionEnumValue != nil {
+                    self.direction = directionEnumValue!
+                }
+            }
+        }
+        let shapeValue = source["shape"]
+        if shapeValue != nil {
+            let shapeStringValue = shapeValue! as? String
+            if shapeStringValue != nil {
+                let shapeEnumValue = Shape(rawValue: shapeStringValue!)
+                if shapeEnumValue != nil {
+                    self.shape = shapeEnumValue!
+                }
+            }
+        }
+        let stopsValue = source["stops"]
+        if stopsValue != nil {
+            var stopsArray: [GradientFillStop] = []
+            let stopsDictionaryValue = stopsValue! as? [Any]
+            if stopsDictionaryValue != nil {
+                stopsDictionaryValue!.forEach { stopsAnyItem in
+                    let stopsItem = stopsAnyItem as? [String:Any]
+                    var added = false
+                    if stopsItem != nil {
+                        let (stopsInstance, error) = ClassRegistry.getClassFromDictionary(GradientFillStop.self, stopsItem!)
+                        if error == nil && stopsInstance != nil {
+                            let stopsArrayItem = stopsInstance! as? GradientFillStop
+                            if stopsArrayItem != nil {
+                                stopsArray.append(stopsArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        stopsArray.append(GradientFillStop())
+                    }
+                }
+            }
+            self.stops = stopsArray
+        }
+        let linearAngleValue = source["linearAngle"]
+        if linearAngleValue != nil {
+            self.linearAngle = linearAngleValue! as? Double
+        }
+        let isScaledValue = source["isScaled"]
+        if isScaledValue != nil {
+            self.isScaled = isScaledValue! as? Bool
+        }
+        let tileFlipValue = source["tileFlip"]
+        if tileFlipValue != nil {
+            let tileFlipStringValue = tileFlipValue! as? String
+            if tileFlipStringValue != nil {
+                let tileFlipEnumValue = TileFlip(rawValue: tileFlipStringValue!)
+                if tileFlipEnumValue != nil {
+                    self.tileFlip = tileFlipEnumValue!
+                }
+            }
+        }
     }
 
     public init(type: ModelType? = nil, direction: Direction? = nil, shape: Shape? = nil, stops: [GradientFillStop]? = nil, linearAngle: Double? = nil, isScaled: Bool? = nil, tileFlip: TileFlip? = nil) {
@@ -84,30 +142,52 @@ public class GradientFill: FillFormat {
         self.linearAngle = linearAngle
         self.isScaled = isScaled
         self.tileFlip = tileFlip
+        self.type = ModelType.gradient
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case direction
+        case shape
+        case stops
+        case linearAngle
+        case isScaled
+        case tileFlip
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        direction = try values.decode(Direction?.self, forKey: .direction)
-        shape = try values.decode(Shape?.self, forKey: .shape)
-        stops = try values.decode([GradientFillStop]?.self, forKey: .stops)
-        linearAngle = try values.decode(Double?.self, forKey: .linearAngle)
-        isScaled = try values.decode(Bool?.self, forKey: .isScaled)
-        tileFlip = try values.decode(TileFlip?.self, forKey: .tileFlip)
+        direction = try? values.decode(Direction.self, forKey: .direction)
+        shape = try? values.decode(Shape.self, forKey: .shape)
+        stops = try? values.decode([GradientFillStop].self, forKey: .stops)
+        linearAngle = try? values.decode(Double.self, forKey: .linearAngle)
+        isScaled = try? values.decode(Bool.self, forKey: .isScaled)
+        tileFlip = try? values.decode(TileFlip.self, forKey: .tileFlip)
+        self.type = ModelType.gradient
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(direction, forKey: .direction)
-        try container.encode(shape, forKey: .shape)
-        try container.encode(stops, forKey: .stops)
-        try container.encode(linearAngle, forKey: .linearAngle)
-        try container.encode(isScaled, forKey: .isScaled)
-        try container.encode(tileFlip, forKey: .tileFlip)
+        if (direction != nil) {
+            try? container.encode(direction, forKey: .direction)
+        }
+        if (shape != nil) {
+            try? container.encode(shape, forKey: .shape)
+        }
+        if (stops != nil) {
+            try? container.encode(stops, forKey: .stops)
+        }
+        if (linearAngle != nil) {
+            try? container.encode(linearAngle, forKey: .linearAngle)
+        }
+        if (isScaled != nil) {
+            try? container.encode(isScaled, forKey: .isScaled)
+        }
+        if (tileFlip != nil) {
+            try? container.encode(tileFlip, forKey: .tileFlip)
+        }
     }
-
 
 }
 

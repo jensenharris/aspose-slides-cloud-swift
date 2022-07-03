@@ -41,11 +41,30 @@ public class AddSlide: Task {
     /** Alias of layout (href, index or type). If value is null a blank slide is added. */
     public var layoutAlias: String?
 
-    private enum CodingKeys: String, CodingKey {
-        case cloneFromFile
-        case cloneFromPosition
-        case position
-        case layoutAlias
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let cloneFromFileValue = source["cloneFromFile"]
+        if cloneFromFileValue != nil {
+            let cloneFromFileDictionaryValue = cloneFromFileValue! as? [String:Any]
+            if cloneFromFileDictionaryValue != nil {
+                let (cloneFromFileInstance, error) = ClassRegistry.getClassFromDictionary(InputFile.self, cloneFromFileDictionaryValue!)
+                if error == nil && cloneFromFileInstance != nil {
+                    self.cloneFromFile = cloneFromFileInstance! as? InputFile
+                }
+            }
+        }
+        let cloneFromPositionValue = source["cloneFromPosition"]
+        if cloneFromPositionValue != nil {
+            self.cloneFromPosition = cloneFromPositionValue! as? Int
+        }
+        let positionValue = source["position"]
+        if positionValue != nil {
+            self.position = positionValue! as? Int
+        }
+        let layoutAliasValue = source["layoutAlias"]
+        if layoutAliasValue != nil {
+            self.layoutAlias = layoutAliasValue! as? String
+        }
     }
 
     public init(type: ModelType? = nil, cloneFromFile: InputFile? = nil, cloneFromPosition: Int? = nil, position: Int? = nil, layoutAlias: String? = nil) {
@@ -54,26 +73,42 @@ public class AddSlide: Task {
         self.cloneFromPosition = cloneFromPosition
         self.position = position
         self.layoutAlias = layoutAlias
+        self.type = ModelType.addSlide
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case cloneFromFile
+        case cloneFromPosition
+        case position
+        case layoutAlias
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        cloneFromFile = try values.decode(InputFile?.self, forKey: .cloneFromFile)
-        cloneFromPosition = try values.decode(Int?.self, forKey: .cloneFromPosition)
-        position = try values.decode(Int?.self, forKey: .position)
-        layoutAlias = try values.decode(String?.self, forKey: .layoutAlias)
+        cloneFromFile = try? values.decode(InputFile.self, forKey: .cloneFromFile)
+        cloneFromPosition = try? values.decode(Int.self, forKey: .cloneFromPosition)
+        position = try? values.decode(Int.self, forKey: .position)
+        layoutAlias = try? values.decode(String.self, forKey: .layoutAlias)
+        self.type = ModelType.addSlide
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(cloneFromFile, forKey: .cloneFromFile)
-        try container.encode(cloneFromPosition, forKey: .cloneFromPosition)
-        try container.encode(position, forKey: .position)
-        try container.encode(layoutAlias, forKey: .layoutAlias)
+        if (cloneFromFile != nil) {
+            try? container.encode(cloneFromFile, forKey: .cloneFromFile)
+        }
+        if (cloneFromPosition != nil) {
+            try? container.encode(cloneFromPosition, forKey: .cloneFromPosition)
+        }
+        if (position != nil) {
+            try? container.encode(position, forKey: .position)
+        }
+        if (layoutAlias != nil) {
+            try? container.encode(layoutAlias, forKey: .layoutAlias)
+        }
     }
-
 
 }
 

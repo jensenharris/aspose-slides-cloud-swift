@@ -35,27 +35,38 @@ public class RequestInputFile: InputFile {
     /** Get or sets index of file from request. */
     public var index: Int?
 
-    private enum CodingKeys: String, CodingKey {
-        case index
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+        let indexValue = source["index"]
+        if indexValue != nil {
+            self.index = indexValue! as? Int
+        }
     }
 
     public init(password: String? = nil, type: ModelType? = nil, index: Int? = nil) {
         super.init(password: password, type: type)
         self.index = index
+        self.type = ModelType.request
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case index
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        index = try values.decode(Int?.self, forKey: .index)
+        index = try? values.decode(Int.self, forKey: .index)
+        self.type = ModelType.request
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(index, forKey: .index)
+        if (index != nil) {
+            try? container.encode(index, forKey: .index)
+        }
     }
-
 
 }
 

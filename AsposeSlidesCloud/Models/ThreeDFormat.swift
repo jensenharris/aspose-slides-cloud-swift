@@ -71,17 +71,77 @@ public class ThreeDFormat: Codable {
     /** Material */
     public var material: Material?
 
-    private enum CodingKeys: String, CodingKey {
-        case bevelBottom
-        case bevelTop
-        case camera
-        case contourColor
-        case contourWidth
-        case depth
-        case extrusionColor
-        case extrusionHeight
-        case lightRig
-        case material
+    func fillValues(_ source: [String:Any]) throws {
+        let bevelBottomValue = source["bevelBottom"]
+        if bevelBottomValue != nil {
+            let bevelBottomDictionaryValue = bevelBottomValue! as? [String:Any]
+            if bevelBottomDictionaryValue != nil {
+                let (bevelBottomInstance, error) = ClassRegistry.getClassFromDictionary(ShapeBevel.self, bevelBottomDictionaryValue!)
+                if error == nil && bevelBottomInstance != nil {
+                    self.bevelBottom = bevelBottomInstance! as? ShapeBevel
+                }
+            }
+        }
+        let bevelTopValue = source["bevelTop"]
+        if bevelTopValue != nil {
+            let bevelTopDictionaryValue = bevelTopValue! as? [String:Any]
+            if bevelTopDictionaryValue != nil {
+                let (bevelTopInstance, error) = ClassRegistry.getClassFromDictionary(ShapeBevel.self, bevelTopDictionaryValue!)
+                if error == nil && bevelTopInstance != nil {
+                    self.bevelTop = bevelTopInstance! as? ShapeBevel
+                }
+            }
+        }
+        let cameraValue = source["camera"]
+        if cameraValue != nil {
+            let cameraDictionaryValue = cameraValue! as? [String:Any]
+            if cameraDictionaryValue != nil {
+                let (cameraInstance, error) = ClassRegistry.getClassFromDictionary(Camera.self, cameraDictionaryValue!)
+                if error == nil && cameraInstance != nil {
+                    self.camera = cameraInstance! as? Camera
+                }
+            }
+        }
+        let contourColorValue = source["contourColor"]
+        if contourColorValue != nil {
+            self.contourColor = contourColorValue! as? String
+        }
+        let contourWidthValue = source["contourWidth"]
+        if contourWidthValue != nil {
+            self.contourWidth = contourWidthValue! as? Double
+        }
+        let depthValue = source["depth"]
+        if depthValue != nil {
+            self.depth = depthValue! as? Double
+        }
+        let extrusionColorValue = source["extrusionColor"]
+        if extrusionColorValue != nil {
+            self.extrusionColor = extrusionColorValue! as? String
+        }
+        let extrusionHeightValue = source["extrusionHeight"]
+        if extrusionHeightValue != nil {
+            self.extrusionHeight = extrusionHeightValue! as? Double
+        }
+        let lightRigValue = source["lightRig"]
+        if lightRigValue != nil {
+            let lightRigDictionaryValue = lightRigValue! as? [String:Any]
+            if lightRigDictionaryValue != nil {
+                let (lightRigInstance, error) = ClassRegistry.getClassFromDictionary(LightRig.self, lightRigDictionaryValue!)
+                if error == nil && lightRigInstance != nil {
+                    self.lightRig = lightRigInstance! as? LightRig
+                }
+            }
+        }
+        let materialValue = source["material"]
+        if materialValue != nil {
+            let materialStringValue = materialValue! as? String
+            if materialStringValue != nil {
+                let materialEnumValue = Material(rawValue: materialStringValue!)
+                if materialEnumValue != nil {
+                    self.material = materialEnumValue!
+                }
+            }
+        }
     }
 
     public init(bevelBottom: ShapeBevel? = nil, bevelTop: ShapeBevel? = nil, camera: Camera? = nil, contourColor: String? = nil, contourWidth: Double? = nil, depth: Double? = nil, extrusionColor: String? = nil, extrusionHeight: Double? = nil, lightRig: LightRig? = nil, material: Material? = nil) {
@@ -97,6 +157,18 @@ public class ThreeDFormat: Codable {
         self.material = material
     }
 
+    private enum CodingKeys: String, CodingKey {
+        case bevelBottom
+        case bevelTop
+        case camera
+        case contourColor
+        case contourWidth
+        case depth
+        case extrusionColor
+        case extrusionHeight
+        case lightRig
+        case material
+    }
 
 }
 
