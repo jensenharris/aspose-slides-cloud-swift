@@ -65,26 +65,41 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
 
     override open func execute(_ completion: @escaping (_ response: Response<T>?, _ error: Error?) -> Void) {
         let dataKeys = parameters == nil ? [] : parameters!.filter { $1 is Data }.map { $0.0 }
-        if dataKeys.count == 1 {
-            let key = dataKeys[0]
+        let dataCount = dataKeys.count + files.count
+        if dataCount > 1 {
             var data = Data()
-            if (key == "data") {
-                headers["Content-Type"] = "application/octet-stream"
-                data.append(parameters![key] as! Data)
+            let boundary = "7d70fb31-0eb9-4846-9ea8-933dfb69d8f1"
+            headers["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
+            var fileIndex = 0
+            for i in files.indices {
+                fileIndex += 1
+                putMultipart(&data, boundary, fileIndex, files[i])
             }
-            else {
-                if files.count > 0 {
-                    let boundary = "7d70fb31-0eb9-4846-9ea8-933dfb69d8f1"
-                    headers["Content-Type"] = "multipart/form-data; boundary=\(boundary)"
-                    putMultipart(&data, boundary, 0, parameters![key] as! Data)
-                    for i in files.indices {
-                        putMultipart(&data, boundary, i + 1, files[i])
-                    }
-                    data.append(Data("\r\n--\(boundary)--\r\n".utf8))
+            for dataKey in dataKeys {
+                var dataIndex = 0
+                if dataKey == "data" {
+                    fileIndex += 1
+                    dataIndex = fileIndex
+                }
+                putMultipart(&data, boundary, dataIndex, parameters![dataKey] as! Data)
+            }
+            data.append(Data("\r\n--\(boundary)--\r\n".utf8))
+            var request = URLRequest(url: URL(string: URLString)!)
+            request.httpBody = data
+            processRequest(request: request, completion)
+        } else if dataCount == 1 {
+            var data = Data()
+            if dataKeys.count == 1 {
+                let key = dataKeys[0]
+                if (key == "data") {
+                    headers["Content-Type"] = "application/octet-stream"
                 } else {
                     headers["Content-Type"] = "text/json"
-                    data.append(parameters![key] as! Data)
                 }
+                data.append(parameters![key] as! Data)
+            } else {
+                headers["Content-Type"] = "application/octet-stream"
+                data.append(files[0])
             }
             var request = URLRequest(url: URL(string: URLString)!)
             request.httpBody = data
@@ -101,7 +116,7 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
             data.append(Data("Content-Disposition: form-data; name=\"file\(index)\";filename=\"file\(index)\"\r\n".utf8))
             data.append(Data("Content-Type: application/octet-stream\r\n".utf8))
         } else {
-          data.append(Data("Content-Disposition: form-data; name=\"data\"\r\n".utf8))
+          data.append(Data("Content-Disposition: form-data; name=\"data\";filename=\r\n".utf8))
           data.append(Data("Content-Type: text/json\r\n".utf8))
         }
         data.append(Data("Content-Length: \(part.count)\r\n".utf8))

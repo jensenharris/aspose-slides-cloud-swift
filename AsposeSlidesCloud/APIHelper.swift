@@ -45,9 +45,11 @@ public struct APIHelper {
     public static func rejectNilHeaders(_ source: [String:Any?]) -> [String:String] {
         return source.reduce(into: [String: String]()) { (result, item) in
             if let collection = item.value as? Array<Any?> {
-                result[item.key] = collection.filter({ $0 != nil }).map{ "\($0!)" }.joined(separator: ",")
+                result[item.key] = collection.filter({ $0 != nil && "\($0!)" != "" }).map{ "\($0!)" }.joined(separator: ",")
             } else if let value: Any = item.value {
-                result[item.key] = "\(value)"
+                if "\(value)" != "" {
+                    result[item.key] = "\(value)"
+                }
             }
         }
     }
