@@ -36,7 +36,7 @@ public class OrderedMergeRequest: Codable {
     public var presentations: [PresentationToMerge]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let presentationsValue = source["presentations"]
+        let presentationsValue = source["presentations"] ?? source["Presentations"]
         if presentationsValue != nil {
             var presentationsArray: [PresentationToMerge] = []
             let presentationsDictionaryValue = presentationsValue! as? [Any]

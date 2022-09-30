@@ -40,7 +40,7 @@ public class Input: Codable {
     public var templateData: InputFile?
 
     func fillValues(_ source: [String:Any]) throws {
-        let templateValue = source["template"]
+        let templateValue = source["template"] ?? source["Template"]
         if templateValue != nil {
             let templateDictionaryValue = templateValue! as? [String:Any]
             if templateDictionaryValue != nil {
@@ -50,7 +50,7 @@ public class Input: Codable {
                 }
             }
         }
-        let htmlDataValue = source["htmlData"]
+        let htmlDataValue = source["htmlData"] ?? source["HtmlData"]
         if htmlDataValue != nil {
             let htmlDataDictionaryValue = htmlDataValue! as? [String:Any]
             if htmlDataDictionaryValue != nil {
@@ -60,7 +60,7 @@ public class Input: Codable {
                 }
             }
         }
-        let templateDataValue = source["templateData"]
+        let templateDataValue = source["templateData"] ?? source["TemplateData"]
         if templateDataValue != nil {
             let templateDataDictionaryValue = templateDataValue! as? [String:Any]
             if templateDataDictionaryValue != nil {

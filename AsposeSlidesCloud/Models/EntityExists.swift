@@ -36,7 +36,7 @@ public class EntityExists: Codable {
     public var exists: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let existsValue = source["exists"]
+        let existsValue = source["exists"] ?? source["Exists"]
         if existsValue != nil {
             self.exists = existsValue! as? Bool
         }

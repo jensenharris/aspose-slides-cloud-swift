@@ -41,15 +41,15 @@ public class Section: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let firstSlideIndexValue = source["firstSlideIndex"]
+        let firstSlideIndexValue = source["firstSlideIndex"] ?? source["FirstSlideIndex"]
         if firstSlideIndexValue != nil {
             self.firstSlideIndex = firstSlideIndexValue! as? Int
         }
-        let slideListValue = source["slideList"]
+        let slideListValue = source["slideList"] ?? source["SlideList"]
         if slideListValue != nil {
             var slideListArray: [ResourceUri] = []
             let slideListDictionaryValue = slideListValue! as? [Any]

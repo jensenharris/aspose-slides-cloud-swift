@@ -39,7 +39,7 @@ public class UpdateShape: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let shapeValue = source["shape"]
+        let shapeValue = source["shape"] ?? source["Shape"]
         if shapeValue != nil {
             let shapeDictionaryValue = shapeValue! as? [String:Any]
             if shapeDictionaryValue != nil {
@@ -49,7 +49,7 @@ public class UpdateShape: Task {
                 }
             }
         }
-        let shapePathValue = source["shapePath"]
+        let shapePathValue = source["shapePath"] ?? source["ShapePath"]
         if shapePathValue != nil {
             self.shapePath = shapePathValue! as? String
         }

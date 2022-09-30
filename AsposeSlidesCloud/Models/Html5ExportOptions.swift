@@ -39,18 +39,18 @@ public class Html5ExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let animateTransitionsValue = source["animateTransitions"]
+        let animateTransitionsValue = source["animateTransitions"] ?? source["AnimateTransitions"]
         if animateTransitionsValue != nil {
             self.animateTransitions = animateTransitionsValue! as? Bool
         }
-        let animateShapesValue = source["animateShapes"]
+        let animateShapesValue = source["animateShapes"] ?? source["AnimateShapes"]
         if animateShapesValue != nil {
             self.animateShapes = animateShapesValue! as? Bool
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, animateTransitions: Bool? = nil, animateShapes: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, animateTransitions: Bool? = nil, animateShapes: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.animateTransitions = animateTransitions
         self.animateShapes = animateShapes
         self.format = "html5"

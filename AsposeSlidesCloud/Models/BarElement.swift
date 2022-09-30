@@ -44,7 +44,7 @@ public class BarElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -54,7 +54,7 @@ public class BarElement: MathElement {
                 }
             }
         }
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             let positionStringValue = positionValue! as? String
             if positionStringValue != nil {

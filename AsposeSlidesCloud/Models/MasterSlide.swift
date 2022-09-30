@@ -41,11 +41,11 @@ public class MasterSlide: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let layoutSlidesValue = source["layoutSlides"]
+        let layoutSlidesValue = source["layoutSlides"] ?? source["LayoutSlides"]
         if layoutSlidesValue != nil {
             var layoutSlidesArray: [ResourceUri] = []
             let layoutSlidesDictionaryValue = layoutSlidesValue! as? [Any]
@@ -70,7 +70,7 @@ public class MasterSlide: ResourceBase {
             }
             self.layoutSlides = layoutSlidesArray
         }
-        let dependingSlidesValue = source["dependingSlides"]
+        let dependingSlidesValue = source["dependingSlides"] ?? source["DependingSlides"]
         if dependingSlidesValue != nil {
             var dependingSlidesArray: [ResourceUri] = []
             let dependingSlidesDictionaryValue = dependingSlidesValue! as? [Any]

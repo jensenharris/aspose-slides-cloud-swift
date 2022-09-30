@@ -39,11 +39,11 @@ public class LuminanceEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let brightnessValue = source["brightness"]
+        let brightnessValue = source["brightness"] ?? source["Brightness"]
         if brightnessValue != nil {
             self.brightness = brightnessValue! as? Double
         }
-        let contrastValue = source["contrast"]
+        let contrastValue = source["contrast"] ?? source["Contrast"]
         if contrastValue != nil {
             self.contrast = contrastValue! as? Double
         }

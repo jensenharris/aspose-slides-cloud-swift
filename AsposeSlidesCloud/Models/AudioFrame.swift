@@ -75,35 +75,35 @@ public class AudioFrame: GeometryShape {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let audioCdEndTrackValue = source["audioCdEndTrack"]
+        let audioCdEndTrackValue = source["audioCdEndTrack"] ?? source["AudioCdEndTrack"]
         if audioCdEndTrackValue != nil {
             self.audioCdEndTrack = audioCdEndTrackValue! as? Int
         }
-        let audioCdEndTrackTimeValue = source["audioCdEndTrackTime"]
+        let audioCdEndTrackTimeValue = source["audioCdEndTrackTime"] ?? source["AudioCdEndTrackTime"]
         if audioCdEndTrackTimeValue != nil {
             self.audioCdEndTrackTime = audioCdEndTrackTimeValue! as? Int
         }
-        let audioCdStartTrackValue = source["audioCdStartTrack"]
+        let audioCdStartTrackValue = source["audioCdStartTrack"] ?? source["AudioCdStartTrack"]
         if audioCdStartTrackValue != nil {
             self.audioCdStartTrack = audioCdStartTrackValue! as? Int
         }
-        let audioCdStartTrackTimeValue = source["audioCdStartTrackTime"]
+        let audioCdStartTrackTimeValue = source["audioCdStartTrackTime"] ?? source["AudioCdStartTrackTime"]
         if audioCdStartTrackTimeValue != nil {
             self.audioCdStartTrackTime = audioCdStartTrackTimeValue! as? Int
         }
-        let embeddedValue = source["embedded"]
+        let embeddedValue = source["embedded"] ?? source["Embedded"]
         if embeddedValue != nil {
             self.embedded = embeddedValue! as? Bool
         }
-        let hideAtShowingValue = source["hideAtShowing"]
+        let hideAtShowingValue = source["hideAtShowing"] ?? source["HideAtShowing"]
         if hideAtShowingValue != nil {
             self.hideAtShowing = hideAtShowingValue! as? Bool
         }
-        let playLoopModeValue = source["playLoopMode"]
+        let playLoopModeValue = source["playLoopMode"] ?? source["PlayLoopMode"]
         if playLoopModeValue != nil {
             self.playLoopMode = playLoopModeValue! as? Bool
         }
-        let playModeValue = source["playMode"]
+        let playModeValue = source["playMode"] ?? source["PlayMode"]
         if playModeValue != nil {
             let playModeStringValue = playModeValue! as? String
             if playModeStringValue != nil {
@@ -113,7 +113,7 @@ public class AudioFrame: GeometryShape {
                 }
             }
         }
-        let volumeValue = source["volume"]
+        let volumeValue = source["volume"] ?? source["Volume"]
         if volumeValue != nil {
             let volumeStringValue = volumeValue! as? String
             if volumeStringValue != nil {
@@ -123,19 +123,19 @@ public class AudioFrame: GeometryShape {
                 }
             }
         }
-        let base64DataValue = source["base64Data"]
+        let base64DataValue = source["base64Data"] ?? source["Base64Data"]
         if base64DataValue != nil {
             self.base64Data = base64DataValue! as? String
         }
-        let playAcrossSlidesValue = source["playAcrossSlides"]
+        let playAcrossSlidesValue = source["playAcrossSlides"] ?? source["PlayAcrossSlides"]
         if playAcrossSlidesValue != nil {
             self.playAcrossSlides = playAcrossSlidesValue! as? Bool
         }
-        let rewindAudioValue = source["rewindAudio"]
+        let rewindAudioValue = source["rewindAudio"] ?? source["RewindAudio"]
         if rewindAudioValue != nil {
             self.rewindAudio = rewindAudioValue! as? Bool
         }
-        let pictureFillFormatValue = source["pictureFillFormat"]
+        let pictureFillFormatValue = source["pictureFillFormat"] ?? source["PictureFillFormat"]
         if pictureFillFormatValue != nil {
             let pictureFillFormatDictionaryValue = pictureFillFormatValue! as? [String:Any]
             if pictureFillFormatDictionaryValue != nil {

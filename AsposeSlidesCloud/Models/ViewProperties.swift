@@ -79,7 +79,7 @@ public class ViewProperties: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let lastViewValue = source["lastView"]
+        let lastViewValue = source["lastView"] ?? source["LastView"]
         if lastViewValue != nil {
             let lastViewStringValue = lastViewValue! as? String
             if lastViewStringValue != nil {
@@ -89,7 +89,7 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let horizontalBarStateValue = source["horizontalBarState"]
+        let horizontalBarStateValue = source["horizontalBarState"] ?? source["HorizontalBarState"]
         if horizontalBarStateValue != nil {
             let horizontalBarStateStringValue = horizontalBarStateValue! as? String
             if horizontalBarStateStringValue != nil {
@@ -99,7 +99,7 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let verticalBarStateValue = source["verticalBarState"]
+        let verticalBarStateValue = source["verticalBarState"] ?? source["VerticalBarState"]
         if verticalBarStateValue != nil {
             let verticalBarStateStringValue = verticalBarStateValue! as? String
             if verticalBarStateStringValue != nil {
@@ -109,11 +109,11 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let preferSingleViewValue = source["preferSingleView"]
+        let preferSingleViewValue = source["preferSingleView"] ?? source["PreferSingleView"]
         if preferSingleViewValue != nil {
             self.preferSingleView = preferSingleViewValue! as? Bool
         }
-        let restoredLeftValue = source["restoredLeft"]
+        let restoredLeftValue = source["restoredLeft"] ?? source["RestoredLeft"]
         if restoredLeftValue != nil {
             let restoredLeftDictionaryValue = restoredLeftValue! as? [String:Any]
             if restoredLeftDictionaryValue != nil {
@@ -123,7 +123,7 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let restoredTopValue = source["restoredTop"]
+        let restoredTopValue = source["restoredTop"] ?? source["RestoredTop"]
         if restoredTopValue != nil {
             let restoredTopDictionaryValue = restoredTopValue! as? [String:Any]
             if restoredTopDictionaryValue != nil {
@@ -133,7 +133,7 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let slideViewPropertiesValue = source["slideViewProperties"]
+        let slideViewPropertiesValue = source["slideViewProperties"] ?? source["SlideViewProperties"]
         if slideViewPropertiesValue != nil {
             let slideViewPropertiesDictionaryValue = slideViewPropertiesValue! as? [String:Any]
             if slideViewPropertiesDictionaryValue != nil {
@@ -143,7 +143,7 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let notesViewPropertiesValue = source["notesViewProperties"]
+        let notesViewPropertiesValue = source["notesViewProperties"] ?? source["NotesViewProperties"]
         if notesViewPropertiesValue != nil {
             let notesViewPropertiesDictionaryValue = notesViewPropertiesValue! as? [String:Any]
             if notesViewPropertiesDictionaryValue != nil {
@@ -153,7 +153,7 @@ public class ViewProperties: ResourceBase {
                 }
             }
         }
-        let showCommentsValue = source["showComments"]
+        let showCommentsValue = source["showComments"] ?? source["ShowComments"]
         if showCommentsValue != nil {
             let showCommentsStringValue = showCommentsValue! as? String
             if showCommentsStringValue != nil {

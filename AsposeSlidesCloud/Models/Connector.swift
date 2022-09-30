@@ -43,7 +43,7 @@ public class Connector: GeometryShape {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let startShapeConnectedToValue = source["startShapeConnectedTo"]
+        let startShapeConnectedToValue = source["startShapeConnectedTo"] ?? source["StartShapeConnectedTo"]
         if startShapeConnectedToValue != nil {
             let startShapeConnectedToDictionaryValue = startShapeConnectedToValue! as? [String:Any]
             if startShapeConnectedToDictionaryValue != nil {
@@ -53,11 +53,11 @@ public class Connector: GeometryShape {
                 }
             }
         }
-        let startShapeConnectedToIndexValue = source["startShapeConnectedToIndex"]
+        let startShapeConnectedToIndexValue = source["startShapeConnectedToIndex"] ?? source["StartShapeConnectedToIndex"]
         if startShapeConnectedToIndexValue != nil {
             self.startShapeConnectedToIndex = startShapeConnectedToIndexValue! as? Int
         }
-        let endShapeConnectedToValue = source["endShapeConnectedTo"]
+        let endShapeConnectedToValue = source["endShapeConnectedTo"] ?? source["EndShapeConnectedTo"]
         if endShapeConnectedToValue != nil {
             let endShapeConnectedToDictionaryValue = endShapeConnectedToValue! as? [String:Any]
             if endShapeConnectedToDictionaryValue != nil {
@@ -67,7 +67,7 @@ public class Connector: GeometryShape {
                 }
             }
         }
-        let endShapeConnectedToIndexValue = source["endShapeConnectedToIndex"]
+        let endShapeConnectedToIndexValue = source["endShapeConnectedToIndex"] ?? source["EndShapeConnectedToIndex"]
         if endShapeConnectedToIndexValue != nil {
             self.endShapeConnectedToIndex = endShapeConnectedToIndexValue! as? Int
         }

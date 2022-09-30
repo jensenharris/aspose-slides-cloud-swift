@@ -48,7 +48,7 @@ public class GeometryPath: Codable {
     public var pathData: [PathSegment]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let fillModeValue = source["fillMode"]
+        let fillModeValue = source["fillMode"] ?? source["FillMode"]
         if fillModeValue != nil {
             let fillModeStringValue = fillModeValue! as? String
             if fillModeStringValue != nil {
@@ -58,11 +58,11 @@ public class GeometryPath: Codable {
                 }
             }
         }
-        let strokeValue = source["stroke"]
+        let strokeValue = source["stroke"] ?? source["Stroke"]
         if strokeValue != nil {
             self.stroke = strokeValue! as? Bool
         }
-        let pathDataValue = source["pathData"]
+        let pathDataValue = source["pathData"] ?? source["PathData"]
         if pathDataValue != nil {
             var pathDataArray: [PathSegment] = []
             let pathDataDictionaryValue = pathDataValue! as? [Any]

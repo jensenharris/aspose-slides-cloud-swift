@@ -46,7 +46,7 @@ public class FillOverlayImageEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let blendValue = source["blend"]
+        let blendValue = source["blend"] ?? source["Blend"]
         if blendValue != nil {
             let blendStringValue = blendValue! as? String
             if blendStringValue != nil {
@@ -56,7 +56,7 @@ public class FillOverlayImageEffect: ImageTransformEffect {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {

@@ -40,15 +40,15 @@ public class FontSet: Codable {
     public var latin: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let complexScriptValue = source["complexScript"]
+        let complexScriptValue = source["complexScript"] ?? source["ComplexScript"]
         if complexScriptValue != nil {
             self.complexScript = complexScriptValue! as? String
         }
-        let eastAsianValue = source["eastAsian"]
+        let eastAsianValue = source["eastAsian"] ?? source["EastAsian"]
         if eastAsianValue != nil {
             self.eastAsian = eastAsianValue! as? String
         }
-        let latinValue = source["latin"]
+        let latinValue = source["latin"] ?? source["Latin"]
         if latinValue != nil {
             self.latin = latinValue! as? String
         }

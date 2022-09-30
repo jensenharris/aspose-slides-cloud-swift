@@ -36,7 +36,7 @@ public class CustomDashPattern: Codable {
     public var items: [Double]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let itemsValue = source["items"]
+        let itemsValue = source["items"] ?? source["Items"]
         if itemsValue != nil {
             self.items = itemsValue! as? [Double]
         }

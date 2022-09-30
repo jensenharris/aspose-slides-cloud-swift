@@ -39,11 +39,11 @@ public class SummaryZoomSection: SectionZoomFrame {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let titleValue = source["title"]
+        let titleValue = source["title"] ?? source["Title"]
         if titleValue != nil {
             self.title = titleValue! as? String
         }
-        let descriptionValue = source["description"]
+        let descriptionValue = source["description"] ?? source["Description"]
         if descriptionValue != nil {
             self.description = descriptionValue! as? String
         }

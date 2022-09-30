@@ -36,14 +36,16 @@ public class ExportOptions: Codable {
     public var defaultRegularFont: String?
     /** Gets of sets list of font fallback rules. */
     public var fontFallbackRules: [FontFallbackRule]?
+    /** Gets of sets list of font substitution rules. */
+    public var fontSubstRules: [FontSubstRule]?
     public var format: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let defaultRegularFontValue = source["defaultRegularFont"]
+        let defaultRegularFontValue = source["defaultRegularFont"] ?? source["DefaultRegularFont"]
         if defaultRegularFontValue != nil {
             self.defaultRegularFont = defaultRegularFontValue! as? String
         }
-        let fontFallbackRulesValue = source["fontFallbackRules"]
+        let fontFallbackRulesValue = source["fontFallbackRules"] ?? source["FontFallbackRules"]
         if fontFallbackRulesValue != nil {
             var fontFallbackRulesArray: [FontFallbackRule] = []
             let fontFallbackRulesDictionaryValue = fontFallbackRulesValue! as? [Any]
@@ -68,21 +70,48 @@ public class ExportOptions: Codable {
             }
             self.fontFallbackRules = fontFallbackRulesArray
         }
-        let formatValue = source["format"]
+        let fontSubstRulesValue = source["fontSubstRules"] ?? source["FontSubstRules"]
+        if fontSubstRulesValue != nil {
+            var fontSubstRulesArray: [FontSubstRule] = []
+            let fontSubstRulesDictionaryValue = fontSubstRulesValue! as? [Any]
+            if fontSubstRulesDictionaryValue != nil {
+                fontSubstRulesDictionaryValue!.forEach { fontSubstRulesAnyItem in
+                    let fontSubstRulesItem = fontSubstRulesAnyItem as? [String:Any]
+                    var added = false
+                    if fontSubstRulesItem != nil {
+                        let (fontSubstRulesInstance, error) = ClassRegistry.getClassFromDictionary(FontSubstRule.self, fontSubstRulesItem!)
+                        if error == nil && fontSubstRulesInstance != nil {
+                            let fontSubstRulesArrayItem = fontSubstRulesInstance! as? FontSubstRule
+                            if fontSubstRulesArrayItem != nil {
+                                fontSubstRulesArray.append(fontSubstRulesArrayItem!)
+                                added = true
+                            }
+                        }
+                    }
+                    if !added {
+                        fontSubstRulesArray.append(FontSubstRule())
+                    }
+                }
+            }
+            self.fontSubstRules = fontSubstRulesArray
+        }
+        let formatValue = source["format"] ?? source["Format"]
         if formatValue != nil {
             self.format = formatValue! as? String
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil) {
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil) {
         self.defaultRegularFont = defaultRegularFont
         self.fontFallbackRules = fontFallbackRules
+        self.fontSubstRules = fontSubstRules
         self.format = format
     }
 
     private enum CodingKeys: String, CodingKey {
         case defaultRegularFont
         case fontFallbackRules
+        case fontSubstRules
         case format
     }
 

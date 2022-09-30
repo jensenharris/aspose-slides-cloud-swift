@@ -58,11 +58,11 @@ public class SeriesMarker: Codable {
     public var lineFormat: LineFormat?
 
     func fillValues(_ source: [String:Any]) throws {
-        let sizeValue = source["size"]
+        let sizeValue = source["size"] ?? source["Size"]
         if sizeValue != nil {
             self.size = sizeValue! as? Int
         }
-        let symbolValue = source["symbol"]
+        let symbolValue = source["symbol"] ?? source["Symbol"]
         if symbolValue != nil {
             let symbolStringValue = symbolValue! as? String
             if symbolStringValue != nil {
@@ -72,7 +72,7 @@ public class SeriesMarker: Codable {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -82,7 +82,7 @@ public class SeriesMarker: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -92,7 +92,7 @@ public class SeriesMarker: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {

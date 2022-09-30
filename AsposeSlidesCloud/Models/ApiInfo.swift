@@ -38,11 +38,11 @@ public class ApiInfo: Codable {
     public var version: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let versionValue = source["version"]
+        let versionValue = source["version"] ?? source["Version"]
         if versionValue != nil {
             self.version = versionValue! as? String
         }

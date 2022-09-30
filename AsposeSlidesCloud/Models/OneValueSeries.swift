@@ -55,7 +55,7 @@ public class OneValueSeries: Series {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let dataPointsValue = source["dataPoints"]
+        let dataPointsValue = source["dataPoints"] ?? source["DataPoints"]
         if dataPointsValue != nil {
             var dataPointsArray: [OneValueChartDataPoint] = []
             let dataPointsDictionaryValue = dataPointsValue! as? [Any]
@@ -80,15 +80,15 @@ public class OneValueSeries: Series {
             }
             self.dataPoints = dataPointsArray
         }
-        let numberFormatOfValuesValue = source["numberFormatOfValues"]
+        let numberFormatOfValuesValue = source["numberFormatOfValues"] ?? source["NumberFormatOfValues"]
         if numberFormatOfValuesValue != nil {
             self.numberFormatOfValues = numberFormatOfValuesValue! as? String
         }
-        let showConnectorLinesValue = source["showConnectorLines"]
+        let showConnectorLinesValue = source["showConnectorLines"] ?? source["ShowConnectorLines"]
         if showConnectorLinesValue != nil {
             self.showConnectorLines = showConnectorLinesValue! as? Bool
         }
-        let quartileMethodValue = source["quartileMethod"]
+        let quartileMethodValue = source["quartileMethod"] ?? source["QuartileMethod"]
         if quartileMethodValue != nil {
             let quartileMethodStringValue = quartileMethodValue! as? String
             if quartileMethodStringValue != nil {
@@ -98,19 +98,19 @@ public class OneValueSeries: Series {
                 }
             }
         }
-        let showInnerPointsValue = source["showInnerPoints"]
+        let showInnerPointsValue = source["showInnerPoints"] ?? source["ShowInnerPoints"]
         if showInnerPointsValue != nil {
             self.showInnerPoints = showInnerPointsValue! as? Bool
         }
-        let showMeanLineValue = source["showMeanLine"]
+        let showMeanLineValue = source["showMeanLine"] ?? source["ShowMeanLine"]
         if showMeanLineValue != nil {
             self.showMeanLine = showMeanLineValue! as? Bool
         }
-        let showMeanMarkersValue = source["showMeanMarkers"]
+        let showMeanMarkersValue = source["showMeanMarkers"] ?? source["ShowMeanMarkers"]
         if showMeanMarkersValue != nil {
             self.showMeanMarkers = showMeanMarkersValue! as? Bool
         }
-        let showOutlierPointsValue = source["showOutlierPoints"]
+        let showOutlierPointsValue = source["showOutlierPoints"] ?? source["ShowOutlierPoints"]
         if showOutlierPointsValue != nil {
             self.showOutlierPoints = showOutlierPointsValue! as? Bool
         }

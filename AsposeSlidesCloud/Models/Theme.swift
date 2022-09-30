@@ -43,11 +43,11 @@ public class Theme: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let colorSchemeValue = source["colorScheme"]
+        let colorSchemeValue = source["colorScheme"] ?? source["ColorScheme"]
         if colorSchemeValue != nil {
             let colorSchemeDictionaryValue = colorSchemeValue! as? [String:Any]
             if colorSchemeDictionaryValue != nil {
@@ -57,7 +57,7 @@ public class Theme: ResourceBase {
                 }
             }
         }
-        let fontSchemeValue = source["fontScheme"]
+        let fontSchemeValue = source["fontScheme"] ?? source["FontScheme"]
         if fontSchemeValue != nil {
             let fontSchemeDictionaryValue = fontSchemeValue! as? [String:Any]
             if fontSchemeDictionaryValue != nil {
@@ -67,7 +67,7 @@ public class Theme: ResourceBase {
                 }
             }
         }
-        let formatSchemeValue = source["formatScheme"]
+        let formatSchemeValue = source["formatScheme"] ?? source["FormatScheme"]
         if formatSchemeValue != nil {
             let formatSchemeDictionaryValue = formatSchemeValue! as? [String:Any]
             if formatSchemeDictionaryValue != nil {

@@ -41,15 +41,15 @@ public class DocumentProperty: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let valueValue = source["value"]
+        let valueValue = source["value"] ?? source["Value"]
         if valueValue != nil {
             self.value = valueValue! as? String
         }
-        let builtInValue = source["builtIn"]
+        let builtInValue = source["builtIn"] ?? source["BuiltIn"]
         if builtInValue != nil {
             self.builtIn = builtInValue! as? Bool
         }

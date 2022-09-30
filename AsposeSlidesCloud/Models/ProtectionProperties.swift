@@ -47,27 +47,27 @@ public class ProtectionProperties: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let encryptDocumentPropertiesValue = source["encryptDocumentProperties"]
+        let encryptDocumentPropertiesValue = source["encryptDocumentProperties"] ?? source["EncryptDocumentProperties"]
         if encryptDocumentPropertiesValue != nil {
             self.encryptDocumentProperties = encryptDocumentPropertiesValue! as? Bool
         }
-        let readOnlyRecommendedValue = source["readOnlyRecommended"]
+        let readOnlyRecommendedValue = source["readOnlyRecommended"] ?? source["ReadOnlyRecommended"]
         if readOnlyRecommendedValue != nil {
             self.readOnlyRecommended = readOnlyRecommendedValue! as? Bool
         }
-        let readPasswordValue = source["readPassword"]
+        let readPasswordValue = source["readPassword"] ?? source["ReadPassword"]
         if readPasswordValue != nil {
             self.readPassword = readPasswordValue! as? String
         }
-        let writePasswordValue = source["writePassword"]
+        let writePasswordValue = source["writePassword"] ?? source["WritePassword"]
         if writePasswordValue != nil {
             self.writePassword = writePasswordValue! as? String
         }
-        let isWriteProtectedValue = source["isWriteProtected"]
+        let isWriteProtectedValue = source["isWriteProtected"] ?? source["IsWriteProtected"]
         if isWriteProtectedValue != nil {
             self.isWriteProtected = isWriteProtectedValue! as? Bool
         }
-        let isEncryptedValue = source["isEncrypted"]
+        let isEncryptedValue = source["isEncrypted"] ?? source["IsEncrypted"]
         if isEncryptedValue != nil {
             self.isEncrypted = isEncryptedValue! as? Bool
         }

@@ -53,7 +53,7 @@ public class ImageExportOptions: ImageExportOptionsBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let notesPositionValue = source["notesPosition"]
+        let notesPositionValue = source["notesPosition"] ?? source["NotesPosition"]
         if notesPositionValue != nil {
             let notesPositionStringValue = notesPositionValue! as? String
             if notesPositionStringValue != nil {
@@ -63,7 +63,7 @@ public class ImageExportOptions: ImageExportOptionsBase {
                 }
             }
         }
-        let commentsPositionValue = source["commentsPosition"]
+        let commentsPositionValue = source["commentsPosition"] ?? source["CommentsPosition"]
         if commentsPositionValue != nil {
             let commentsPositionStringValue = commentsPositionValue! as? String
             if commentsPositionStringValue != nil {
@@ -73,18 +73,18 @@ public class ImageExportOptions: ImageExportOptionsBase {
                 }
             }
         }
-        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        let commentsAreaWidthValue = source["commentsAreaWidth"] ?? source["CommentsAreaWidth"]
         if commentsAreaWidthValue != nil {
             self.commentsAreaWidth = commentsAreaWidthValue! as? Int
         }
-        let commentsAreaColorValue = source["commentsAreaColor"]
+        let commentsAreaColorValue = source["commentsAreaColor"] ?? source["CommentsAreaColor"]
         if commentsAreaColorValue != nil {
             self.commentsAreaColor = commentsAreaColorValue! as? String
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format, height: height, width: width)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format, height: height, width: width)
         self.notesPosition = notesPosition
         self.commentsPosition = commentsPosition
         self.commentsAreaWidth = commentsAreaWidth

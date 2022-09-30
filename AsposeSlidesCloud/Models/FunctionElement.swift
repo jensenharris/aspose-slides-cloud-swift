@@ -39,7 +39,7 @@ public class FunctionElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             let nameDictionaryValue = nameValue! as? [String:Any]
             if nameDictionaryValue != nil {
@@ -49,7 +49,7 @@ public class FunctionElement: MathElement {
                 }
             }
         }
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {

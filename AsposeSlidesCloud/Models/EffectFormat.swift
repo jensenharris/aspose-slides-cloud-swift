@@ -50,7 +50,7 @@ public class EffectFormat: Codable {
     public var fillOverlay: FillOverlayEffect?
 
     func fillValues(_ source: [String:Any]) throws {
-        let blurValue = source["blur"]
+        let blurValue = source["blur"] ?? source["Blur"]
         if blurValue != nil {
             let blurDictionaryValue = blurValue! as? [String:Any]
             if blurDictionaryValue != nil {
@@ -60,7 +60,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let glowValue = source["glow"]
+        let glowValue = source["glow"] ?? source["Glow"]
         if glowValue != nil {
             let glowDictionaryValue = glowValue! as? [String:Any]
             if glowDictionaryValue != nil {
@@ -70,7 +70,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let innerShadowValue = source["innerShadow"]
+        let innerShadowValue = source["innerShadow"] ?? source["InnerShadow"]
         if innerShadowValue != nil {
             let innerShadowDictionaryValue = innerShadowValue! as? [String:Any]
             if innerShadowDictionaryValue != nil {
@@ -80,7 +80,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let outerShadowValue = source["outerShadow"]
+        let outerShadowValue = source["outerShadow"] ?? source["OuterShadow"]
         if outerShadowValue != nil {
             let outerShadowDictionaryValue = outerShadowValue! as? [String:Any]
             if outerShadowDictionaryValue != nil {
@@ -90,7 +90,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let presetShadowValue = source["presetShadow"]
+        let presetShadowValue = source["presetShadow"] ?? source["PresetShadow"]
         if presetShadowValue != nil {
             let presetShadowDictionaryValue = presetShadowValue! as? [String:Any]
             if presetShadowDictionaryValue != nil {
@@ -100,7 +100,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let softEdgeValue = source["softEdge"]
+        let softEdgeValue = source["softEdge"] ?? source["SoftEdge"]
         if softEdgeValue != nil {
             let softEdgeDictionaryValue = softEdgeValue! as? [String:Any]
             if softEdgeDictionaryValue != nil {
@@ -110,7 +110,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let reflectionValue = source["reflection"]
+        let reflectionValue = source["reflection"] ?? source["Reflection"]
         if reflectionValue != nil {
             let reflectionDictionaryValue = reflectionValue! as? [String:Any]
             if reflectionDictionaryValue != nil {
@@ -120,7 +120,7 @@ public class EffectFormat: Codable {
                 }
             }
         }
-        let fillOverlayValue = source["fillOverlay"]
+        let fillOverlayValue = source["fillOverlay"] ?? source["FillOverlay"]
         if fillOverlayValue != nil {
             let fillOverlayDictionaryValue = fillOverlayValue! as? [String:Any]
             if fillOverlayDictionaryValue != nil {

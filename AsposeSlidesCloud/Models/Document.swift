@@ -47,7 +47,7 @@ public class Document: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let documentPropertiesValue = source["documentProperties"]
+        let documentPropertiesValue = source["documentProperties"] ?? source["DocumentProperties"]
         if documentPropertiesValue != nil {
             let documentPropertiesDictionaryValue = documentPropertiesValue! as? [String:Any]
             if documentPropertiesDictionaryValue != nil {
@@ -57,7 +57,7 @@ public class Document: ResourceBase {
                 }
             }
         }
-        let viewPropertiesValue = source["viewProperties"]
+        let viewPropertiesValue = source["viewProperties"] ?? source["ViewProperties"]
         if viewPropertiesValue != nil {
             let viewPropertiesDictionaryValue = viewPropertiesValue! as? [String:Any]
             if viewPropertiesDictionaryValue != nil {
@@ -67,7 +67,7 @@ public class Document: ResourceBase {
                 }
             }
         }
-        let slidesValue = source["slides"]
+        let slidesValue = source["slides"] ?? source["Slides"]
         if slidesValue != nil {
             let slidesDictionaryValue = slidesValue! as? [String:Any]
             if slidesDictionaryValue != nil {
@@ -77,7 +77,7 @@ public class Document: ResourceBase {
                 }
             }
         }
-        let imagesValue = source["images"]
+        let imagesValue = source["images"] ?? source["Images"]
         if imagesValue != nil {
             let imagesDictionaryValue = imagesValue! as? [String:Any]
             if imagesDictionaryValue != nil {
@@ -87,7 +87,7 @@ public class Document: ResourceBase {
                 }
             }
         }
-        let layoutSlidesValue = source["layoutSlides"]
+        let layoutSlidesValue = source["layoutSlides"] ?? source["LayoutSlides"]
         if layoutSlidesValue != nil {
             let layoutSlidesDictionaryValue = layoutSlidesValue! as? [String:Any]
             if layoutSlidesDictionaryValue != nil {
@@ -97,7 +97,7 @@ public class Document: ResourceBase {
                 }
             }
         }
-        let masterSlidesValue = source["masterSlides"]
+        let masterSlidesValue = source["masterSlides"] ?? source["MasterSlides"]
         if masterSlidesValue != nil {
             let masterSlidesDictionaryValue = masterSlidesValue! as? [String:Any]
             if masterSlidesDictionaryValue != nil {

@@ -84,43 +84,43 @@ public class ShapeBase: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }
-        let alternativeTextValue = source["alternativeText"]
+        let alternativeTextValue = source["alternativeText"] ?? source["AlternativeText"]
         if alternativeTextValue != nil {
             self.alternativeText = alternativeTextValue! as? String
         }
-        let alternativeTextTitleValue = source["alternativeTextTitle"]
+        let alternativeTextTitleValue = source["alternativeTextTitle"] ?? source["AlternativeTextTitle"]
         if alternativeTextTitleValue != nil {
             self.alternativeTextTitle = alternativeTextTitleValue! as? String
         }
-        let hiddenValue = source["hidden"]
+        let hiddenValue = source["hidden"] ?? source["Hidden"]
         if hiddenValue != nil {
             self.hidden = hiddenValue! as? Bool
         }
-        let XValue = source["X"]
+        let XValue = source["X"] ?? source["X"]
         if XValue != nil {
             self.X = XValue! as? Double
         }
-        let YValue = source["Y"]
+        let YValue = source["Y"] ?? source["Y"]
         if YValue != nil {
             self.Y = YValue! as? Double
         }
-        let zOrderPositionValue = source["zOrderPosition"]
+        let zOrderPositionValue = source["zOrderPosition"] ?? source["ZOrderPosition"]
         if zOrderPositionValue != nil {
             self.zOrderPosition = zOrderPositionValue! as? Int
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -130,7 +130,7 @@ public class ShapeBase: ResourceBase {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -140,7 +140,7 @@ public class ShapeBase: ResourceBase {
                 }
             }
         }
-        let threeDFormatValue = source["threeDFormat"]
+        let threeDFormatValue = source["threeDFormat"] ?? source["ThreeDFormat"]
         if threeDFormatValue != nil {
             let threeDFormatDictionaryValue = threeDFormatValue! as? [String:Any]
             if threeDFormatDictionaryValue != nil {
@@ -150,7 +150,7 @@ public class ShapeBase: ResourceBase {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -160,7 +160,7 @@ public class ShapeBase: ResourceBase {
                 }
             }
         }
-        let hyperlinkClickValue = source["hyperlinkClick"]
+        let hyperlinkClickValue = source["hyperlinkClick"] ?? source["HyperlinkClick"]
         if hyperlinkClickValue != nil {
             let hyperlinkClickDictionaryValue = hyperlinkClickValue! as? [String:Any]
             if hyperlinkClickDictionaryValue != nil {
@@ -170,7 +170,7 @@ public class ShapeBase: ResourceBase {
                 }
             }
         }
-        let hyperlinkMouseOverValue = source["hyperlinkMouseOver"]
+        let hyperlinkMouseOverValue = source["hyperlinkMouseOver"] ?? source["HyperlinkMouseOver"]
         if hyperlinkMouseOverValue != nil {
             let hyperlinkMouseOverDictionaryValue = hyperlinkMouseOverValue! as? [String:Any]
             if hyperlinkMouseOverDictionaryValue != nil {
@@ -180,7 +180,7 @@ public class ShapeBase: ResourceBase {
                 }
             }
         }
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {

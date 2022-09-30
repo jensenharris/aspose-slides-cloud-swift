@@ -66,31 +66,31 @@ public class SvgExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let vectorizeTextValue = source["vectorizeText"]
+        let vectorizeTextValue = source["vectorizeText"] ?? source["VectorizeText"]
         if vectorizeTextValue != nil {
             self.vectorizeText = vectorizeTextValue! as? Bool
         }
-        let metafileRasterizationDpiValue = source["metafileRasterizationDpi"]
+        let metafileRasterizationDpiValue = source["metafileRasterizationDpi"] ?? source["MetafileRasterizationDpi"]
         if metafileRasterizationDpiValue != nil {
             self.metafileRasterizationDpi = metafileRasterizationDpiValue! as? Int
         }
-        let disable3DTextValue = source["disable3DText"]
+        let disable3DTextValue = source["disable3DText"] ?? source["Disable3DText"]
         if disable3DTextValue != nil {
             self.disable3DText = disable3DTextValue! as? Bool
         }
-        let disableGradientSplitValue = source["disableGradientSplit"]
+        let disableGradientSplitValue = source["disableGradientSplit"] ?? source["DisableGradientSplit"]
         if disableGradientSplitValue != nil {
             self.disableGradientSplit = disableGradientSplitValue! as? Bool
         }
-        let disableLineEndCroppingValue = source["disableLineEndCropping"]
+        let disableLineEndCroppingValue = source["disableLineEndCropping"] ?? source["DisableLineEndCropping"]
         if disableLineEndCroppingValue != nil {
             self.disableLineEndCropping = disableLineEndCroppingValue! as? Bool
         }
-        let jpegQualityValue = source["jpegQuality"]
+        let jpegQualityValue = source["jpegQuality"] ?? source["JpegQuality"]
         if jpegQualityValue != nil {
             self.jpegQuality = jpegQualityValue! as? Int
         }
-        let picturesCompressionValue = source["picturesCompression"]
+        let picturesCompressionValue = source["picturesCompression"] ?? source["PicturesCompression"]
         if picturesCompressionValue != nil {
             let picturesCompressionStringValue = picturesCompressionValue! as? String
             if picturesCompressionStringValue != nil {
@@ -100,11 +100,11 @@ public class SvgExportOptions: ExportOptions {
                 }
             }
         }
-        let deletePicturesCroppedAreasValue = source["deletePicturesCroppedAreas"]
+        let deletePicturesCroppedAreasValue = source["deletePicturesCroppedAreas"] ?? source["DeletePicturesCroppedAreas"]
         if deletePicturesCroppedAreasValue != nil {
             self.deletePicturesCroppedAreas = deletePicturesCroppedAreasValue! as? Bool
         }
-        let externalFontsHandlingValue = source["externalFontsHandling"]
+        let externalFontsHandlingValue = source["externalFontsHandling"] ?? source["ExternalFontsHandling"]
         if externalFontsHandlingValue != nil {
             let externalFontsHandlingStringValue = externalFontsHandlingValue! as? String
             if externalFontsHandlingStringValue != nil {
@@ -116,8 +116,8 @@ public class SvgExportOptions: ExportOptions {
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.vectorizeText = vectorizeText
         self.metafileRasterizationDpi = metafileRasterizationDpi
         self.disable3DText = disable3DText

@@ -54,23 +54,23 @@ public class PlotArea: Codable {
     public var lineFormat: LineFormat?
 
     func fillValues(_ source: [String:Any]) throws {
-        let XValue = source["X"]
+        let XValue = source["X"] ?? source["X"]
         if XValue != nil {
             self.X = XValue! as? Double
         }
-        let YValue = source["Y"]
+        let YValue = source["Y"] ?? source["Y"]
         if YValue != nil {
             self.Y = YValue! as? Double
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }
-        let layoutTargetTypeValue = source["layoutTargetType"]
+        let layoutTargetTypeValue = source["layoutTargetType"] ?? source["LayoutTargetType"]
         if layoutTargetTypeValue != nil {
             let layoutTargetTypeStringValue = layoutTargetTypeValue! as? String
             if layoutTargetTypeStringValue != nil {
@@ -80,7 +80,7 @@ public class PlotArea: Codable {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -90,7 +90,7 @@ public class PlotArea: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -100,7 +100,7 @@ public class PlotArea: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {

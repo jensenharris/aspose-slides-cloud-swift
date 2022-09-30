@@ -111,7 +111,7 @@ public class Camera: Codable {
     public var zRotation: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let cameraTypeValue = source["cameraType"]
+        let cameraTypeValue = source["cameraType"] ?? source["CameraType"]
         if cameraTypeValue != nil {
             let cameraTypeStringValue = cameraTypeValue! as? String
             if cameraTypeStringValue != nil {
@@ -121,23 +121,23 @@ public class Camera: Codable {
                 }
             }
         }
-        let fieldOfViewAngleValue = source["fieldOfViewAngle"]
+        let fieldOfViewAngleValue = source["fieldOfViewAngle"] ?? source["FieldOfViewAngle"]
         if fieldOfViewAngleValue != nil {
             self.fieldOfViewAngle = fieldOfViewAngleValue! as? Double
         }
-        let zoomValue = source["zoom"]
+        let zoomValue = source["zoom"] ?? source["Zoom"]
         if zoomValue != nil {
             self.zoom = zoomValue! as? Double
         }
-        let xRotationValue = source["xRotation"]
+        let xRotationValue = source["xRotation"] ?? source["XRotation"]
         if xRotationValue != nil {
             self.xRotation = xRotationValue! as? Double
         }
-        let yRotationValue = source["yRotation"]
+        let yRotationValue = source["yRotation"] ?? source["YRotation"]
         if yRotationValue != nil {
             self.yRotation = yRotationValue! as? Double
         }
-        let zRotationValue = source["zRotation"]
+        let zRotationValue = source["zRotation"] ?? source["ZRotation"]
         if zRotationValue != nil {
             self.zRotation = zRotationValue! as? Double
         }

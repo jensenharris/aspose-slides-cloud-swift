@@ -38,7 +38,7 @@ public class MergingSource: Codable {
     public var slides: [Int]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let inputValue = source["input"]
+        let inputValue = source["input"] ?? source["Input"]
         if inputValue != nil {
             let inputDictionaryValue = inputValue! as? [String:Any]
             if inputDictionaryValue != nil {
@@ -48,7 +48,7 @@ public class MergingSource: Codable {
                 }
             }
         }
-        let slidesValue = source["slides"]
+        let slidesValue = source["slides"] ?? source["Slides"]
         if slidesValue != nil {
             self.slides = slidesValue! as? [Int]
         }

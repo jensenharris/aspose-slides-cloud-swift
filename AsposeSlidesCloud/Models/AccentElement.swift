@@ -39,7 +39,7 @@ public class AccentElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -49,7 +49,7 @@ public class AccentElement: MathElement {
                 }
             }
         }
-        let characterValue = source["character"]
+        let characterValue = source["character"] ?? source["Character"]
         if characterValue != nil {
             self.character = characterValue! as? String
         }

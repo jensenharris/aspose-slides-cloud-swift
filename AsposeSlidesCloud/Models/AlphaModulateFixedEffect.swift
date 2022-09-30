@@ -37,7 +37,7 @@ public class AlphaModulateFixedEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let amountValue = source["amount"]
+        let amountValue = source["amount"] ?? source["Amount"]
         if amountValue != nil {
             self.amount = amountValue! as? Double
         }

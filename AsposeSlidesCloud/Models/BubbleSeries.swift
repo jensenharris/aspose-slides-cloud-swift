@@ -39,7 +39,7 @@ public class BubbleSeries: XYSeries {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let dataPointsValue = source["dataPoints"]
+        let dataPointsValue = source["dataPoints"] ?? source["DataPoints"]
         if dataPointsValue != nil {
             var dataPointsArray: [BubbleChartDataPoint] = []
             let dataPointsDictionaryValue = dataPointsValue! as? [Any]
@@ -64,7 +64,7 @@ public class BubbleSeries: XYSeries {
             }
             self.dataPoints = dataPointsArray
         }
-        let numberFormatOfBubbleSizesValue = source["numberFormatOfBubbleSizes"]
+        let numberFormatOfBubbleSizesValue = source["numberFormatOfBubbleSizes"] ?? source["NumberFormatOfBubbleSizes"]
         if numberFormatOfBubbleSizesValue != nil {
             self.numberFormatOfBubbleSizes = numberFormatOfBubbleSizesValue! as? String
         }

@@ -69,7 +69,7 @@ public class GradientFill: FillFormat {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let directionValue = source["direction"]
+        let directionValue = source["direction"] ?? source["Direction"]
         if directionValue != nil {
             let directionStringValue = directionValue! as? String
             if directionStringValue != nil {
@@ -79,7 +79,7 @@ public class GradientFill: FillFormat {
                 }
             }
         }
-        let shapeValue = source["shape"]
+        let shapeValue = source["shape"] ?? source["Shape"]
         if shapeValue != nil {
             let shapeStringValue = shapeValue! as? String
             if shapeStringValue != nil {
@@ -89,7 +89,7 @@ public class GradientFill: FillFormat {
                 }
             }
         }
-        let stopsValue = source["stops"]
+        let stopsValue = source["stops"] ?? source["Stops"]
         if stopsValue != nil {
             var stopsArray: [GradientFillStop] = []
             let stopsDictionaryValue = stopsValue! as? [Any]
@@ -114,15 +114,15 @@ public class GradientFill: FillFormat {
             }
             self.stops = stopsArray
         }
-        let linearAngleValue = source["linearAngle"]
+        let linearAngleValue = source["linearAngle"] ?? source["LinearAngle"]
         if linearAngleValue != nil {
             self.linearAngle = linearAngleValue! as? Double
         }
-        let isScaledValue = source["isScaled"]
+        let isScaledValue = source["isScaled"] ?? source["IsScaled"]
         if isScaledValue != nil {
             self.isScaled = isScaledValue! as? Bool
         }
-        let tileFlipValue = source["tileFlip"]
+        let tileFlipValue = source["tileFlip"] ?? source["TileFlip"]
         if tileFlipValue != nil {
             let tileFlipStringValue = tileFlipValue! as? String
             if tileFlipStringValue != nil {

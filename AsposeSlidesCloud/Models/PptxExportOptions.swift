@@ -42,7 +42,7 @@ public class PptxExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let conformanceValue = source["conformance"]
+        let conformanceValue = source["conformance"] ?? source["Conformance"]
         if conformanceValue != nil {
             let conformanceStringValue = conformanceValue! as? String
             if conformanceStringValue != nil {
@@ -54,8 +54,8 @@ public class PptxExportOptions: ExportOptions {
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, conformance: Conformance? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, conformance: Conformance? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.conformance = conformance
         self.format = "pptx"
     }

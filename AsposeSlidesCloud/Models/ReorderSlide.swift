@@ -39,11 +39,11 @@ public class ReorderSlide: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let oldPositionValue = source["oldPosition"]
+        let oldPositionValue = source["oldPosition"] ?? source["OldPosition"]
         if oldPositionValue != nil {
             self.oldPosition = oldPositionValue! as? Int
         }
-        let newPositionValue = source["newPosition"]
+        let newPositionValue = source["newPosition"] ?? source["NewPosition"]
         if newPositionValue != nil {
             self.newPosition = newPositionValue! as? Int
         }

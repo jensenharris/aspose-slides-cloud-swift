@@ -37,7 +37,7 @@ public class TextElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let valueValue = source["value"]
+        let valueValue = source["value"] ?? source["Value"]
         if valueValue != nil {
             self.value = valueValue! as? String
         }

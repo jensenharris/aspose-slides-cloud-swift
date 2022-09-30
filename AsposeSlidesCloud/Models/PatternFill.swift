@@ -99,15 +99,15 @@ public class PatternFill: FillFormat {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let backColorValue = source["backColor"]
+        let backColorValue = source["backColor"] ?? source["BackColor"]
         if backColorValue != nil {
             self.backColor = backColorValue! as? String
         }
-        let foreColorValue = source["foreColor"]
+        let foreColorValue = source["foreColor"] ?? source["ForeColor"]
         if foreColorValue != nil {
             self.foreColor = foreColorValue! as? String
         }
-        let styleValue = source["style"]
+        let styleValue = source["style"] ?? source["Style"]
         if styleValue != nil {
             let styleStringValue = styleValue! as? String
             if styleStringValue != nil {

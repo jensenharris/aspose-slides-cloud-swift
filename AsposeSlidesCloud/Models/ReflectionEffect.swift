@@ -74,55 +74,55 @@ public class ReflectionEffect: Codable {
     public var rotateShadowWithShape: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let directionValue = source["direction"]
+        let directionValue = source["direction"] ?? source["Direction"]
         if directionValue != nil {
             self.direction = directionValue! as? Double
         }
-        let fadeDirectionValue = source["fadeDirection"]
+        let fadeDirectionValue = source["fadeDirection"] ?? source["FadeDirection"]
         if fadeDirectionValue != nil {
             self.fadeDirection = fadeDirectionValue! as? Double
         }
-        let distanceValue = source["distance"]
+        let distanceValue = source["distance"] ?? source["Distance"]
         if distanceValue != nil {
             self.distance = distanceValue! as? Double
         }
-        let blurRadiusValue = source["blurRadius"]
+        let blurRadiusValue = source["blurRadius"] ?? source["BlurRadius"]
         if blurRadiusValue != nil {
             self.blurRadius = blurRadiusValue! as? Double
         }
-        let scaleHorizontalValue = source["scaleHorizontal"]
+        let scaleHorizontalValue = source["scaleHorizontal"] ?? source["ScaleHorizontal"]
         if scaleHorizontalValue != nil {
             self.scaleHorizontal = scaleHorizontalValue! as? Double
         }
-        let scaleVerticalValue = source["scaleVertical"]
+        let scaleVerticalValue = source["scaleVertical"] ?? source["ScaleVertical"]
         if scaleVerticalValue != nil {
             self.scaleVertical = scaleVerticalValue! as? Double
         }
-        let skewHorizontalValue = source["skewHorizontal"]
+        let skewHorizontalValue = source["skewHorizontal"] ?? source["SkewHorizontal"]
         if skewHorizontalValue != nil {
             self.skewHorizontal = skewHorizontalValue! as? Double
         }
-        let skewVerticalValue = source["skewVertical"]
+        let skewVerticalValue = source["skewVertical"] ?? source["SkewVertical"]
         if skewVerticalValue != nil {
             self.skewVertical = skewVerticalValue! as? Double
         }
-        let startPosAlphaValue = source["startPosAlpha"]
+        let startPosAlphaValue = source["startPosAlpha"] ?? source["StartPosAlpha"]
         if startPosAlphaValue != nil {
             self.startPosAlpha = startPosAlphaValue! as? Double
         }
-        let endPosAlphaValue = source["endPosAlpha"]
+        let endPosAlphaValue = source["endPosAlpha"] ?? source["EndPosAlpha"]
         if endPosAlphaValue != nil {
             self.endPosAlpha = endPosAlphaValue! as? Double
         }
-        let startReflectionOpacityValue = source["startReflectionOpacity"]
+        let startReflectionOpacityValue = source["startReflectionOpacity"] ?? source["StartReflectionOpacity"]
         if startReflectionOpacityValue != nil {
             self.startReflectionOpacity = startReflectionOpacityValue! as? Double
         }
-        let endReflectionOpacityValue = source["endReflectionOpacity"]
+        let endReflectionOpacityValue = source["endReflectionOpacity"] ?? source["EndReflectionOpacity"]
         if endReflectionOpacityValue != nil {
             self.endReflectionOpacity = endReflectionOpacityValue! as? Double
         }
-        let rectangleAlignValue = source["rectangleAlign"]
+        let rectangleAlignValue = source["rectangleAlign"] ?? source["RectangleAlign"]
         if rectangleAlignValue != nil {
             let rectangleAlignStringValue = rectangleAlignValue! as? String
             if rectangleAlignStringValue != nil {
@@ -132,7 +132,7 @@ public class ReflectionEffect: Codable {
                 }
             }
         }
-        let rotateShadowWithShapeValue = source["rotateShadowWithShape"]
+        let rotateShadowWithShapeValue = source["rotateShadowWithShape"] ?? source["RotateShadowWithShape"]
         if rotateShadowWithShapeValue != nil {
             self.rotateShadowWithShape = rotateShadowWithShapeValue! as? Bool
         }

@@ -45,23 +45,23 @@ public class HeaderFooter: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let isDateTimeVisibleValue = source["isDateTimeVisible"]
+        let isDateTimeVisibleValue = source["isDateTimeVisible"] ?? source["IsDateTimeVisible"]
         if isDateTimeVisibleValue != nil {
             self.isDateTimeVisible = isDateTimeVisibleValue! as? Bool
         }
-        let dateTimeTextValue = source["dateTimeText"]
+        let dateTimeTextValue = source["dateTimeText"] ?? source["DateTimeText"]
         if dateTimeTextValue != nil {
             self.dateTimeText = dateTimeTextValue! as? String
         }
-        let isFooterVisibleValue = source["isFooterVisible"]
+        let isFooterVisibleValue = source["isFooterVisible"] ?? source["IsFooterVisible"]
         if isFooterVisibleValue != nil {
             self.isFooterVisible = isFooterVisibleValue! as? Bool
         }
-        let footerTextValue = source["footerText"]
+        let footerTextValue = source["footerText"] ?? source["FooterText"]
         if footerTextValue != nil {
             self.footerText = footerTextValue! as? String
         }
-        let isSlideNumberVisibleValue = source["isSlideNumberVisible"]
+        let isSlideNumberVisibleValue = source["isSlideNumberVisible"] ?? source["IsSlideNumberVisible"]
         if isSlideNumberVisibleValue != nil {
             self.isSlideNumberVisible = isSlideNumberVisibleValue! as? Bool
         }

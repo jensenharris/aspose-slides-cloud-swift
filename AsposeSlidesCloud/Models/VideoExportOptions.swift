@@ -81,11 +81,11 @@ public class VideoExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let slidesTransitionDurationValue = source["slidesTransitionDuration"]
+        let slidesTransitionDurationValue = source["slidesTransitionDuration"] ?? source["SlidesTransitionDuration"]
         if slidesTransitionDurationValue != nil {
             self.slidesTransitionDuration = slidesTransitionDurationValue! as? Int
         }
-        let transitionTypeValue = source["transitionType"]
+        let transitionTypeValue = source["transitionType"] ?? source["TransitionType"]
         if transitionTypeValue != nil {
             let transitionTypeStringValue = transitionTypeValue! as? String
             if transitionTypeStringValue != nil {
@@ -95,11 +95,11 @@ public class VideoExportOptions: ExportOptions {
                 }
             }
         }
-        let transitionDurationValue = source["transitionDuration"]
+        let transitionDurationValue = source["transitionDuration"] ?? source["TransitionDuration"]
         if transitionDurationValue != nil {
             self.transitionDuration = transitionDurationValue! as? Int
         }
-        let videoResolutionTypeValue = source["videoResolutionType"]
+        let videoResolutionTypeValue = source["videoResolutionType"] ?? source["VideoResolutionType"]
         if videoResolutionTypeValue != nil {
             let videoResolutionTypeStringValue = videoResolutionTypeValue! as? String
             if videoResolutionTypeStringValue != nil {
@@ -111,8 +111,8 @@ public class VideoExportOptions: ExportOptions {
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, slidesTransitionDuration: Int? = nil, transitionType: TransitionType? = nil, transitionDuration: Int? = nil, videoResolutionType: VideoResolutionType? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, slidesTransitionDuration: Int? = nil, transitionType: TransitionType? = nil, transitionDuration: Int? = nil, videoResolutionType: VideoResolutionType? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.slidesTransitionDuration = slidesTransitionDuration
         self.transitionType = transitionType
         self.transitionDuration = transitionDuration

@@ -59,51 +59,51 @@ public class ColorScheme: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let accent1Value = source["accent1"]
+        let accent1Value = source["accent1"] ?? source["Accent1"]
         if accent1Value != nil {
             self.accent1 = accent1Value! as? String
         }
-        let accent2Value = source["accent2"]
+        let accent2Value = source["accent2"] ?? source["Accent2"]
         if accent2Value != nil {
             self.accent2 = accent2Value! as? String
         }
-        let accent3Value = source["accent3"]
+        let accent3Value = source["accent3"] ?? source["Accent3"]
         if accent3Value != nil {
             self.accent3 = accent3Value! as? String
         }
-        let accent4Value = source["accent4"]
+        let accent4Value = source["accent4"] ?? source["Accent4"]
         if accent4Value != nil {
             self.accent4 = accent4Value! as? String
         }
-        let accent5Value = source["accent5"]
+        let accent5Value = source["accent5"] ?? source["Accent5"]
         if accent5Value != nil {
             self.accent5 = accent5Value! as? String
         }
-        let accent6Value = source["accent6"]
+        let accent6Value = source["accent6"] ?? source["Accent6"]
         if accent6Value != nil {
             self.accent6 = accent6Value! as? String
         }
-        let dark1Value = source["dark1"]
+        let dark1Value = source["dark1"] ?? source["Dark1"]
         if dark1Value != nil {
             self.dark1 = dark1Value! as? String
         }
-        let dark2Value = source["dark2"]
+        let dark2Value = source["dark2"] ?? source["Dark2"]
         if dark2Value != nil {
             self.dark2 = dark2Value! as? String
         }
-        let followedHyperlinkValue = source["followedHyperlink"]
+        let followedHyperlinkValue = source["followedHyperlink"] ?? source["FollowedHyperlink"]
         if followedHyperlinkValue != nil {
             self.followedHyperlink = followedHyperlinkValue! as? String
         }
-        let hyperlinkValue = source["hyperlink"]
+        let hyperlinkValue = source["hyperlink"] ?? source["Hyperlink"]
         if hyperlinkValue != nil {
             self.hyperlink = hyperlinkValue! as? String
         }
-        let light1Value = source["light1"]
+        let light1Value = source["light1"] ?? source["Light1"]
         if light1Value != nil {
             self.light1 = light1Value! as? String
         }
-        let light2Value = source["light2"]
+        let light2Value = source["light2"] ?? source["Light2"]
         if light2Value != nil {
             self.light2 = light2Value! as? String
         }

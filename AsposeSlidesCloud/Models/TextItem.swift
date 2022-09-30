@@ -38,7 +38,7 @@ public class TextItem: Codable {
     public var text: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let uriValue = source["uri"]
+        let uriValue = source["uri"] ?? source["Uri"]
         if uriValue != nil {
             let uriDictionaryValue = uriValue! as? [String:Any]
             if uriDictionaryValue != nil {
@@ -48,7 +48,7 @@ public class TextItem: Codable {
                 }
             }
         }
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }

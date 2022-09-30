@@ -38,11 +38,11 @@ public class ChartTitle: Codable {
     public var hasTitle: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }
-        let hasTitleValue = source["hasTitle"]
+        let hasTitleValue = source["hasTitle"] ?? source["HasTitle"]
         if hasTitleValue != nil {
             self.hasTitle = hasTitleValue! as? Bool
         }

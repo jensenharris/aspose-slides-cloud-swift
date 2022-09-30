@@ -41,7 +41,7 @@ public class AddMasterSlide: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let cloneFromFileValue = source["cloneFromFile"]
+        let cloneFromFileValue = source["cloneFromFile"] ?? source["CloneFromFile"]
         if cloneFromFileValue != nil {
             let cloneFromFileDictionaryValue = cloneFromFileValue! as? [String:Any]
             if cloneFromFileDictionaryValue != nil {
@@ -51,11 +51,11 @@ public class AddMasterSlide: Task {
                 }
             }
         }
-        let cloneFromPositionValue = source["cloneFromPosition"]
+        let cloneFromPositionValue = source["cloneFromPosition"] ?? source["CloneFromPosition"]
         if cloneFromPositionValue != nil {
             self.cloneFromPosition = cloneFromPositionValue! as? Int
         }
-        let applyToAllValue = source["applyToAll"]
+        let applyToAllValue = source["applyToAll"] ?? source["ApplyToAll"]
         if applyToAllValue != nil {
             self.applyToAll = applyToAllValue! as? Bool
         }

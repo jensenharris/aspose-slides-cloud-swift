@@ -37,7 +37,7 @@ public class RemoveShape: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let shapePathValue = source["shapePath"]
+        let shapePathValue = source["shapePath"] ?? source["ShapePath"]
         if shapePathValue != nil {
             self.shapePath = shapePathValue! as? String
         }

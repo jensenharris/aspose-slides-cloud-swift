@@ -52,6 +52,16 @@ class ClassRegistry {
         return className
     }
 
+    class func isSubclass(_ subType: String, _ baseType: String) -> Bool {
+        if subType == baseType {
+            return true
+        }
+        if let midType = typeHierarchy[subType] {
+            return isSubclass(midType, baseType)
+        }
+        return false
+    }
+
     class func getSubclass(_ baseType: String, _ keys: Dictionary<String, Any>) -> String {
         if isOfClass(baseType, keys) {
             var hasDescendants = false
@@ -197,12 +207,24 @@ class ClassRegistry {
             let value = FillOverlayEffect()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "FontData" {
+            let value = FontData()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "FontFallbackRule" {
             let value = FontFallbackRule()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "FontSet" {
             let value = FontSet()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FontSubstRule" {
+            let value = FontSubstRule()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FontsData" {
+            let value = FontsData()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "GeometryPath" {

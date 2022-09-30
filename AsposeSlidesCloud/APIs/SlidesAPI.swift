@@ -1602,12 +1602,7 @@ open class SlidesAPI {
         var methodPath = "/slides/{name}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "data": data
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -1928,6 +1923,72 @@ open class SlidesAPI {
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<Slides>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Add SmartArt node
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter smartArtIndex: Index of the object on the slide among the same type of objects.
+     - parameter subNode: Sub-node path (e.g. \"3\", \"3/nodes/2).
+     - parameter text: Node text.
+     - parameter position: Position to insert a new node.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func createSmartArtNode(_ name: String, _ slideIndex: Int, _ smartArtIndex: Int, _ subNode: String = "", _ text: String = "", _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: SmartArt?,_ error: Error?) -> Void)) {
+        createSmartArtNodeWithRequestBuilder(name, slideIndex, smartArtIndex, subNode, text, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Add SmartArt node
+     - POST /slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter smartArtIndex: Index of the object on the slide among the same type of objects.
+     - parameter subNode: Sub-node path (e.g. \"3\", \"3/nodes/2).
+     - parameter text: Node text.
+     - parameter position: Position to insert a new node.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<SmartArt> 
+     */
+    open class func createSmartArtNodeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ smartArtIndex: Int, _ subNode: String = "", _ text: String = "", _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SmartArt> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "smartArtIndex", smartArtIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "subNode": subNode, 
+            "text": text, 
+            "position": position?.encodeToJSON(), 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<SmartArt>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
@@ -3581,12 +3642,7 @@ open class SlidesAPI {
     open class func deleteCommentsOnlineWithRequestBuilder(_ document: Data, _ author: String = "", _ password: String = "") -> RequestBuilder<Data> {
         let methodPath = "/slides/comments/delete"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -3709,6 +3765,115 @@ open class SlidesAPI {
         let requestBuilder: RequestBuilder<DocumentProperties>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Removes specified embedded font and returns presentation fonts info.
+     - parameter name: Document name.
+     - parameter fontName: Font name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteEmbeddedFont(_ name: String, _ fontName: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: FontsData?,_ error: Error?) -> Void)) {
+        deleteEmbeddedFontWithRequestBuilder(name, fontName, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes specified embedded font and returns presentation fonts info.
+     - DELETE /slides/{name}/fonts/embedded/{fontName}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "List" : [ {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  }, {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  } ]
+}}]
+     - parameter name: Document name.
+     - parameter fontName: Font name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<FontsData> 
+     */
+    open class func deleteEmbeddedFontWithRequestBuilder(_ name: String, _ fontName: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<FontsData> {
+        var methodPath = "/slides/{name}/fonts/embedded/{fontName}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "fontName", fontName)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<FontsData>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Removes specified embedded font and returns presentation.
+     - parameter document: Document data.
+     - parameter fontName: Font name.
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteEmbeddedFontOnline(_ document: Data, _ fontName: String, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        deleteEmbeddedFontOnlineWithRequestBuilder(document, fontName, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes specified embedded font and returns presentation.
+     - POST /slides/fonts/embedded/{fontName}/delete
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data.
+     - parameter fontName: Font name.
+     - parameter password: Document password.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func deleteEmbeddedFontOnlineWithRequestBuilder(_ document: Data, _ fontName: String, _ password: String = "") -> RequestBuilder<Data> {
+        var methodPath = "/slides/fonts/embedded/{fontName}/delete"
+        methodPath = APIHelper.replacePathParameter(methodPath, "fontName", fontName)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+
+
+        let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
      Delete file
@@ -4184,12 +4349,7 @@ open class SlidesAPI {
     open class func deleteProtectionOnlineWithRequestBuilder(_ document: Data, _ password: String) -> RequestBuilder<Data> {
         let methodPath = "/slides/protection/delete"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -4577,12 +4737,7 @@ open class SlidesAPI {
         var methodPath = "/slides/slides/{slideIndex}/comments/delete"
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -4652,6 +4807,69 @@ open class SlidesAPI {
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<Slides>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Delete SmartArt node
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter smartArtIndex: Index of the object on the slide among the same type of objects.
+     - parameter nodeIndex: Root level node index.
+     - parameter subNode: Sub-node path (e.g. \"3\", \"3/nodes/2).
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteSmartArtNode(_ name: String, _ slideIndex: Int, _ smartArtIndex: Int, _ nodeIndex: Int, _ subNode: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: SmartArt?,_ error: Error?) -> Void)) {
+        deleteSmartArtNodeWithRequestBuilder(name, slideIndex, smartArtIndex, nodeIndex, subNode, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Delete SmartArt node
+     - DELETE /slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes/{nodeIndex}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter smartArtIndex: Index of the object on the slide among the same type of objects.
+     - parameter nodeIndex: Root level node index.
+     - parameter subNode: Sub-node path (e.g. \"3\", \"3/nodes/2).
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<SmartArt> 
+     */
+    open class func deleteSmartArtNodeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ smartArtIndex: Int, _ nodeIndex: Int, _ subNode: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SmartArt> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes/{nodeIndex}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "smartArtIndex", smartArtIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "nodeIndex", nodeIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "subNode": subNode, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<SmartArt>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
@@ -6401,12 +6619,7 @@ open class SlidesAPI {
     open class func deleteUnusedLayoutSlidesOnlineWithRequestBuilder(_ document: Data, _ password: String = "") -> RequestBuilder<Data> {
         let methodPath = "/slides/layoutSlides/delete"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -6414,6 +6627,108 @@ open class SlidesAPI {
 
 
         let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Removes unused master slides.
+     - parameter name: Document name.
+     - parameter ignorePreserveField: Determines, whether this method should remove unused master even if its             preserve property is set to true.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteUnusedMasterSlides(_ name: String, _ ignorePreserveField: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: MasterSlides?,_ error: Error?) -> Void)) {
+        deleteUnusedMasterSlidesWithRequestBuilder(name, ignorePreserveField, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes unused master slides.
+     - DELETE /slides/{name}/masterSlides
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter ignorePreserveField: Determines, whether this method should remove unused master even if its             preserve property is set to true.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<MasterSlides> 
+     */
+    open class func deleteUnusedMasterSlidesWithRequestBuilder(_ name: String, _ ignorePreserveField: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<MasterSlides> {
+        var methodPath = "/slides/{name}/masterSlides"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "ignorePreserveField": ignorePreserveField, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<MasterSlides>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Removes unused master slides.
+     - parameter document: Document data
+     - parameter ignorePreserveField: Determines, whether this method should remove unused master even if its             preserve property is set to true.
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func deleteUnusedMasterSlidesOnline(_ document: Data, _ ignorePreserveField: Bool? = nil, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        deleteUnusedMasterSlidesOnlineWithRequestBuilder(document, ignorePreserveField, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes unused master slides.
+     - POST /slides/masterSlides/delete
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data
+     - parameter ignorePreserveField: Determines, whether this method should remove unused master even if its             preserve property is set to true.
+     - parameter password: Document password.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func deleteUnusedMasterSlidesOnlineWithRequestBuilder(_ document: Data, _ ignorePreserveField: Bool? = nil, _ password: String = "") -> RequestBuilder<Data> {
+        let methodPath = "/slides/masterSlides/delete"
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "ignorePreserveField": ignorePreserveField
+        ])
         let nillableHeaders: [String: Any?] = [
             "password": password
         ]
@@ -6509,12 +6824,7 @@ open class SlidesAPI {
     open class func deleteWatermarkOnlineWithRequestBuilder(_ document: Data, _ shapeName: String = "", _ password: String = "") -> RequestBuilder<Data> {
         let methodPath = "/slides/watermark/delete"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -6730,12 +7040,7 @@ open class SlidesAPI {
         var methodPath = "/slides/images/{index}"
         methodPath = APIHelper.replacePathParameter(methodPath, "index", index)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -6796,12 +7101,7 @@ open class SlidesAPI {
         methodPath = APIHelper.replacePathParameter(methodPath, "index", index)
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -6961,12 +7261,7 @@ open class SlidesAPI {
     open class func downloadImagesDefaultFormatOnlineWithRequestBuilder(_ document: Data, _ password: String = "") -> RequestBuilder<Data> {
         let methodPath = "/slides/images/download"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -7024,12 +7319,7 @@ open class SlidesAPI {
         var methodPath = "/slides/images/download/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -7055,6 +7345,24 @@ open class SlidesAPI {
         case gif = "Gif"
         case bmp = "Bmp"
         case tiff = "Tiff"
+        case html = "Html"
+        case pdf = "Pdf"
+        case xps = "Xps"
+        case pptx = "Pptx"
+        case odp = "Odp"
+        case otp = "Otp"
+        case ppt = "Ppt"
+        case pps = "Pps"
+        case ppsx = "Ppsx"
+        case pptm = "Pptm"
+        case ppsm = "Ppsm"
+        case potx = "Potx"
+        case pot = "Pot"
+        case potm = "Potm"
+        case svg = "Svg"
+        case fodp = "Fodp"
+        case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -7062,8 +7370,8 @@ open class SlidesAPI {
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter format: Output file format.
-     - parameter width: Output file width.
-     - parameter height: Output file height.
+     - parameter width: The width of the slide representation in the output format.
+     - parameter height: The height of the slide representation in the output format
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
@@ -7087,8 +7395,8 @@ open class SlidesAPI {
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter format: Output file format.
-     - parameter width: Output file width.
-     - parameter height: Output file height.
+     - parameter width: The width of the slide representation in the output format.
+     - parameter height: The height of the slide representation in the output format
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
@@ -7132,6 +7440,24 @@ open class SlidesAPI {
         case gif = "Gif"
         case bmp = "Bmp"
         case tiff = "Tiff"
+        case html = "Html"
+        case pdf = "Pdf"
+        case xps = "Xps"
+        case pptx = "Pptx"
+        case odp = "Odp"
+        case otp = "Otp"
+        case ppt = "Ppt"
+        case pps = "Pps"
+        case ppsx = "Ppsx"
+        case pptm = "Pptm"
+        case ppsm = "Ppsm"
+        case potx = "Potx"
+        case pot = "Pot"
+        case potm = "Potm"
+        case svg = "Svg"
+        case fodp = "Fodp"
+        case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -7139,8 +7465,8 @@ open class SlidesAPI {
      - parameter document: Document data.
      - parameter slideIndex: Slide index.
      - parameter format: Output file format.
-     - parameter width: Output file width.
-     - parameter height: Output file height.
+     - parameter width: The width of the slide representation in the output format.
+     - parameter height: The height of the slide representation in the output format.
      - parameter password: Document password.
      - parameter fontsFolder: Storage folder containing custom fonts to be used with the document.
      - parameter completion: completion handler to receive the data and the error objects
@@ -7162,8 +7488,8 @@ open class SlidesAPI {
      - parameter document: Document data.
      - parameter slideIndex: Slide index.
      - parameter format: Output file format.
-     - parameter width: Output file width.
-     - parameter height: Output file height.
+     - parameter width: The width of the slide representation in the output format.
+     - parameter height: The height of the slide representation in the output format.
      - parameter password: Document password.
      - parameter fontsFolder: Storage folder containing custom fonts to be used with the document.
      - returns: RequestBuilder<Data> 
@@ -7173,12 +7499,7 @@ open class SlidesAPI {
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -7568,6 +7889,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -7664,6 +7986,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -8554,6 +8877,117 @@ open class SlidesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
+     Returns presentation fonts info.
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func getFonts(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: FontsData?,_ error: Error?) -> Void)) {
+        getFontsWithRequestBuilder(name, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Returns presentation fonts info.
+     - GET /slides/{name}/fonts
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "List" : [ {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  }, {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  } ]
+}}]
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<FontsData> 
+     */
+    open class func getFontsWithRequestBuilder(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<FontsData> {
+        var methodPath = "/slides/{name}/fonts"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<FontsData>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Returns presentation fonts info.
+     - parameter document: Document data.
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func getFontsOnline(_ document: Data, _ password: String = "", completion: @escaping ((_ data: FontsData?,_ error: Error?) -> Void)) {
+        getFontsOnlineWithRequestBuilder(document, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Returns presentation fonts info.
+     - POST /slides/fonts
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "List" : [ {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  }, {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  } ]
+}}]
+     - parameter document: Document data.
+     - parameter password: Document password.
+     - returns: RequestBuilder<FontsData> 
+     */
+    open class func getFontsOnlineWithRequestBuilder(_ document: Data, _ password: String = "") -> RequestBuilder<FontsData> {
+        let methodPath = "/slides/fonts"
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+
+
+        let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<FontsData>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
      Read slide theme format scheme info.
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
@@ -8955,12 +9389,7 @@ open class SlidesAPI {
         var methodPath = "/slides/slides/{slideIndex}/notesSlide"
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -12192,12 +12621,7 @@ open class SlidesAPI {
         var methodPath = "/slides/{name}/fromPdf"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "pdf": pdf
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -12214,6 +12638,83 @@ open class SlidesAPI {
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<Document>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Imports shapes from SVG file.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter image: SVG image data.
+     - parameter x: The X coordinate of the imported group of shapes (0 is default if not specified).
+     - parameter y: The Y coordinate of the imported group of shapes (0 is default if not specified).
+     - parameter width: The width of the imported group of shapes (default is SVG image width).
+     - parameter height: The height of the imported group of shapes (default is SVG image width).
+     - parameter shapes: Indexes of shapes to import. All shapes are imported if not specified.
+     - parameter group: If true, the set of shapes will be imported as a one group shape.
+     - parameter password: Document password.
+     - parameter folder: Presentation folder.
+     - parameter storage: Presentation storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func importShapesFromSvg(_ name: String, _ slideIndex: Int, _ image: Data? = nil, _ x: Int? = nil, _ y: Int? = nil, _ width: Int? = nil, _ height: Int? = nil, _ shapes: [Int] = [Int](), _ group: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        importShapesFromSvgWithRequestBuilder(name, slideIndex, image, x, y, width, height, shapes, group, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Imports shapes from SVG file.
+     - POST /slides/{name}/slides/{slideIndex}/shapes/fromSvg
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter image: SVG image data.
+     - parameter x: The X coordinate of the imported group of shapes (0 is default if not specified).
+     - parameter y: The Y coordinate of the imported group of shapes (0 is default if not specified).
+     - parameter width: The width of the imported group of shapes (default is SVG image width).
+     - parameter height: The height of the imported group of shapes (default is SVG image width).
+     - parameter shapes: Indexes of shapes to import. All shapes are imported if not specified.
+     - parameter group: If true, the set of shapes will be imported as a one group shape.
+     - parameter password: Document password.
+     - parameter folder: Presentation folder.
+     - parameter storage: Presentation storage.
+     - returns: RequestBuilder<Shapes> 
+     */
+    open class func importShapesFromSvgWithRequestBuilder(_ name: String, _ slideIndex: Int, _ image: Data? = nil, _ x: Int? = nil, _ y: Int? = nil, _ width: Int? = nil, _ height: Int? = nil, _ shapes: [Int] = [Int](), _ group: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/fromSvg"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        if image != nil {
+            fileParams.append(image!)
+        }
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "x": x?.encodeToJSON(), 
+            "y": y?.encodeToJSON(), 
+            "width": width?.encodeToJSON(), 
+            "height": height?.encodeToJSON(), 
+            "shapes": shapes, 
+            "group": group, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
@@ -12675,12 +13176,7 @@ open class SlidesAPI {
         var methodPath = "/slides/slides/{slideIndex}/notesSlide/exist"
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -12898,6 +13394,134 @@ open class SlidesAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
+     Replaces specified font and returns presentation fonts info.
+     - parameter name: Document name.
+     - parameter sourceFont: Source font name.
+     - parameter targetFont: Target font name.
+     - parameter embed: Embed target font.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter fontsFolder: Custom fonts folder.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func replaceFont(_ name: String, _ sourceFont: String, _ targetFont: String, _ embed: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: FontsData?,_ error: Error?) -> Void)) {
+        replaceFontWithRequestBuilder(name, sourceFont, targetFont, embed, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Replaces specified font and returns presentation fonts info.
+     - POST /slides/{name}/fonts/{sourceFont}/replace/{targetFont}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "List" : [ {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  }, {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  } ]
+}}]
+     - parameter name: Document name.
+     - parameter sourceFont: Source font name.
+     - parameter targetFont: Target font name.
+     - parameter embed: Embed target font.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter fontsFolder: Custom fonts folder.
+     - returns: RequestBuilder<FontsData> 
+     */
+    open class func replaceFontWithRequestBuilder(_ name: String, _ sourceFont: String, _ targetFont: String, _ embed: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<FontsData> {
+        var methodPath = "/slides/{name}/fonts/{sourceFont}/replace/{targetFont}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "sourceFont", sourceFont)
+        methodPath = APIHelper.replacePathParameter(methodPath, "targetFont", targetFont)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "embed": embed, 
+            "folder": folder, 
+            "storage": storage, 
+            "fontsFolder": fontsFolder
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<FontsData>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Replaces specified font and returns presentation.
+     - parameter document: Document data.
+     - parameter sourceFont: Source font name.
+     - parameter targetFont: Target font name.
+     - parameter embed: Embed target font.
+     - parameter password: Document password.
+     - parameter fontsFolder: Custom fonts folder.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func replaceFontOnline(_ document: Data, _ sourceFont: String, _ targetFont: String, _ embed: Bool? = nil, _ password: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        replaceFontOnlineWithRequestBuilder(document, sourceFont, targetFont, embed, password, fontsFolder).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Replaces specified font and returns presentation.
+     - POST /slides/fonts/{sourceFont}/replace/{targetFont}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data.
+     - parameter sourceFont: Source font name.
+     - parameter targetFont: Target font name.
+     - parameter embed: Embed target font.
+     - parameter password: Document password.
+     - parameter fontsFolder: Custom fonts folder.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func replaceFontOnlineWithRequestBuilder(_ document: Data, _ sourceFont: String, _ targetFont: String, _ embed: Bool? = nil, _ password: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+        var methodPath = "/slides/fonts/{sourceFont}/replace/{targetFont}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "sourceFont", sourceFont)
+        methodPath = APIHelper.replacePathParameter(methodPath, "targetFont", targetFont)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "embed": embed, 
+            "fontsFolder": fontsFolder
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
      Replace text with a new value.
      - parameter name: Document name.
      - parameter oldValue: Text value to be replaced.
@@ -12990,12 +13614,7 @@ open class SlidesAPI {
     open class func replacePresentationTextOnlineWithRequestBuilder(_ document: Data, _ oldValue: String, _ newValue: String, _ ignoreCase: Bool? = nil, _ password: String = "") -> RequestBuilder<Data> {
         let methodPath = "/slides/replaceText"
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -13115,12 +13734,7 @@ open class SlidesAPI {
         var methodPath = "/slides/slides/{slideIndex}/replaceText"
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -13534,6 +14148,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -13636,6 +14251,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -14212,6 +14828,708 @@ open class SlidesAPI {
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
+     * enum for parameter axisType
+     */
+    public enum AxisType_setChartAxis: String { 
+        case horizontalAxis = "HorizontalAxis"
+        case verticalAxis = "VerticalAxis"
+        case secondaryHorizontalAxis = "SecondaryHorizontalAxis"
+        case secondaryVerticalAxis = "SecondaryVerticalAxis"
+    }
+
+    /**
+     Set chart axis.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter axisType: Axis type. Horizontal, Vertical, SecondaryHorizontal or SecondaryVertical.
+     - parameter axis: Axis DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setChartAxis(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ axisType: String, _ axis: Axis, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Axis?,_ error: Error?) -> Void)) {
+        setChartAxisWithRequestBuilder(name, slideIndex, shapeIndex, axisType, axis, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Set chart axis.
+     - PUT /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{axisType}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "TickMarksSpacing" : 9,
+  "IsAutomaticTickLabelSpacing" : true,
+  "MajorTickMark" : "Cross",
+  "CrossType" : "AxisCrossesAtZero",
+  "CategoryAxisType" : "Text",
+  "IsNumberFormatLinkedToSource" : true,
+  "IsAutomaticMinorUnit" : true,
+  "MinorUnit" : 6.027456183070403,
+  "TickLabelRotationAngle" : 2.027123023002322,
+  "MinorUnitScale" : "None",
+  "LineFormat" : {
+    "JoinStyle" : "Round",
+    "FillFormat" : {
+      "Type" : "NoFill"
+    },
+    "Alignment" : "Center",
+    "SketchType" : "None",
+    "EndArrowHead" : {
+      "Length" : "Short",
+      "Style" : "None",
+      "Width" : "Narrow"
+    },
+    "CustomDashPattern" : {
+      "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
+    },
+    "DashStyle" : "Solid",
+    "Style" : "Single",
+    "MiterLimit" : 6.965117697638846,
+    "BeginArrowHead" : {
+      "Length" : "Short",
+      "Style" : "None",
+      "Width" : "Narrow"
+    },
+    "CapStyle" : "Round",
+    "Width" : 1.284659006116532
+  },
+  "BaseUnitScale" : "None",
+  "MinorGridLinesFormat" : {
+    "LineFormat" : {
+      "JoinStyle" : "Round",
+      "FillFormat" : {
+        "Type" : "NoFill"
+      },
+      "Alignment" : "Center",
+      "SketchType" : "None",
+      "EndArrowHead" : {
+        "Length" : "Short",
+        "Style" : "None",
+        "Width" : "Narrow"
+      },
+      "CustomDashPattern" : {
+        "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
+      },
+      "DashStyle" : "Solid",
+      "Style" : "Single",
+      "MiterLimit" : 6.965117697638846,
+      "BeginArrowHead" : {
+        "Length" : "Short",
+        "Style" : "None",
+        "Width" : "Narrow"
+      },
+      "CapStyle" : "Round",
+      "Width" : 1.284659006116532
+    },
+    "EffectFormat" : {
+      "SoftEdge" : {
+        "Radius" : 1.0246457001441578
+      },
+      "InnerShadow" : {
+        "BlurRadius" : 9.301444243932576,
+        "ShadowColor" : "ShadowColor",
+        "Direction" : 2.3021358869347655,
+        "Distance" : 7.061401241503109
+      },
+      "OuterShadow" : {
+        "BlurRadius" : 4.145608029883936,
+        "ShadowColor" : "ShadowColor",
+        "Direction" : 3.616076749251911,
+        "Distance" : 2.027123023002322
+      },
+      "Blur" : {
+        "Radius" : 5.962133916683182,
+        "Grow" : true
+      },
+      "PresetShadow" : {
+        "Preset" : "TopLeftDropShadow",
+        "ShadowColor" : "ShadowColor",
+        "Direction" : 7.386281948385884,
+        "Distance" : 1.2315135367772556
+      },
+      "Reflection" : {
+        "StartPosAlpha" : 6.683562403749608,
+        "EndReflectionOpacity" : 6.438423552598547,
+        "FadeDirection" : 6.84685269835264,
+        "EndPosAlpha" : 8.762042012749001,
+        "BlurRadius" : 1.1730742509559433,
+        "ScaleVertical" : 5.025004791520295,
+        "RotateShadowWithShape" : true,
+        "Direction" : 1.4894159098541704,
+        "ScaleHorizontal" : 4.965218492984954,
+        "SkewVertical" : 9.369310271410669,
+        "StartReflectionOpacity" : 9.018348186070783,
+        "RectangleAlign" : "TopLeft",
+        "SkewHorizontal" : 9.965781217890562,
+        "Distance" : 7.457744773683766
+      },
+      "Glow" : {
+        "Radius" : 5.637376656633329,
+        "Color" : "Color"
+      },
+      "FillOverlay" : {
+        "Blend" : "Darken"
+      }
+    }
+  },
+  "MinValue" : 5.962133916683182,
+  "MinorTickMark" : "Cross",
+  "LogBase" : 5.637376656633329,
+  "AxisBetweenCategories" : true,
+  "IsLogarithmic" : true,
+  "DisplayUnit" : "None",
+  "HasTitle" : true,
+  "TickLabelSpacing" : 3,
+  "MajorGridLinesFormat" : {
+    "LineFormat" : {
+      "JoinStyle" : "Round",
+      "FillFormat" : {
+        "Type" : "NoFill"
+      },
+      "Alignment" : "Center",
+      "SketchType" : "None",
+      "EndArrowHead" : {
+        "Length" : "Short",
+        "Style" : "None",
+        "Width" : "Narrow"
+      },
+      "CustomDashPattern" : {
+        "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
+      },
+      "DashStyle" : "Solid",
+      "Style" : "Single",
+      "MiterLimit" : 6.965117697638846,
+      "BeginArrowHead" : {
+        "Length" : "Short",
+        "Style" : "None",
+        "Width" : "Narrow"
+      },
+      "CapStyle" : "Round",
+      "Width" : 1.284659006116532
+    },
+    "EffectFormat" : {
+      "SoftEdge" : {
+        "Radius" : 1.0246457001441578
+      },
+      "InnerShadow" : {
+        "BlurRadius" : 9.301444243932576,
+        "ShadowColor" : "ShadowColor",
+        "Direction" : 2.3021358869347655,
+        "Distance" : 7.061401241503109
+      },
+      "OuterShadow" : {
+        "BlurRadius" : 4.145608029883936,
+        "ShadowColor" : "ShadowColor",
+        "Direction" : 3.616076749251911,
+        "Distance" : 2.027123023002322
+      },
+      "Blur" : {
+        "Radius" : 5.962133916683182,
+        "Grow" : true
+      },
+      "PresetShadow" : {
+        "Preset" : "TopLeftDropShadow",
+        "ShadowColor" : "ShadowColor",
+        "Direction" : 7.386281948385884,
+        "Distance" : 1.2315135367772556
+      },
+      "Reflection" : {
+        "StartPosAlpha" : 6.683562403749608,
+        "EndReflectionOpacity" : 6.438423552598547,
+        "FadeDirection" : 6.84685269835264,
+        "EndPosAlpha" : 8.762042012749001,
+        "BlurRadius" : 1.1730742509559433,
+        "ScaleVertical" : 5.025004791520295,
+        "RotateShadowWithShape" : true,
+        "Direction" : 1.4894159098541704,
+        "ScaleHorizontal" : 4.965218492984954,
+        "SkewVertical" : 9.369310271410669,
+        "StartReflectionOpacity" : 9.018348186070783,
+        "RectangleAlign" : "TopLeft",
+        "SkewHorizontal" : 9.965781217890562,
+        "Distance" : 7.457744773683766
+      },
+      "Glow" : {
+        "Radius" : 5.637376656633329,
+        "Color" : "Color"
+      },
+      "FillOverlay" : {
+        "Blend" : "Darken"
+      }
+    }
+  },
+  "Position" : "Bottom",
+  "TickLabelPosition" : "High",
+  "EffectFormat" : {
+    "SoftEdge" : {
+      "Radius" : 1.0246457001441578
+    },
+    "InnerShadow" : {
+      "BlurRadius" : 9.301444243932576,
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 2.3021358869347655,
+      "Distance" : 7.061401241503109
+    },
+    "OuterShadow" : {
+      "BlurRadius" : 4.145608029883936,
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 3.616076749251911,
+      "Distance" : 2.027123023002322
+    },
+    "Blur" : {
+      "Radius" : 5.962133916683182,
+      "Grow" : true
+    },
+    "PresetShadow" : {
+      "Preset" : "TopLeftDropShadow",
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 7.386281948385884,
+      "Distance" : 1.2315135367772556
+    },
+    "Reflection" : {
+      "StartPosAlpha" : 6.683562403749608,
+      "EndReflectionOpacity" : 6.438423552598547,
+      "FadeDirection" : 6.84685269835264,
+      "EndPosAlpha" : 8.762042012749001,
+      "BlurRadius" : 1.1730742509559433,
+      "ScaleVertical" : 5.025004791520295,
+      "RotateShadowWithShape" : true,
+      "Direction" : 1.4894159098541704,
+      "ScaleHorizontal" : 4.965218492984954,
+      "SkewVertical" : 9.369310271410669,
+      "StartReflectionOpacity" : 9.018348186070783,
+      "RectangleAlign" : "TopLeft",
+      "SkewHorizontal" : 9.965781217890562,
+      "Distance" : 7.457744773683766
+    },
+    "Glow" : {
+      "Radius" : 5.637376656633329,
+      "Color" : "Color"
+    },
+    "FillOverlay" : {
+      "Blend" : "Darken"
+    }
+  },
+  "IsAutomaticMajorUnit" : true,
+  "MajorUnit" : 0.8008281904610115,
+  "MaxValue" : 1.4658129805029452,
+  "IsPlotOrderReversed" : true,
+  "MajorUnitScale" : "None",
+  "CrossAt" : 7.061401241503109,
+  "IsAutomaticTickMarksSpacing" : true,
+  "FillFormat" : {
+    "Type" : "NoFill"
+  },
+  "LabelOffset" : 2,
+  "IsAutomaticMaxValue" : true,
+  "IsAutomaticMinValue" : true,
+  "IsVisible" : true,
+  "NumberFormat" : "NumberFormat"
+}}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter axisType: Axis type. Horizontal, Vertical, SecondaryHorizontal or SecondaryVertical.
+     - parameter axis: Axis DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Axis> 
+     */
+    open class func setChartAxisWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ axisType: String, _ axis: Axis, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Axis> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{axisType}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "axisType", axisType)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: axis)
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Axis>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Set chart axis.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter legend: Chart legend DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setChartLegend(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ legend: Legend, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Legend?,_ error: Error?) -> Void)) {
+        setChartLegendWithRequestBuilder(name, slideIndex, shapeIndex, legend, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Set chart axis.
+     - PUT /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/legend
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "FillFormat" : {
+    "Type" : "NoFill"
+  },
+  "LineFormat" : {
+    "JoinStyle" : "Round",
+    "FillFormat" : {
+      "Type" : "NoFill"
+    },
+    "Alignment" : "Center",
+    "SketchType" : "None",
+    "EndArrowHead" : {
+      "Length" : "Short",
+      "Style" : "None",
+      "Width" : "Narrow"
+    },
+    "CustomDashPattern" : {
+      "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
+    },
+    "DashStyle" : "Solid",
+    "Style" : "Single",
+    "MiterLimit" : 6.965117697638846,
+    "BeginArrowHead" : {
+      "Length" : "Short",
+      "Style" : "None",
+      "Width" : "Narrow"
+    },
+    "CapStyle" : "Round",
+    "Width" : 1.284659006116532
+  },
+  "Position" : "Bottom",
+  "EffectFormat" : {
+    "SoftEdge" : {
+      "Radius" : 1.0246457001441578
+    },
+    "InnerShadow" : {
+      "BlurRadius" : 9.301444243932576,
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 2.3021358869347655,
+      "Distance" : 7.061401241503109
+    },
+    "OuterShadow" : {
+      "BlurRadius" : 4.145608029883936,
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 3.616076749251911,
+      "Distance" : 2.027123023002322
+    },
+    "Blur" : {
+      "Radius" : 5.962133916683182,
+      "Grow" : true
+    },
+    "PresetShadow" : {
+      "Preset" : "TopLeftDropShadow",
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 7.386281948385884,
+      "Distance" : 1.2315135367772556
+    },
+    "Reflection" : {
+      "StartPosAlpha" : 6.683562403749608,
+      "EndReflectionOpacity" : 6.438423552598547,
+      "FadeDirection" : 6.84685269835264,
+      "EndPosAlpha" : 8.762042012749001,
+      "BlurRadius" : 1.1730742509559433,
+      "ScaleVertical" : 5.025004791520295,
+      "RotateShadowWithShape" : true,
+      "Direction" : 1.4894159098541704,
+      "ScaleHorizontal" : 4.965218492984954,
+      "SkewVertical" : 9.369310271410669,
+      "StartReflectionOpacity" : 9.018348186070783,
+      "RectangleAlign" : "TopLeft",
+      "SkewHorizontal" : 9.965781217890562,
+      "Distance" : 7.457744773683766
+    },
+    "Glow" : {
+      "Radius" : 5.637376656633329,
+      "Color" : "Color"
+    },
+    "FillOverlay" : {
+      "Blend" : "Darken"
+    }
+  },
+  "X" : 0.8008281904610115,
+  "Y" : 6.027456183070403,
+  "Height" : 5.962133916683182,
+  "HasLegend" : true,
+  "Overlay" : true,
+  "Width" : 1.4658129805029452
+}}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter legend: Chart legend DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Legend> 
+     */
+    open class func setChartLegendWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ legend: Legend, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Legend> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/legend"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: legend)
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Legend>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Set a series group in a chart.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index (must be a chart).
+     - parameter seriesGroupIndex: Series group index.
+     - parameter seriesGroup: Series group DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setChartSeriesGroup(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ seriesGroupIndex: Int, _ seriesGroup: ChartSeriesGroup, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Chart?,_ error: Error?) -> Void)) {
+        setChartSeriesGroupWithRequestBuilder(name, slideIndex, shapeIndex, seriesGroupIndex, seriesGroup, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Set a series group in a chart.
+     - PUT /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index (must be a chart).
+     - parameter seriesGroupIndex: Series group index.
+     - parameter seriesGroup: Series group DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Chart> 
+     */
+    open class func setChartSeriesGroupWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ seriesGroupIndex: Int, _ seriesGroup: ChartSeriesGroup, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Chart> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "seriesGroupIndex", seriesGroupIndex)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: seriesGroup)
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Chart>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
+     * enum for parameter chartWallType
+     */
+    public enum ChartWallType_setChartWall: String { 
+        case floor = "Floor"
+        case sideWall = "SideWall"
+        case backWall = "BackWall"
+    }
+
+    /**
+     Set 3D chart wall.
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter chartWallType: Chart wall type: floor, sideWall or backWall.
+     - parameter chartWall: Chart wall DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setChartWall(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ chartWallType: String, _ chartWall: ChartWall, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ChartWall?,_ error: Error?) -> Void)) {
+        setChartWallWithRequestBuilder(name, slideIndex, shapeIndex, chartWallType, chartWall, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Set 3D chart wall.
+     - PUT /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{chartWallType}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "Thickness" : 0,
+  "FillFormat" : {
+    "Type" : "NoFill"
+  },
+  "LineFormat" : {
+    "JoinStyle" : "Round",
+    "FillFormat" : {
+      "Type" : "NoFill"
+    },
+    "Alignment" : "Center",
+    "SketchType" : "None",
+    "EndArrowHead" : {
+      "Length" : "Short",
+      "Style" : "None",
+      "Width" : "Narrow"
+    },
+    "CustomDashPattern" : {
+      "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
+    },
+    "DashStyle" : "Solid",
+    "Style" : "Single",
+    "MiterLimit" : 6.965117697638846,
+    "BeginArrowHead" : {
+      "Length" : "Short",
+      "Style" : "None",
+      "Width" : "Narrow"
+    },
+    "CapStyle" : "Round",
+    "Width" : 1.284659006116532
+  },
+  "EffectFormat" : {
+    "SoftEdge" : {
+      "Radius" : 1.0246457001441578
+    },
+    "InnerShadow" : {
+      "BlurRadius" : 9.301444243932576,
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 2.3021358869347655,
+      "Distance" : 7.061401241503109
+    },
+    "OuterShadow" : {
+      "BlurRadius" : 4.145608029883936,
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 3.616076749251911,
+      "Distance" : 2.027123023002322
+    },
+    "Blur" : {
+      "Radius" : 5.962133916683182,
+      "Grow" : true
+    },
+    "PresetShadow" : {
+      "Preset" : "TopLeftDropShadow",
+      "ShadowColor" : "ShadowColor",
+      "Direction" : 7.386281948385884,
+      "Distance" : 1.2315135367772556
+    },
+    "Reflection" : {
+      "StartPosAlpha" : 6.683562403749608,
+      "EndReflectionOpacity" : 6.438423552598547,
+      "FadeDirection" : 6.84685269835264,
+      "EndPosAlpha" : 8.762042012749001,
+      "BlurRadius" : 1.1730742509559433,
+      "ScaleVertical" : 5.025004791520295,
+      "RotateShadowWithShape" : true,
+      "Direction" : 1.4894159098541704,
+      "ScaleHorizontal" : 4.965218492984954,
+      "SkewVertical" : 9.369310271410669,
+      "StartReflectionOpacity" : 9.018348186070783,
+      "RectangleAlign" : "TopLeft",
+      "SkewHorizontal" : 9.965781217890562,
+      "Distance" : 7.457744773683766
+    },
+    "Glow" : {
+      "Radius" : 5.637376656633329,
+      "Color" : "Color"
+    },
+    "FillOverlay" : {
+      "Blend" : "Darken"
+    }
+  },
+  "PictureType" : "Stack"
+}}]
+     - parameter name: Document name.
+     - parameter slideIndex: Slide index.
+     - parameter shapeIndex: Shape index.
+     - parameter chartWallType: Chart wall type: floor, sideWall or backWall.
+     - parameter chartWall: Chart wall DTO.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<ChartWall> 
+     */
+    open class func setChartWallWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ chartWallType: String, _ chartWall: ChartWall, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ChartWall> {
+        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{chartWallType}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
+        methodPath = APIHelper.replacePathParameter(methodPath, "chartWallType", chartWallType)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: chartWall)
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<ChartWall>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
      Set document properties.
      - parameter name: Document name.
      - parameter properties: New properties.
@@ -14319,6 +15637,244 @@ open class SlidesAPI {
         let requestBuilder: RequestBuilder<DocumentProperty>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Embeds specified font and returns presentation fonts info.
+     - parameter name: Document name.
+     - parameter fontName: Font name.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter fontsFolder: Custom fonts folder.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setEmbeddedFont(_ name: String, _ fontName: String, _ onlyUsed: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: FontsData?,_ error: Error?) -> Void)) {
+        setEmbeddedFontWithRequestBuilder(name, fontName, onlyUsed, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Embeds specified font and returns presentation fonts info.
+     - POST /slides/{name}/fonts/embedded/{fontName}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "List" : [ {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  }, {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  } ]
+}}]
+     - parameter name: Document name.
+     - parameter fontName: Font name.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter fontsFolder: Custom fonts folder.
+     - returns: RequestBuilder<FontsData> 
+     */
+    open class func setEmbeddedFontWithRequestBuilder(_ name: String, _ fontName: String, _ onlyUsed: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<FontsData> {
+        var methodPath = "/slides/{name}/fonts/embedded/{fontName}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        methodPath = APIHelper.replacePathParameter(methodPath, "fontName", fontName)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "onlyUsed": onlyUsed, 
+            "folder": folder, 
+            "storage": storage, 
+            "fontsFolder": fontsFolder
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<FontsData>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Embeds font from request and returns presentation fonts info.
+     - parameter font: Font data.
+     - parameter name: Document name.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setEmbeddedFontFromRequest(_ font: Data, _ name: String, _ onlyUsed: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: FontsData?,_ error: Error?) -> Void)) {
+        setEmbeddedFontFromRequestWithRequestBuilder(font, name, onlyUsed, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Embeds font from request and returns presentation fonts info.
+     - POST /slides/{name}/fonts/embedded
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "List" : [ {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  }, {
+    "IsEmbedded" : true,
+    "FontName" : "FontName"
+  } ]
+}}]
+     - parameter font: Font data.
+     - parameter name: Document name.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<FontsData> 
+     */
+    open class func setEmbeddedFontFromRequestWithRequestBuilder(_ font: Data, _ name: String, _ onlyUsed: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<FontsData> {
+        var methodPath = "/slides/{name}/fonts/embedded"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(font)
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "onlyUsed": onlyUsed, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<FontsData>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Embeds font from request and returns presentation.
+     - parameter document: Document data.
+     - parameter font: Font data.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setEmbeddedFontFromRequestOnline(_ document: Data, _ font: Data, _ onlyUsed: Bool? = nil, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        setEmbeddedFontFromRequestOnlineWithRequestBuilder(document, font, onlyUsed, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Embeds font from request and returns presentation.
+     - POST /slides/fonts/embedded
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data.
+     - parameter font: Font data.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func setEmbeddedFontFromRequestOnlineWithRequestBuilder(_ document: Data, _ font: Data, _ onlyUsed: Bool? = nil, _ password: String = "") -> RequestBuilder<Data> {
+        let methodPath = "/slides/fonts/embedded"
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+        fileParams.append(font)
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "onlyUsed": onlyUsed
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Embeds specified font and returns presentation.
+     - parameter document: Document data.
+     - parameter fontName: Font name.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter fontsFolder: Custom fonts folder.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setEmbeddedFontOnline(_ document: Data, _ fontName: String, _ onlyUsed: Bool? = nil, _ password: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        setEmbeddedFontOnlineWithRequestBuilder(document, fontName, onlyUsed, password, fontsFolder).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Embeds specified font and returns presentation.
+     - POST /slides/fonts/embedded/{fontName}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data.
+     - parameter fontName: Font name.
+     - parameter onlyUsed: Only used characters will be embedded.
+     - parameter password: Document password.
+     - parameter fontsFolder: Custom fonts folder.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func setEmbeddedFontOnlineWithRequestBuilder(_ document: Data, _ fontName: String, _ onlyUsed: Bool? = nil, _ password: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+        var methodPath = "/slides/fonts/embedded/{fontName}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "fontName", fontName)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "onlyUsed": onlyUsed, 
+            "fontsFolder": fontsFolder
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
      Set header/footer the notes slide.
@@ -14896,6 +16452,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -14998,6 +16555,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -15044,12 +16602,7 @@ open class SlidesAPI {
         var methodPath = "/slides/split/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -15100,6 +16653,7 @@ open class SlidesAPI {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
 
     /**
@@ -15144,12 +16698,7 @@ open class SlidesAPI {
         var methodPath = "/slides/split/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "document": document
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()
@@ -15505,68 +17054,6 @@ open class SlidesAPI {
         methodPath = APIHelper.replacePathParameter(methodPath, "seriesIndex", seriesIndex)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: series)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Chart>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Update a series group in a chart.
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter shapeIndex: Shape index (must be a chart).
-     - parameter seriesGroupIndex: Series group index.
-     - parameter seriesGroup: Series group DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateChartSeriesGroup(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ seriesGroupIndex: Int, _ seriesGroup: ChartSeriesGroup, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Chart?,_ error: Error?) -> Void)) {
-        updateChartSeriesGroupWithRequestBuilder(name, slideIndex, shapeIndex, seriesGroupIndex, seriesGroup, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update a series group in a chart.
-     - PUT /slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter shapeIndex: Shape index (must be a chart).
-     - parameter seriesGroupIndex: Series group index.
-     - parameter seriesGroup: Series group DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Chart> 
-     */
-    open class func updateChartSeriesGroupWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ seriesGroupIndex: Int, _ seriesGroup: ChartSeriesGroup, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Chart> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/seriesGroup/{seriesGroupIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "seriesGroupIndex", seriesGroupIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: seriesGroup)
 
 
         var fileParams = [Data]()
@@ -16838,12 +18325,7 @@ open class SlidesAPI {
         var methodPath = "/slides/storage/file/{path}"
         methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let formParams: [String:Any?] = [
-            "file": file
-        ]
-
-        let nonNullParameters = APIHelper.rejectNil(formParams)
-        let parameters = APIHelper.convertBoolToString(nonNullParameters)
+        let parameters: [String:Any]? = nil
 
 
         var fileParams = [Data]()

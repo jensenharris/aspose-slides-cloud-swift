@@ -43,7 +43,7 @@ public class FillOverlayEffect: Codable {
     public var blend: Blend?
 
     func fillValues(_ source: [String:Any]) throws {
-        let blendValue = source["blend"]
+        let blendValue = source["blend"] ?? source["Blend"]
         if blendValue != nil {
             let blendStringValue = blendValue! as? String
             if blendStringValue != nil {

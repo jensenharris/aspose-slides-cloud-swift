@@ -39,18 +39,18 @@ public class ScatterChartDataPoint: DataPoint {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let xValueValue = source["xValue"]
+        let xValueValue = source["xValue"] ?? source["XValue"]
         if xValueValue != nil {
             self.xValue = xValueValue! as? Double
         }
-        let yValueValue = source["yValue"]
+        let yValueValue = source["yValue"] ?? source["YValue"]
         if yValueValue != nil {
             self.yValue = yValueValue! as? Double
         }
     }
 
-    public init(xValue: Double? = nil, yValue: Double? = nil) {
-        super.init()
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil) {
+        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat)
         self.xValue = xValue
         self.yValue = yValue
     }

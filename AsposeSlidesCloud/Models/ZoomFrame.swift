@@ -37,7 +37,7 @@ public class ZoomFrame: ZoomObject {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let targetSlideIndexValue = source["targetSlideIndex"]
+        let targetSlideIndexValue = source["targetSlideIndex"] ?? source["TargetSlideIndex"]
         if targetSlideIndexValue != nil {
             self.targetSlideIndex = targetSlideIndexValue! as? Int
         }

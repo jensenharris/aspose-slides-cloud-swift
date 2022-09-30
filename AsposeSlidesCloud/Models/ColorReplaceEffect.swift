@@ -37,7 +37,7 @@ public class ColorReplaceEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let colorValue = source["color"]
+        let colorValue = source["color"] ?? source["Color"]
         if colorValue != nil {
             self.color = colorValue! as? String
         }

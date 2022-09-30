@@ -36,7 +36,7 @@ public class GeometryPaths: Codable {
     public var paths: [GeometryPath]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let pathsValue = source["paths"]
+        let pathsValue = source["paths"] ?? source["Paths"]
         if pathsValue != nil {
             var pathsArray: [GeometryPath] = []
             let pathsDictionaryValue = pathsValue! as? [Any]

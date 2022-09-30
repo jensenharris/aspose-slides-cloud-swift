@@ -36,7 +36,7 @@ public class FilesList: Codable {
     public var value: [StorageFile]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let valueValue = source["value"]
+        let valueValue = source["value"] ?? source["Value"]
         if valueValue != nil {
             var valueArray: [StorageFile] = []
             let valueDictionaryValue = valueValue! as? [Any]

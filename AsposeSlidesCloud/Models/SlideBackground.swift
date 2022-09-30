@@ -49,7 +49,7 @@ public class SlideBackground: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {
@@ -59,7 +59,7 @@ public class SlideBackground: ResourceBase {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -69,7 +69,7 @@ public class SlideBackground: ResourceBase {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {

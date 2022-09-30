@@ -43,7 +43,7 @@ public class FillFormat: Codable {
     public var type: ModelType?
 
     func fillValues(_ source: [String:Any]) throws {
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {

@@ -239,7 +239,7 @@ public class SmartArt: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let layoutValue = source["layout"]
+        let layoutValue = source["layout"] ?? source["Layout"]
         if layoutValue != nil {
             let layoutStringValue = layoutValue! as? String
             if layoutStringValue != nil {
@@ -249,7 +249,7 @@ public class SmartArt: ShapeBase {
                 }
             }
         }
-        let quickStyleValue = source["quickStyle"]
+        let quickStyleValue = source["quickStyle"] ?? source["QuickStyle"]
         if quickStyleValue != nil {
             let quickStyleStringValue = quickStyleValue! as? String
             if quickStyleStringValue != nil {
@@ -259,7 +259,7 @@ public class SmartArt: ShapeBase {
                 }
             }
         }
-        let colorStyleValue = source["colorStyle"]
+        let colorStyleValue = source["colorStyle"] ?? source["ColorStyle"]
         if colorStyleValue != nil {
             let colorStyleStringValue = colorStyleValue! as? String
             if colorStyleStringValue != nil {
@@ -269,7 +269,7 @@ public class SmartArt: ShapeBase {
                 }
             }
         }
-        let nodesValue = source["nodes"]
+        let nodesValue = source["nodes"] ?? source["Nodes"]
         if nodesValue != nil {
             var nodesArray: [SmartArtNode] = []
             let nodesDictionaryValue = nodesValue! as? [Any]
@@ -294,7 +294,7 @@ public class SmartArt: ShapeBase {
             }
             self.nodes = nodesArray
         }
-        let isReversedValue = source["isReversed"]
+        let isReversedValue = source["isReversed"] ?? source["IsReversed"]
         if isReversedValue != nil {
             self.isReversed = isReversedValue! as? Bool
         }

@@ -38,7 +38,7 @@ public class InteractiveSequence: Codable {
     public var triggerShapeIndex: Int?
 
     func fillValues(_ source: [String:Any]) throws {
-        let effectsValue = source["effects"]
+        let effectsValue = source["effects"] ?? source["Effects"]
         if effectsValue != nil {
             var effectsArray: [Effect] = []
             let effectsDictionaryValue = effectsValue! as? [Any]
@@ -63,7 +63,7 @@ public class InteractiveSequence: Codable {
             }
             self.effects = effectsArray
         }
-        let triggerShapeIndexValue = source["triggerShapeIndex"]
+        let triggerShapeIndexValue = source["triggerShapeIndex"] ?? source["TriggerShapeIndex"]
         if triggerShapeIndexValue != nil {
             self.triggerShapeIndex = triggerShapeIndexValue! as? Int
         }

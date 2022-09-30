@@ -76,11 +76,11 @@ public class Hyperlink: Codable {
     public var colorSource: ColorSource?
 
     func fillValues(_ source: [String:Any]) throws {
-        let isDisabledValue = source["isDisabled"]
+        let isDisabledValue = source["isDisabled"] ?? source["IsDisabled"]
         if isDisabledValue != nil {
             self.isDisabled = isDisabledValue! as? Bool
         }
-        let actionTypeValue = source["actionType"]
+        let actionTypeValue = source["actionType"] ?? source["ActionType"]
         if actionTypeValue != nil {
             let actionTypeStringValue = actionTypeValue! as? String
             if actionTypeStringValue != nil {
@@ -90,35 +90,35 @@ public class Hyperlink: Codable {
                 }
             }
         }
-        let externalUrlValue = source["externalUrl"]
+        let externalUrlValue = source["externalUrl"] ?? source["ExternalUrl"]
         if externalUrlValue != nil {
             self.externalUrl = externalUrlValue! as? String
         }
-        let targetSlideIndexValue = source["targetSlideIndex"]
+        let targetSlideIndexValue = source["targetSlideIndex"] ?? source["TargetSlideIndex"]
         if targetSlideIndexValue != nil {
             self.targetSlideIndex = targetSlideIndexValue! as? Int
         }
-        let targetFrameValue = source["targetFrame"]
+        let targetFrameValue = source["targetFrame"] ?? source["TargetFrame"]
         if targetFrameValue != nil {
             self.targetFrame = targetFrameValue! as? String
         }
-        let tooltipValue = source["tooltip"]
+        let tooltipValue = source["tooltip"] ?? source["Tooltip"]
         if tooltipValue != nil {
             self.tooltip = tooltipValue! as? String
         }
-        let historyValue = source["history"]
+        let historyValue = source["history"] ?? source["History"]
         if historyValue != nil {
             self.history = historyValue! as? Bool
         }
-        let highlightClickValue = source["highlightClick"]
+        let highlightClickValue = source["highlightClick"] ?? source["HighlightClick"]
         if highlightClickValue != nil {
             self.highlightClick = highlightClickValue! as? Bool
         }
-        let stopSoundOnClickValue = source["stopSoundOnClick"]
+        let stopSoundOnClickValue = source["stopSoundOnClick"] ?? source["StopSoundOnClick"]
         if stopSoundOnClickValue != nil {
             self.stopSoundOnClick = stopSoundOnClickValue! as? Bool
         }
-        let colorSourceValue = source["colorSource"]
+        let colorSourceValue = source["colorSource"] ?? source["ColorSource"]
         if colorSourceValue != nil {
             let colorSourceStringValue = colorSourceValue! as? String
             if colorSourceStringValue != nil {

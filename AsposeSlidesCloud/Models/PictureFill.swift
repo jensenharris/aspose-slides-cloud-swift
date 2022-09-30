@@ -59,27 +59,27 @@ public class PictureFill: FillFormat {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let cropBottomValue = source["cropBottom"]
+        let cropBottomValue = source["cropBottom"] ?? source["CropBottom"]
         if cropBottomValue != nil {
             self.cropBottom = cropBottomValue! as? Double
         }
-        let cropLeftValue = source["cropLeft"]
+        let cropLeftValue = source["cropLeft"] ?? source["CropLeft"]
         if cropLeftValue != nil {
             self.cropLeft = cropLeftValue! as? Double
         }
-        let cropRightValue = source["cropRight"]
+        let cropRightValue = source["cropRight"] ?? source["CropRight"]
         if cropRightValue != nil {
             self.cropRight = cropRightValue! as? Double
         }
-        let cropTopValue = source["cropTop"]
+        let cropTopValue = source["cropTop"] ?? source["CropTop"]
         if cropTopValue != nil {
             self.cropTop = cropTopValue! as? Double
         }
-        let dpiValue = source["dpi"]
+        let dpiValue = source["dpi"] ?? source["Dpi"]
         if dpiValue != nil {
             self.dpi = dpiValue! as? Int
         }
-        let imageValue = source["image"]
+        let imageValue = source["image"] ?? source["Image"]
         if imageValue != nil {
             let imageDictionaryValue = imageValue! as? [String:Any]
             if imageDictionaryValue != nil {
@@ -89,15 +89,15 @@ public class PictureFill: FillFormat {
                 }
             }
         }
-        let base64DataValue = source["base64Data"]
+        let base64DataValue = source["base64Data"] ?? source["Base64Data"]
         if base64DataValue != nil {
             self.base64Data = base64DataValue! as? String
         }
-        let svgDataValue = source["svgData"]
+        let svgDataValue = source["svgData"] ?? source["SvgData"]
         if svgDataValue != nil {
             self.svgData = svgDataValue! as? String
         }
-        let pictureFillModeValue = source["pictureFillMode"]
+        let pictureFillModeValue = source["pictureFillMode"] ?? source["PictureFillMode"]
         if pictureFillModeValue != nil {
             let pictureFillModeStringValue = pictureFillModeValue! as? String
             if pictureFillModeStringValue != nil {
@@ -107,7 +107,7 @@ public class PictureFill: FillFormat {
                 }
             }
         }
-        let imageTransformListValue = source["imageTransformList"]
+        let imageTransformListValue = source["imageTransformList"] ?? source["ImageTransformList"]
         if imageTransformListValue != nil {
             var imageTransformListArray: [ImageTransformEffect] = []
             let imageTransformListDictionaryValue = imageTransformListValue! as? [Any]

@@ -37,7 +37,7 @@ public class PictureFrame: GeometryShape {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let pictureFillFormatValue = source["pictureFillFormat"]
+        let pictureFillFormatValue = source["pictureFillFormat"] ?? source["PictureFillFormat"]
         if pictureFillFormatValue != nil {
             let pictureFillFormatDictionaryValue = pictureFillFormatValue! as? [String:Any]
             if pictureFillFormatDictionaryValue != nil {

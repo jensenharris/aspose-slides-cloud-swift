@@ -39,18 +39,18 @@ public class ImageExportOptionsBase: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Int
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Int
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.height = height
         self.width = width
     }

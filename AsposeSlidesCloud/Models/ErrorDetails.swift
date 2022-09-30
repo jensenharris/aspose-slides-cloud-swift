@@ -38,11 +38,11 @@ public class ErrorDetails: Codable {
     public var date: Date?
 
     func fillValues(_ source: [String:Any]) throws {
-        let requestIdValue = source["requestId"]
+        let requestIdValue = source["requestId"] ?? source["RequestId"]
         if requestIdValue != nil {
             self.requestId = requestIdValue! as? String
         }
-        let dateValue = source["date"]
+        let dateValue = source["date"] ?? source["Date"]
         if dateValue != nil {
             let dateDictionaryValue = dateValue! as? [String:Any]
             if dateDictionaryValue != nil {

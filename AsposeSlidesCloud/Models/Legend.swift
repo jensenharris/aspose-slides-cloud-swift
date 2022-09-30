@@ -61,7 +61,7 @@ public class Legend: Codable {
     public var hasLegend: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             let positionStringValue = positionValue! as? String
             if positionStringValue != nil {
@@ -71,27 +71,27 @@ public class Legend: Codable {
                 }
             }
         }
-        let XValue = source["X"]
+        let XValue = source["X"] ?? source["X"]
         if XValue != nil {
             self.X = XValue! as? Double
         }
-        let YValue = source["Y"]
+        let YValue = source["Y"] ?? source["Y"]
         if YValue != nil {
             self.Y = YValue! as? Double
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }
-        let overlayValue = source["overlay"]
+        let overlayValue = source["overlay"] ?? source["Overlay"]
         if overlayValue != nil {
             self.overlay = overlayValue! as? Bool
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -101,7 +101,7 @@ public class Legend: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -111,7 +111,7 @@ public class Legend: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -121,7 +121,7 @@ public class Legend: Codable {
                 }
             }
         }
-        let hasLegendValue = source["hasLegend"]
+        let hasLegendValue = source["hasLegend"] ?? source["HasLegend"]
         if hasLegendValue != nil {
             self.hasLegend = hasLegendValue! as? Bool
         }

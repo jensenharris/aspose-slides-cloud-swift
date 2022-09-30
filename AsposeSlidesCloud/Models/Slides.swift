@@ -37,7 +37,7 @@ public class Slides: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let slideListValue = source["slideList"]
+        let slideListValue = source["slideList"] ?? source["SlideList"]
         if slideListValue != nil {
             var slideListArray: [ResourceUri] = []
             let slideListDictionaryValue = slideListValue! as? [Any]

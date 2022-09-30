@@ -41,7 +41,7 @@ public class LeftSubSuperscriptElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -51,7 +51,7 @@ public class LeftSubSuperscriptElement: MathElement {
                 }
             }
         }
-        let _subscriptValue = source["_subscript"]
+        let _subscriptValue = source["_subscript"] ?? source["Subscript"]
         if _subscriptValue != nil {
             let _subscriptDictionaryValue = _subscriptValue! as? [String:Any]
             if _subscriptDictionaryValue != nil {
@@ -61,7 +61,7 @@ public class LeftSubSuperscriptElement: MathElement {
                 }
             }
         }
-        let superscriptValue = source["superscript"]
+        let superscriptValue = source["superscript"] ?? source["Superscript"]
         if superscriptValue != nil {
             let superscriptDictionaryValue = superscriptValue! as? [String:Any]
             if superscriptDictionaryValue != nil {

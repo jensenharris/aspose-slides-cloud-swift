@@ -37,7 +37,7 @@ public class AlphaReplaceEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let alphaValue = source["alpha"]
+        let alphaValue = source["alpha"] ?? source["Alpha"]
         if alphaValue != nil {
             self.alpha = alphaValue! as? Double
         }

@@ -136,7 +136,7 @@ public class ChartSeriesGroup: Codable {
     public var bubbleSizeRepresentation: BubbleSizeRepresentation?
 
     func fillValues(_ source: [String:Any]) throws {
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {
@@ -146,39 +146,39 @@ public class ChartSeriesGroup: Codable {
                 }
             }
         }
-        let gapWidthValue = source["gapWidth"]
+        let gapWidthValue = source["gapWidth"] ?? source["GapWidth"]
         if gapWidthValue != nil {
             self.gapWidth = gapWidthValue! as? Int
         }
-        let gapDepthValue = source["gapDepth"]
+        let gapDepthValue = source["gapDepth"] ?? source["GapDepth"]
         if gapDepthValue != nil {
             self.gapDepth = gapDepthValue! as? Int
         }
-        let firstSliceAngleValue = source["firstSliceAngle"]
+        let firstSliceAngleValue = source["firstSliceAngle"] ?? source["FirstSliceAngle"]
         if firstSliceAngleValue != nil {
             self.firstSliceAngle = firstSliceAngleValue! as? Int
         }
-        let isColorVariedValue = source["isColorVaried"]
+        let isColorVariedValue = source["isColorVaried"] ?? source["IsColorVaried"]
         if isColorVariedValue != nil {
             self.isColorVaried = isColorVariedValue! as? Bool
         }
-        let hasSeriesLinesValue = source["hasSeriesLines"]
+        let hasSeriesLinesValue = source["hasSeriesLines"] ?? source["HasSeriesLines"]
         if hasSeriesLinesValue != nil {
             self.hasSeriesLines = hasSeriesLinesValue! as? Bool
         }
-        let overlapValue = source["overlap"]
+        let overlapValue = source["overlap"] ?? source["Overlap"]
         if overlapValue != nil {
             self.overlap = overlapValue! as? Int
         }
-        let secondPieSizeValue = source["secondPieSize"]
+        let secondPieSizeValue = source["secondPieSize"] ?? source["SecondPieSize"]
         if secondPieSizeValue != nil {
             self.secondPieSize = secondPieSizeValue! as? Int
         }
-        let pieSplitPositionValue = source["pieSplitPosition"]
+        let pieSplitPositionValue = source["pieSplitPosition"] ?? source["PieSplitPosition"]
         if pieSplitPositionValue != nil {
             self.pieSplitPosition = pieSplitPositionValue! as? Double
         }
-        let pieSplitByValue = source["pieSplitBy"]
+        let pieSplitByValue = source["pieSplitBy"] ?? source["PieSplitBy"]
         if pieSplitByValue != nil {
             let pieSplitByStringValue = pieSplitByValue! as? String
             if pieSplitByStringValue != nil {
@@ -188,15 +188,15 @@ public class ChartSeriesGroup: Codable {
                 }
             }
         }
-        let doughnutHoleSizeValue = source["doughnutHoleSize"]
+        let doughnutHoleSizeValue = source["doughnutHoleSize"] ?? source["DoughnutHoleSize"]
         if doughnutHoleSizeValue != nil {
             self.doughnutHoleSize = doughnutHoleSizeValue! as? Int
         }
-        let bubbleSizeScaleValue = source["bubbleSizeScale"]
+        let bubbleSizeScaleValue = source["bubbleSizeScale"] ?? source["BubbleSizeScale"]
         if bubbleSizeScaleValue != nil {
             self.bubbleSizeScale = bubbleSizeScaleValue! as? Int
         }
-        let hiLowLinesFormatValue = source["hiLowLinesFormat"]
+        let hiLowLinesFormatValue = source["hiLowLinesFormat"] ?? source["HiLowLinesFormat"]
         if hiLowLinesFormatValue != nil {
             let hiLowLinesFormatDictionaryValue = hiLowLinesFormatValue! as? [String:Any]
             if hiLowLinesFormatDictionaryValue != nil {
@@ -206,7 +206,7 @@ public class ChartSeriesGroup: Codable {
                 }
             }
         }
-        let bubbleSizeRepresentationValue = source["bubbleSizeRepresentation"]
+        let bubbleSizeRepresentationValue = source["bubbleSizeRepresentation"] ?? source["BubbleSizeRepresentation"]
         if bubbleSizeRepresentationValue != nil {
             let bubbleSizeRepresentationStringValue = bubbleSizeRepresentationValue! as? String
             if bubbleSizeRepresentationStringValue != nil {

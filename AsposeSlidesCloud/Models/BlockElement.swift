@@ -37,7 +37,7 @@ public class BlockElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let mathElementListValue = source["mathElementList"]
+        let mathElementListValue = source["mathElementList"] ?? source["MathElementList"]
         if mathElementListValue != nil {
             var mathElementListArray: [MathElement] = []
             let mathElementListDictionaryValue = mathElementListValue! as? [Any]

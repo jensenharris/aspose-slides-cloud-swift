@@ -41,7 +41,7 @@ public class LimitElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -51,7 +51,7 @@ public class LimitElement: MathElement {
                 }
             }
         }
-        let limitValue = source["limit"]
+        let limitValue = source["limit"] ?? source["Limit"]
         if limitValue != nil {
             let limitDictionaryValue = limitValue! as? [String:Any]
             if limitDictionaryValue != nil {
@@ -61,7 +61,7 @@ public class LimitElement: MathElement {
                 }
             }
         }
-        let upperLimitValue = source["upperLimit"]
+        let upperLimitValue = source["upperLimit"] ?? source["UpperLimit"]
         if upperLimitValue != nil {
             self.upperLimit = upperLimitValue! as? Bool
         }

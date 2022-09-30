@@ -55,6 +55,7 @@ public class SaveSlide: Task {
         case svg = "Svg"
         case fodp = "Fodp"
         case xaml = "Xaml"
+        case html5 = "Html5"
     }
     /** Output to save the slide to. */
     public var output: OutputFile?
@@ -71,7 +72,7 @@ public class SaveSlide: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let outputValue = source["output"]
+        let outputValue = source["output"] ?? source["Output"]
         if outputValue != nil {
             let outputDictionaryValue = outputValue! as? [String:Any]
             if outputDictionaryValue != nil {
@@ -81,7 +82,7 @@ public class SaveSlide: Task {
                 }
             }
         }
-        let formatValue = source["format"]
+        let formatValue = source["format"] ?? source["Format"]
         if formatValue != nil {
             let formatStringValue = formatValue! as? String
             if formatStringValue != nil {
@@ -91,7 +92,7 @@ public class SaveSlide: Task {
                 }
             }
         }
-        let optionsValue = source["options"]
+        let optionsValue = source["options"] ?? source["Options"]
         if optionsValue != nil {
             let optionsDictionaryValue = optionsValue! as? [String:Any]
             if optionsDictionaryValue != nil {
@@ -101,15 +102,15 @@ public class SaveSlide: Task {
                 }
             }
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Int
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Int
         }
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             self.position = positionValue! as? Int
         }

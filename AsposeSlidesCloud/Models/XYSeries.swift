@@ -39,11 +39,11 @@ public class XYSeries: Series {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let numberFormatOfYValuesValue = source["numberFormatOfYValues"]
+        let numberFormatOfYValuesValue = source["numberFormatOfYValues"] ?? source["NumberFormatOfYValues"]
         if numberFormatOfYValuesValue != nil {
             self.numberFormatOfYValues = numberFormatOfYValuesValue! as? String
         }
-        let numberFormatOfXValuesValue = source["numberFormatOfXValues"]
+        let numberFormatOfXValuesValue = source["numberFormatOfXValues"] ?? source["NumberFormatOfXValues"]
         if numberFormatOfXValuesValue != nil {
             self.numberFormatOfXValues = numberFormatOfXValuesValue! as? String
         }

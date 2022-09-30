@@ -39,11 +39,11 @@ public class UpdateBackground: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let slidesValue = source["slides"]
+        let slidesValue = source["slides"] ?? source["Slides"]
         if slidesValue != nil {
             self.slides = slidesValue! as? [Int]
         }
-        let backgroundValue = source["background"]
+        let backgroundValue = source["background"] ?? source["Background"]
         if backgroundValue != nil {
             let backgroundDictionaryValue = backgroundValue! as? [String:Any]
             if backgroundDictionaryValue != nil {

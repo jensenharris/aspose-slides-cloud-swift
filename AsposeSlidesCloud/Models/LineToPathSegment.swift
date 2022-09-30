@@ -39,11 +39,11 @@ public class LineToPathSegment: PathSegment {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let XValue = source["X"]
+        let XValue = source["X"] ?? source["X"]
         if XValue != nil {
             self.X = XValue! as? Double
         }
-        let YValue = source["Y"]
+        let YValue = source["Y"] ?? source["Y"]
         if YValue != nil {
             self.Y = YValue! as? Double
         }

@@ -38,7 +38,7 @@ public class Pipeline: Codable {
     public var tasks: [Task]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let inputValue = source["input"]
+        let inputValue = source["input"] ?? source["Input"]
         if inputValue != nil {
             let inputDictionaryValue = inputValue! as? [String:Any]
             if inputDictionaryValue != nil {
@@ -48,7 +48,7 @@ public class Pipeline: Codable {
                 }
             }
         }
-        let tasksValue = source["tasks"]
+        let tasksValue = source["tasks"] ?? source["Tasks"]
         if tasksValue != nil {
             var tasksArray: [Task] = []
             let tasksDictionaryValue = tasksValue! as? [Any]

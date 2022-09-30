@@ -165,11 +165,11 @@ public class Portion: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }
-        let mathParagraphValue = source["mathParagraph"]
+        let mathParagraphValue = source["mathParagraph"] ?? source["MathParagraph"]
         if mathParagraphValue != nil {
             let mathParagraphDictionaryValue = mathParagraphValue! as? [String:Any]
             if mathParagraphDictionaryValue != nil {
@@ -179,7 +179,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let fontBoldValue = source["fontBold"]
+        let fontBoldValue = source["fontBold"] ?? source["FontBold"]
         if fontBoldValue != nil {
             let fontBoldStringValue = fontBoldValue! as? String
             if fontBoldStringValue != nil {
@@ -189,7 +189,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let fontItalicValue = source["fontItalic"]
+        let fontItalicValue = source["fontItalic"] ?? source["FontItalic"]
         if fontItalicValue != nil {
             let fontItalicStringValue = fontItalicValue! as? String
             if fontItalicStringValue != nil {
@@ -199,7 +199,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let fontUnderlineValue = source["fontUnderline"]
+        let fontUnderlineValue = source["fontUnderline"] ?? source["FontUnderline"]
         if fontUnderlineValue != nil {
             let fontUnderlineStringValue = fontUnderlineValue! as? String
             if fontUnderlineStringValue != nil {
@@ -209,7 +209,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let strikethroughTypeValue = source["strikethroughType"]
+        let strikethroughTypeValue = source["strikethroughType"] ?? source["StrikethroughType"]
         if strikethroughTypeValue != nil {
             let strikethroughTypeStringValue = strikethroughTypeValue! as? String
             if strikethroughTypeStringValue != nil {
@@ -219,7 +219,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let textCapTypeValue = source["textCapType"]
+        let textCapTypeValue = source["textCapType"] ?? source["TextCapType"]
         if textCapTypeValue != nil {
             let textCapTypeStringValue = textCapTypeValue! as? String
             if textCapTypeStringValue != nil {
@@ -229,27 +229,27 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let escapementValue = source["escapement"]
+        let escapementValue = source["escapement"] ?? source["Escapement"]
         if escapementValue != nil {
             self.escapement = escapementValue! as? Double
         }
-        let spacingValue = source["spacing"]
+        let spacingValue = source["spacing"] ?? source["Spacing"]
         if spacingValue != nil {
             self.spacing = spacingValue! as? Double
         }
-        let fontColorValue = source["fontColor"]
+        let fontColorValue = source["fontColor"] ?? source["FontColor"]
         if fontColorValue != nil {
             self.fontColor = fontColorValue! as? String
         }
-        let highlightColorValue = source["highlightColor"]
+        let highlightColorValue = source["highlightColor"] ?? source["HighlightColor"]
         if highlightColorValue != nil {
             self.highlightColor = highlightColorValue! as? String
         }
-        let fontHeightValue = source["fontHeight"]
+        let fontHeightValue = source["fontHeight"] ?? source["FontHeight"]
         if fontHeightValue != nil {
             self.fontHeight = fontHeightValue! as? Double
         }
-        let normaliseHeightValue = source["normaliseHeight"]
+        let normaliseHeightValue = source["normaliseHeight"] ?? source["NormaliseHeight"]
         if normaliseHeightValue != nil {
             let normaliseHeightStringValue = normaliseHeightValue! as? String
             if normaliseHeightStringValue != nil {
@@ -259,7 +259,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let proofDisabledValue = source["proofDisabled"]
+        let proofDisabledValue = source["proofDisabled"] ?? source["ProofDisabled"]
         if proofDisabledValue != nil {
             let proofDisabledStringValue = proofDisabledValue! as? String
             if proofDisabledStringValue != nil {
@@ -269,15 +269,15 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let smartTagCleanValue = source["smartTagClean"]
+        let smartTagCleanValue = source["smartTagClean"] ?? source["SmartTagClean"]
         if smartTagCleanValue != nil {
             self.smartTagClean = smartTagCleanValue! as? Bool
         }
-        let kerningMinimalSizeValue = source["kerningMinimalSize"]
+        let kerningMinimalSizeValue = source["kerningMinimalSize"] ?? source["KerningMinimalSize"]
         if kerningMinimalSizeValue != nil {
             self.kerningMinimalSize = kerningMinimalSizeValue! as? Double
         }
-        let kumimojiValue = source["kumimoji"]
+        let kumimojiValue = source["kumimoji"] ?? source["Kumimoji"]
         if kumimojiValue != nil {
             let kumimojiStringValue = kumimojiValue! as? String
             if kumimojiStringValue != nil {
@@ -287,15 +287,15 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let languageIdValue = source["languageId"]
+        let languageIdValue = source["languageId"] ?? source["LanguageId"]
         if languageIdValue != nil {
             self.languageId = languageIdValue! as? String
         }
-        let alternativeLanguageIdValue = source["alternativeLanguageId"]
+        let alternativeLanguageIdValue = source["alternativeLanguageId"] ?? source["AlternativeLanguageId"]
         if alternativeLanguageIdValue != nil {
             self.alternativeLanguageId = alternativeLanguageIdValue! as? String
         }
-        let isHardUnderlineFillValue = source["isHardUnderlineFill"]
+        let isHardUnderlineFillValue = source["isHardUnderlineFill"] ?? source["IsHardUnderlineFill"]
         if isHardUnderlineFillValue != nil {
             let isHardUnderlineFillStringValue = isHardUnderlineFillValue! as? String
             if isHardUnderlineFillStringValue != nil {
@@ -305,7 +305,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let isHardUnderlineLineValue = source["isHardUnderlineLine"]
+        let isHardUnderlineLineValue = source["isHardUnderlineLine"] ?? source["IsHardUnderlineLine"]
         if isHardUnderlineLineValue != nil {
             let isHardUnderlineLineStringValue = isHardUnderlineLineValue! as? String
             if isHardUnderlineLineStringValue != nil {
@@ -315,7 +315,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -325,7 +325,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -335,7 +335,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -345,7 +345,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let underlineFillFormatValue = source["underlineFillFormat"]
+        let underlineFillFormatValue = source["underlineFillFormat"] ?? source["UnderlineFillFormat"]
         if underlineFillFormatValue != nil {
             let underlineFillFormatDictionaryValue = underlineFillFormatValue! as? [String:Any]
             if underlineFillFormatDictionaryValue != nil {
@@ -355,7 +355,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let underlineLineFormatValue = source["underlineLineFormat"]
+        let underlineLineFormatValue = source["underlineLineFormat"] ?? source["UnderlineLineFormat"]
         if underlineLineFormatValue != nil {
             let underlineLineFormatDictionaryValue = underlineLineFormatValue! as? [String:Any]
             if underlineLineFormatDictionaryValue != nil {
@@ -365,7 +365,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let hyperlinkClickValue = source["hyperlinkClick"]
+        let hyperlinkClickValue = source["hyperlinkClick"] ?? source["HyperlinkClick"]
         if hyperlinkClickValue != nil {
             let hyperlinkClickDictionaryValue = hyperlinkClickValue! as? [String:Any]
             if hyperlinkClickDictionaryValue != nil {
@@ -375,7 +375,7 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let hyperlinkMouseOverValue = source["hyperlinkMouseOver"]
+        let hyperlinkMouseOverValue = source["hyperlinkMouseOver"] ?? source["HyperlinkMouseOver"]
         if hyperlinkMouseOverValue != nil {
             let hyperlinkMouseOverDictionaryValue = hyperlinkMouseOverValue! as? [String:Any]
             if hyperlinkMouseOverDictionaryValue != nil {
@@ -385,15 +385,15 @@ public class Portion: ResourceBase {
                 }
             }
         }
-        let latinFontValue = source["latinFont"]
+        let latinFontValue = source["latinFont"] ?? source["LatinFont"]
         if latinFontValue != nil {
             self.latinFont = latinFontValue! as? String
         }
-        let eastAsianFontValue = source["eastAsianFont"]
+        let eastAsianFontValue = source["eastAsianFont"] ?? source["EastAsianFont"]
         if eastAsianFontValue != nil {
             self.eastAsianFont = eastAsianFontValue! as? String
         }
-        let complexScriptFontValue = source["complexScriptFont"]
+        let complexScriptFontValue = source["complexScriptFont"] ?? source["ComplexScriptFont"]
         if complexScriptFontValue != nil {
             self.complexScriptFont = complexScriptFontValue! as? String
         }

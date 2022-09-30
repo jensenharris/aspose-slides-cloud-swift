@@ -40,7 +40,7 @@ public class TableRow: Codable {
     public var height: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let cellsValue = source["cells"]
+        let cellsValue = source["cells"] ?? source["Cells"]
         if cellsValue != nil {
             var cellsArray: [TableCell] = []
             let cellsDictionaryValue = cellsValue! as? [Any]
@@ -65,11 +65,11 @@ public class TableRow: Codable {
             }
             self.cells = cellsArray
         }
-        let minimalHeightValue = source["minimalHeight"]
+        let minimalHeightValue = source["minimalHeight"] ?? source["MinimalHeight"]
         if minimalHeightValue != nil {
             self.minimalHeight = minimalHeightValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }

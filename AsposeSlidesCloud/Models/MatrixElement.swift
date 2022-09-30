@@ -71,11 +71,11 @@ public class MatrixElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let hidePlaceholdersValue = source["hidePlaceholders"]
+        let hidePlaceholdersValue = source["hidePlaceholders"] ?? source["HidePlaceholders"]
         if hidePlaceholdersValue != nil {
             self.hidePlaceholders = hidePlaceholdersValue! as? Bool
         }
-        let baseJustificationValue = source["baseJustification"]
+        let baseJustificationValue = source["baseJustification"] ?? source["BaseJustification"]
         if baseJustificationValue != nil {
             let baseJustificationStringValue = baseJustificationValue! as? String
             if baseJustificationStringValue != nil {
@@ -85,11 +85,11 @@ public class MatrixElement: MathElement {
                 }
             }
         }
-        let minColumnWidthValue = source["minColumnWidth"]
+        let minColumnWidthValue = source["minColumnWidth"] ?? source["MinColumnWidth"]
         if minColumnWidthValue != nil {
             self.minColumnWidth = minColumnWidthValue! as? Int
         }
-        let columnGapRuleValue = source["columnGapRule"]
+        let columnGapRuleValue = source["columnGapRule"] ?? source["ColumnGapRule"]
         if columnGapRuleValue != nil {
             let columnGapRuleStringValue = columnGapRuleValue! as? String
             if columnGapRuleStringValue != nil {
@@ -99,11 +99,11 @@ public class MatrixElement: MathElement {
                 }
             }
         }
-        let columnGapValue = source["columnGap"]
+        let columnGapValue = source["columnGap"] ?? source["ColumnGap"]
         if columnGapValue != nil {
             self.columnGap = columnGapValue! as? Int
         }
-        let rowGapRuleValue = source["rowGapRule"]
+        let rowGapRuleValue = source["rowGapRule"] ?? source["RowGapRule"]
         if rowGapRuleValue != nil {
             let rowGapRuleStringValue = rowGapRuleValue! as? String
             if rowGapRuleStringValue != nil {
@@ -113,11 +113,11 @@ public class MatrixElement: MathElement {
                 }
             }
         }
-        let rowGapValue = source["rowGap"]
+        let rowGapValue = source["rowGap"] ?? source["RowGap"]
         if rowGapValue != nil {
             self.rowGap = rowGapValue! as? Int
         }
-        let itemsValue = source["items"]
+        let itemsValue = source["items"] ?? source["Items"]
         if itemsValue != nil {
         }
     }

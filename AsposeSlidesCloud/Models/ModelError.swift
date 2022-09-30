@@ -42,19 +42,19 @@ public class ModelError: Codable {
     public var innerError: ErrorDetails?
 
     func fillValues(_ source: [String:Any]) throws {
-        let codeValue = source["code"]
+        let codeValue = source["code"] ?? source["Code"]
         if codeValue != nil {
             self.code = codeValue! as? String
         }
-        let messageValue = source["message"]
+        let messageValue = source["message"] ?? source["Message"]
         if messageValue != nil {
             self.message = messageValue! as? String
         }
-        let descriptionValue = source["description"]
+        let descriptionValue = source["description"] ?? source["Description"]
         if descriptionValue != nil {
             self.description = descriptionValue! as? String
         }
-        let innerErrorValue = source["innerError"]
+        let innerErrorValue = source["innerError"] ?? source["InnerError"]
         if innerErrorValue != nil {
             let innerErrorDictionaryValue = innerErrorValue! as? [String:Any]
             if innerErrorDictionaryValue != nil {

@@ -72,11 +72,11 @@ public class Placeholder: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let indexValue = source["index"]
+        let indexValue = source["index"] ?? source["Index"]
         if indexValue != nil {
             self.index = indexValue! as? Int
         }
-        let orientationValue = source["orientation"]
+        let orientationValue = source["orientation"] ?? source["Orientation"]
         if orientationValue != nil {
             let orientationStringValue = orientationValue! as? String
             if orientationStringValue != nil {
@@ -86,7 +86,7 @@ public class Placeholder: ResourceBase {
                 }
             }
         }
-        let sizeValue = source["size"]
+        let sizeValue = source["size"] ?? source["Size"]
         if sizeValue != nil {
             let sizeStringValue = sizeValue! as? String
             if sizeStringValue != nil {
@@ -96,7 +96,7 @@ public class Placeholder: ResourceBase {
                 }
             }
         }
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {
@@ -106,7 +106,7 @@ public class Placeholder: ResourceBase {
                 }
             }
         }
-        let shapeValue = source["shape"]
+        let shapeValue = source["shape"] ?? source["Shape"]
         if shapeValue != nil {
             let shapeDictionaryValue = shapeValue! as? [String:Any]
             if shapeDictionaryValue != nil {

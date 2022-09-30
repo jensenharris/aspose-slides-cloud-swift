@@ -39,11 +39,11 @@ public class TintEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let hueValue = source["hue"]
+        let hueValue = source["hue"] ?? source["Hue"]
         if hueValue != nil {
             self.hue = hueValue! as? Double
         }
-        let amountValue = source["amount"]
+        let amountValue = source["amount"] ?? source["Amount"]
         if amountValue != nil {
             self.amount = amountValue! as? Double
         }

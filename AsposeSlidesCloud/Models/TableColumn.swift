@@ -36,7 +36,7 @@ public class TableColumn: Codable {
     public var width: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }

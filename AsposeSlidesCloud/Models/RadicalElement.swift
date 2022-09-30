@@ -41,7 +41,7 @@ public class RadicalElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -51,7 +51,7 @@ public class RadicalElement: MathElement {
                 }
             }
         }
-        let degreeValue = source["degree"]
+        let degreeValue = source["degree"] ?? source["Degree"]
         if degreeValue != nil {
             let degreeDictionaryValue = degreeValue! as? [String:Any]
             if degreeDictionaryValue != nil {
@@ -61,7 +61,7 @@ public class RadicalElement: MathElement {
                 }
             }
         }
-        let hideDegreeValue = source["hideDegree"]
+        let hideDegreeValue = source["hideDegree"] ?? source["HideDegree"]
         if hideDegreeValue != nil {
             self.hideDegree = hideDegreeValue! as? Bool
         }

@@ -47,7 +47,7 @@ public class FractionElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let fractionTypeValue = source["fractionType"]
+        let fractionTypeValue = source["fractionType"] ?? source["FractionType"]
         if fractionTypeValue != nil {
             let fractionTypeStringValue = fractionTypeValue! as? String
             if fractionTypeStringValue != nil {
@@ -57,7 +57,7 @@ public class FractionElement: MathElement {
                 }
             }
         }
-        let numeratorValue = source["numerator"]
+        let numeratorValue = source["numerator"] ?? source["Numerator"]
         if numeratorValue != nil {
             let numeratorDictionaryValue = numeratorValue! as? [String:Any]
             if numeratorDictionaryValue != nil {
@@ -67,7 +67,7 @@ public class FractionElement: MathElement {
                 }
             }
         }
-        let denominatorValue = source["denominator"]
+        let denominatorValue = source["denominator"] ?? source["Denominator"]
         if denominatorValue != nil {
             let denominatorDictionaryValue = denominatorValue! as? [String:Any]
             if denominatorDictionaryValue != nil {

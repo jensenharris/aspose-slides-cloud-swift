@@ -37,7 +37,7 @@ public class SectionZoomFrame: ZoomObject {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let targetSectionIndexValue = source["targetSectionIndex"]
+        let targetSectionIndexValue = source["targetSectionIndex"] ?? source["TargetSectionIndex"]
         if targetSectionIndexValue != nil {
             self.targetSectionIndex = targetSectionIndexValue! as? Int
         }

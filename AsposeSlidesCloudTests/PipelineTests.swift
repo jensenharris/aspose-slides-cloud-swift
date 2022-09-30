@@ -29,8 +29,8 @@
 import XCTest
 @testable import AsposeSlidesCloud
 
-class UseCaseTests : XCTestCase {
-    static var allTests : [(String, (UseCaseTests) -> () -> ())] = [
+class PipelineTests : XCTestCase {
+    static var allTests : [(String, (PipelineTests) -> () -> ())] = [
         ("testPipeline", testPipeline),
     ];
     
@@ -42,34 +42,50 @@ class UseCaseTests : XCTestCase {
     
     override func tearDown() {
         super.tearDown()
-    }    
-    
+    }
+
     func testPipeline() {
         let expectation = self.expectation(description: "testPipeline")
-
-        /*
-               pipeline = Pipeline()
-               pipeline.input = input
-
-               files = {}
-               with open("TestData/TemplatingCVDataWithBase64.xml", 'rb') as f:
-                   files["file1"] = ("TemplatingCVDataWithBase64.xml", f.read())
-        
-               with open("TestData/TemplateCV.pptx", 'rb') as f:
-                   files["file2"] = ("TemplateCV.pptx", f.read())
-
-               request = PostSlidesPipelineRequest(pipeline, files)
-               result = self.api.post_slides_pipeline(request)
-               self.assertTrue(isinstance(result, str))
-               self.assertTrue(len(result) > 0)
-        */
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.pipeline(Pipeline(input: Input(template: RequestInputFile(type: InputFile.ModelType.request, index: 1), templateData: RequestInputFile(type: InputFile.ModelType.request, index: 0)), tasks: [ Save(type: Task.ModelType.save, format: Save.Format.pptx, output: OutputFile(type: OutputFile.ModelType.response)) ]), [ FileManager.default.contents(atPath: "TestData/TemplatingCVDataWithBase64.xml")!, FileManager.default.contents(atPath: "TestData/TemplateCV.pptx")! ]) { (response, error) -> Void in
-                XCTAssertNotNil(response)
+
+            let file1 = RequestInputFile()
+            file1.type = InputFile.ModelType.request
+            file1.index = 0
+
+            let file2 = RequestInputFile()
+            file2.type = InputFile.ModelType.request
+            file2.index = 1
+
+            let input = Input()
+            input.templateData = file1
+            input.template = file2
+
+            let output = OutputFile()
+            output.type = OutputFile.ModelType.response
+
+            let task = Save()
+            task.format = Save.Format.pptx
+            task.output = output
+            task.type = Task.ModelType.save
+
+            let pipeline = Pipeline()
+            pipeline.input = input
+            pipeline.tasks = [task]
+
+            let doc1 = FileManager.default.contents(atPath: "TestData/TemplatingCVDataWithBase64.xml")
+            XCTAssertNotNil(doc1)
+
+            let doc2 = FileManager.default.contents(atPath: "TestData/TemplateCV.pptx")
+            XCTAssertNotNil(doc2)
+            let files = [ doc1!, doc2! ]
+
+            SlidesAPI.pipeline(pipeline, files) { (result, error) -> Void in
                 XCTAssertNil(error)
+                XCTAssertNotNil(result)
                 expectation.fulfill()
             }
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
-}
+}    
+

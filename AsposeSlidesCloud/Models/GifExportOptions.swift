@@ -41,22 +41,22 @@ public class GifExportOptions: ImageExportOptionsBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let exportHiddenSlidesValue = source["exportHiddenSlides"]
+        let exportHiddenSlidesValue = source["exportHiddenSlides"] ?? source["ExportHiddenSlides"]
         if exportHiddenSlidesValue != nil {
             self.exportHiddenSlides = exportHiddenSlidesValue! as? Bool
         }
-        let transitionFpsValue = source["transitionFps"]
+        let transitionFpsValue = source["transitionFps"] ?? source["TransitionFps"]
         if transitionFpsValue != nil {
             self.transitionFps = transitionFpsValue! as? Int
         }
-        let defaultDelayValue = source["defaultDelay"]
+        let defaultDelayValue = source["defaultDelay"] ?? source["DefaultDelay"]
         if defaultDelayValue != nil {
             self.defaultDelay = defaultDelayValue! as? Int
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format, height: height, width: width)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, exportHiddenSlides: Bool? = nil, transitionFps: Int? = nil, defaultDelay: Int? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format, height: height, width: width)
         self.exportHiddenSlides = exportHiddenSlides
         self.transitionFps = transitionFps
         self.defaultDelay = defaultDelay

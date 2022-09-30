@@ -77,27 +77,27 @@ public class HtmlExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let saveAsZipValue = source["saveAsZip"]
+        let saveAsZipValue = source["saveAsZip"] ?? source["SaveAsZip"]
         if saveAsZipValue != nil {
             self.saveAsZip = saveAsZipValue! as? Bool
         }
-        let subDirectoryNameValue = source["subDirectoryName"]
+        let subDirectoryNameValue = source["subDirectoryName"] ?? source["SubDirectoryName"]
         if subDirectoryNameValue != nil {
             self.subDirectoryName = subDirectoryNameValue! as? String
         }
-        let showHiddenSlidesValue = source["showHiddenSlides"]
+        let showHiddenSlidesValue = source["showHiddenSlides"] ?? source["ShowHiddenSlides"]
         if showHiddenSlidesValue != nil {
             self.showHiddenSlides = showHiddenSlidesValue! as? Bool
         }
-        let svgResponsiveLayoutValue = source["svgResponsiveLayout"]
+        let svgResponsiveLayoutValue = source["svgResponsiveLayout"] ?? source["SvgResponsiveLayout"]
         if svgResponsiveLayoutValue != nil {
             self.svgResponsiveLayout = svgResponsiveLayoutValue! as? Bool
         }
-        let jpegQualityValue = source["jpegQuality"]
+        let jpegQualityValue = source["jpegQuality"] ?? source["JpegQuality"]
         if jpegQualityValue != nil {
             self.jpegQuality = jpegQualityValue! as? Int
         }
-        let picturesCompressionValue = source["picturesCompression"]
+        let picturesCompressionValue = source["picturesCompression"] ?? source["PicturesCompression"]
         if picturesCompressionValue != nil {
             let picturesCompressionStringValue = picturesCompressionValue! as? String
             if picturesCompressionStringValue != nil {
@@ -107,11 +107,11 @@ public class HtmlExportOptions: ExportOptions {
                 }
             }
         }
-        let deletePicturesCroppedAreasValue = source["deletePicturesCroppedAreas"]
+        let deletePicturesCroppedAreasValue = source["deletePicturesCroppedAreas"] ?? source["DeletePicturesCroppedAreas"]
         if deletePicturesCroppedAreasValue != nil {
             self.deletePicturesCroppedAreas = deletePicturesCroppedAreasValue! as? Bool
         }
-        let notesPositionValue = source["notesPosition"]
+        let notesPositionValue = source["notesPosition"] ?? source["NotesPosition"]
         if notesPositionValue != nil {
             let notesPositionStringValue = notesPositionValue! as? String
             if notesPositionStringValue != nil {
@@ -121,7 +121,7 @@ public class HtmlExportOptions: ExportOptions {
                 }
             }
         }
-        let commentsPositionValue = source["commentsPosition"]
+        let commentsPositionValue = source["commentsPosition"] ?? source["CommentsPosition"]
         if commentsPositionValue != nil {
             let commentsPositionStringValue = commentsPositionValue! as? String
             if commentsPositionStringValue != nil {
@@ -131,22 +131,22 @@ public class HtmlExportOptions: ExportOptions {
                 }
             }
         }
-        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        let commentsAreaWidthValue = source["commentsAreaWidth"] ?? source["CommentsAreaWidth"]
         if commentsAreaWidthValue != nil {
             self.commentsAreaWidth = commentsAreaWidthValue! as? Int
         }
-        let commentsAreaColorValue = source["commentsAreaColor"]
+        let commentsAreaColorValue = source["commentsAreaColor"] ?? source["CommentsAreaColor"]
         if commentsAreaColorValue != nil {
             self.commentsAreaColor = commentsAreaColorValue! as? String
         }
-        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"] ?? source["ShowCommentsByNoAuthor"]
         if showCommentsByNoAuthorValue != nil {
             self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, saveAsZip: Bool? = nil, subDirectoryName: String? = nil, showHiddenSlides: Bool? = nil, svgResponsiveLayout: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, saveAsZip: Bool? = nil, subDirectoryName: String? = nil, showHiddenSlides: Bool? = nil, svgResponsiveLayout: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.saveAsZip = saveAsZip
         self.subDirectoryName = subDirectoryName
         self.showHiddenSlides = showHiddenSlides

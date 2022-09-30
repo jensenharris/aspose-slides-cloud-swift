@@ -53,15 +53,15 @@ public class OleObjectFrame: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let isObjectIconValue = source["isObjectIcon"]
+        let isObjectIconValue = source["isObjectIcon"] ?? source["IsObjectIcon"]
         if isObjectIconValue != nil {
             self.isObjectIcon = isObjectIconValue! as? Bool
         }
-        let substitutePictureTitleValue = source["substitutePictureTitle"]
+        let substitutePictureTitleValue = source["substitutePictureTitle"] ?? source["SubstitutePictureTitle"]
         if substitutePictureTitleValue != nil {
             self.substitutePictureTitle = substitutePictureTitleValue! as? String
         }
-        let substitutePictureFormatValue = source["substitutePictureFormat"]
+        let substitutePictureFormatValue = source["substitutePictureFormat"] ?? source["SubstitutePictureFormat"]
         if substitutePictureFormatValue != nil {
             let substitutePictureFormatDictionaryValue = substitutePictureFormatValue! as? [String:Any]
             if substitutePictureFormatDictionaryValue != nil {
@@ -71,27 +71,27 @@ public class OleObjectFrame: ShapeBase {
                 }
             }
         }
-        let objectNameValue = source["objectName"]
+        let objectNameValue = source["objectName"] ?? source["ObjectName"]
         if objectNameValue != nil {
             self.objectName = objectNameValue! as? String
         }
-        let embeddedFileBase64DataValue = source["embeddedFileBase64Data"]
+        let embeddedFileBase64DataValue = source["embeddedFileBase64Data"] ?? source["EmbeddedFileBase64Data"]
         if embeddedFileBase64DataValue != nil {
             self.embeddedFileBase64Data = embeddedFileBase64DataValue! as? String
         }
-        let embeddedFileExtensionValue = source["embeddedFileExtension"]
+        let embeddedFileExtensionValue = source["embeddedFileExtension"] ?? source["EmbeddedFileExtension"]
         if embeddedFileExtensionValue != nil {
             self.embeddedFileExtension = embeddedFileExtensionValue! as? String
         }
-        let objectProgIdValue = source["objectProgId"]
+        let objectProgIdValue = source["objectProgId"] ?? source["ObjectProgId"]
         if objectProgIdValue != nil {
             self.objectProgId = objectProgIdValue! as? String
         }
-        let linkPathValue = source["linkPath"]
+        let linkPathValue = source["linkPath"] ?? source["LinkPath"]
         if linkPathValue != nil {
             self.linkPath = linkPathValue! as? String
         }
-        let updateAutomaticValue = source["updateAutomatic"]
+        let updateAutomaticValue = source["updateAutomatic"] ?? source["UpdateAutomatic"]
         if updateAutomaticValue != nil {
             self.updateAutomatic = updateAutomaticValue! as? Bool
         }

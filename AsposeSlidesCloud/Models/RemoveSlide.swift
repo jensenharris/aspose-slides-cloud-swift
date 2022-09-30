@@ -37,7 +37,7 @@ public class RemoveSlide: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             self.position = positionValue! as? Int
         }

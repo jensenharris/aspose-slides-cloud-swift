@@ -61,7 +61,7 @@ public class ArrowHeadProperties: Codable {
     public var width: Width?
 
     func fillValues(_ source: [String:Any]) throws {
-        let lengthValue = source["length"]
+        let lengthValue = source["length"] ?? source["Length"]
         if lengthValue != nil {
             let lengthStringValue = lengthValue! as? String
             if lengthStringValue != nil {
@@ -71,7 +71,7 @@ public class ArrowHeadProperties: Codable {
                 }
             }
         }
-        let styleValue = source["style"]
+        let styleValue = source["style"] ?? source["Style"]
         if styleValue != nil {
             let styleStringValue = styleValue! as? String
             if styleStringValue != nil {
@@ -81,7 +81,7 @@ public class ArrowHeadProperties: Codable {
                 }
             }
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             let widthStringValue = widthValue! as? String
             if widthStringValue != nil {

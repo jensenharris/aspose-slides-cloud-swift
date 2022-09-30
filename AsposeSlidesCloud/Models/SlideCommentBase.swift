@@ -47,19 +47,19 @@ public class SlideCommentBase: Codable {
     public var type: ModelType?
 
     func fillValues(_ source: [String:Any]) throws {
-        let authorValue = source["author"]
+        let authorValue = source["author"] ?? source["Author"]
         if authorValue != nil {
             self.author = authorValue! as? String
         }
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }
-        let createdTimeValue = source["createdTime"]
+        let createdTimeValue = source["createdTime"] ?? source["CreatedTime"]
         if createdTimeValue != nil {
             self.createdTime = createdTimeValue! as? String
         }
-        let childCommentsValue = source["childComments"]
+        let childCommentsValue = source["childComments"] ?? source["ChildComments"]
         if childCommentsValue != nil {
             var childCommentsArray: [SlideCommentBase] = []
             let childCommentsDictionaryValue = childCommentsValue! as? [Any]
@@ -84,7 +84,7 @@ public class SlideCommentBase: Codable {
             }
             self.childComments = childCommentsArray
         }
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {

@@ -39,7 +39,7 @@ public class SlideAnimation: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let mainSequenceValue = source["mainSequence"]
+        let mainSequenceValue = source["mainSequence"] ?? source["MainSequence"]
         if mainSequenceValue != nil {
             var mainSequenceArray: [Effect] = []
             let mainSequenceDictionaryValue = mainSequenceValue! as? [Any]
@@ -64,7 +64,7 @@ public class SlideAnimation: ResourceBase {
             }
             self.mainSequence = mainSequenceArray
         }
-        let interactiveSequencesValue = source["interactiveSequences"]
+        let interactiveSequencesValue = source["interactiveSequences"] ?? source["InteractiveSequences"]
         if interactiveSequencesValue != nil {
             var interactiveSequencesArray: [InteractiveSequence] = []
             let interactiveSequencesDictionaryValue = interactiveSequencesValue! as? [Any]

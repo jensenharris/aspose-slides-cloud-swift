@@ -42,7 +42,7 @@ public class Axes: Codable {
     public var secondaryVerticalAxis: Axis?
 
     func fillValues(_ source: [String:Any]) throws {
-        let horizontalAxisValue = source["horizontalAxis"]
+        let horizontalAxisValue = source["horizontalAxis"] ?? source["HorizontalAxis"]
         if horizontalAxisValue != nil {
             let horizontalAxisDictionaryValue = horizontalAxisValue! as? [String:Any]
             if horizontalAxisDictionaryValue != nil {
@@ -52,7 +52,7 @@ public class Axes: Codable {
                 }
             }
         }
-        let verticalAxisValue = source["verticalAxis"]
+        let verticalAxisValue = source["verticalAxis"] ?? source["VerticalAxis"]
         if verticalAxisValue != nil {
             let verticalAxisDictionaryValue = verticalAxisValue! as? [String:Any]
             if verticalAxisDictionaryValue != nil {
@@ -62,7 +62,7 @@ public class Axes: Codable {
                 }
             }
         }
-        let secondaryHorizontalAxisValue = source["secondaryHorizontalAxis"]
+        let secondaryHorizontalAxisValue = source["secondaryHorizontalAxis"] ?? source["SecondaryHorizontalAxis"]
         if secondaryHorizontalAxisValue != nil {
             let secondaryHorizontalAxisDictionaryValue = secondaryHorizontalAxisValue! as? [String:Any]
             if secondaryHorizontalAxisDictionaryValue != nil {
@@ -72,7 +72,7 @@ public class Axes: Codable {
                 }
             }
         }
-        let secondaryVerticalAxisValue = source["secondaryVerticalAxis"]
+        let secondaryVerticalAxisValue = source["secondaryVerticalAxis"] ?? source["SecondaryVerticalAxis"]
         if secondaryVerticalAxisValue != nil {
             let secondaryVerticalAxisDictionaryValue = secondaryVerticalAxisValue! as? [String:Any]
             if secondaryVerticalAxisDictionaryValue != nil {

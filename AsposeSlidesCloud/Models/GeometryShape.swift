@@ -228,7 +228,7 @@ public class GeometryShape: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let shapeTypeValue = source["shapeType"]
+        let shapeTypeValue = source["shapeType"] ?? source["ShapeType"]
         if shapeTypeValue != nil {
             let shapeTypeStringValue = shapeTypeValue! as? String
             if shapeTypeStringValue != nil {

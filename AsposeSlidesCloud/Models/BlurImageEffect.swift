@@ -39,11 +39,11 @@ public class BlurImageEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let radiusValue = source["radius"]
+        let radiusValue = source["radius"] ?? source["Radius"]
         if radiusValue != nil {
             self.radius = radiusValue! as? Double
         }
-        let growValue = source["grow"]
+        let growValue = source["grow"] ?? source["Grow"]
         if growValue != nil {
             self.grow = growValue! as? Bool
         }

@@ -56,7 +56,7 @@ public class NaryOperatorElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -66,7 +66,7 @@ public class NaryOperatorElement: MathElement {
                 }
             }
         }
-        let _subscriptValue = source["_subscript"]
+        let _subscriptValue = source["_subscript"] ?? source["Subscript"]
         if _subscriptValue != nil {
             let _subscriptDictionaryValue = _subscriptValue! as? [String:Any]
             if _subscriptDictionaryValue != nil {
@@ -76,7 +76,7 @@ public class NaryOperatorElement: MathElement {
                 }
             }
         }
-        let superscriptValue = source["superscript"]
+        let superscriptValue = source["superscript"] ?? source["Superscript"]
         if superscriptValue != nil {
             let superscriptDictionaryValue = superscriptValue! as? [String:Any]
             if superscriptDictionaryValue != nil {
@@ -86,11 +86,11 @@ public class NaryOperatorElement: MathElement {
                 }
             }
         }
-        let _operatorValue = source["_operator"]
+        let _operatorValue = source["_operator"] ?? source["Operator"]
         if _operatorValue != nil {
             self._operator = _operatorValue! as? String
         }
-        let limitLocationValue = source["limitLocation"]
+        let limitLocationValue = source["limitLocation"] ?? source["LimitLocation"]
         if limitLocationValue != nil {
             let limitLocationStringValue = limitLocationValue! as? String
             if limitLocationStringValue != nil {
@@ -100,15 +100,15 @@ public class NaryOperatorElement: MathElement {
                 }
             }
         }
-        let growToMatchOperandHeightValue = source["growToMatchOperandHeight"]
+        let growToMatchOperandHeightValue = source["growToMatchOperandHeight"] ?? source["GrowToMatchOperandHeight"]
         if growToMatchOperandHeightValue != nil {
             self.growToMatchOperandHeight = growToMatchOperandHeightValue! as? Bool
         }
-        let hideSubscriptValue = source["hideSubscript"]
+        let hideSubscriptValue = source["hideSubscript"] ?? source["HideSubscript"]
         if hideSubscriptValue != nil {
             self.hideSubscript = hideSubscriptValue! as? Bool
         }
-        let hideSuperscriptValue = source["hideSuperscript"]
+        let hideSuperscriptValue = source["hideSuperscript"] ?? source["HideSuperscript"]
         if hideSuperscriptValue != nil {
             self.hideSuperscript = hideSuperscriptValue! as? Bool
         }

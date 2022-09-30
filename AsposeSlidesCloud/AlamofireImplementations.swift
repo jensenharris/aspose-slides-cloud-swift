@@ -135,7 +135,10 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
             print(">>\(r.httpMethod!) \(r)")
             print(r.allHTTPHeaderFields!)
             if r.httpBody != nil {
-                print(String(data: r.httpBody!, encoding: .utf8)!)
+                let bodyStr = String(data: r.httpBody!, encoding: .utf8)
+                if bodyStr != nil {
+                    print(bodyStr!)
+                }
             }
         }
         let task = URLSession.shared.dataTask(with: r) { data, response, error in
@@ -145,21 +148,25 @@ open class AlamofireRequestBuilder<T>: RequestBuilder<T> {
                     print(String(data: data!, encoding: .utf8)!)
                 }
             }
-            let dataResponse = response as! HTTPURLResponse
-            if !((200 ... 299) ~= dataResponse.statusCode) {
-                completion(nil, ErrorResponse.error(dataResponse.statusCode, data, AlamofireDecodableRequestBuilderError.httpError))
+            let dataResponse = response as? HTTPURLResponse
+            if dataResponse == nil {
+                completion(nil, ErrorResponse.error(500, data, AlamofireDecodableRequestBuilderError.httpError))
             } else {
-                switch T.self {
-                case is Data.Type:
-                    completion(Response(response: dataResponse, body: data as? T), error)
-		case is Void.Type:
-                    completion(Response(response: dataResponse, body: nil), nil)
-                default:
-                    if data == nil {
-                        completion(nil, ErrorResponse.error(-1, nil, AlamofireDecodableRequestBuilderError.emptyDataResponse))
-                    } else {
-                        completion(Response(response: dataResponse, body: data as? T), nil)
-                   }
+                if !((200 ... 299) ~= dataResponse!.statusCode) {
+                    completion(nil, ErrorResponse.error(dataResponse!.statusCode, data, AlamofireDecodableRequestBuilderError.httpError))
+                } else {
+                    switch T.self {
+                    case is Data.Type:
+                        completion(Response(response: dataResponse!, body: data as? T), error)
+                    case is Void.Type:
+                        completion(Response(response: dataResponse!, body: nil), nil)
+                    default:
+                        if data == nil {
+                            completion(nil, ErrorResponse.error(-1, nil, AlamofireDecodableRequestBuilderError.emptyDataResponse))
+                        } else {
+                            completion(Response(response: dataResponse!, body: data as? T), nil)
+                        }
+                    }
                 }
             }
         }

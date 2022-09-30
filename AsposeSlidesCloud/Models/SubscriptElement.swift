@@ -39,7 +39,7 @@ public class SubscriptElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -49,7 +49,7 @@ public class SubscriptElement: MathElement {
                 }
             }
         }
-        let _subscriptValue = source["_subscript"]
+        let _subscriptValue = source["_subscript"] ?? source["Subscript"]
         if _subscriptValue != nil {
             let _subscriptDictionaryValue = _subscriptValue! as? [String:Any]
             if _subscriptDictionaryValue != nil {

@@ -46,27 +46,27 @@ public class ResourceUri: Codable {
     public var shapeIndex: Int?
 
     func fillValues(_ source: [String:Any]) throws {
-        let hrefValue = source["href"]
+        let hrefValue = source["href"] ?? source["Href"]
         if hrefValue != nil {
             self.href = hrefValue! as? String
         }
-        let relationValue = source["relation"]
+        let relationValue = source["relation"] ?? source["Relation"]
         if relationValue != nil {
             self.relation = relationValue! as? String
         }
-        let linkTypeValue = source["linkType"]
+        let linkTypeValue = source["linkType"] ?? source["LinkType"]
         if linkTypeValue != nil {
             self.linkType = linkTypeValue! as? String
         }
-        let titleValue = source["title"]
+        let titleValue = source["title"] ?? source["Title"]
         if titleValue != nil {
             self.title = titleValue! as? String
         }
-        let slideIndexValue = source["slideIndex"]
+        let slideIndexValue = source["slideIndex"] ?? source["SlideIndex"]
         if slideIndexValue != nil {
             self.slideIndex = slideIndexValue! as? Int
         }
-        let shapeIndexValue = source["shapeIndex"]
+        let shapeIndexValue = source["shapeIndex"] ?? source["ShapeIndex"]
         if shapeIndexValue != nil {
             self.shapeIndex = shapeIndexValue! as? Int
         }

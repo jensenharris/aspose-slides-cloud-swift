@@ -39,11 +39,11 @@ public class DuotoneEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let color1Value = source["color1"]
+        let color1Value = source["color1"] ?? source["Color1"]
         if color1Value != nil {
             self.color1 = color1Value! as? String
         }
-        let color2Value = source["color2"]
+        let color2Value = source["color2"] ?? source["Color2"]
         if color2Value != nil {
             self.color2 = color2Value! as? String
         }

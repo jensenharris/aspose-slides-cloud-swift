@@ -145,7 +145,7 @@ public class Chart: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let chartTypeValue = source["chartType"]
+        let chartTypeValue = source["chartType"] ?? source["ChartType"]
         if chartTypeValue != nil {
             let chartTypeStringValue = chartTypeValue! as? String
             if chartTypeStringValue != nil {
@@ -155,11 +155,11 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let showDataLabelsOverMaximumValue = source["showDataLabelsOverMaximum"]
+        let showDataLabelsOverMaximumValue = source["showDataLabelsOverMaximum"] ?? source["ShowDataLabelsOverMaximum"]
         if showDataLabelsOverMaximumValue != nil {
             self.showDataLabelsOverMaximum = showDataLabelsOverMaximumValue! as? Bool
         }
-        let seriesValue = source["series"]
+        let seriesValue = source["series"] ?? source["Series"]
         if seriesValue != nil {
             var seriesArray: [Series] = []
             let seriesDictionaryValue = seriesValue! as? [Any]
@@ -184,7 +184,7 @@ public class Chart: ShapeBase {
             }
             self.series = seriesArray
         }
-        let categoriesValue = source["categories"]
+        let categoriesValue = source["categories"] ?? source["Categories"]
         if categoriesValue != nil {
             var categoriesArray: [ChartCategory] = []
             let categoriesDictionaryValue = categoriesValue! as? [Any]
@@ -209,7 +209,7 @@ public class Chart: ShapeBase {
             }
             self.categories = categoriesArray
         }
-        let titleValue = source["title"]
+        let titleValue = source["title"] ?? source["Title"]
         if titleValue != nil {
             let titleDictionaryValue = titleValue! as? [String:Any]
             if titleDictionaryValue != nil {
@@ -219,7 +219,7 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let backWallValue = source["backWall"]
+        let backWallValue = source["backWall"] ?? source["BackWall"]
         if backWallValue != nil {
             let backWallDictionaryValue = backWallValue! as? [String:Any]
             if backWallDictionaryValue != nil {
@@ -229,7 +229,7 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let sideWallValue = source["sideWall"]
+        let sideWallValue = source["sideWall"] ?? source["SideWall"]
         if sideWallValue != nil {
             let sideWallDictionaryValue = sideWallValue! as? [String:Any]
             if sideWallDictionaryValue != nil {
@@ -239,7 +239,7 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let floorValue = source["floor"]
+        let floorValue = source["floor"] ?? source["Floor"]
         if floorValue != nil {
             let floorDictionaryValue = floorValue! as? [String:Any]
             if floorDictionaryValue != nil {
@@ -249,7 +249,7 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let legendValue = source["legend"]
+        let legendValue = source["legend"] ?? source["Legend"]
         if legendValue != nil {
             let legendDictionaryValue = legendValue! as? [String:Any]
             if legendDictionaryValue != nil {
@@ -259,7 +259,7 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let axesValue = source["axes"]
+        let axesValue = source["axes"] ?? source["Axes"]
         if axesValue != nil {
             let axesDictionaryValue = axesValue! as? [String:Any]
             if axesDictionaryValue != nil {
@@ -269,7 +269,7 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let plotAreaValue = source["plotArea"]
+        let plotAreaValue = source["plotArea"] ?? source["PlotArea"]
         if plotAreaValue != nil {
             let plotAreaDictionaryValue = plotAreaValue! as? [String:Any]
             if plotAreaDictionaryValue != nil {
@@ -279,11 +279,11 @@ public class Chart: ShapeBase {
                 }
             }
         }
-        let hasRoundedCornersValue = source["hasRoundedCorners"]
+        let hasRoundedCornersValue = source["hasRoundedCorners"] ?? source["HasRoundedCorners"]
         if hasRoundedCornersValue != nil {
             self.hasRoundedCorners = hasRoundedCornersValue! as? Bool
         }
-        let seriesGroupsValue = source["seriesGroups"]
+        let seriesGroupsValue = source["seriesGroups"] ?? source["SeriesGroups"]
         if seriesGroupsValue != nil {
             var seriesGroupsArray: [ChartSeriesGroup] = []
             let seriesGroupsDictionaryValue = seriesGroupsValue! as? [Any]

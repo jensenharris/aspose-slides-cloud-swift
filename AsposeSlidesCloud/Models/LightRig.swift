@@ -85,7 +85,7 @@ public class LightRig: Codable {
     public var zRotation: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let directionValue = source["direction"]
+        let directionValue = source["direction"] ?? source["Direction"]
         if directionValue != nil {
             let directionStringValue = directionValue! as? String
             if directionStringValue != nil {
@@ -95,7 +95,7 @@ public class LightRig: Codable {
                 }
             }
         }
-        let lightTypeValue = source["lightType"]
+        let lightTypeValue = source["lightType"] ?? source["LightType"]
         if lightTypeValue != nil {
             let lightTypeStringValue = lightTypeValue! as? String
             if lightTypeStringValue != nil {
@@ -105,15 +105,15 @@ public class LightRig: Codable {
                 }
             }
         }
-        let xRotationValue = source["xRotation"]
+        let xRotationValue = source["xRotation"] ?? source["XRotation"]
         if xRotationValue != nil {
             self.xRotation = xRotationValue! as? Double
         }
-        let yRotationValue = source["yRotation"]
+        let yRotationValue = source["yRotation"] ?? source["YRotation"]
         if yRotationValue != nil {
             self.yRotation = yRotationValue! as? Double
         }
-        let zRotationValue = source["zRotation"]
+        let zRotationValue = source["zRotation"] ?? source["ZRotation"]
         if zRotationValue != nil {
             self.zRotation = zRotationValue! as? Double
         }

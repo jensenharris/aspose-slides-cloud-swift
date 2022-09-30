@@ -50,7 +50,7 @@ public class ChartWall: Codable {
     public var pictureType: PictureType?
 
     func fillValues(_ source: [String:Any]) throws {
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -60,7 +60,7 @@ public class ChartWall: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -70,7 +70,7 @@ public class ChartWall: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -80,11 +80,11 @@ public class ChartWall: Codable {
                 }
             }
         }
-        let thicknessValue = source["thickness"]
+        let thicknessValue = source["thickness"] ?? source["Thickness"]
         if thicknessValue != nil {
             self.thickness = thicknessValue! as? Int
         }
-        let pictureTypeValue = source["pictureType"]
+        let pictureTypeValue = source["pictureType"] ?? source["PictureType"]
         if pictureTypeValue != nil {
             let pictureTypeStringValue = pictureTypeValue! as? String
             if pictureTypeStringValue != nil {

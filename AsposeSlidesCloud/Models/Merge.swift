@@ -37,7 +37,7 @@ public class Merge: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let presentationsValue = source["presentations"]
+        let presentationsValue = source["presentations"] ?? source["Presentations"]
         if presentationsValue != nil {
             var presentationsArray: [MergingSource] = []
             let presentationsDictionaryValue = presentationsValue! as? [Any]

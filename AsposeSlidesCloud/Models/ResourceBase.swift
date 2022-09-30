@@ -38,7 +38,7 @@ public class ResourceBase: Codable {
     public var alternateLinks: [ResourceUri]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let selfUriValue = source["selfUri"]
+        let selfUriValue = source["selfUri"] ?? source["SelfUri"]
         if selfUriValue != nil {
             let selfUriDictionaryValue = selfUriValue! as? [String:Any]
             if selfUriDictionaryValue != nil {
@@ -48,7 +48,7 @@ public class ResourceBase: Codable {
                 }
             }
         }
-        let alternateLinksValue = source["alternateLinks"]
+        let alternateLinksValue = source["alternateLinks"] ?? source["AlternateLinks"]
         if alternateLinksValue != nil {
             var alternateLinksArray: [ResourceUri] = []
             let alternateLinksDictionaryValue = alternateLinksValue! as? [Any]

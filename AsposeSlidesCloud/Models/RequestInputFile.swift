@@ -37,7 +37,7 @@ public class RequestInputFile: InputFile {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let indexValue = source["index"]
+        let indexValue = source["index"] ?? source["Index"]
         if indexValue != nil {
             self.index = indexValue! as? Int
         }

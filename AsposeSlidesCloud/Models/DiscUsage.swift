@@ -38,11 +38,11 @@ public class DiscUsage: Codable {
     public var totalSize: Int64?
 
     func fillValues(_ source: [String:Any]) throws {
-        let usedSizeValue = source["usedSize"]
+        let usedSizeValue = source["usedSize"] ?? source["UsedSize"]
         if usedSizeValue != nil {
             self.usedSize = usedSizeValue! as? Int64
         }
-        let totalSizeValue = source["totalSize"]
+        let totalSizeValue = source["totalSize"] ?? source["TotalSize"]
         if totalSizeValue != nil {
             self.totalSize = totalSizeValue! as? Int64
         }

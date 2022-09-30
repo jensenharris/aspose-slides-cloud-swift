@@ -43,19 +43,19 @@ public class ArcToPathSegment: PathSegment {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }
-        let startAngleValue = source["startAngle"]
+        let startAngleValue = source["startAngle"] ?? source["StartAngle"]
         if startAngleValue != nil {
             self.startAngle = startAngleValue! as? Double
         }
-        let sweepAngleValue = source["sweepAngle"]
+        let sweepAngleValue = source["sweepAngle"] ?? source["SweepAngle"]
         if sweepAngleValue != nil {
             self.sweepAngle = sweepAngleValue! as? Double
         }

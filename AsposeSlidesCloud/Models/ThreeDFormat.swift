@@ -72,7 +72,7 @@ public class ThreeDFormat: Codable {
     public var material: Material?
 
     func fillValues(_ source: [String:Any]) throws {
-        let bevelBottomValue = source["bevelBottom"]
+        let bevelBottomValue = source["bevelBottom"] ?? source["BevelBottom"]
         if bevelBottomValue != nil {
             let bevelBottomDictionaryValue = bevelBottomValue! as? [String:Any]
             if bevelBottomDictionaryValue != nil {
@@ -82,7 +82,7 @@ public class ThreeDFormat: Codable {
                 }
             }
         }
-        let bevelTopValue = source["bevelTop"]
+        let bevelTopValue = source["bevelTop"] ?? source["BevelTop"]
         if bevelTopValue != nil {
             let bevelTopDictionaryValue = bevelTopValue! as? [String:Any]
             if bevelTopDictionaryValue != nil {
@@ -92,7 +92,7 @@ public class ThreeDFormat: Codable {
                 }
             }
         }
-        let cameraValue = source["camera"]
+        let cameraValue = source["camera"] ?? source["Camera"]
         if cameraValue != nil {
             let cameraDictionaryValue = cameraValue! as? [String:Any]
             if cameraDictionaryValue != nil {
@@ -102,27 +102,27 @@ public class ThreeDFormat: Codable {
                 }
             }
         }
-        let contourColorValue = source["contourColor"]
+        let contourColorValue = source["contourColor"] ?? source["ContourColor"]
         if contourColorValue != nil {
             self.contourColor = contourColorValue! as? String
         }
-        let contourWidthValue = source["contourWidth"]
+        let contourWidthValue = source["contourWidth"] ?? source["ContourWidth"]
         if contourWidthValue != nil {
             self.contourWidth = contourWidthValue! as? Double
         }
-        let depthValue = source["depth"]
+        let depthValue = source["depth"] ?? source["Depth"]
         if depthValue != nil {
             self.depth = depthValue! as? Double
         }
-        let extrusionColorValue = source["extrusionColor"]
+        let extrusionColorValue = source["extrusionColor"] ?? source["ExtrusionColor"]
         if extrusionColorValue != nil {
             self.extrusionColor = extrusionColorValue! as? String
         }
-        let extrusionHeightValue = source["extrusionHeight"]
+        let extrusionHeightValue = source["extrusionHeight"] ?? source["ExtrusionHeight"]
         if extrusionHeightValue != nil {
             self.extrusionHeight = extrusionHeightValue! as? Double
         }
-        let lightRigValue = source["lightRig"]
+        let lightRigValue = source["lightRig"] ?? source["LightRig"]
         if lightRigValue != nil {
             let lightRigDictionaryValue = lightRigValue! as? [String:Any]
             if lightRigDictionaryValue != nil {
@@ -132,7 +132,7 @@ public class ThreeDFormat: Codable {
                 }
             }
         }
-        let materialValue = source["material"]
+        let materialValue = source["material"] ?? source["Material"]
         if materialValue != nil {
             let materialStringValue = materialValue! as? String
             if materialStringValue != nil {

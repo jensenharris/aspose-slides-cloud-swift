@@ -43,7 +43,7 @@ public class FormatScheme: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let backgroundStylesValue = source["backgroundStyles"]
+        let backgroundStylesValue = source["backgroundStyles"] ?? source["BackgroundStyles"]
         if backgroundStylesValue != nil {
             var backgroundStylesArray: [FillFormat] = []
             let backgroundStylesDictionaryValue = backgroundStylesValue! as? [Any]
@@ -68,7 +68,7 @@ public class FormatScheme: ResourceBase {
             }
             self.backgroundStyles = backgroundStylesArray
         }
-        let effectStylesValue = source["effectStyles"]
+        let effectStylesValue = source["effectStyles"] ?? source["EffectStyles"]
         if effectStylesValue != nil {
             var effectStylesArray: [EffectFormat] = []
             let effectStylesDictionaryValue = effectStylesValue! as? [Any]
@@ -93,7 +93,7 @@ public class FormatScheme: ResourceBase {
             }
             self.effectStyles = effectStylesArray
         }
-        let fillStylesValue = source["fillStyles"]
+        let fillStylesValue = source["fillStyles"] ?? source["FillStyles"]
         if fillStylesValue != nil {
             var fillStylesArray: [FillFormat] = []
             let fillStylesDictionaryValue = fillStylesValue! as? [Any]
@@ -118,7 +118,7 @@ public class FormatScheme: ResourceBase {
             }
             self.fillStyles = fillStylesArray
         }
-        let lineStylesValue = source["lineStyles"]
+        let lineStylesValue = source["lineStyles"] ?? source["LineStyles"]
         if lineStylesValue != nil {
             var lineStylesArray: [LineFormat] = []
             let lineStylesDictionaryValue = lineStylesValue! as? [Any]

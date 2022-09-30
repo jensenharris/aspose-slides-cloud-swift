@@ -39,7 +39,7 @@ public class AddLayoutSlide: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let cloneFromFileValue = source["cloneFromFile"]
+        let cloneFromFileValue = source["cloneFromFile"] ?? source["CloneFromFile"]
         if cloneFromFileValue != nil {
             let cloneFromFileDictionaryValue = cloneFromFileValue! as? [String:Any]
             if cloneFromFileDictionaryValue != nil {
@@ -49,7 +49,7 @@ public class AddLayoutSlide: Task {
                 }
             }
         }
-        let cloneFromPositionValue = source["cloneFromPosition"]
+        let cloneFromPositionValue = source["cloneFromPosition"] ?? source["CloneFromPosition"]
         if cloneFromPositionValue != nil {
             self.cloneFromPosition = cloneFromPositionValue! as? Int
         }

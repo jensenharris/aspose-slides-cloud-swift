@@ -165,31 +165,31 @@ public class Paragraph: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let marginLeftValue = source["marginLeft"]
+        let marginLeftValue = source["marginLeft"] ?? source["MarginLeft"]
         if marginLeftValue != nil {
             self.marginLeft = marginLeftValue! as? Double
         }
-        let marginRightValue = source["marginRight"]
+        let marginRightValue = source["marginRight"] ?? source["MarginRight"]
         if marginRightValue != nil {
             self.marginRight = marginRightValue! as? Double
         }
-        let spaceBeforeValue = source["spaceBefore"]
+        let spaceBeforeValue = source["spaceBefore"] ?? source["SpaceBefore"]
         if spaceBeforeValue != nil {
             self.spaceBefore = spaceBeforeValue! as? Double
         }
-        let spaceAfterValue = source["spaceAfter"]
+        let spaceAfterValue = source["spaceAfter"] ?? source["SpaceAfter"]
         if spaceAfterValue != nil {
             self.spaceAfter = spaceAfterValue! as? Double
         }
-        let spaceWithinValue = source["spaceWithin"]
+        let spaceWithinValue = source["spaceWithin"] ?? source["SpaceWithin"]
         if spaceWithinValue != nil {
             self.spaceWithin = spaceWithinValue! as? Double
         }
-        let indentValue = source["indent"]
+        let indentValue = source["indent"] ?? source["Indent"]
         if indentValue != nil {
             self.indent = indentValue! as? Double
         }
-        let alignmentValue = source["alignment"]
+        let alignmentValue = source["alignment"] ?? source["Alignment"]
         if alignmentValue != nil {
             let alignmentStringValue = alignmentValue! as? String
             if alignmentStringValue != nil {
@@ -199,7 +199,7 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let fontAlignmentValue = source["fontAlignment"]
+        let fontAlignmentValue = source["fontAlignment"] ?? source["FontAlignment"]
         if fontAlignmentValue != nil {
             let fontAlignmentStringValue = fontAlignmentValue! as? String
             if fontAlignmentStringValue != nil {
@@ -209,23 +209,23 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let defaultTabSizeValue = source["defaultTabSize"]
+        let defaultTabSizeValue = source["defaultTabSize"] ?? source["DefaultTabSize"]
         if defaultTabSizeValue != nil {
             self.defaultTabSize = defaultTabSizeValue! as? Double
         }
-        let depthValue = source["depth"]
+        let depthValue = source["depth"] ?? source["Depth"]
         if depthValue != nil {
             self.depth = depthValue! as? Int
         }
-        let bulletCharValue = source["bulletChar"]
+        let bulletCharValue = source["bulletChar"] ?? source["BulletChar"]
         if bulletCharValue != nil {
             self.bulletChar = bulletCharValue! as? String
         }
-        let bulletHeightValue = source["bulletHeight"]
+        let bulletHeightValue = source["bulletHeight"] ?? source["BulletHeight"]
         if bulletHeightValue != nil {
             self.bulletHeight = bulletHeightValue! as? Double
         }
-        let bulletTypeValue = source["bulletType"]
+        let bulletTypeValue = source["bulletType"] ?? source["BulletType"]
         if bulletTypeValue != nil {
             let bulletTypeStringValue = bulletTypeValue! as? String
             if bulletTypeStringValue != nil {
@@ -235,11 +235,11 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let numberedBulletStartWithValue = source["numberedBulletStartWith"]
+        let numberedBulletStartWithValue = source["numberedBulletStartWith"] ?? source["NumberedBulletStartWith"]
         if numberedBulletStartWithValue != nil {
             self.numberedBulletStartWith = numberedBulletStartWithValue! as? Int
         }
-        let numberedBulletStyleValue = source["numberedBulletStyle"]
+        let numberedBulletStyleValue = source["numberedBulletStyle"] ?? source["NumberedBulletStyle"]
         if numberedBulletStyleValue != nil {
             let numberedBulletStyleStringValue = numberedBulletStyleValue! as? String
             if numberedBulletStyleStringValue != nil {
@@ -249,7 +249,7 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let hangingPunctuationValue = source["hangingPunctuation"]
+        let hangingPunctuationValue = source["hangingPunctuation"] ?? source["HangingPunctuation"]
         if hangingPunctuationValue != nil {
             let hangingPunctuationStringValue = hangingPunctuationValue! as? String
             if hangingPunctuationStringValue != nil {
@@ -259,7 +259,7 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let eastAsianLineBreakValue = source["eastAsianLineBreak"]
+        let eastAsianLineBreakValue = source["eastAsianLineBreak"] ?? source["EastAsianLineBreak"]
         if eastAsianLineBreakValue != nil {
             let eastAsianLineBreakStringValue = eastAsianLineBreakValue! as? String
             if eastAsianLineBreakStringValue != nil {
@@ -269,7 +269,7 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let latinLineBreakValue = source["latinLineBreak"]
+        let latinLineBreakValue = source["latinLineBreak"] ?? source["LatinLineBreak"]
         if latinLineBreakValue != nil {
             let latinLineBreakStringValue = latinLineBreakValue! as? String
             if latinLineBreakStringValue != nil {
@@ -279,7 +279,7 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let rightToLeftValue = source["rightToLeft"]
+        let rightToLeftValue = source["rightToLeft"] ?? source["RightToLeft"]
         if rightToLeftValue != nil {
             let rightToLeftStringValue = rightToLeftValue! as? String
             if rightToLeftStringValue != nil {
@@ -289,7 +289,7 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let portionListValue = source["portionList"]
+        let portionListValue = source["portionList"] ?? source["PortionList"]
         if portionListValue != nil {
             var portionListArray: [Portion] = []
             let portionListDictionaryValue = portionListValue! as? [Any]
@@ -314,7 +314,7 @@ public class Paragraph: ResourceBase {
             }
             self.portionList = portionListArray
         }
-        let defaultPortionFormatValue = source["defaultPortionFormat"]
+        let defaultPortionFormatValue = source["defaultPortionFormat"] ?? source["DefaultPortionFormat"]
         if defaultPortionFormatValue != nil {
             let defaultPortionFormatDictionaryValue = defaultPortionFormatValue! as? [String:Any]
             if defaultPortionFormatDictionaryValue != nil {

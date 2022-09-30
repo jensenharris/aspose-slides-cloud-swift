@@ -37,14 +37,14 @@ public class BubbleChartDataPoint: ScatterChartDataPoint {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let bubbleSizeValue = source["bubbleSize"]
+        let bubbleSizeValue = source["bubbleSize"] ?? source["BubbleSize"]
         if bubbleSizeValue != nil {
             self.bubbleSize = bubbleSizeValue! as? Double
         }
     }
 
-    public init(xValue: Double? = nil, yValue: Double? = nil, bubbleSize: Double? = nil) {
-        super.init(xValue: xValue, yValue: yValue)
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil, bubbleSize: Double? = nil) {
+        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, xValue: xValue, yValue: yValue)
         self.bubbleSize = bubbleSize
     }
 

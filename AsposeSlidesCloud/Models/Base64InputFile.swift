@@ -37,7 +37,7 @@ public class Base64InputFile: InputFile {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let dataValue = source["data"]
+        let dataValue = source["data"] ?? source["Data"]
         if dataValue != nil {
             self.data = dataValue! as? String
         }

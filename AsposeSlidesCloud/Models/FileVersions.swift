@@ -36,7 +36,7 @@ public class FileVersions: Codable {
     public var value: [FileVersion]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let valueValue = source["value"]
+        let valueValue = source["value"] ?? source["Value"]
         if valueValue != nil {
             var valueArray: [FileVersion] = []
             let valueDictionaryValue = valueValue! as? [Any]

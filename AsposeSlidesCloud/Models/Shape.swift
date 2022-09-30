@@ -41,11 +41,11 @@ public class Shape: GeometryShape {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }
-        let paragraphsValue = source["paragraphs"]
+        let paragraphsValue = source["paragraphs"] ?? source["Paragraphs"]
         if paragraphsValue != nil {
             let paragraphsDictionaryValue = paragraphsValue! as? [String:Any]
             if paragraphsDictionaryValue != nil {
@@ -55,7 +55,7 @@ public class Shape: GeometryShape {
                 }
             }
         }
-        let textFrameFormatValue = source["textFrameFormat"]
+        let textFrameFormatValue = source["textFrameFormat"] ?? source["TextFrameFormat"]
         if textFrameFormatValue != nil {
             let textFrameFormatDictionaryValue = textFrameFormatValue! as? [String:Any]
             if textFrameFormatDictionaryValue != nil {

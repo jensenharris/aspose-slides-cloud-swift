@@ -38,11 +38,11 @@ public class BlurEffect: Codable {
     public var grow: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let radiusValue = source["radius"]
+        let radiusValue = source["radius"] ?? source["Radius"]
         if radiusValue != nil {
             self.radius = radiusValue! as? Double
         }
-        let growValue = source["grow"]
+        let growValue = source["grow"] ?? source["Grow"]
         if growValue != nil {
             self.grow = growValue! as? Bool
         }

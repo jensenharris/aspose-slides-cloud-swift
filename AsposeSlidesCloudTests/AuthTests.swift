@@ -71,6 +71,7 @@ class AuthTests : XCTestCase {
         let config = json as! [String:Any]
         AsposeSlidesCloudAPI.appSid = "invalid"
         AsposeSlidesCloudAPI.appKey = config["ClientSecret"] as! String
+        AsposeSlidesCloudAPI.authToken = nil
         AsposeSlidesCloudAPI.basePath = config["BaseUrl"] as! String
         AsposeSlidesCloudAPI.authBasePath = config["AuthBaseUrl"] as! String
         AsposeSlidesCloudAPI.debug = config["Debug"] as! Bool

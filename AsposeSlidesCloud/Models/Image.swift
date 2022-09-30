@@ -41,15 +41,15 @@ public class Image: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Int
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Int
         }
-        let contentTypeValue = source["contentType"]
+        let contentTypeValue = source["contentType"] ?? source["ContentType"]
         if contentTypeValue != nil {
             self.contentType = contentTypeValue! as? String
         }

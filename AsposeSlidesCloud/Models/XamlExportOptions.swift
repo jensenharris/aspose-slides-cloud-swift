@@ -37,14 +37,14 @@ public class XamlExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let exportHiddenSlidesValue = source["exportHiddenSlides"]
+        let exportHiddenSlidesValue = source["exportHiddenSlides"] ?? source["ExportHiddenSlides"]
         if exportHiddenSlidesValue != nil {
             self.exportHiddenSlides = exportHiddenSlidesValue! as? Bool
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, exportHiddenSlides: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.exportHiddenSlides = exportHiddenSlides
         self.format = "xaml"
     }

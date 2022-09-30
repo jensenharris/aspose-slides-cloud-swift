@@ -83,7 +83,7 @@ public class TextFrameFormat: Codable {
     public var transform: Transform?
 
     func fillValues(_ source: [String:Any]) throws {
-        let threeDFormatValue = source["threeDFormat"]
+        let threeDFormatValue = source["threeDFormat"] ?? source["ThreeDFormat"]
         if threeDFormatValue != nil {
             let threeDFormatDictionaryValue = threeDFormatValue! as? [String:Any]
             if threeDFormatDictionaryValue != nil {
@@ -93,7 +93,7 @@ public class TextFrameFormat: Codable {
                 }
             }
         }
-        let transformValue = source["transform"]
+        let transformValue = source["transform"] ?? source["Transform"]
         if transformValue != nil {
             let transformStringValue = transformValue! as? String
             if transformStringValue != nil {

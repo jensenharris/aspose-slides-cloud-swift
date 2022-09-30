@@ -42,19 +42,19 @@ public class InnerShadowEffect: Codable {
     public var shadowColor: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let directionValue = source["direction"]
+        let directionValue = source["direction"] ?? source["Direction"]
         if directionValue != nil {
             self.direction = directionValue! as? Double
         }
-        let distanceValue = source["distance"]
+        let distanceValue = source["distance"] ?? source["Distance"]
         if distanceValue != nil {
             self.distance = distanceValue! as? Double
         }
-        let blurRadiusValue = source["blurRadius"]
+        let blurRadiusValue = source["blurRadius"] ?? source["BlurRadius"]
         if blurRadiusValue != nil {
             self.blurRadius = blurRadiusValue! as? Double
         }
-        let shadowColorValue = source["shadowColor"]
+        let shadowColorValue = source["shadowColor"] ?? source["ShadowColor"]
         if shadowColorValue != nil {
             self.shadowColor = shadowColorValue! as? String
         }

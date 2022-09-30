@@ -64,15 +64,15 @@ public class PresetShadowEffect: Codable {
     public var shadowColor: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let directionValue = source["direction"]
+        let directionValue = source["direction"] ?? source["Direction"]
         if directionValue != nil {
             self.direction = directionValue! as? Double
         }
-        let distanceValue = source["distance"]
+        let distanceValue = source["distance"] ?? source["Distance"]
         if distanceValue != nil {
             self.distance = distanceValue! as? Double
         }
-        let presetValue = source["preset"]
+        let presetValue = source["preset"] ?? source["Preset"]
         if presetValue != nil {
             let presetStringValue = presetValue! as? String
             if presetStringValue != nil {
@@ -82,7 +82,7 @@ public class PresetShadowEffect: Codable {
                 }
             }
         }
-        let shadowColorValue = source["shadowColor"]
+        let shadowColorValue = source["shadowColor"] ?? source["ShadowColor"]
         if shadowColorValue != nil {
             self.shadowColor = shadowColorValue! as? String
         }

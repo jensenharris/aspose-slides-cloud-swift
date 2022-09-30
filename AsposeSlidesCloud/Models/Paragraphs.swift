@@ -37,7 +37,7 @@ public class Paragraphs: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let paragraphLinksValue = source["paragraphLinks"]
+        let paragraphLinksValue = source["paragraphLinks"] ?? source["ParagraphLinks"]
         if paragraphLinksValue != nil {
             var paragraphLinksArray: [ResourceUri] = []
             let paragraphLinksDictionaryValue = paragraphLinksValue! as? [Any]

@@ -32,11 +32,70 @@ import Foundation
 /** Data point. */
 public class DataPoint: Codable {
 
+    /** Gets or sets the fill format. */
+    public var fillFormat: FillFormat?
+    /** Gets or sets the effect format. */
+    public var effectFormat: EffectFormat?
+    /** Gets or sets the 3D format */
+    public var threeDFormat: ThreeDFormat?
+    /** Gets or sets the line format. */
+    public var lineFormat: LineFormat?
 
     func fillValues(_ source: [String:Any]) throws {
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
+        if fillFormatValue != nil {
+            let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
+            if fillFormatDictionaryValue != nil {
+                let (fillFormatInstance, error) = ClassRegistry.getClassFromDictionary(FillFormat.self, fillFormatDictionaryValue!)
+                if error == nil && fillFormatInstance != nil {
+                    self.fillFormat = fillFormatInstance! as? FillFormat
+                }
+            }
+        }
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
+        if effectFormatValue != nil {
+            let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
+            if effectFormatDictionaryValue != nil {
+                let (effectFormatInstance, error) = ClassRegistry.getClassFromDictionary(EffectFormat.self, effectFormatDictionaryValue!)
+                if error == nil && effectFormatInstance != nil {
+                    self.effectFormat = effectFormatInstance! as? EffectFormat
+                }
+            }
+        }
+        let threeDFormatValue = source["threeDFormat"] ?? source["ThreeDFormat"]
+        if threeDFormatValue != nil {
+            let threeDFormatDictionaryValue = threeDFormatValue! as? [String:Any]
+            if threeDFormatDictionaryValue != nil {
+                let (threeDFormatInstance, error) = ClassRegistry.getClassFromDictionary(ThreeDFormat.self, threeDFormatDictionaryValue!)
+                if error == nil && threeDFormatInstance != nil {
+                    self.threeDFormat = threeDFormatInstance! as? ThreeDFormat
+                }
+            }
+        }
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
+        if lineFormatValue != nil {
+            let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
+            if lineFormatDictionaryValue != nil {
+                let (lineFormatInstance, error) = ClassRegistry.getClassFromDictionary(LineFormat.self, lineFormatDictionaryValue!)
+                if error == nil && lineFormatInstance != nil {
+                    self.lineFormat = lineFormatInstance! as? LineFormat
+                }
+            }
+        }
     }
 
-    public init() {
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil) {
+        self.fillFormat = fillFormat
+        self.effectFormat = effectFormat
+        self.threeDFormat = threeDFormat
+        self.lineFormat = lineFormat
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case fillFormat
+        case effectFormat
+        case threeDFormat
+        case lineFormat
     }
 
 }

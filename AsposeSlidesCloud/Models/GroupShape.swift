@@ -37,7 +37,7 @@ public class GroupShape: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let shapesValue = source["shapes"]
+        let shapesValue = source["shapes"] ?? source["Shapes"]
         if shapesValue != nil {
             let shapesDictionaryValue = shapesValue! as? [String:Any]
             if shapesDictionaryValue != nil {

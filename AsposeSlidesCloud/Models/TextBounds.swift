@@ -42,19 +42,19 @@ public class TextBounds: Codable {
     public var height: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let XValue = source["X"]
+        let XValue = source["X"] ?? source["X"]
         if XValue != nil {
             self.X = XValue! as? Double
         }
-        let YValue = source["Y"]
+        let YValue = source["Y"] ?? source["Y"]
         if YValue != nil {
             self.Y = YValue! as? Double
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }

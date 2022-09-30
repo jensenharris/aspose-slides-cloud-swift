@@ -47,7 +47,7 @@ public class BoxElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -57,23 +57,23 @@ public class BoxElement: MathElement {
                 }
             }
         }
-        let operatorEmulatorValue = source["operatorEmulator"]
+        let operatorEmulatorValue = source["operatorEmulator"] ?? source["OperatorEmulator"]
         if operatorEmulatorValue != nil {
             self.operatorEmulator = operatorEmulatorValue! as? Bool
         }
-        let noBreakValue = source["noBreak"]
+        let noBreakValue = source["noBreak"] ?? source["NoBreak"]
         if noBreakValue != nil {
             self.noBreak = noBreakValue! as? Bool
         }
-        let differentialValue = source["differential"]
+        let differentialValue = source["differential"] ?? source["Differential"]
         if differentialValue != nil {
             self.differential = differentialValue! as? Bool
         }
-        let alignmentPointValue = source["alignmentPoint"]
+        let alignmentPointValue = source["alignmentPoint"] ?? source["AlignmentPoint"]
         if alignmentPointValue != nil {
             self.alignmentPoint = alignmentPointValue! as? Bool
         }
-        let explicitBreakValue = source["explicitBreak"]
+        let explicitBreakValue = source["explicitBreak"] ?? source["ExplicitBreak"]
         if explicitBreakValue != nil {
             self.explicitBreak = explicitBreakValue! as? Int
         }

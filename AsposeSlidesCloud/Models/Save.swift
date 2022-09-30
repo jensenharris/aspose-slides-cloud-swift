@@ -68,7 +68,7 @@ public class Save: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let formatValue = source["format"]
+        let formatValue = source["format"] ?? source["Format"]
         if formatValue != nil {
             let formatStringValue = formatValue! as? String
             if formatStringValue != nil {
@@ -78,7 +78,7 @@ public class Save: Task {
                 }
             }
         }
-        let outputValue = source["output"]
+        let outputValue = source["output"] ?? source["Output"]
         if outputValue != nil {
             let outputDictionaryValue = outputValue! as? [String:Any]
             if outputDictionaryValue != nil {
@@ -88,7 +88,7 @@ public class Save: Task {
                 }
             }
         }
-        let optionsValue = source["options"]
+        let optionsValue = source["options"] ?? source["Options"]
         if optionsValue != nil {
             let optionsDictionaryValue = optionsValue! as? [String:Any]
             if optionsDictionaryValue != nil {

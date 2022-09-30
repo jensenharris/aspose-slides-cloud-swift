@@ -57,19 +57,19 @@ public class Slide: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }
-        let showMasterShapesValue = source["showMasterShapes"]
+        let showMasterShapesValue = source["showMasterShapes"] ?? source["ShowMasterShapes"]
         if showMasterShapesValue != nil {
             self.showMasterShapes = showMasterShapesValue! as? Bool
         }
-        let layoutSlideValue = source["layoutSlide"]
+        let layoutSlideValue = source["layoutSlide"] ?? source["LayoutSlide"]
         if layoutSlideValue != nil {
             let layoutSlideDictionaryValue = layoutSlideValue! as? [String:Any]
             if layoutSlideDictionaryValue != nil {
@@ -79,7 +79,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let shapesValue = source["shapes"]
+        let shapesValue = source["shapes"] ?? source["Shapes"]
         if shapesValue != nil {
             let shapesDictionaryValue = shapesValue! as? [String:Any]
             if shapesDictionaryValue != nil {
@@ -89,7 +89,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let themeValue = source["theme"]
+        let themeValue = source["theme"] ?? source["Theme"]
         if themeValue != nil {
             let themeDictionaryValue = themeValue! as? [String:Any]
             if themeDictionaryValue != nil {
@@ -99,7 +99,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let placeholdersValue = source["placeholders"]
+        let placeholdersValue = source["placeholders"] ?? source["Placeholders"]
         if placeholdersValue != nil {
             let placeholdersDictionaryValue = placeholdersValue! as? [String:Any]
             if placeholdersDictionaryValue != nil {
@@ -109,7 +109,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let imagesValue = source["images"]
+        let imagesValue = source["images"] ?? source["Images"]
         if imagesValue != nil {
             let imagesDictionaryValue = imagesValue! as? [String:Any]
             if imagesDictionaryValue != nil {
@@ -119,7 +119,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let commentsValue = source["comments"]
+        let commentsValue = source["comments"] ?? source["Comments"]
         if commentsValue != nil {
             let commentsDictionaryValue = commentsValue! as? [String:Any]
             if commentsDictionaryValue != nil {
@@ -129,7 +129,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let backgroundValue = source["background"]
+        let backgroundValue = source["background"] ?? source["Background"]
         if backgroundValue != nil {
             let backgroundDictionaryValue = backgroundValue! as? [String:Any]
             if backgroundDictionaryValue != nil {
@@ -139,7 +139,7 @@ public class Slide: ResourceBase {
                 }
             }
         }
-        let notesSlideValue = source["notesSlide"]
+        let notesSlideValue = source["notesSlide"] ?? source["NotesSlide"]
         if notesSlideValue != nil {
             let notesSlideDictionaryValue = notesSlideValue! as? [String:Any]
             if notesSlideDictionaryValue != nil {

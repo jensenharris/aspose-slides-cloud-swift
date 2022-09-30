@@ -39,11 +39,11 @@ public class PathOutputFile: OutputFile {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let pathValue = source["path"]
+        let pathValue = source["path"] ?? source["Path"]
         if pathValue != nil {
             self.path = pathValue! as? String
         }
-        let storageValue = source["storage"]
+        let storageValue = source["storage"] ?? source["Storage"]
         if storageValue != nil {
             self.storage = storageValue! as? String
         }

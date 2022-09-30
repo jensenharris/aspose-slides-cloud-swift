@@ -174,15 +174,15 @@ public class Axis: Codable {
     public var minorGridLinesFormat: ChartLinesFormat?
 
     func fillValues(_ source: [String:Any]) throws {
-        let isVisibleValue = source["isVisible"]
+        let isVisibleValue = source["isVisible"] ?? source["IsVisible"]
         if isVisibleValue != nil {
             self.isVisible = isVisibleValue! as? Bool
         }
-        let hasTitleValue = source["hasTitle"]
+        let hasTitleValue = source["hasTitle"] ?? source["HasTitle"]
         if hasTitleValue != nil {
             self.hasTitle = hasTitleValue! as? Bool
         }
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             let positionStringValue = positionValue! as? String
             if positionStringValue != nil {
@@ -192,7 +192,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let displayUnitValue = source["displayUnit"]
+        let displayUnitValue = source["displayUnit"] ?? source["DisplayUnit"]
         if displayUnitValue != nil {
             let displayUnitStringValue = displayUnitValue! as? String
             if displayUnitStringValue != nil {
@@ -202,7 +202,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let baseUnitScaleValue = source["baseUnitScale"]
+        let baseUnitScaleValue = source["baseUnitScale"] ?? source["BaseUnitScale"]
         if baseUnitScaleValue != nil {
             let baseUnitScaleStringValue = baseUnitScaleValue! as? String
             if baseUnitScaleStringValue != nil {
@@ -212,15 +212,15 @@ public class Axis: Codable {
                 }
             }
         }
-        let isAutomaticMajorUnitValue = source["isAutomaticMajorUnit"]
+        let isAutomaticMajorUnitValue = source["isAutomaticMajorUnit"] ?? source["IsAutomaticMajorUnit"]
         if isAutomaticMajorUnitValue != nil {
             self.isAutomaticMajorUnit = isAutomaticMajorUnitValue! as? Bool
         }
-        let majorUnitValue = source["majorUnit"]
+        let majorUnitValue = source["majorUnit"] ?? source["MajorUnit"]
         if majorUnitValue != nil {
             self.majorUnit = majorUnitValue! as? Double
         }
-        let majorUnitScaleValue = source["majorUnitScale"]
+        let majorUnitScaleValue = source["majorUnitScale"] ?? source["MajorUnitScale"]
         if majorUnitScaleValue != nil {
             let majorUnitScaleStringValue = majorUnitScaleValue! as? String
             if majorUnitScaleStringValue != nil {
@@ -230,7 +230,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let majorTickMarkValue = source["majorTickMark"]
+        let majorTickMarkValue = source["majorTickMark"] ?? source["MajorTickMark"]
         if majorTickMarkValue != nil {
             let majorTickMarkStringValue = majorTickMarkValue! as? String
             if majorTickMarkStringValue != nil {
@@ -240,15 +240,15 @@ public class Axis: Codable {
                 }
             }
         }
-        let isAutomaticMinorUnitValue = source["isAutomaticMinorUnit"]
+        let isAutomaticMinorUnitValue = source["isAutomaticMinorUnit"] ?? source["IsAutomaticMinorUnit"]
         if isAutomaticMinorUnitValue != nil {
             self.isAutomaticMinorUnit = isAutomaticMinorUnitValue! as? Bool
         }
-        let minorUnitValue = source["minorUnit"]
+        let minorUnitValue = source["minorUnit"] ?? source["MinorUnit"]
         if minorUnitValue != nil {
             self.minorUnit = minorUnitValue! as? Double
         }
-        let minorUnitScaleValue = source["minorUnitScale"]
+        let minorUnitScaleValue = source["minorUnitScale"] ?? source["MinorUnitScale"]
         if minorUnitScaleValue != nil {
             let minorUnitScaleStringValue = minorUnitScaleValue! as? String
             if minorUnitScaleStringValue != nil {
@@ -258,7 +258,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let minorTickMarkValue = source["minorTickMark"]
+        let minorTickMarkValue = source["minorTickMark"] ?? source["MinorTickMark"]
         if minorTickMarkValue != nil {
             let minorTickMarkStringValue = minorTickMarkValue! as? String
             if minorTickMarkStringValue != nil {
@@ -268,31 +268,31 @@ public class Axis: Codable {
                 }
             }
         }
-        let isAutomaticMaxValueValue = source["isAutomaticMaxValue"]
+        let isAutomaticMaxValueValue = source["isAutomaticMaxValue"] ?? source["IsAutomaticMaxValue"]
         if isAutomaticMaxValueValue != nil {
             self.isAutomaticMaxValue = isAutomaticMaxValueValue! as? Bool
         }
-        let maxValueValue = source["maxValue"]
+        let maxValueValue = source["maxValue"] ?? source["MaxValue"]
         if maxValueValue != nil {
             self.maxValue = maxValueValue! as? Double
         }
-        let isAutomaticMinValueValue = source["isAutomaticMinValue"]
+        let isAutomaticMinValueValue = source["isAutomaticMinValue"] ?? source["IsAutomaticMinValue"]
         if isAutomaticMinValueValue != nil {
             self.isAutomaticMinValue = isAutomaticMinValueValue! as? Bool
         }
-        let minValueValue = source["minValue"]
+        let minValueValue = source["minValue"] ?? source["MinValue"]
         if minValueValue != nil {
             self.minValue = minValueValue! as? Double
         }
-        let isLogarithmicValue = source["isLogarithmic"]
+        let isLogarithmicValue = source["isLogarithmic"] ?? source["IsLogarithmic"]
         if isLogarithmicValue != nil {
             self.isLogarithmic = isLogarithmicValue! as? Bool
         }
-        let logBaseValue = source["logBase"]
+        let logBaseValue = source["logBase"] ?? source["LogBase"]
         if logBaseValue != nil {
             self.logBase = logBaseValue! as? Double
         }
-        let categoryAxisTypeValue = source["categoryAxisType"]
+        let categoryAxisTypeValue = source["categoryAxisType"] ?? source["CategoryAxisType"]
         if categoryAxisTypeValue != nil {
             let categoryAxisTypeStringValue = categoryAxisTypeValue! as? String
             if categoryAxisTypeStringValue != nil {
@@ -302,27 +302,27 @@ public class Axis: Codable {
                 }
             }
         }
-        let axisBetweenCategoriesValue = source["axisBetweenCategories"]
+        let axisBetweenCategoriesValue = source["axisBetweenCategories"] ?? source["AxisBetweenCategories"]
         if axisBetweenCategoriesValue != nil {
             self.axisBetweenCategories = axisBetweenCategoriesValue! as? Bool
         }
-        let labelOffsetValue = source["labelOffset"]
+        let labelOffsetValue = source["labelOffset"] ?? source["LabelOffset"]
         if labelOffsetValue != nil {
             self.labelOffset = labelOffsetValue! as? Int
         }
-        let isPlotOrderReversedValue = source["isPlotOrderReversed"]
+        let isPlotOrderReversedValue = source["isPlotOrderReversed"] ?? source["IsPlotOrderReversed"]
         if isPlotOrderReversedValue != nil {
             self.isPlotOrderReversed = isPlotOrderReversedValue! as? Bool
         }
-        let isNumberFormatLinkedToSourceValue = source["isNumberFormatLinkedToSource"]
+        let isNumberFormatLinkedToSourceValue = source["isNumberFormatLinkedToSource"] ?? source["IsNumberFormatLinkedToSource"]
         if isNumberFormatLinkedToSourceValue != nil {
             self.isNumberFormatLinkedToSource = isNumberFormatLinkedToSourceValue! as? Bool
         }
-        let numberFormatValue = source["numberFormat"]
+        let numberFormatValue = source["numberFormat"] ?? source["NumberFormat"]
         if numberFormatValue != nil {
             self.numberFormat = numberFormatValue! as? String
         }
-        let crossTypeValue = source["crossType"]
+        let crossTypeValue = source["crossType"] ?? source["CrossType"]
         if crossTypeValue != nil {
             let crossTypeStringValue = crossTypeValue! as? String
             if crossTypeStringValue != nil {
@@ -332,27 +332,27 @@ public class Axis: Codable {
                 }
             }
         }
-        let crossAtValue = source["crossAt"]
+        let crossAtValue = source["crossAt"] ?? source["CrossAt"]
         if crossAtValue != nil {
             self.crossAt = crossAtValue! as? Double
         }
-        let isAutomaticTickMarksSpacingValue = source["isAutomaticTickMarksSpacing"]
+        let isAutomaticTickMarksSpacingValue = source["isAutomaticTickMarksSpacing"] ?? source["IsAutomaticTickMarksSpacing"]
         if isAutomaticTickMarksSpacingValue != nil {
             self.isAutomaticTickMarksSpacing = isAutomaticTickMarksSpacingValue! as? Bool
         }
-        let tickMarksSpacingValue = source["tickMarksSpacing"]
+        let tickMarksSpacingValue = source["tickMarksSpacing"] ?? source["TickMarksSpacing"]
         if tickMarksSpacingValue != nil {
             self.tickMarksSpacing = tickMarksSpacingValue! as? Int
         }
-        let isAutomaticTickLabelSpacingValue = source["isAutomaticTickLabelSpacing"]
+        let isAutomaticTickLabelSpacingValue = source["isAutomaticTickLabelSpacing"] ?? source["IsAutomaticTickLabelSpacing"]
         if isAutomaticTickLabelSpacingValue != nil {
             self.isAutomaticTickLabelSpacing = isAutomaticTickLabelSpacingValue! as? Bool
         }
-        let tickLabelSpacingValue = source["tickLabelSpacing"]
+        let tickLabelSpacingValue = source["tickLabelSpacing"] ?? source["TickLabelSpacing"]
         if tickLabelSpacingValue != nil {
             self.tickLabelSpacing = tickLabelSpacingValue! as? Int
         }
-        let tickLabelPositionValue = source["tickLabelPosition"]
+        let tickLabelPositionValue = source["tickLabelPosition"] ?? source["TickLabelPosition"]
         if tickLabelPositionValue != nil {
             let tickLabelPositionStringValue = tickLabelPositionValue! as? String
             if tickLabelPositionStringValue != nil {
@@ -362,11 +362,11 @@ public class Axis: Codable {
                 }
             }
         }
-        let tickLabelRotationAngleValue = source["tickLabelRotationAngle"]
+        let tickLabelRotationAngleValue = source["tickLabelRotationAngle"] ?? source["TickLabelRotationAngle"]
         if tickLabelRotationAngleValue != nil {
             self.tickLabelRotationAngle = tickLabelRotationAngleValue! as? Double
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -376,7 +376,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -386,7 +386,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -396,7 +396,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let majorGridLinesFormatValue = source["majorGridLinesFormat"]
+        let majorGridLinesFormatValue = source["majorGridLinesFormat"] ?? source["MajorGridLinesFormat"]
         if majorGridLinesFormatValue != nil {
             let majorGridLinesFormatDictionaryValue = majorGridLinesFormatValue! as? [String:Any]
             if majorGridLinesFormatDictionaryValue != nil {
@@ -406,7 +406,7 @@ public class Axis: Codable {
                 }
             }
         }
-        let minorGridLinesFormatValue = source["minorGridLinesFormat"]
+        let minorGridLinesFormatValue = source["minorGridLinesFormat"] ?? source["MinorGridLinesFormat"]
         if minorGridLinesFormatValue != nil {
             let minorGridLinesFormatDictionaryValue = minorGridLinesFormatValue! as? [String:Any]
             if minorGridLinesFormatDictionaryValue != nil {

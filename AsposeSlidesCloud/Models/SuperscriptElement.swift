@@ -39,7 +39,7 @@ public class SuperscriptElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -49,7 +49,7 @@ public class SuperscriptElement: MathElement {
                 }
             }
         }
-        let superscriptValue = source["superscript"]
+        let superscriptValue = source["superscript"] ?? source["Superscript"]
         if superscriptValue != nil {
             let superscriptDictionaryValue = superscriptValue! as? [String:Any]
             if superscriptDictionaryValue != nil {

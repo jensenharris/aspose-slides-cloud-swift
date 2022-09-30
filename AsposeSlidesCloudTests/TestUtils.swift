@@ -33,64 +33,84 @@ class TestUtils {
     static var isInitialized = false
     static var rules: NSDictionary? = nil
     
-    class func getTestValueInternal(functionName: String, name: String, type: String) -> Any? {
+    class func getTestValueInternal(functionName: String, name: String, type: String) -> (value: Any?, type: String?) {
         ensureRules()
         if type == "Data" {
             var fileName = "test.pptx"
             if functionName.caseInsensitiveCompare("importFromPdf") == .orderedSame {
                 fileName = "test.pdf"
+            } else if functionName.caseInsensitiveCompare("importShapesFromSvg") == .orderedSame {
+                fileName = "shapes.svg"
+            } else if name.caseInsensitiveCompare("image") == .orderedSame {
+                fileName = "watermark.png"
             }
-            return FileManager.default.contents(atPath: "TestData/" + fileName)
+            return (FileManager.default.contents(atPath: "TestData/" + fileName), nil)
         }
         if type == "[Data]" {
-            return [ FileManager.default.contents(atPath: "TestData/test.pptx")!, FileManager.default.contents(atPath: "TestData/test-unprotected.pptx")! ]
+            return ([ FileManager.default.contents(atPath: "TestData/test.pptx")!, FileManager.default.contents(atPath: "TestData/test-unprotected.pptx")! ], nil)
         }
         var value: Any? = "test" + name
+        var ruleType: String? = nil
         let v = rules!["Values"] as! NSArray
         for vr in v {
             let rule = vr as! NSDictionary
             if (isGoodRule(rule, functionName, name)) {
-                if (rule["Value"] != nil) {
-                    if (rule["Value"] is NSNull) {
-                        value = nil
-                    } else {
-                        value = rule["Value"]
+                if rule["Type"] == nil || ClassRegistry.isSubclass(rule["Type"] as! String, type) {
+                    if (rule["Value"] != nil) {
+                        if (rule["Value"] is NSNull) {
+                            value = nil
+                        } else {
+                            value = rule["Value"]
+                        }
+                        if (rule["Type"] != nil) {
+                            ruleType = rule["Type"] as? String 
+                        }
                     }
                 }
             }
         }
         if (value == nil) {
             if (type == "String") {
-                return ""
+                return ("", nil)
             }
             if (type == "Bool") {
-                return false
+                return (false, nil)
             }
             if (type == "Int") {
-                return 0
+                return (0, nil)
             }
             if (type == "Double") {
-                return 0.0
+                return (0.0, nil)
             }
             if (type.starts(with: "[")) {
-                return []
+                return ([], nil)
             }
         }
-        return value
+        return (value, ruleType)
     }
     
     class func getTestValue<T:Decodable>(functionName: String, name: String, type: String) -> T {
-        var value: Any? = getTestValueInternal(functionName: functionName, name: name, type: type)
+        let valueInternal = getTestValueInternal(functionName: functionName, name: name, type: type)
+        var value: Any? = valueInternal.value
+        let ruleType: String? = valueInternal.type
         if value == nil {
             value = NSMutableDictionary()
         }
         if (value is NSDictionary) {
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: value as! NSDictionary)
-                let result: (decodableObj: T?, error: Error?) = CodableHelper.decode(T.self, from: jsonData)
-                return result.decodableObj!
+                if (ruleType != nil) {
+                    let result: (decodableObj: Decodable?, error: Error?) = ClassRegistry.getClassInstance(ruleType!, jsonData)
+                    return result.decodableObj! as! T
+                } else {
+                    let result: (decodableObj: T?, error: Error?) = CodableHelper.decode(T.self, from: jsonData)
+                    return result.decodableObj!
+                }
             } catch {
             }
+        }
+        if type == "String" {
+            return "\(value!)" as! T
         }
         return value as! T
     }
@@ -99,6 +119,9 @@ class TestUtils {
         var invalidValue: Any? = getInvalidTestValueInternal(functionName: functionName, name: name, value: value, type: type)
         if invalidValue == nil {
             invalidValue = NSMutableDictionary()
+            if (ClassRegistry.createInstance(type, [String:Any]()).error == nil) {
+                return value as! T
+            }
         }
         if (invalidValue is NSDictionary) {
             do {
@@ -107,6 +130,9 @@ class TestUtils {
                 return result.decodableObj!
             } catch {
             }
+        }
+        if type == "String" {
+            return "\(invalidValue!)" as! T
         }
         return invalidValue as! T
     }
@@ -258,8 +284,11 @@ class TestUtils {
             let versionPath = "TempTests/version.txt"
             let expectedVersion = "1"
             SlidesAPI.downloadFile(versionPath) { (response, error) -> Void in
-                let version = String(decoding: response!, as: UTF8.self)
-                if (version != expectedVersion) {
+                var version = "0"
+                if error == nil && response != nil {
+                    version = String(decoding: response!, as: UTF8.self)
+                }
+                if version != expectedVersion {
                     do {
                         let files = try FileManager.default.contentsOfDirectory(atPath: "TestData")
                         uploadFiles(files: files, fileIndex: 0) { (response, error) -> Void in
@@ -325,7 +354,9 @@ class TestUtils {
                 switch (error!) {
                 case ErrorResponse.error(let actualCode, let data, _):
                     XCTAssertEqual(code, actualCode)
-                    XCTAssertTrue(String(decoding: data!, as: UTF8.self).contains(message))
+                    if data!.count != 0 { //TODO: remove this workaround
+                        XCTAssertTrue(String(decoding: data!, as: UTF8.self).contains(message))
+                    }
                 default:
                     XCTFail("Unexpected error")
                 }

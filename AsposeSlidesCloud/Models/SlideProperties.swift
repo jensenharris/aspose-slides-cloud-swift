@@ -75,11 +75,11 @@ public class SlideProperties: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let firstSlideNumberValue = source["firstSlideNumber"]
+        let firstSlideNumberValue = source["firstSlideNumber"] ?? source["FirstSlideNumber"]
         if firstSlideNumberValue != nil {
             self.firstSlideNumber = firstSlideNumberValue! as? Int
         }
-        let orientationValue = source["orientation"]
+        let orientationValue = source["orientation"] ?? source["Orientation"]
         if orientationValue != nil {
             let orientationStringValue = orientationValue! as? String
             if orientationStringValue != nil {
@@ -89,7 +89,7 @@ public class SlideProperties: ResourceBase {
                 }
             }
         }
-        let scaleTypeValue = source["scaleType"]
+        let scaleTypeValue = source["scaleType"] ?? source["ScaleType"]
         if scaleTypeValue != nil {
             let scaleTypeStringValue = scaleTypeValue! as? String
             if scaleTypeStringValue != nil {
@@ -99,7 +99,7 @@ public class SlideProperties: ResourceBase {
                 }
             }
         }
-        let sizeTypeValue = source["sizeType"]
+        let sizeTypeValue = source["sizeType"] ?? source["SizeType"]
         if sizeTypeValue != nil {
             let sizeTypeStringValue = sizeTypeValue! as? String
             if sizeTypeStringValue != nil {
@@ -109,11 +109,11 @@ public class SlideProperties: ResourceBase {
                 }
             }
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Int
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Int
         }

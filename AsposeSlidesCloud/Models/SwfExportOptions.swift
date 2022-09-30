@@ -85,67 +85,67 @@ public class SwfExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let showHiddenSlidesValue = source["showHiddenSlides"]
+        let showHiddenSlidesValue = source["showHiddenSlides"] ?? source["ShowHiddenSlides"]
         if showHiddenSlidesValue != nil {
             self.showHiddenSlides = showHiddenSlidesValue! as? Bool
         }
-        let compressedValue = source["compressed"]
+        let compressedValue = source["compressed"] ?? source["Compressed"]
         if compressedValue != nil {
             self.compressed = compressedValue! as? Bool
         }
-        let viewerIncludedValue = source["viewerIncluded"]
+        let viewerIncludedValue = source["viewerIncluded"] ?? source["ViewerIncluded"]
         if viewerIncludedValue != nil {
             self.viewerIncluded = viewerIncludedValue! as? Bool
         }
-        let showPageBorderValue = source["showPageBorder"]
+        let showPageBorderValue = source["showPageBorder"] ?? source["ShowPageBorder"]
         if showPageBorderValue != nil {
             self.showPageBorder = showPageBorderValue! as? Bool
         }
-        let showFullScreenValue = source["showFullScreen"]
+        let showFullScreenValue = source["showFullScreen"] ?? source["ShowFullScreen"]
         if showFullScreenValue != nil {
             self.showFullScreen = showFullScreenValue! as? Bool
         }
-        let showPageStepperValue = source["showPageStepper"]
+        let showPageStepperValue = source["showPageStepper"] ?? source["ShowPageStepper"]
         if showPageStepperValue != nil {
             self.showPageStepper = showPageStepperValue! as? Bool
         }
-        let showSearchValue = source["showSearch"]
+        let showSearchValue = source["showSearch"] ?? source["ShowSearch"]
         if showSearchValue != nil {
             self.showSearch = showSearchValue! as? Bool
         }
-        let showTopPaneValue = source["showTopPane"]
+        let showTopPaneValue = source["showTopPane"] ?? source["ShowTopPane"]
         if showTopPaneValue != nil {
             self.showTopPane = showTopPaneValue! as? Bool
         }
-        let showBottomPaneValue = source["showBottomPane"]
+        let showBottomPaneValue = source["showBottomPane"] ?? source["ShowBottomPane"]
         if showBottomPaneValue != nil {
             self.showBottomPane = showBottomPaneValue! as? Bool
         }
-        let showLeftPaneValue = source["showLeftPane"]
+        let showLeftPaneValue = source["showLeftPane"] ?? source["ShowLeftPane"]
         if showLeftPaneValue != nil {
             self.showLeftPane = showLeftPaneValue! as? Bool
         }
-        let startOpenLeftPaneValue = source["startOpenLeftPane"]
+        let startOpenLeftPaneValue = source["startOpenLeftPane"] ?? source["StartOpenLeftPane"]
         if startOpenLeftPaneValue != nil {
             self.startOpenLeftPane = startOpenLeftPaneValue! as? Bool
         }
-        let enableContextMenuValue = source["enableContextMenu"]
+        let enableContextMenuValue = source["enableContextMenu"] ?? source["EnableContextMenu"]
         if enableContextMenuValue != nil {
             self.enableContextMenu = enableContextMenuValue! as? Bool
         }
-        let logoImageValue = source["logoImage"]
+        let logoImageValue = source["logoImage"] ?? source["LogoImage"]
         if logoImageValue != nil {
             self.logoImage = logoImageValue! as? String
         }
-        let logoLinkValue = source["logoLink"]
+        let logoLinkValue = source["logoLink"] ?? source["LogoLink"]
         if logoLinkValue != nil {
             self.logoLink = logoLinkValue! as? String
         }
-        let jpegQualityValue = source["jpegQuality"]
+        let jpegQualityValue = source["jpegQuality"] ?? source["JpegQuality"]
         if jpegQualityValue != nil {
             self.jpegQuality = jpegQualityValue! as? Int
         }
-        let notesPositionValue = source["notesPosition"]
+        let notesPositionValue = source["notesPosition"] ?? source["NotesPosition"]
         if notesPositionValue != nil {
             let notesPositionStringValue = notesPositionValue! as? String
             if notesPositionStringValue != nil {
@@ -155,7 +155,7 @@ public class SwfExportOptions: ExportOptions {
                 }
             }
         }
-        let commentsPositionValue = source["commentsPosition"]
+        let commentsPositionValue = source["commentsPosition"] ?? source["CommentsPosition"]
         if commentsPositionValue != nil {
             let commentsPositionStringValue = commentsPositionValue! as? String
             if commentsPositionStringValue != nil {
@@ -165,22 +165,22 @@ public class SwfExportOptions: ExportOptions {
                 }
             }
         }
-        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        let commentsAreaWidthValue = source["commentsAreaWidth"] ?? source["CommentsAreaWidth"]
         if commentsAreaWidthValue != nil {
             self.commentsAreaWidth = commentsAreaWidthValue! as? Int
         }
-        let commentsAreaColorValue = source["commentsAreaColor"]
+        let commentsAreaColorValue = source["commentsAreaColor"] ?? source["CommentsAreaColor"]
         if commentsAreaColorValue != nil {
             self.commentsAreaColor = commentsAreaColorValue! as? String
         }
-        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"] ?? source["ShowCommentsByNoAuthor"]
         if showCommentsByNoAuthorValue != nil {
             self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, compressed: Bool? = nil, viewerIncluded: Bool? = nil, showPageBorder: Bool? = nil, showFullScreen: Bool? = nil, showPageStepper: Bool? = nil, showSearch: Bool? = nil, showTopPane: Bool? = nil, showBottomPane: Bool? = nil, showLeftPane: Bool? = nil, startOpenLeftPane: Bool? = nil, enableContextMenu: Bool? = nil, logoImage: String? = nil, logoLink: String? = nil, jpegQuality: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, compressed: Bool? = nil, viewerIncluded: Bool? = nil, showPageBorder: Bool? = nil, showFullScreen: Bool? = nil, showPageStepper: Bool? = nil, showSearch: Bool? = nil, showTopPane: Bool? = nil, showBottomPane: Bool? = nil, showLeftPane: Bool? = nil, startOpenLeftPane: Bool? = nil, enableContextMenu: Bool? = nil, logoImage: String? = nil, logoLink: String? = nil, jpegQuality: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.showHiddenSlides = showHiddenSlides
         self.compressed = compressed
         self.viewerIncluded = viewerIncluded

@@ -49,7 +49,7 @@ public class ZoomObject: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let imageTypeValue = source["imageType"]
+        let imageTypeValue = source["imageType"] ?? source["ImageType"]
         if imageTypeValue != nil {
             let imageTypeStringValue = imageTypeValue! as? String
             if imageTypeStringValue != nil {
@@ -59,15 +59,15 @@ public class ZoomObject: ShapeBase {
                 }
             }
         }
-        let returnToParentValue = source["returnToParent"]
+        let returnToParentValue = source["returnToParent"] ?? source["ReturnToParent"]
         if returnToParentValue != nil {
             self.returnToParent = returnToParentValue! as? Bool
         }
-        let showBackgroundValue = source["showBackground"]
+        let showBackgroundValue = source["showBackground"] ?? source["ShowBackground"]
         if showBackgroundValue != nil {
             self.showBackground = showBackgroundValue! as? Bool
         }
-        let imageValue = source["image"]
+        let imageValue = source["image"] ?? source["Image"]
         if imageValue != nil {
             let imageDictionaryValue = imageValue! as? [String:Any]
             if imageDictionaryValue != nil {
@@ -77,7 +77,7 @@ public class ZoomObject: ShapeBase {
                 }
             }
         }
-        let transitionDurationValue = source["transitionDuration"]
+        let transitionDurationValue = source["transitionDuration"] ?? source["TransitionDuration"]
         if transitionDurationValue != nil {
             self.transitionDuration = transitionDurationValue! as? Double
         }

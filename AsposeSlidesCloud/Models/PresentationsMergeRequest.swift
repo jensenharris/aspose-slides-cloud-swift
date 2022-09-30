@@ -38,11 +38,11 @@ public class PresentationsMergeRequest: Codable {
     public var presentationPasswords: [String]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let presentationPathsValue = source["presentationPaths"]
+        let presentationPathsValue = source["presentationPaths"] ?? source["PresentationPaths"]
         if presentationPathsValue != nil {
             self.presentationPaths = presentationPathsValue! as? [String]
         }
-        let presentationPasswordsValue = source["presentationPasswords"]
+        let presentationPasswordsValue = source["presentationPasswords"] ?? source["PresentationPasswords"]
         if presentationPasswordsValue != nil {
             self.presentationPasswords = presentationPasswordsValue! as? [String]
         }

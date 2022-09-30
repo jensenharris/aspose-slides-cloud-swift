@@ -80,7 +80,7 @@ public class TiffExportOptions: ImageExportOptionsBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let compressionValue = source["compression"]
+        let compressionValue = source["compression"] ?? source["Compression"]
         if compressionValue != nil {
             let compressionStringValue = compressionValue! as? String
             if compressionStringValue != nil {
@@ -90,19 +90,19 @@ public class TiffExportOptions: ImageExportOptionsBase {
                 }
             }
         }
-        let dpiXValue = source["dpiX"]
+        let dpiXValue = source["dpiX"] ?? source["DpiX"]
         if dpiXValue != nil {
             self.dpiX = dpiXValue! as? Int
         }
-        let dpiYValue = source["dpiY"]
+        let dpiYValue = source["dpiY"] ?? source["DpiY"]
         if dpiYValue != nil {
             self.dpiY = dpiYValue! as? Int
         }
-        let showHiddenSlidesValue = source["showHiddenSlides"]
+        let showHiddenSlidesValue = source["showHiddenSlides"] ?? source["ShowHiddenSlides"]
         if showHiddenSlidesValue != nil {
             self.showHiddenSlides = showHiddenSlidesValue! as? Bool
         }
-        let pixelFormatValue = source["pixelFormat"]
+        let pixelFormatValue = source["pixelFormat"] ?? source["PixelFormat"]
         if pixelFormatValue != nil {
             let pixelFormatStringValue = pixelFormatValue! as? String
             if pixelFormatStringValue != nil {
@@ -112,7 +112,7 @@ public class TiffExportOptions: ImageExportOptionsBase {
                 }
             }
         }
-        let notesPositionValue = source["notesPosition"]
+        let notesPositionValue = source["notesPosition"] ?? source["NotesPosition"]
         if notesPositionValue != nil {
             let notesPositionStringValue = notesPositionValue! as? String
             if notesPositionStringValue != nil {
@@ -122,7 +122,7 @@ public class TiffExportOptions: ImageExportOptionsBase {
                 }
             }
         }
-        let commentsPositionValue = source["commentsPosition"]
+        let commentsPositionValue = source["commentsPosition"] ?? source["CommentsPosition"]
         if commentsPositionValue != nil {
             let commentsPositionStringValue = commentsPositionValue! as? String
             if commentsPositionStringValue != nil {
@@ -132,22 +132,22 @@ public class TiffExportOptions: ImageExportOptionsBase {
                 }
             }
         }
-        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        let commentsAreaWidthValue = source["commentsAreaWidth"] ?? source["CommentsAreaWidth"]
         if commentsAreaWidthValue != nil {
             self.commentsAreaWidth = commentsAreaWidthValue! as? Int
         }
-        let commentsAreaColorValue = source["commentsAreaColor"]
+        let commentsAreaColorValue = source["commentsAreaColor"] ?? source["CommentsAreaColor"]
         if commentsAreaColorValue != nil {
             self.commentsAreaColor = commentsAreaColorValue! as? String
         }
-        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"] ?? source["ShowCommentsByNoAuthor"]
         if showCommentsByNoAuthorValue != nil {
             self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, compression: Compression? = nil, dpiX: Int? = nil, dpiY: Int? = nil, showHiddenSlides: Bool? = nil, pixelFormat: PixelFormat? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format, height: height, width: width)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, compression: Compression? = nil, dpiX: Int? = nil, dpiY: Int? = nil, showHiddenSlides: Bool? = nil, pixelFormat: PixelFormat? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format, height: height, width: width)
         self.compression = compression
         self.dpiX = dpiX
         self.dpiY = dpiY

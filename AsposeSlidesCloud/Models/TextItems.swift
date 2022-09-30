@@ -37,7 +37,7 @@ public class TextItems: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let itemsValue = source["items"]
+        let itemsValue = source["items"] ?? source["Items"]
         if itemsValue != nil {
             var itemsArray: [TextItem] = []
             let itemsDictionaryValue = itemsValue! as? [Any]

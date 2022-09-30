@@ -37,7 +37,7 @@ public class Sections: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let sectionListValue = source["sectionList"]
+        let sectionListValue = source["sectionList"] ?? source["SectionList"]
         if sectionListValue != nil {
             var sectionListArray: [Section] = []
             let sectionListDictionaryValue = sectionListValue! as? [Any]

@@ -55,7 +55,7 @@ public class ShapeBevel: Codable {
     public var height: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let bevelTypeValue = source["bevelType"]
+        let bevelTypeValue = source["bevelType"] ?? source["BevelType"]
         if bevelTypeValue != nil {
             let bevelTypeStringValue = bevelTypeValue! as? String
             if bevelTypeStringValue != nil {
@@ -65,11 +65,11 @@ public class ShapeBevel: Codable {
                 }
             }
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }
-        let heightValue = source["height"]
+        let heightValue = source["height"] ?? source["Height"]
         if heightValue != nil {
             self.height = heightValue! as? Double
         }

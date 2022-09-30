@@ -39,11 +39,11 @@ public class ColorChangeEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let fromColorValue = source["fromColor"]
+        let fromColorValue = source["fromColor"] ?? source["FromColor"]
         if fromColorValue != nil {
             self.fromColor = fromColorValue! as? String
         }
-        let toColorValue = source["toColor"]
+        let toColorValue = source["toColor"] ?? source["ToColor"]
         if toColorValue != nil {
             self.toColor = toColorValue! as? String
         }

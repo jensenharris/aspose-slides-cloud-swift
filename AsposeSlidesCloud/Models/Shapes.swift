@@ -37,7 +37,7 @@ public class Shapes: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let shapesLinksValue = source["shapesLinks"]
+        let shapesLinksValue = source["shapesLinks"] ?? source["ShapesLinks"]
         if shapesLinksValue != nil {
             var shapesLinksArray: [ResourceUri] = []
             let shapesLinksDictionaryValue = shapesLinksValue! as? [Any]

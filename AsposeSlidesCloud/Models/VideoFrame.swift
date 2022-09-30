@@ -65,19 +65,19 @@ public class VideoFrame: GeometryShape {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let fullScreenModeValue = source["fullScreenMode"]
+        let fullScreenModeValue = source["fullScreenMode"] ?? source["FullScreenMode"]
         if fullScreenModeValue != nil {
             self.fullScreenMode = fullScreenModeValue! as? Bool
         }
-        let hideAtShowingValue = source["hideAtShowing"]
+        let hideAtShowingValue = source["hideAtShowing"] ?? source["HideAtShowing"]
         if hideAtShowingValue != nil {
             self.hideAtShowing = hideAtShowingValue! as? Bool
         }
-        let playLoopModeValue = source["playLoopMode"]
+        let playLoopModeValue = source["playLoopMode"] ?? source["PlayLoopMode"]
         if playLoopModeValue != nil {
             self.playLoopMode = playLoopModeValue! as? Bool
         }
-        let playModeValue = source["playMode"]
+        let playModeValue = source["playMode"] ?? source["PlayMode"]
         if playModeValue != nil {
             let playModeStringValue = playModeValue! as? String
             if playModeStringValue != nil {
@@ -87,11 +87,11 @@ public class VideoFrame: GeometryShape {
                 }
             }
         }
-        let rewindVideoValue = source["rewindVideo"]
+        let rewindVideoValue = source["rewindVideo"] ?? source["RewindVideo"]
         if rewindVideoValue != nil {
             self.rewindVideo = rewindVideoValue! as? Bool
         }
-        let volumeValue = source["volume"]
+        let volumeValue = source["volume"] ?? source["Volume"]
         if volumeValue != nil {
             let volumeStringValue = volumeValue! as? String
             if volumeStringValue != nil {
@@ -101,11 +101,11 @@ public class VideoFrame: GeometryShape {
                 }
             }
         }
-        let base64DataValue = source["base64Data"]
+        let base64DataValue = source["base64Data"] ?? source["Base64Data"]
         if base64DataValue != nil {
             self.base64Data = base64DataValue! as? String
         }
-        let pictureFillFormatValue = source["pictureFillFormat"]
+        let pictureFillFormatValue = source["pictureFillFormat"] ?? source["PictureFillFormat"]
         if pictureFillFormatValue != nil {
             let pictureFillFormatDictionaryValue = pictureFillFormatValue! as? [String:Any]
             if pictureFillFormatDictionaryValue != nil {

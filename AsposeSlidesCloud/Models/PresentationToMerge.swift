@@ -35,6 +35,7 @@ public class PresentationToMerge: Codable {
     public enum Source: String, Codable { 
         case storage = "Storage"
         case request = "Request"
+        case url = "Url"
     }
     /** Get or sets the presentation path */
     public var path: String?
@@ -46,19 +47,19 @@ public class PresentationToMerge: Codable {
     public var source: Source?
 
     func fillValues(_ source: [String:Any]) throws {
-        let pathValue = source["path"]
+        let pathValue = source["path"] ?? source["Path"]
         if pathValue != nil {
             self.path = pathValue! as? String
         }
-        let passwordValue = source["password"]
+        let passwordValue = source["password"] ?? source["Password"]
         if passwordValue != nil {
             self.password = passwordValue! as? String
         }
-        let slidesValue = source["slides"]
+        let slidesValue = source["slides"] ?? source["Slides"]
         if slidesValue != nil {
             self.slides = slidesValue! as? [Int]
         }
-        let sourceValue = source["source"]
+        let sourceValue = source["source"] ?? source["Source"]
         if sourceValue != nil {
             let sourceStringValue = sourceValue! as? String
             if sourceStringValue != nil {

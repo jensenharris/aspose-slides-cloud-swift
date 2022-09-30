@@ -38,11 +38,11 @@ public class GradientFillStop: Codable {
     public var position: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let colorValue = source["color"]
+        let colorValue = source["color"] ?? source["Color"]
         if colorValue != nil {
             self.color = colorValue! as? String
         }
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             self.position = positionValue! as? Double
         }

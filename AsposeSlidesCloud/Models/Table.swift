@@ -133,7 +133,7 @@ public class Table: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let styleValue = source["style"]
+        let styleValue = source["style"] ?? source["Style"]
         if styleValue != nil {
             let styleStringValue = styleValue! as? String
             if styleStringValue != nil {
@@ -143,7 +143,7 @@ public class Table: ShapeBase {
                 }
             }
         }
-        let rowsValue = source["rows"]
+        let rowsValue = source["rows"] ?? source["Rows"]
         if rowsValue != nil {
             var rowsArray: [TableRow] = []
             let rowsDictionaryValue = rowsValue! as? [Any]
@@ -168,7 +168,7 @@ public class Table: ShapeBase {
             }
             self.rows = rowsArray
         }
-        let columnsValue = source["columns"]
+        let columnsValue = source["columns"] ?? source["Columns"]
         if columnsValue != nil {
             var columnsArray: [TableColumn] = []
             let columnsDictionaryValue = columnsValue! as? [Any]
@@ -193,31 +193,31 @@ public class Table: ShapeBase {
             }
             self.columns = columnsArray
         }
-        let firstColValue = source["firstCol"]
+        let firstColValue = source["firstCol"] ?? source["FirstCol"]
         if firstColValue != nil {
             self.firstCol = firstColValue! as? Bool
         }
-        let firstRowValue = source["firstRow"]
+        let firstRowValue = source["firstRow"] ?? source["FirstRow"]
         if firstRowValue != nil {
             self.firstRow = firstRowValue! as? Bool
         }
-        let horizontalBandingValue = source["horizontalBanding"]
+        let horizontalBandingValue = source["horizontalBanding"] ?? source["HorizontalBanding"]
         if horizontalBandingValue != nil {
             self.horizontalBanding = horizontalBandingValue! as? Bool
         }
-        let lastColValue = source["lastCol"]
+        let lastColValue = source["lastCol"] ?? source["LastCol"]
         if lastColValue != nil {
             self.lastCol = lastColValue! as? Bool
         }
-        let lastRowValue = source["lastRow"]
+        let lastRowValue = source["lastRow"] ?? source["LastRow"]
         if lastRowValue != nil {
             self.lastRow = lastRowValue! as? Bool
         }
-        let rightToLeftValue = source["rightToLeft"]
+        let rightToLeftValue = source["rightToLeft"] ?? source["RightToLeft"]
         if rightToLeftValue != nil {
             self.rightToLeft = rightToLeftValue! as? Bool
         }
-        let verticalBandingValue = source["verticalBanding"]
+        let verticalBandingValue = source["verticalBanding"] ?? source["VerticalBanding"]
         if verticalBandingValue != nil {
             self.verticalBanding = verticalBandingValue! as? Bool
         }

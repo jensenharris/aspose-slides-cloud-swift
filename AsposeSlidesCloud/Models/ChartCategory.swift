@@ -48,19 +48,19 @@ public class ChartCategory: Codable {
     public var dataPoints: [OneValueChartDataPoint]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let parentCategoriesValue = source["parentCategories"]
+        let parentCategoriesValue = source["parentCategories"] ?? source["ParentCategories"]
         if parentCategoriesValue != nil {
             self.parentCategories = parentCategoriesValue! as? [String]
         }
-        let levelValue = source["level"]
+        let levelValue = source["level"] ?? source["Level"]
         if levelValue != nil {
             self.level = levelValue! as? Int
         }
-        let valueValue = source["value"]
+        let valueValue = source["value"] ?? source["Value"]
         if valueValue != nil {
             self.value = valueValue! as? String
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -70,7 +70,7 @@ public class ChartCategory: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -80,7 +80,7 @@ public class ChartCategory: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -90,7 +90,7 @@ public class ChartCategory: Codable {
                 }
             }
         }
-        let dataPointsValue = source["dataPoints"]
+        let dataPointsValue = source["dataPoints"] ?? source["DataPoints"]
         if dataPointsValue != nil {
             var dataPointsArray: [OneValueChartDataPoint] = []
             let dataPointsDictionaryValue = dataPointsValue! as? [Any]

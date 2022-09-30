@@ -53,7 +53,7 @@ public class SmartArtNode: Codable {
     public var paragraphs: ResourceUri?
 
     func fillValues(_ source: [String:Any]) throws {
-        let nodesValue = source["nodes"]
+        let nodesValue = source["nodes"] ?? source["Nodes"]
         if nodesValue != nil {
             var nodesArray: [SmartArtNode] = []
             let nodesDictionaryValue = nodesValue! as? [Any]
@@ -78,7 +78,7 @@ public class SmartArtNode: Codable {
             }
             self.nodes = nodesArray
         }
-        let shapesValue = source["shapes"]
+        let shapesValue = source["shapes"] ?? source["Shapes"]
         if shapesValue != nil {
             let shapesDictionaryValue = shapesValue! as? [String:Any]
             if shapesDictionaryValue != nil {
@@ -88,15 +88,15 @@ public class SmartArtNode: Codable {
                 }
             }
         }
-        let isAssistantValue = source["isAssistant"]
+        let isAssistantValue = source["isAssistant"] ?? source["IsAssistant"]
         if isAssistantValue != nil {
             self.isAssistant = isAssistantValue! as? Bool
         }
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }
-        let orgChartLayoutValue = source["orgChartLayout"]
+        let orgChartLayoutValue = source["orgChartLayout"] ?? source["OrgChartLayout"]
         if orgChartLayoutValue != nil {
             let orgChartLayoutStringValue = orgChartLayoutValue! as? String
             if orgChartLayoutStringValue != nil {
@@ -106,7 +106,7 @@ public class SmartArtNode: Codable {
                 }
             }
         }
-        let paragraphsValue = source["paragraphs"]
+        let paragraphsValue = source["paragraphs"] ?? source["Paragraphs"]
         if paragraphsValue != nil {
             let paragraphsDictionaryValue = paragraphsValue! as? [String:Any]
             if paragraphsDictionaryValue != nil {

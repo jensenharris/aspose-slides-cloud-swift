@@ -41,15 +41,15 @@ public class HslEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let hueValue = source["hue"]
+        let hueValue = source["hue"] ?? source["Hue"]
         if hueValue != nil {
             self.hue = hueValue! as? Double
         }
-        let saturationValue = source["saturation"]
+        let saturationValue = source["saturation"] ?? source["Saturation"]
         if saturationValue != nil {
             self.saturation = saturationValue! as? Double
         }
-        let luminanceValue = source["luminance"]
+        let luminanceValue = source["luminance"] ?? source["Luminance"]
         if luminanceValue != nil {
             self.luminance = luminanceValue! as? Double
         }

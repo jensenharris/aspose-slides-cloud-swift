@@ -41,22 +41,22 @@ public class OneValueChartDataPoint: DataPoint {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let valueValue = source["value"]
+        let valueValue = source["value"] ?? source["Value"]
         if valueValue != nil {
             self.value = valueValue! as? Double
         }
-        let setAsTotalValue = source["setAsTotal"]
+        let setAsTotalValue = source["setAsTotal"] ?? source["SetAsTotal"]
         if setAsTotalValue != nil {
             self.setAsTotal = setAsTotalValue! as? Bool
         }
-        let invertIfNegativeValue = source["invertIfNegative"]
+        let invertIfNegativeValue = source["invertIfNegative"] ?? source["InvertIfNegative"]
         if invertIfNegativeValue != nil {
             self.invertIfNegative = invertIfNegativeValue! as? Bool
         }
     }
 
-    public init(value: Double? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
-        super.init()
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, value: Double? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
+        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat)
         self.value = value
         self.setAsTotal = setAsTotal
         self.invertIfNegative = invertIfNegative

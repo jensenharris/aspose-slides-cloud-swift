@@ -38,11 +38,11 @@ public class NormalViewRestoredProperties: Codable {
     public var dimensionSize: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let autoAdjustValue = source["autoAdjust"]
+        let autoAdjustValue = source["autoAdjust"] ?? source["AutoAdjust"]
         if autoAdjustValue != nil {
             self.autoAdjust = autoAdjustValue! as? Bool
         }
-        let dimensionSizeValue = source["dimensionSize"]
+        let dimensionSizeValue = source["dimensionSize"] ?? source["DimensionSize"]
         if dimensionSizeValue != nil {
             self.dimensionSize = dimensionSizeValue! as? Double
         }

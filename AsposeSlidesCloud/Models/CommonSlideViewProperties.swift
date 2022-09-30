@@ -38,11 +38,11 @@ public class CommonSlideViewProperties: Codable {
     public var variableScale: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let scaleValue = source["scale"]
+        let scaleValue = source["scale"] ?? source["Scale"]
         if scaleValue != nil {
             self.scale = scaleValue! as? Int
         }
-        let variableScaleValue = source["variableScale"]
+        let variableScaleValue = source["variableScale"] ?? source["VariableScale"]
         if variableScaleValue != nil {
             self.variableScale = variableScaleValue! as? Bool
         }

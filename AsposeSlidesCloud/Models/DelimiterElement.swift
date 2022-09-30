@@ -51,7 +51,7 @@ public class DelimiterElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let argumentsValue = source["arguments"]
+        let argumentsValue = source["arguments"] ?? source["Arguments"]
         if argumentsValue != nil {
             var argumentsArray: [MathElement] = []
             let argumentsDictionaryValue = argumentsValue! as? [Any]
@@ -76,23 +76,23 @@ public class DelimiterElement: MathElement {
             }
             self.arguments = argumentsArray
         }
-        let beginningCharacterValue = source["beginningCharacter"]
+        let beginningCharacterValue = source["beginningCharacter"] ?? source["BeginningCharacter"]
         if beginningCharacterValue != nil {
             self.beginningCharacter = beginningCharacterValue! as? String
         }
-        let separatorCharacterValue = source["separatorCharacter"]
+        let separatorCharacterValue = source["separatorCharacter"] ?? source["SeparatorCharacter"]
         if separatorCharacterValue != nil {
             self.separatorCharacter = separatorCharacterValue! as? String
         }
-        let endingCharacterValue = source["endingCharacter"]
+        let endingCharacterValue = source["endingCharacter"] ?? source["EndingCharacter"]
         if endingCharacterValue != nil {
             self.endingCharacter = endingCharacterValue! as? String
         }
-        let growToMatchOperandHeightValue = source["growToMatchOperandHeight"]
+        let growToMatchOperandHeightValue = source["growToMatchOperandHeight"] ?? source["GrowToMatchOperandHeight"]
         if growToMatchOperandHeightValue != nil {
             self.growToMatchOperandHeight = growToMatchOperandHeightValue! as? Bool
         }
-        let delimiterShapeValue = source["delimiterShape"]
+        let delimiterShapeValue = source["delimiterShape"] ?? source["DelimiterShape"]
         if delimiterShapeValue != nil {
             let delimiterShapeStringValue = delimiterShapeValue! as? String
             if delimiterShapeStringValue != nil {

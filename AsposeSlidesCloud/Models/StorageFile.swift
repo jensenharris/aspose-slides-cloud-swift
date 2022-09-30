@@ -44,15 +44,15 @@ public class StorageFile: Codable {
     public var path: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let isFolderValue = source["isFolder"]
+        let isFolderValue = source["isFolder"] ?? source["IsFolder"]
         if isFolderValue != nil {
             self.isFolder = isFolderValue! as? Bool
         }
-        let modifiedDateValue = source["modifiedDate"]
+        let modifiedDateValue = source["modifiedDate"] ?? source["ModifiedDate"]
         if modifiedDateValue != nil {
             let modifiedDateDictionaryValue = modifiedDateValue! as? [String:Any]
             if modifiedDateDictionaryValue != nil {
@@ -62,11 +62,11 @@ public class StorageFile: Codable {
                 }
             }
         }
-        let sizeValue = source["size"]
+        let sizeValue = source["size"] ?? source["Size"]
         if sizeValue != nil {
             self.size = sizeValue! as? Int64
         }
-        let pathValue = source["path"]
+        let pathValue = source["path"] ?? source["Path"]
         if pathValue != nil {
             self.path = pathValue! as? String
         }

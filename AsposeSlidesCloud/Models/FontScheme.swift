@@ -41,7 +41,7 @@ public class FontScheme: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let majorValue = source["major"]
+        let majorValue = source["major"] ?? source["Major"]
         if majorValue != nil {
             let majorDictionaryValue = majorValue! as? [String:Any]
             if majorDictionaryValue != nil {
@@ -51,7 +51,7 @@ public class FontScheme: ResourceBase {
                 }
             }
         }
-        let minorValue = source["minor"]
+        let minorValue = source["minor"] ?? source["Minor"]
         if minorValue != nil {
             let minorDictionaryValue = minorValue! as? [String:Any]
             if minorDictionaryValue != nil {
@@ -61,7 +61,7 @@ public class FontScheme: ResourceBase {
                 }
             }
         }
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }

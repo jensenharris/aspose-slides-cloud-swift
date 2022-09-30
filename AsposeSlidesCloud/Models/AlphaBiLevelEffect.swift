@@ -37,7 +37,7 @@ public class AlphaBiLevelEffect: ImageTransformEffect {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let thresholdValue = source["threshold"]
+        let thresholdValue = source["threshold"] ?? source["Threshold"]
         if thresholdValue != nil {
             self.threshold = thresholdValue! as? Double
         }

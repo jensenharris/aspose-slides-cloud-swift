@@ -38,11 +38,11 @@ public class ObjectExist: Codable {
     public var isFolder: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let existsValue = source["exists"]
+        let existsValue = source["exists"] ?? source["Exists"]
         if existsValue != nil {
             self.exists = existsValue! as? Bool
         }
-        let isFolderValue = source["isFolder"]
+        let isFolderValue = source["isFolder"] ?? source["IsFolder"]
         if isFolderValue != nil {
             self.isFolder = isFolderValue! as? Bool
         }

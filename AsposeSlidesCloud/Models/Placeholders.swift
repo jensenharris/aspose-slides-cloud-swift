@@ -37,7 +37,7 @@ public class Placeholders: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let placeholderLinksValue = source["placeholderLinks"]
+        let placeholderLinksValue = source["placeholderLinks"] ?? source["PlaceholderLinks"]
         if placeholderLinksValue != nil {
             var placeholderLinksArray: [ResourceUri] = []
             let placeholderLinksDictionaryValue = placeholderLinksValue! as? [Any]

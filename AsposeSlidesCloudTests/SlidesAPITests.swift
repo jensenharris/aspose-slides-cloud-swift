@@ -267,6 +267,16 @@ class SlidesAPITests : XCTestCase {
         ("testCreateSlideInvalidPassword", testCreateSlideInvalidPassword),
         ("testCreateSlideInvalidFolder", testCreateSlideInvalidFolder),
         ("testCreateSlideInvalidStorage", testCreateSlideInvalidStorage),
+        ("testCreateSmartArtNode", testCreateSmartArtNode),
+        ("testCreateSmartArtNodeInvalidName", testCreateSmartArtNodeInvalidName),
+        ("testCreateSmartArtNodeInvalidSlideIndex", testCreateSmartArtNodeInvalidSlideIndex),
+        ("testCreateSmartArtNodeInvalidSmartArtIndex", testCreateSmartArtNodeInvalidSmartArtIndex),
+        ("testCreateSmartArtNodeInvalidSubNode", testCreateSmartArtNodeInvalidSubNode),
+        ("testCreateSmartArtNodeInvalidText", testCreateSmartArtNodeInvalidText),
+        ("testCreateSmartArtNodeInvalidPosition", testCreateSmartArtNodeInvalidPosition),
+        ("testCreateSmartArtNodeInvalidPassword", testCreateSmartArtNodeInvalidPassword),
+        ("testCreateSmartArtNodeInvalidFolder", testCreateSmartArtNodeInvalidFolder),
+        ("testCreateSmartArtNodeInvalidStorage", testCreateSmartArtNodeInvalidStorage),
         ("testCreateSpecialSlideAnimationEffect", testCreateSpecialSlideAnimationEffect),
         ("testCreateSpecialSlideAnimationEffectInvalidName", testCreateSpecialSlideAnimationEffectInvalidName),
         ("testCreateSpecialSlideAnimationEffectInvalidSlideIndex", testCreateSpecialSlideAnimationEffectInvalidSlideIndex),
@@ -498,6 +508,16 @@ class SlidesAPITests : XCTestCase {
         ("testDeleteDocumentPropertyInvalidPassword", testDeleteDocumentPropertyInvalidPassword),
         ("testDeleteDocumentPropertyInvalidFolder", testDeleteDocumentPropertyInvalidFolder),
         ("testDeleteDocumentPropertyInvalidStorage", testDeleteDocumentPropertyInvalidStorage),
+        ("testDeleteEmbeddedFont", testDeleteEmbeddedFont),
+        ("testDeleteEmbeddedFontInvalidName", testDeleteEmbeddedFontInvalidName),
+        ("testDeleteEmbeddedFontInvalidFontName", testDeleteEmbeddedFontInvalidFontName),
+        ("testDeleteEmbeddedFontInvalidPassword", testDeleteEmbeddedFontInvalidPassword),
+        ("testDeleteEmbeddedFontInvalidFolder", testDeleteEmbeddedFontInvalidFolder),
+        ("testDeleteEmbeddedFontInvalidStorage", testDeleteEmbeddedFontInvalidStorage),
+        ("testDeleteEmbeddedFontOnline", testDeleteEmbeddedFontOnline),
+        ("testDeleteEmbeddedFontOnlineInvalidDocument", testDeleteEmbeddedFontOnlineInvalidDocument),
+        ("testDeleteEmbeddedFontOnlineInvalidFontName", testDeleteEmbeddedFontOnlineInvalidFontName),
+        ("testDeleteEmbeddedFontOnlineInvalidPassword", testDeleteEmbeddedFontOnlineInvalidPassword),
         ("testDeleteFile", testDeleteFile),
         ("testDeleteFileInvalidPath", testDeleteFileInvalidPath),
         ("testDeleteFileInvalidStorageName", testDeleteFileInvalidStorageName),
@@ -606,6 +626,15 @@ class SlidesAPITests : XCTestCase {
         ("testDeleteSlidesInvalidPassword", testDeleteSlidesInvalidPassword),
         ("testDeleteSlidesInvalidFolder", testDeleteSlidesInvalidFolder),
         ("testDeleteSlidesInvalidStorage", testDeleteSlidesInvalidStorage),
+        ("testDeleteSmartArtNode", testDeleteSmartArtNode),
+        ("testDeleteSmartArtNodeInvalidName", testDeleteSmartArtNodeInvalidName),
+        ("testDeleteSmartArtNodeInvalidSlideIndex", testDeleteSmartArtNodeInvalidSlideIndex),
+        ("testDeleteSmartArtNodeInvalidSmartArtIndex", testDeleteSmartArtNodeInvalidSmartArtIndex),
+        ("testDeleteSmartArtNodeInvalidNodeIndex", testDeleteSmartArtNodeInvalidNodeIndex),
+        ("testDeleteSmartArtNodeInvalidSubNode", testDeleteSmartArtNodeInvalidSubNode),
+        ("testDeleteSmartArtNodeInvalidPassword", testDeleteSmartArtNodeInvalidPassword),
+        ("testDeleteSmartArtNodeInvalidFolder", testDeleteSmartArtNodeInvalidFolder),
+        ("testDeleteSmartArtNodeInvalidStorage", testDeleteSmartArtNodeInvalidStorage),
         ("testDeleteSpecialSlideAnimation", testDeleteSpecialSlideAnimation),
         ("testDeleteSpecialSlideAnimationInvalidName", testDeleteSpecialSlideAnimationInvalidName),
         ("testDeleteSpecialSlideAnimationInvalidSlideIndex", testDeleteSpecialSlideAnimationInvalidSlideIndex),
@@ -828,6 +857,16 @@ class SlidesAPITests : XCTestCase {
         ("testDeleteUnusedLayoutSlidesOnline", testDeleteUnusedLayoutSlidesOnline),
         ("testDeleteUnusedLayoutSlidesOnlineInvalidDocument", testDeleteUnusedLayoutSlidesOnlineInvalidDocument),
         ("testDeleteUnusedLayoutSlidesOnlineInvalidPassword", testDeleteUnusedLayoutSlidesOnlineInvalidPassword),
+        ("testDeleteUnusedMasterSlides", testDeleteUnusedMasterSlides),
+        ("testDeleteUnusedMasterSlidesInvalidName", testDeleteUnusedMasterSlidesInvalidName),
+        ("testDeleteUnusedMasterSlidesInvalidIgnorePreserveField", testDeleteUnusedMasterSlidesInvalidIgnorePreserveField),
+        ("testDeleteUnusedMasterSlidesInvalidPassword", testDeleteUnusedMasterSlidesInvalidPassword),
+        ("testDeleteUnusedMasterSlidesInvalidFolder", testDeleteUnusedMasterSlidesInvalidFolder),
+        ("testDeleteUnusedMasterSlidesInvalidStorage", testDeleteUnusedMasterSlidesInvalidStorage),
+        ("testDeleteUnusedMasterSlidesOnline", testDeleteUnusedMasterSlidesOnline),
+        ("testDeleteUnusedMasterSlidesOnlineInvalidDocument", testDeleteUnusedMasterSlidesOnlineInvalidDocument),
+        ("testDeleteUnusedMasterSlidesOnlineInvalidIgnorePreserveField", testDeleteUnusedMasterSlidesOnlineInvalidIgnorePreserveField),
+        ("testDeleteUnusedMasterSlidesOnlineInvalidPassword", testDeleteUnusedMasterSlidesOnlineInvalidPassword),
         ("testDeleteWatermark", testDeleteWatermark),
         ("testDeleteWatermarkInvalidName", testDeleteWatermarkInvalidName),
         ("testDeleteWatermarkInvalidShapeName", testDeleteWatermarkInvalidShapeName),
@@ -1053,6 +1092,14 @@ class SlidesAPITests : XCTestCase {
         ("testGetFontSchemeInvalidPassword", testGetFontSchemeInvalidPassword),
         ("testGetFontSchemeInvalidFolder", testGetFontSchemeInvalidFolder),
         ("testGetFontSchemeInvalidStorage", testGetFontSchemeInvalidStorage),
+        ("testGetFonts", testGetFonts),
+        ("testGetFontsInvalidName", testGetFontsInvalidName),
+        ("testGetFontsInvalidPassword", testGetFontsInvalidPassword),
+        ("testGetFontsInvalidFolder", testGetFontsInvalidFolder),
+        ("testGetFontsInvalidStorage", testGetFontsInvalidStorage),
+        ("testGetFontsOnline", testGetFontsOnline),
+        ("testGetFontsOnlineInvalidDocument", testGetFontsOnlineInvalidDocument),
+        ("testGetFontsOnlineInvalidPassword", testGetFontsOnlineInvalidPassword),
         ("testGetFormatScheme", testGetFormatScheme),
         ("testGetFormatSchemeInvalidName", testGetFormatSchemeInvalidName),
         ("testGetFormatSchemeInvalidSlideIndex", testGetFormatSchemeInvalidSlideIndex),
@@ -1496,6 +1543,19 @@ class SlidesAPITests : XCTestCase {
         ("testImportFromPdfInvalidPassword", testImportFromPdfInvalidPassword),
         ("testImportFromPdfInvalidFolder", testImportFromPdfInvalidFolder),
         ("testImportFromPdfInvalidStorage", testImportFromPdfInvalidStorage),
+        ("testImportShapesFromSvg", testImportShapesFromSvg),
+        ("testImportShapesFromSvgInvalidName", testImportShapesFromSvgInvalidName),
+        ("testImportShapesFromSvgInvalidSlideIndex", testImportShapesFromSvgInvalidSlideIndex),
+        ("testImportShapesFromSvgInvalidImage", testImportShapesFromSvgInvalidImage),
+        ("testImportShapesFromSvgInvalidX", testImportShapesFromSvgInvalidX),
+        ("testImportShapesFromSvgInvalidY", testImportShapesFromSvgInvalidY),
+        ("testImportShapesFromSvgInvalidWidth", testImportShapesFromSvgInvalidWidth),
+        ("testImportShapesFromSvgInvalidHeight", testImportShapesFromSvgInvalidHeight),
+        ("testImportShapesFromSvgInvalidShapes", testImportShapesFromSvgInvalidShapes),
+        ("testImportShapesFromSvgInvalidGroup", testImportShapesFromSvgInvalidGroup),
+        ("testImportShapesFromSvgInvalidPassword", testImportShapesFromSvgInvalidPassword),
+        ("testImportShapesFromSvgInvalidFolder", testImportShapesFromSvgInvalidFolder),
+        ("testImportShapesFromSvgInvalidStorage", testImportShapesFromSvgInvalidStorage),
         ("testMerge", testMerge),
         ("testMergeInvalidName", testMergeInvalidName),
         ("testMergeInvalidRequest", testMergeInvalidRequest),
@@ -1566,6 +1626,22 @@ class SlidesAPITests : XCTestCase {
         ("testReorderSlidesInvalidPassword", testReorderSlidesInvalidPassword),
         ("testReorderSlidesInvalidFolder", testReorderSlidesInvalidFolder),
         ("testReorderSlidesInvalidStorage", testReorderSlidesInvalidStorage),
+        ("testReplaceFont", testReplaceFont),
+        ("testReplaceFontInvalidName", testReplaceFontInvalidName),
+        ("testReplaceFontInvalidSourceFont", testReplaceFontInvalidSourceFont),
+        ("testReplaceFontInvalidTargetFont", testReplaceFontInvalidTargetFont),
+        ("testReplaceFontInvalidEmbed", testReplaceFontInvalidEmbed),
+        ("testReplaceFontInvalidPassword", testReplaceFontInvalidPassword),
+        ("testReplaceFontInvalidFolder", testReplaceFontInvalidFolder),
+        ("testReplaceFontInvalidStorage", testReplaceFontInvalidStorage),
+        ("testReplaceFontInvalidFontsFolder", testReplaceFontInvalidFontsFolder),
+        ("testReplaceFontOnline", testReplaceFontOnline),
+        ("testReplaceFontOnlineInvalidDocument", testReplaceFontOnlineInvalidDocument),
+        ("testReplaceFontOnlineInvalidSourceFont", testReplaceFontOnlineInvalidSourceFont),
+        ("testReplaceFontOnlineInvalidTargetFont", testReplaceFontOnlineInvalidTargetFont),
+        ("testReplaceFontOnlineInvalidEmbed", testReplaceFontOnlineInvalidEmbed),
+        ("testReplaceFontOnlineInvalidPassword", testReplaceFontOnlineInvalidPassword),
+        ("testReplaceFontOnlineInvalidFontsFolder", testReplaceFontOnlineInvalidFontsFolder),
         ("testReplacePresentationText", testReplacePresentationText),
         ("testReplacePresentationTextInvalidName", testReplacePresentationTextInvalidName),
         ("testReplacePresentationTextInvalidOldValue", testReplacePresentationTextInvalidOldValue),
@@ -1733,6 +1809,41 @@ class SlidesAPITests : XCTestCase {
         ("testSetBackgroundColorInvalidPassword", testSetBackgroundColorInvalidPassword),
         ("testSetBackgroundColorInvalidFolder", testSetBackgroundColorInvalidFolder),
         ("testSetBackgroundColorInvalidStorage", testSetBackgroundColorInvalidStorage),
+        ("testSetChartAxis", testSetChartAxis),
+        ("testSetChartAxisInvalidName", testSetChartAxisInvalidName),
+        ("testSetChartAxisInvalidSlideIndex", testSetChartAxisInvalidSlideIndex),
+        ("testSetChartAxisInvalidShapeIndex", testSetChartAxisInvalidShapeIndex),
+        ("testSetChartAxisInvalidAxisType", testSetChartAxisInvalidAxisType),
+        ("testSetChartAxisInvalidAxis", testSetChartAxisInvalidAxis),
+        ("testSetChartAxisInvalidPassword", testSetChartAxisInvalidPassword),
+        ("testSetChartAxisInvalidFolder", testSetChartAxisInvalidFolder),
+        ("testSetChartAxisInvalidStorage", testSetChartAxisInvalidStorage),
+        ("testSetChartLegend", testSetChartLegend),
+        ("testSetChartLegendInvalidName", testSetChartLegendInvalidName),
+        ("testSetChartLegendInvalidSlideIndex", testSetChartLegendInvalidSlideIndex),
+        ("testSetChartLegendInvalidShapeIndex", testSetChartLegendInvalidShapeIndex),
+        ("testSetChartLegendInvalidLegend", testSetChartLegendInvalidLegend),
+        ("testSetChartLegendInvalidPassword", testSetChartLegendInvalidPassword),
+        ("testSetChartLegendInvalidFolder", testSetChartLegendInvalidFolder),
+        ("testSetChartLegendInvalidStorage", testSetChartLegendInvalidStorage),
+        ("testSetChartSeriesGroup", testSetChartSeriesGroup),
+        ("testSetChartSeriesGroupInvalidName", testSetChartSeriesGroupInvalidName),
+        ("testSetChartSeriesGroupInvalidSlideIndex", testSetChartSeriesGroupInvalidSlideIndex),
+        ("testSetChartSeriesGroupInvalidShapeIndex", testSetChartSeriesGroupInvalidShapeIndex),
+        ("testSetChartSeriesGroupInvalidSeriesGroupIndex", testSetChartSeriesGroupInvalidSeriesGroupIndex),
+        ("testSetChartSeriesGroupInvalidSeriesGroup", testSetChartSeriesGroupInvalidSeriesGroup),
+        ("testSetChartSeriesGroupInvalidPassword", testSetChartSeriesGroupInvalidPassword),
+        ("testSetChartSeriesGroupInvalidFolder", testSetChartSeriesGroupInvalidFolder),
+        ("testSetChartSeriesGroupInvalidStorage", testSetChartSeriesGroupInvalidStorage),
+        ("testSetChartWall", testSetChartWall),
+        ("testSetChartWallInvalidName", testSetChartWallInvalidName),
+        ("testSetChartWallInvalidSlideIndex", testSetChartWallInvalidSlideIndex),
+        ("testSetChartWallInvalidShapeIndex", testSetChartWallInvalidShapeIndex),
+        ("testSetChartWallInvalidChartWallType", testSetChartWallInvalidChartWallType),
+        ("testSetChartWallInvalidChartWall", testSetChartWallInvalidChartWall),
+        ("testSetChartWallInvalidPassword", testSetChartWallInvalidPassword),
+        ("testSetChartWallInvalidFolder", testSetChartWallInvalidFolder),
+        ("testSetChartWallInvalidStorage", testSetChartWallInvalidStorage),
         ("testSetDocumentProperties", testSetDocumentProperties),
         ("testSetDocumentPropertiesInvalidName", testSetDocumentPropertiesInvalidName),
         ("testSetDocumentPropertiesInvalidProperties", testSetDocumentPropertiesInvalidProperties),
@@ -1746,6 +1857,32 @@ class SlidesAPITests : XCTestCase {
         ("testSetDocumentPropertyInvalidPassword", testSetDocumentPropertyInvalidPassword),
         ("testSetDocumentPropertyInvalidFolder", testSetDocumentPropertyInvalidFolder),
         ("testSetDocumentPropertyInvalidStorage", testSetDocumentPropertyInvalidStorage),
+        ("testSetEmbeddedFont", testSetEmbeddedFont),
+        ("testSetEmbeddedFontInvalidName", testSetEmbeddedFontInvalidName),
+        ("testSetEmbeddedFontInvalidFontName", testSetEmbeddedFontInvalidFontName),
+        ("testSetEmbeddedFontInvalidOnlyUsed", testSetEmbeddedFontInvalidOnlyUsed),
+        ("testSetEmbeddedFontInvalidPassword", testSetEmbeddedFontInvalidPassword),
+        ("testSetEmbeddedFontInvalidFolder", testSetEmbeddedFontInvalidFolder),
+        ("testSetEmbeddedFontInvalidStorage", testSetEmbeddedFontInvalidStorage),
+        ("testSetEmbeddedFontInvalidFontsFolder", testSetEmbeddedFontInvalidFontsFolder),
+        ("testSetEmbeddedFontFromRequest", testSetEmbeddedFontFromRequest),
+        ("testSetEmbeddedFontFromRequestInvalidFont", testSetEmbeddedFontFromRequestInvalidFont),
+        ("testSetEmbeddedFontFromRequestInvalidName", testSetEmbeddedFontFromRequestInvalidName),
+        ("testSetEmbeddedFontFromRequestInvalidOnlyUsed", testSetEmbeddedFontFromRequestInvalidOnlyUsed),
+        ("testSetEmbeddedFontFromRequestInvalidPassword", testSetEmbeddedFontFromRequestInvalidPassword),
+        ("testSetEmbeddedFontFromRequestInvalidFolder", testSetEmbeddedFontFromRequestInvalidFolder),
+        ("testSetEmbeddedFontFromRequestInvalidStorage", testSetEmbeddedFontFromRequestInvalidStorage),
+        ("testSetEmbeddedFontFromRequestOnline", testSetEmbeddedFontFromRequestOnline),
+        ("testSetEmbeddedFontFromRequestOnlineInvalidDocument", testSetEmbeddedFontFromRequestOnlineInvalidDocument),
+        ("testSetEmbeddedFontFromRequestOnlineInvalidFont", testSetEmbeddedFontFromRequestOnlineInvalidFont),
+        ("testSetEmbeddedFontFromRequestOnlineInvalidOnlyUsed", testSetEmbeddedFontFromRequestOnlineInvalidOnlyUsed),
+        ("testSetEmbeddedFontFromRequestOnlineInvalidPassword", testSetEmbeddedFontFromRequestOnlineInvalidPassword),
+        ("testSetEmbeddedFontOnline", testSetEmbeddedFontOnline),
+        ("testSetEmbeddedFontOnlineInvalidDocument", testSetEmbeddedFontOnlineInvalidDocument),
+        ("testSetEmbeddedFontOnlineInvalidFontName", testSetEmbeddedFontOnlineInvalidFontName),
+        ("testSetEmbeddedFontOnlineInvalidOnlyUsed", testSetEmbeddedFontOnlineInvalidOnlyUsed),
+        ("testSetEmbeddedFontOnlineInvalidPassword", testSetEmbeddedFontOnlineInvalidPassword),
+        ("testSetEmbeddedFontOnlineInvalidFontsFolder", testSetEmbeddedFontOnlineInvalidFontsFolder),
         ("testSetNotesSlideHeaderFooter", testSetNotesSlideHeaderFooter),
         ("testSetNotesSlideHeaderFooterInvalidName", testSetNotesSlideHeaderFooterInvalidName),
         ("testSetNotesSlideHeaderFooterInvalidSlideIndex", testSetNotesSlideHeaderFooterInvalidSlideIndex),
@@ -1891,15 +2028,6 @@ class SlidesAPITests : XCTestCase {
         ("testUpdateChartSeriesInvalidPassword", testUpdateChartSeriesInvalidPassword),
         ("testUpdateChartSeriesInvalidFolder", testUpdateChartSeriesInvalidFolder),
         ("testUpdateChartSeriesInvalidStorage", testUpdateChartSeriesInvalidStorage),
-        ("testUpdateChartSeriesGroup", testUpdateChartSeriesGroup),
-        ("testUpdateChartSeriesGroupInvalidName", testUpdateChartSeriesGroupInvalidName),
-        ("testUpdateChartSeriesGroupInvalidSlideIndex", testUpdateChartSeriesGroupInvalidSlideIndex),
-        ("testUpdateChartSeriesGroupInvalidShapeIndex", testUpdateChartSeriesGroupInvalidShapeIndex),
-        ("testUpdateChartSeriesGroupInvalidSeriesGroupIndex", testUpdateChartSeriesGroupInvalidSeriesGroupIndex),
-        ("testUpdateChartSeriesGroupInvalidSeriesGroup", testUpdateChartSeriesGroupInvalidSeriesGroup),
-        ("testUpdateChartSeriesGroupInvalidPassword", testUpdateChartSeriesGroupInvalidPassword),
-        ("testUpdateChartSeriesGroupInvalidFolder", testUpdateChartSeriesGroupInvalidFolder),
-        ("testUpdateChartSeriesGroupInvalidStorage", testUpdateChartSeriesGroupInvalidStorage),
         ("testUpdateLayoutSlide", testUpdateLayoutSlide),
         ("testUpdateLayoutSlideInvalidName", testUpdateLayoutSlideInvalidName),
         ("testUpdateLayoutSlideInvalidSlideIndex", testUpdateLayoutSlideInvalidSlideIndex),
@@ -6593,6 +6721,215 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testCreateSmartArtNode() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        let paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        let paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        let paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        let paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        let paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        TestUtils.initialize("createSmartArtNode") { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidName() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("createSmartArtNode", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("createSmartArtNode", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidSmartArtIndex() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramSmartArtIndex = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", value: paramSmartArtIndex as Any, type: "Int")
+        TestUtils.initialize("createSmartArtNode", "smartArtIndex", paramSmartArtIndex) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "smartArtIndex", parameterValue: paramSmartArtIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidSubNode() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramSubNode = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "subNode", value: paramSubNode as Any, type: "String")
+        TestUtils.initialize("createSmartArtNode", "subNode", paramSubNode) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "subNode", parameterValue: paramSubNode as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidText() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramText = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "text", value: paramText as Any, type: "String")
+        TestUtils.initialize("createSmartArtNode", "text", paramText) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "text", parameterValue: paramText as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidPosition() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramPosition = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "position", value: paramPosition as Any, type: "Int")
+        TestUtils.initialize("createSmartArtNode", "position", paramPosition) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "position", parameterValue: paramPosition as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidPassword() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("createSmartArtNode", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidFolder() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("createSmartArtNode", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateSmartArtNodeInvalidStorage() {
+        let expectation = self.expectation(description: "testcreateSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "subNode", type: "String")
+        var paramText : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "text", type: "String")
+        var paramPosition : Int = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "position", type: "Int")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "createSmartArtNode", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "createSmartArtNode", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("createSmartArtNode", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.createSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramSubNode, paramText, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createSmartArtNode", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testCreateSpecialSlideAnimationEffect() {
         let expectation = self.expectation(description: "testcreateSpecialSlideAnimationEffect")
         let paramName : String = TestUtils.getTestValue(functionName: "createSpecialSlideAnimationEffect", name: "name", type: "String")
@@ -11135,6 +11472,166 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testDeleteEmbeddedFont() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFont")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "name", type: "String")
+        let paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "fontName", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "storage", type: "String")
+        TestUtils.initialize("deleteEmbeddedFont") { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFont(paramName, paramFontName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontInvalidName() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFont", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFont", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFont(paramName, paramFontName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFont", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontInvalidFontName() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "storage", type: "String")
+        paramFontName = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFont", name: "fontName", value: paramFontName as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFont", "fontName", paramFontName) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFont(paramName, paramFontName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFont", parameterName: "fontName", parameterValue: paramFontName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFont", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFont", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFont(paramName, paramFontName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFont", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFont", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFont", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFont(paramName, paramFontName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFont", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFont", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFont", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFont", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFont(paramName, paramFontName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFont", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testDeleteEmbeddedFontOnline() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFontOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "document", type: "Data")
+        let paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "fontName", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "password", type: "String")
+        TestUtils.initialize("deleteEmbeddedFontOnline") { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFontOnline(paramDocument, paramFontName, paramPassword) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "password", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFontOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("deleteEmbeddedFontOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFontOnline(paramDocument, paramFontName, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFontOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontOnlineInvalidFontName() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "password", type: "String")
+        paramFontName = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFontOnline", name: "fontName", value: paramFontName as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFontOnline", "fontName", paramFontName) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFontOnline(paramDocument, paramFontName, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFontOnline", parameterName: "fontName", parameterValue: paramFontName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteEmbeddedFontOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteEmbeddedFontOnline", name: "password", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteEmbeddedFontOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteEmbeddedFontOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteEmbeddedFontOnline(paramDocument, paramFontName, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteEmbeddedFontOnline", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testDeleteFile() {
         let expectation = self.expectation(description: "testdeleteFile")
         let paramPath : String = TestUtils.getTestValue(functionName: "deleteFile", name: "path", type: "String")
@@ -13035,6 +13532,185 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("deleteSlides", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.deleteSlides(paramName, paramSlides, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "deleteSlides", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testDeleteSmartArtNode() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        let paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        let paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        let paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        TestUtils.initialize("deleteSmartArtNode") { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidName() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("deleteSmartArtNode", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("deleteSmartArtNode", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidSmartArtIndex() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramSmartArtIndex = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", value: paramSmartArtIndex as Any, type: "Int")
+        TestUtils.initialize("deleteSmartArtNode", "smartArtIndex", paramSmartArtIndex) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "smartArtIndex", parameterValue: paramSmartArtIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidNodeIndex() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramNodeIndex = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", value: paramNodeIndex as Any, type: "Int")
+        TestUtils.initialize("deleteSmartArtNode", "nodeIndex", paramNodeIndex) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "nodeIndex", parameterValue: paramNodeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidSubNode() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramSubNode = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "subNode", value: paramSubNode as Any, type: "String")
+        TestUtils.initialize("deleteSmartArtNode", "subNode", paramSubNode) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "subNode", parameterValue: paramSubNode as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteSmartArtNode", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("deleteSmartArtNode", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteSmartArtNodeInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteSmartArtNode")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "slideIndex", type: "Int")
+        var paramSmartArtIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "smartArtIndex", type: "Int")
+        var paramNodeIndex : Int = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "nodeIndex", type: "Int")
+        var paramSubNode : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "subNode", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteSmartArtNode", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "deleteSmartArtNode", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("deleteSmartArtNode", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteSmartArtNode(paramName, paramSlideIndex, paramSmartArtIndex, paramNodeIndex, paramSubNode, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteSmartArtNode", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }
@@ -17425,6 +18101,166 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("deleteUnusedLayoutSlidesOnline", "password", paramPassword) { (response, error) -> Void in
             SlidesAPI.deleteUnusedLayoutSlidesOnline(paramDocument, paramPassword) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "deleteUnusedLayoutSlidesOnline", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testDeleteUnusedMasterSlides() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlides")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "name", type: "String")
+        let paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlides") { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlides(paramName, paramIgnorePreserveField, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesInvalidName() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "name", type: "String")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlides", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlides", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlides(paramName, paramIgnorePreserveField, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlides", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesInvalidIgnorePreserveField() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "name", type: "String")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", type: "String")
+        paramIgnorePreserveField = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", value: paramIgnorePreserveField as Any, type: "Bool")
+        TestUtils.initialize("deleteUnusedMasterSlides", "ignorePreserveField", paramIgnorePreserveField) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlides(paramName, paramIgnorePreserveField, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlides", parameterName: "ignorePreserveField", parameterValue: paramIgnorePreserveField as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "name", type: "String")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlides", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlides", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlides(paramName, paramIgnorePreserveField, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlides", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "name", type: "String")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlides", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlides(paramName, paramIgnorePreserveField, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlides", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlides")
+        var paramName : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "name", type: "String")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlides", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlides", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlides(paramName, paramIgnorePreserveField, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlides", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testDeleteUnusedMasterSlidesOnline() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlidesOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "document", type: "Data")
+        let paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "ignorePreserveField", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "password", type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlidesOnline") { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlidesOnline(paramDocument, paramIgnorePreserveField, paramPassword) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlidesOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "document", type: "Data")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "password", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("deleteUnusedMasterSlidesOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlidesOnline(paramDocument, paramIgnorePreserveField, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlidesOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesOnlineInvalidIgnorePreserveField() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlidesOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "document", type: "Data")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "password", type: "String")
+        paramIgnorePreserveField = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "ignorePreserveField", value: paramIgnorePreserveField as Any, type: "Bool")
+        TestUtils.initialize("deleteUnusedMasterSlidesOnline", "ignorePreserveField", paramIgnorePreserveField) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlidesOnline(paramDocument, paramIgnorePreserveField, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlidesOnline", parameterName: "ignorePreserveField", parameterValue: paramIgnorePreserveField as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteUnusedMasterSlidesOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteUnusedMasterSlidesOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "document", type: "Data")
+        var paramIgnorePreserveField : Bool = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "ignorePreserveField", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "password", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "deleteUnusedMasterSlidesOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("deleteUnusedMasterSlidesOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteUnusedMasterSlidesOnline(paramDocument, paramIgnorePreserveField, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteUnusedMasterSlidesOnline", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
         }
@@ -21881,6 +22717,126 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("getFontScheme", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.getFontScheme(paramName, paramSlideIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "getFontScheme", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testGetFonts() {
+        let expectation = self.expectation(description: "testgetFonts")
+        let paramName : String = TestUtils.getTestValue(functionName: "getFonts", name: "name", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getFonts", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "getFonts", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "getFonts", name: "storage", type: "String")
+        TestUtils.initialize("getFonts") { (response, error) -> Void in
+            SlidesAPI.getFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetFontsInvalidName() {
+        let expectation = self.expectation(description: "testgetFonts")
+        var paramName : String = TestUtils.getTestValue(functionName: "getFonts", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getFonts", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getFonts", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getFonts", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "getFonts", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("getFonts", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.getFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getFonts", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetFontsInvalidPassword() {
+        let expectation = self.expectation(description: "testgetFonts")
+        var paramName : String = TestUtils.getTestValue(functionName: "getFonts", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getFonts", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getFonts", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getFonts", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "getFonts", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("getFonts", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getFonts", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetFontsInvalidFolder() {
+        let expectation = self.expectation(description: "testgetFonts")
+        var paramName : String = TestUtils.getTestValue(functionName: "getFonts", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getFonts", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getFonts", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getFonts", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "getFonts", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("getFonts", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.getFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getFonts", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetFontsInvalidStorage() {
+        let expectation = self.expectation(description: "testgetFonts")
+        var paramName : String = TestUtils.getTestValue(functionName: "getFonts", name: "name", type: "String")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getFonts", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "getFonts", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "getFonts", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "getFonts", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("getFonts", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.getFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getFonts", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testGetFontsOnline() {
+        let expectation = self.expectation(description: "testgetFontsOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "getFontsOnline", name: "document", type: "Data")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getFontsOnline", name: "password", type: "String")
+        TestUtils.initialize("getFontsOnline") { (response, error) -> Void in
+            SlidesAPI.getFontsOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetFontsOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testgetFontsOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "getFontsOnline", name: "document", type: "Data")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getFontsOnline", name: "password", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "getFontsOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("getFontsOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.getFontsOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getFontsOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetFontsOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testgetFontsOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "getFontsOnline", name: "document", type: "Data")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "getFontsOnline", name: "password", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "getFontsOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("getFontsOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getFontsOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getFontsOnline", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
         }
@@ -30166,6 +31122,317 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testImportShapesFromSvg() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        let paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        let paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        let paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        let paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        let paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        let paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        let paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        let paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        TestUtils.initialize("importShapesFromSvg") { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidName() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("importShapesFromSvg", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("importShapesFromSvg", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidImage() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramImage = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "image", value: paramImage as Any, type: "Data")
+        TestUtils.initialize("importShapesFromSvg", "image", paramImage) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "image", parameterValue: paramImage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidX() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramX = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "x", value: paramX as Any, type: "Int")
+        TestUtils.initialize("importShapesFromSvg", "x", paramX) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "x", parameterValue: paramX as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidY() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramY = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "y", value: paramY as Any, type: "Int")
+        TestUtils.initialize("importShapesFromSvg", "y", paramY) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "y", parameterValue: paramY as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidWidth() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramWidth = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "width", value: paramWidth as Any, type: "Int")
+        TestUtils.initialize("importShapesFromSvg", "width", paramWidth) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "width", parameterValue: paramWidth as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidHeight() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramHeight = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "height", value: paramHeight as Any, type: "Int")
+        TestUtils.initialize("importShapesFromSvg", "height", paramHeight) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "height", parameterValue: paramHeight as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidShapes() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramShapes = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "shapes", value: paramShapes as Any, type: "[Int]")
+        TestUtils.initialize("importShapesFromSvg", "shapes", paramShapes) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "shapes", parameterValue: paramShapes as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidGroup() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramGroup = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "group", value: paramGroup as Any, type: "Bool")
+        TestUtils.initialize("importShapesFromSvg", "group", paramGroup) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "group", parameterValue: paramGroup as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidPassword() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("importShapesFromSvg", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidFolder() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("importShapesFromSvg", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testImportShapesFromSvgInvalidStorage() {
+        let expectation = self.expectation(description: "testimportShapesFromSvg")
+        var paramName : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "slideIndex", type: "Int")
+        var paramImage : Data = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "image", type: "Data")
+        var paramX : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "x", type: "Int")
+        var paramY : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "y", type: "Int")
+        var paramWidth : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "width", type: "Int")
+        var paramHeight : Int = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "height", type: "Int")
+        var paramShapes : [Int] = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "shapes", type: "[Int]")
+        var paramGroup : Bool = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "group", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "importShapesFromSvg", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "importShapesFromSvg", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("importShapesFromSvg", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.importShapesFromSvg(paramName, paramSlideIndex, paramImage, paramX, paramY, paramWidth, paramHeight, paramShapes, paramGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "importShapesFromSvg", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testMerge() {
         let expectation = self.expectation(description: "testmerge")
         let paramName : String = TestUtils.getTestValue(functionName: "merge", name: "name", type: "String")
@@ -31316,6 +32583,310 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("reorderSlides", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.reorderSlides(paramName, paramOldPositions, paramNewPositions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "reorderSlides", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testReplaceFont() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        let paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        let paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        let paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        let paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        let paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        TestUtils.initialize("replaceFont") { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidName() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("replaceFont", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidSourceFont() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramSourceFont = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "sourceFont", value: paramSourceFont as Any, type: "String")
+        TestUtils.initialize("replaceFont", "sourceFont", paramSourceFont) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "sourceFont", parameterValue: paramSourceFont as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidTargetFont() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramTargetFont = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "targetFont", value: paramTargetFont as Any, type: "String")
+        TestUtils.initialize("replaceFont", "targetFont", paramTargetFont) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "targetFont", parameterValue: paramTargetFont as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidEmbed() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramEmbed = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "embed", value: paramEmbed as Any, type: "Bool")
+        TestUtils.initialize("replaceFont", "embed", paramEmbed) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "embed", parameterValue: paramEmbed as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidPassword() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("replaceFont", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidFolder() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("replaceFont", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidStorage() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("replaceFont", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontInvalidFontsFolder() {
+        let expectation = self.expectation(description: "testreplaceFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "replaceFont", name: "name", type: "String")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFont", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFont", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "replaceFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFont", name: "fontsFolder", type: "String")
+        paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "replaceFont", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
+        TestUtils.initialize("replaceFont", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.replaceFont(paramName, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFont", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testReplaceFontOnline() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        let paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        let paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        let paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        let paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        TestUtils.initialize("replaceFontOnline") { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "replaceFontOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("replaceFontOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFontOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontOnlineInvalidSourceFont() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        paramSourceFont = TestUtils.getInvalidTestValue(functionName: "replaceFontOnline", name: "sourceFont", value: paramSourceFont as Any, type: "String")
+        TestUtils.initialize("replaceFontOnline", "sourceFont", paramSourceFont) { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFontOnline", parameterName: "sourceFont", parameterValue: paramSourceFont as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontOnlineInvalidTargetFont() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        paramTargetFont = TestUtils.getInvalidTestValue(functionName: "replaceFontOnline", name: "targetFont", value: paramTargetFont as Any, type: "String")
+        TestUtils.initialize("replaceFontOnline", "targetFont", paramTargetFont) { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFontOnline", parameterName: "targetFont", parameterValue: paramTargetFont as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontOnlineInvalidEmbed() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        paramEmbed = TestUtils.getInvalidTestValue(functionName: "replaceFontOnline", name: "embed", value: paramEmbed as Any, type: "Bool")
+        TestUtils.initialize("replaceFontOnline", "embed", paramEmbed) { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFontOnline", parameterName: "embed", parameterValue: paramEmbed as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "replaceFontOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("replaceFontOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFontOnline", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testReplaceFontOnlineInvalidFontsFolder() {
+        let expectation = self.expectation(description: "testreplaceFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "document", type: "Data")
+        var paramSourceFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "sourceFont", type: "String")
+        var paramTargetFont : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "targetFont", type: "String")
+        var paramEmbed : Bool = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "embed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "replaceFontOnline", name: "fontsFolder", type: "String")
+        paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "replaceFontOnline", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
+        TestUtils.initialize("replaceFontOnline", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.replaceFontOnline(paramDocument, paramSourceFont, paramTargetFont, paramEmbed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "replaceFontOnline", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
                 expectation.fulfill()
             }
         }
@@ -35055,6 +36626,694 @@ class SlidesAPITests : XCTestCase {
         }
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
+    func testSetChartAxis() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        let paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        let paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        let paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        TestUtils.initialize("setChartAxis") { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidName() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setChartAxis", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("setChartAxis", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("setChartAxis", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidAxisType() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramAxisType = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "axisType", value: paramAxisType as Any, type: "String")
+        TestUtils.initialize("setChartAxis", "axisType", paramAxisType) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "axisType", parameterValue: paramAxisType as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidAxis() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramAxis = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "axis", value: paramAxis as Any, type: "Axis")
+        TestUtils.initialize("setChartAxis", "axis", paramAxis) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "axis", parameterValue: paramAxis as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidPassword() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setChartAxis", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidFolder() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setChartAxis", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartAxisInvalidStorage() {
+        let expectation = self.expectation(description: "testsetChartAxis")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartAxis", name: "shapeIndex", type: "Int")
+        var paramAxisType : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "axisType", type: "String")
+        var paramAxis : Axis = TestUtils.getTestValue(functionName: "setChartAxis", name: "axis", type: "Axis")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartAxis", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setChartAxis", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setChartAxis", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setChartAxis(paramName, paramSlideIndex, paramShapeIndex, paramAxisType, paramAxis, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartAxis", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetChartLegend() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        let paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        let paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        TestUtils.initialize("setChartLegend") { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidName() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setChartLegend", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("setChartLegend", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("setChartLegend", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidLegend() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramLegend = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "legend", value: paramLegend as Any, type: "Legend")
+        TestUtils.initialize("setChartLegend", "legend", paramLegend) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "legend", parameterValue: paramLegend as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidPassword() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setChartLegend", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidFolder() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setChartLegend", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartLegendInvalidStorage() {
+        let expectation = self.expectation(description: "testsetChartLegend")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartLegend", name: "shapeIndex", type: "Int")
+        var paramLegend : Legend = TestUtils.getTestValue(functionName: "setChartLegend", name: "legend", type: "Legend")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartLegend", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setChartLegend", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setChartLegend", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setChartLegend(paramName, paramSlideIndex, paramShapeIndex, paramLegend, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartLegend", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetChartSeriesGroup() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        let paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        let paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        let paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        TestUtils.initialize("setChartSeriesGroup") { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidName() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setChartSeriesGroup", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("setChartSeriesGroup", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("setChartSeriesGroup", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidSeriesGroupIndex() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramSeriesGroupIndex = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", value: paramSeriesGroupIndex as Any, type: "Int")
+        TestUtils.initialize("setChartSeriesGroup", "seriesGroupIndex", paramSeriesGroupIndex) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "seriesGroupIndex", parameterValue: paramSeriesGroupIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidSeriesGroup() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramSeriesGroup = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", value: paramSeriesGroup as Any, type: "ChartSeriesGroup")
+        TestUtils.initialize("setChartSeriesGroup", "seriesGroup", paramSeriesGroup) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "seriesGroup", parameterValue: paramSeriesGroup as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidPassword() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setChartSeriesGroup", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidFolder() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setChartSeriesGroup", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartSeriesGroupInvalidStorage() {
+        let expectation = self.expectation(description: "testsetChartSeriesGroup")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "shapeIndex", type: "Int")
+        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
+        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartSeriesGroup", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setChartSeriesGroup", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setChartSeriesGroup", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartSeriesGroup", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetChartWall() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        let paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        let paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        let paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        TestUtils.initialize("setChartWall") { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidName() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setChartWall", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
+        TestUtils.initialize("setChartWall", "slideIndex", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
+        TestUtils.initialize("setChartWall", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidChartWallType() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramChartWallType = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "chartWallType", value: paramChartWallType as Any, type: "String")
+        TestUtils.initialize("setChartWall", "chartWallType", paramChartWallType) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "chartWallType", parameterValue: paramChartWallType as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidChartWall() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramChartWall = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "chartWall", value: paramChartWall as Any, type: "ChartWall")
+        TestUtils.initialize("setChartWall", "chartWall", paramChartWall) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "chartWall", parameterValue: paramChartWall as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidPassword() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setChartWall", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidFolder() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setChartWall", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetChartWallInvalidStorage() {
+        let expectation = self.expectation(description: "testsetChartWall")
+        var paramName : String = TestUtils.getTestValue(functionName: "setChartWall", name: "name", type: "String")
+        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "slideIndex", type: "Int")
+        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "setChartWall", name: "shapeIndex", type: "Int")
+        var paramChartWallType : String = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWallType", type: "String")
+        var paramChartWall : ChartWall = TestUtils.getTestValue(functionName: "setChartWall", name: "chartWall", type: "ChartWall")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setChartWall", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setChartWall", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setChartWall", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setChartWall", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setChartWall", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setChartWall(paramName, paramSlideIndex, paramShapeIndex, paramChartWallType, paramChartWall, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setChartWall", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
     func testSetDocumentProperties() {
         let expectation = self.expectation(description: "testsetDocumentProperties")
         let paramName : String = TestUtils.getTestValue(functionName: "setDocumentProperties", name: "name", type: "String")
@@ -35276,6 +37535,462 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("setDocumentProperty", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.setDocumentProperty(paramName, paramPropertyName, paramProperty, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "setDocumentProperty", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetEmbeddedFont() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        let paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        let paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        let paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        let paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        TestUtils.initialize("setEmbeddedFont") { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidName() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFont", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidFontName() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramFontName = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "fontName", value: paramFontName as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFont", "fontName", paramFontName) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "fontName", parameterValue: paramFontName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidOnlyUsed() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramOnlyUsed = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", value: paramOnlyUsed as Any, type: "Bool")
+        TestUtils.initialize("setEmbeddedFont", "onlyUsed", paramOnlyUsed) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "onlyUsed", parameterValue: paramOnlyUsed as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidPassword() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFont", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidFolder() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFont", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidStorage() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFont", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontInvalidFontsFolder() {
+        let expectation = self.expectation(description: "testsetEmbeddedFont")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "name", type: "String")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "storage", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", type: "String")
+        paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFont", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFont", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFont(paramName, paramFontName, paramOnlyUsed, paramPassword, paramFolder, paramStorage, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFont", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetEmbeddedFontFromRequest() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        let paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        let paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        let paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequest") { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestInvalidFont() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        paramFont = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", value: paramFont as Any, type: "Data")
+        TestUtils.initialize("setEmbeddedFontFromRequest", "font", paramFont) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequest", parameterName: "font", parameterValue: paramFont as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestInvalidName() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        paramName = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", value: paramName as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequest", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequest", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestInvalidOnlyUsed() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        paramOnlyUsed = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", value: paramOnlyUsed as Any, type: "Bool")
+        TestUtils.initialize("setEmbeddedFontFromRequest", "onlyUsed", paramOnlyUsed) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequest", parameterName: "onlyUsed", parameterValue: paramOnlyUsed as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestInvalidPassword() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequest", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequest", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestInvalidFolder() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        paramFolder = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", value: paramFolder as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequest", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequest", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestInvalidStorage() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequest")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "font", type: "Data")
+        var paramName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "name", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "password", type: "String")
+        var paramFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "folder", type: "String")
+        var paramStorage : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", type: "String")
+        paramStorage = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequest", name: "storage", value: paramStorage as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequest", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequest(paramFont, paramName, paramOnlyUsed, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequest", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetEmbeddedFontFromRequestOnline() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequestOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "document", type: "Data")
+        let paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "font", type: "Data")
+        let paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "onlyUsed", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "password", type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequestOnline") { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequestOnline(paramDocument, paramFont, paramOnlyUsed, paramPassword) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequestOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "document", type: "Data")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "font", type: "Data")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "password", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("setEmbeddedFontFromRequestOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequestOnline(paramDocument, paramFont, paramOnlyUsed, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequestOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestOnlineInvalidFont() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequestOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "document", type: "Data")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "font", type: "Data")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "password", type: "String")
+        paramFont = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "font", value: paramFont as Any, type: "Data")
+        TestUtils.initialize("setEmbeddedFontFromRequestOnline", "font", paramFont) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequestOnline(paramDocument, paramFont, paramOnlyUsed, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequestOnline", parameterName: "font", parameterValue: paramFont as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestOnlineInvalidOnlyUsed() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequestOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "document", type: "Data")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "font", type: "Data")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "password", type: "String")
+        paramOnlyUsed = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "onlyUsed", value: paramOnlyUsed as Any, type: "Bool")
+        TestUtils.initialize("setEmbeddedFontFromRequestOnline", "onlyUsed", paramOnlyUsed) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequestOnline(paramDocument, paramFont, paramOnlyUsed, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequestOnline", parameterName: "onlyUsed", parameterValue: paramOnlyUsed as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontFromRequestOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontFromRequestOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "document", type: "Data")
+        var paramFont : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "font", type: "Data")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "password", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontFromRequestOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontFromRequestOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontFromRequestOnline(paramDocument, paramFont, paramOnlyUsed, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontFromRequestOnline", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testSetEmbeddedFontOnline() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "document", type: "Data")
+        let paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", type: "String")
+        let paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "password", type: "String")
+        let paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", type: "String")
+        TestUtils.initialize("setEmbeddedFontOnline") { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontOnline(paramDocument, paramFontName, paramOnlyUsed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", type: "String")
+        paramDocument = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontOnline", name: "document", value: paramDocument as Any, type: "Data")
+        TestUtils.initialize("setEmbeddedFontOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontOnline(paramDocument, paramFontName, paramOnlyUsed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontOnlineInvalidFontName() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", type: "String")
+        paramFontName = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", value: paramFontName as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontOnline", "fontName", paramFontName) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontOnline(paramDocument, paramFontName, paramOnlyUsed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontOnline", parameterName: "fontName", parameterValue: paramFontName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontOnlineInvalidOnlyUsed() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", type: "String")
+        paramOnlyUsed = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", value: paramOnlyUsed as Any, type: "Bool")
+        TestUtils.initialize("setEmbeddedFontOnline", "onlyUsed", paramOnlyUsed) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontOnline(paramDocument, paramFontName, paramOnlyUsed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontOnline", parameterName: "onlyUsed", parameterValue: paramOnlyUsed as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", type: "String")
+        paramPassword = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontOnline", name: "password", value: paramPassword as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontOnline(paramDocument, paramFontName, paramOnlyUsed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontOnline", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSetEmbeddedFontOnlineInvalidFontsFolder() {
+        let expectation = self.expectation(description: "testsetEmbeddedFontOnline")
+        var paramDocument : Data = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "document", type: "Data")
+        var paramFontName : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontName", type: "String")
+        var paramOnlyUsed : Bool = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "onlyUsed", type: "Bool")
+        var paramPassword : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "password", type: "String")
+        var paramFontsFolder : String = TestUtils.getTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", type: "String")
+        paramFontsFolder = TestUtils.getInvalidTestValue(functionName: "setEmbeddedFontOnline", name: "fontsFolder", value: paramFontsFolder as Any, type: "String")
+        TestUtils.initialize("setEmbeddedFontOnline", "fontsFolder", paramFontsFolder) { (response, error) -> Void in
+            SlidesAPI.setEmbeddedFontOnline(paramDocument, paramFontName, paramOnlyUsed, paramPassword, paramFontsFolder) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "setEmbeddedFontOnline", parameterName: "fontsFolder", parameterValue: paramFontsFolder as Any)
                 expectation.fulfill()
             }
         }
@@ -38075,185 +40790,6 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("updateChartSeries", "storage", paramStorage) { (response, error) -> Void in
             SlidesAPI.updateChartSeries(paramName, paramSlideIndex, paramShapeIndex, paramSeriesIndex, paramSeries, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "updateChartSeries", parameterName: "storage", parameterValue: paramStorage as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-    func testUpdateChartSeriesGroup() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        let paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        let paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        let paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        let paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        let paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        let paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        TestUtils.initialize("updateChartSeriesGroup") { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                XCTAssertNotNil(response)
-                XCTAssertNil(error)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidName() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramName = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "name", value: paramName as Any, type: "String")
-        TestUtils.initialize("updateChartSeriesGroup", "name", paramName) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "name", parameterValue: paramName as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidSlideIndex() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramSlideIndex = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", value: paramSlideIndex as Any, type: "Int")
-        TestUtils.initialize("updateChartSeriesGroup", "slideIndex", paramSlideIndex) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "slideIndex", parameterValue: paramSlideIndex as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidShapeIndex() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramShapeIndex = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", value: paramShapeIndex as Any, type: "Int")
-        TestUtils.initialize("updateChartSeriesGroup", "shapeIndex", paramShapeIndex) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "shapeIndex", parameterValue: paramShapeIndex as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidSeriesGroupIndex() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramSeriesGroupIndex = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", value: paramSeriesGroupIndex as Any, type: "Int")
-        TestUtils.initialize("updateChartSeriesGroup", "seriesGroupIndex", paramSeriesGroupIndex) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "seriesGroupIndex", parameterValue: paramSeriesGroupIndex as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidSeriesGroup() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramSeriesGroup = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", value: paramSeriesGroup as Any, type: "ChartSeriesGroup")
-        TestUtils.initialize("updateChartSeriesGroup", "seriesGroup", paramSeriesGroup) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "seriesGroup", parameterValue: paramSeriesGroup as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidPassword() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramPassword = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "password", value: paramPassword as Any, type: "String")
-        TestUtils.initialize("updateChartSeriesGroup", "password", paramPassword) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "password", parameterValue: paramPassword as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidFolder() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramFolder = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "folder", value: paramFolder as Any, type: "String")
-        TestUtils.initialize("updateChartSeriesGroup", "folder", paramFolder) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "folder", parameterValue: paramFolder as Any)
-                expectation.fulfill()
-            }
-        }
-        self.waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    func testUpdateChartSeriesGroupInvalidStorage() {
-        let expectation = self.expectation(description: "testupdateChartSeriesGroup")
-        var paramName : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "name", type: "String")
-        var paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "slideIndex", type: "Int")
-        var paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "shapeIndex", type: "Int")
-        var paramSeriesGroupIndex : Int = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroupIndex", type: "Int")
-        var paramSeriesGroup : ChartSeriesGroup = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "seriesGroup", type: "ChartSeriesGroup")
-        var paramPassword : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "password", type: "String")
-        var paramFolder : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "folder", type: "String")
-        var paramStorage : String = TestUtils.getTestValue(functionName: "updateChartSeriesGroup", name: "storage", type: "String")
-        paramStorage = TestUtils.getInvalidTestValue(functionName: "updateChartSeriesGroup", name: "storage", value: paramStorage as Any, type: "String")
-        TestUtils.initialize("updateChartSeriesGroup", "storage", paramStorage) { (response, error) -> Void in
-            SlidesAPI.updateChartSeriesGroup(paramName, paramSlideIndex, paramShapeIndex, paramSeriesGroupIndex, paramSeriesGroup, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
-                TestUtils.assertError(error: error, functionName: "updateChartSeriesGroup", parameterName: "storage", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }

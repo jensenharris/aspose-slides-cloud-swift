@@ -88,35 +88,35 @@ public class TableCell: Codable {
     public var rowIndex: Int?
 
     func fillValues(_ source: [String:Any]) throws {
-        let textValue = source["text"]
+        let textValue = source["text"] ?? source["Text"]
         if textValue != nil {
             self.text = textValue! as? String
         }
-        let rowSpanValue = source["rowSpan"]
+        let rowSpanValue = source["rowSpan"] ?? source["RowSpan"]
         if rowSpanValue != nil {
             self.rowSpan = rowSpanValue! as? Int
         }
-        let colSpanValue = source["colSpan"]
+        let colSpanValue = source["colSpan"] ?? source["ColSpan"]
         if colSpanValue != nil {
             self.colSpan = colSpanValue! as? Int
         }
-        let marginTopValue = source["marginTop"]
+        let marginTopValue = source["marginTop"] ?? source["MarginTop"]
         if marginTopValue != nil {
             self.marginTop = marginTopValue! as? Double
         }
-        let marginRightValue = source["marginRight"]
+        let marginRightValue = source["marginRight"] ?? source["MarginRight"]
         if marginRightValue != nil {
             self.marginRight = marginRightValue! as? Double
         }
-        let marginLeftValue = source["marginLeft"]
+        let marginLeftValue = source["marginLeft"] ?? source["MarginLeft"]
         if marginLeftValue != nil {
             self.marginLeft = marginLeftValue! as? Double
         }
-        let marginBottomValue = source["marginBottom"]
+        let marginBottomValue = source["marginBottom"] ?? source["MarginBottom"]
         if marginBottomValue != nil {
             self.marginBottom = marginBottomValue! as? Double
         }
-        let textAnchorTypeValue = source["textAnchorType"]
+        let textAnchorTypeValue = source["textAnchorType"] ?? source["TextAnchorType"]
         if textAnchorTypeValue != nil {
             let textAnchorTypeStringValue = textAnchorTypeValue! as? String
             if textAnchorTypeStringValue != nil {
@@ -126,7 +126,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let textVerticalTypeValue = source["textVerticalType"]
+        let textVerticalTypeValue = source["textVerticalType"] ?? source["TextVerticalType"]
         if textVerticalTypeValue != nil {
             let textVerticalTypeStringValue = textVerticalTypeValue! as? String
             if textVerticalTypeStringValue != nil {
@@ -136,7 +136,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -146,7 +146,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let borderTopValue = source["borderTop"]
+        let borderTopValue = source["borderTop"] ?? source["BorderTop"]
         if borderTopValue != nil {
             let borderTopDictionaryValue = borderTopValue! as? [String:Any]
             if borderTopDictionaryValue != nil {
@@ -156,7 +156,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let borderRightValue = source["borderRight"]
+        let borderRightValue = source["borderRight"] ?? source["BorderRight"]
         if borderRightValue != nil {
             let borderRightDictionaryValue = borderRightValue! as? [String:Any]
             if borderRightDictionaryValue != nil {
@@ -166,7 +166,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let borderLeftValue = source["borderLeft"]
+        let borderLeftValue = source["borderLeft"] ?? source["BorderLeft"]
         if borderLeftValue != nil {
             let borderLeftDictionaryValue = borderLeftValue! as? [String:Any]
             if borderLeftDictionaryValue != nil {
@@ -176,7 +176,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let borderBottomValue = source["borderBottom"]
+        let borderBottomValue = source["borderBottom"] ?? source["BorderBottom"]
         if borderBottomValue != nil {
             let borderBottomDictionaryValue = borderBottomValue! as? [String:Any]
             if borderBottomDictionaryValue != nil {
@@ -186,7 +186,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let borderDiagonalUpValue = source["borderDiagonalUp"]
+        let borderDiagonalUpValue = source["borderDiagonalUp"] ?? source["BorderDiagonalUp"]
         if borderDiagonalUpValue != nil {
             let borderDiagonalUpDictionaryValue = borderDiagonalUpValue! as? [String:Any]
             if borderDiagonalUpDictionaryValue != nil {
@@ -196,7 +196,7 @@ public class TableCell: Codable {
                 }
             }
         }
-        let borderDiagonalDownValue = source["borderDiagonalDown"]
+        let borderDiagonalDownValue = source["borderDiagonalDown"] ?? source["BorderDiagonalDown"]
         if borderDiagonalDownValue != nil {
             let borderDiagonalDownDictionaryValue = borderDiagonalDownValue! as? [String:Any]
             if borderDiagonalDownDictionaryValue != nil {
@@ -206,11 +206,11 @@ public class TableCell: Codable {
                 }
             }
         }
-        let columnIndexValue = source["columnIndex"]
+        let columnIndexValue = source["columnIndex"] ?? source["ColumnIndex"]
         if columnIndexValue != nil {
             self.columnIndex = columnIndexValue! as? Int
         }
-        let rowIndexValue = source["rowIndex"]
+        let rowIndexValue = source["rowIndex"] ?? source["RowIndex"]
         if rowIndexValue != nil {
             self.rowIndex = rowIndexValue! as? Int
         }

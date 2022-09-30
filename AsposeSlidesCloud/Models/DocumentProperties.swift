@@ -37,7 +37,7 @@ public class DocumentProperties: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let listValue = source["list"]
+        let listValue = source["list"] ?? source["List"]
         if listValue != nil {
             var listArray: [DocumentProperty] = []
             let listDictionaryValue = listValue! as? [Any]

@@ -53,7 +53,7 @@ public class GroupingCharacterElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -63,11 +63,11 @@ public class GroupingCharacterElement: MathElement {
                 }
             }
         }
-        let characterValue = source["character"]
+        let characterValue = source["character"] ?? source["Character"]
         if characterValue != nil {
             self.character = characterValue! as? String
         }
-        let positionValue = source["position"]
+        let positionValue = source["position"] ?? source["Position"]
         if positionValue != nil {
             let positionStringValue = positionValue! as? String
             if positionStringValue != nil {
@@ -77,7 +77,7 @@ public class GroupingCharacterElement: MathElement {
                 }
             }
         }
-        let verticalJustificationValue = source["verticalJustification"]
+        let verticalJustificationValue = source["verticalJustification"] ?? source["VerticalJustification"]
         if verticalJustificationValue != nil {
             let verticalJustificationStringValue = verticalJustificationValue! as? String
             if verticalJustificationStringValue != nil {

@@ -105,7 +105,7 @@ public class LineFormat: Codable {
     public var width: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let alignmentValue = source["alignment"]
+        let alignmentValue = source["alignment"] ?? source["Alignment"]
         if alignmentValue != nil {
             let alignmentStringValue = alignmentValue! as? String
             if alignmentStringValue != nil {
@@ -115,7 +115,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let capStyleValue = source["capStyle"]
+        let capStyleValue = source["capStyle"] ?? source["CapStyle"]
         if capStyleValue != nil {
             let capStyleStringValue = capStyleValue! as? String
             if capStyleStringValue != nil {
@@ -125,7 +125,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let dashStyleValue = source["dashStyle"]
+        let dashStyleValue = source["dashStyle"] ?? source["DashStyle"]
         if dashStyleValue != nil {
             let dashStyleStringValue = dashStyleValue! as? String
             if dashStyleStringValue != nil {
@@ -135,7 +135,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let joinStyleValue = source["joinStyle"]
+        let joinStyleValue = source["joinStyle"] ?? source["JoinStyle"]
         if joinStyleValue != nil {
             let joinStyleStringValue = joinStyleValue! as? String
             if joinStyleStringValue != nil {
@@ -145,7 +145,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let styleValue = source["style"]
+        let styleValue = source["style"] ?? source["Style"]
         if styleValue != nil {
             let styleStringValue = styleValue! as? String
             if styleStringValue != nil {
@@ -155,7 +155,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let sketchTypeValue = source["sketchType"]
+        let sketchTypeValue = source["sketchType"] ?? source["SketchType"]
         if sketchTypeValue != nil {
             let sketchTypeStringValue = sketchTypeValue! as? String
             if sketchTypeStringValue != nil {
@@ -165,7 +165,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let beginArrowHeadValue = source["beginArrowHead"]
+        let beginArrowHeadValue = source["beginArrowHead"] ?? source["BeginArrowHead"]
         if beginArrowHeadValue != nil {
             let beginArrowHeadDictionaryValue = beginArrowHeadValue! as? [String:Any]
             if beginArrowHeadDictionaryValue != nil {
@@ -175,7 +175,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let endArrowHeadValue = source["endArrowHead"]
+        let endArrowHeadValue = source["endArrowHead"] ?? source["EndArrowHead"]
         if endArrowHeadValue != nil {
             let endArrowHeadDictionaryValue = endArrowHeadValue! as? [String:Any]
             if endArrowHeadDictionaryValue != nil {
@@ -185,7 +185,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let customDashPatternValue = source["customDashPattern"]
+        let customDashPatternValue = source["customDashPattern"] ?? source["CustomDashPattern"]
         if customDashPatternValue != nil {
             let customDashPatternDictionaryValue = customDashPatternValue! as? [String:Any]
             if customDashPatternDictionaryValue != nil {
@@ -195,7 +195,7 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -205,11 +205,11 @@ public class LineFormat: Codable {
                 }
             }
         }
-        let miterLimitValue = source["miterLimit"]
+        let miterLimitValue = source["miterLimit"] ?? source["MiterLimit"]
         if miterLimitValue != nil {
             self.miterLimit = miterLimitValue! as? Double
         }
-        let widthValue = source["width"]
+        let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
             self.width = widthValue! as? Double
         }

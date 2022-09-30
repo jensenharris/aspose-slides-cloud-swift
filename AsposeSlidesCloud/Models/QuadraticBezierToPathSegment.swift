@@ -43,19 +43,19 @@ public class QuadraticBezierToPathSegment: PathSegment {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let x1Value = source["x1"]
+        let x1Value = source["x1"] ?? source["X1"]
         if x1Value != nil {
             self.x1 = x1Value! as? Double
         }
-        let y1Value = source["y1"]
+        let y1Value = source["y1"] ?? source["Y1"]
         if y1Value != nil {
             self.y1 = y1Value! as? Double
         }
-        let x2Value = source["x2"]
+        let x2Value = source["x2"] ?? source["X2"]
         if x2Value != nil {
             self.x2 = x2Value! as? Double
         }
-        let y2Value = source["y2"]
+        let y2Value = source["y2"] ?? source["Y2"]
         if y2Value != nil {
             self.y2 = y2Value! as? Double
         }

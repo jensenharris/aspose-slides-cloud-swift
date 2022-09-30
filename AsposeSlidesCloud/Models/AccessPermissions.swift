@@ -50,35 +50,35 @@ public class AccessPermissions: Codable {
     public var highQualityPrint: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
-        let printDocumentValue = source["printDocument"]
+        let printDocumentValue = source["printDocument"] ?? source["PrintDocument"]
         if printDocumentValue != nil {
             self.printDocument = printDocumentValue! as? Bool
         }
-        let modifyContentValue = source["modifyContent"]
+        let modifyContentValue = source["modifyContent"] ?? source["ModifyContent"]
         if modifyContentValue != nil {
             self.modifyContent = modifyContentValue! as? Bool
         }
-        let copyTextAndGraphicsValue = source["copyTextAndGraphics"]
+        let copyTextAndGraphicsValue = source["copyTextAndGraphics"] ?? source["CopyTextAndGraphics"]
         if copyTextAndGraphicsValue != nil {
             self.copyTextAndGraphics = copyTextAndGraphicsValue! as? Bool
         }
-        let addOrModifyFieldsValue = source["addOrModifyFields"]
+        let addOrModifyFieldsValue = source["addOrModifyFields"] ?? source["AddOrModifyFields"]
         if addOrModifyFieldsValue != nil {
             self.addOrModifyFields = addOrModifyFieldsValue! as? Bool
         }
-        let fillExistingFieldsValue = source["fillExistingFields"]
+        let fillExistingFieldsValue = source["fillExistingFields"] ?? source["FillExistingFields"]
         if fillExistingFieldsValue != nil {
             self.fillExistingFields = fillExistingFieldsValue! as? Bool
         }
-        let extractTextAndGraphicsValue = source["extractTextAndGraphics"]
+        let extractTextAndGraphicsValue = source["extractTextAndGraphics"] ?? source["ExtractTextAndGraphics"]
         if extractTextAndGraphicsValue != nil {
             self.extractTextAndGraphics = extractTextAndGraphicsValue! as? Bool
         }
-        let assembleDocumentValue = source["assembleDocument"]
+        let assembleDocumentValue = source["assembleDocument"] ?? source["AssembleDocument"]
         if assembleDocumentValue != nil {
             self.assembleDocument = assembleDocumentValue! as? Bool
         }
-        let highQualityPrintValue = source["highQualityPrint"]
+        let highQualityPrintValue = source["highQualityPrint"] ?? source["HighQualityPrint"]
         if highQualityPrintValue != nil {
             self.highQualityPrint = highQualityPrintValue! as? Bool
         }

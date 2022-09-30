@@ -53,7 +53,7 @@ public class BorderBoxElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let baseValue = source["base"]
+        let baseValue = source["base"] ?? source["Base"]
         if baseValue != nil {
             let baseDictionaryValue = baseValue! as? [String:Any]
             if baseDictionaryValue != nil {
@@ -63,35 +63,35 @@ public class BorderBoxElement: MathElement {
                 }
             }
         }
-        let hideTopValue = source["hideTop"]
+        let hideTopValue = source["hideTop"] ?? source["HideTop"]
         if hideTopValue != nil {
             self.hideTop = hideTopValue! as? Bool
         }
-        let hideBottomValue = source["hideBottom"]
+        let hideBottomValue = source["hideBottom"] ?? source["HideBottom"]
         if hideBottomValue != nil {
             self.hideBottom = hideBottomValue! as? Bool
         }
-        let hideLeftValue = source["hideLeft"]
+        let hideLeftValue = source["hideLeft"] ?? source["HideLeft"]
         if hideLeftValue != nil {
             self.hideLeft = hideLeftValue! as? Bool
         }
-        let hideRightValue = source["hideRight"]
+        let hideRightValue = source["hideRight"] ?? source["HideRight"]
         if hideRightValue != nil {
             self.hideRight = hideRightValue! as? Bool
         }
-        let strikethroughHorizontalValue = source["strikethroughHorizontal"]
+        let strikethroughHorizontalValue = source["strikethroughHorizontal"] ?? source["StrikethroughHorizontal"]
         if strikethroughHorizontalValue != nil {
             self.strikethroughHorizontal = strikethroughHorizontalValue! as? Bool
         }
-        let strikethroughVerticalValue = source["strikethroughVertical"]
+        let strikethroughVerticalValue = source["strikethroughVertical"] ?? source["StrikethroughVertical"]
         if strikethroughVerticalValue != nil {
             self.strikethroughVertical = strikethroughVerticalValue! as? Bool
         }
-        let strikethroughBottomLeftToTopRightValue = source["strikethroughBottomLeftToTopRight"]
+        let strikethroughBottomLeftToTopRightValue = source["strikethroughBottomLeftToTopRight"] ?? source["StrikethroughBottomLeftToTopRight"]
         if strikethroughBottomLeftToTopRightValue != nil {
             self.strikethroughBottomLeftToTopRight = strikethroughBottomLeftToTopRightValue! as? Bool
         }
-        let strikethroughTopLeftToBottomRightValue = source["strikethroughTopLeftToBottomRight"]
+        let strikethroughTopLeftToBottomRightValue = source["strikethroughTopLeftToBottomRight"] ?? source["StrikethroughTopLeftToBottomRight"]
         if strikethroughTopLeftToBottomRightValue != nil {
             self.strikethroughTopLeftToBottomRight = strikethroughTopLeftToBottomRightValue! as? Bool
         }

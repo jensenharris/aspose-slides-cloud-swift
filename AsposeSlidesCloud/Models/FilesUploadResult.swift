@@ -38,11 +38,11 @@ public class FilesUploadResult: Codable {
     public var errors: [ModelError]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let uploadedValue = source["uploaded"]
+        let uploadedValue = source["uploaded"] ?? source["Uploaded"]
         if uploadedValue != nil {
             self.uploaded = uploadedValue! as? [String]
         }
-        let errorsValue = source["errors"]
+        let errorsValue = source["errors"] ?? source["Errors"]
         if errorsValue != nil {
             var errorsArray: [ModelError] = []
             let errorsDictionaryValue = errorsValue! as? [Any]

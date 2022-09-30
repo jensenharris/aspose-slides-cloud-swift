@@ -43,19 +43,19 @@ public class ReplaceText: Task {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let oldTextValue = source["oldText"]
+        let oldTextValue = source["oldText"] ?? source["OldText"]
         if oldTextValue != nil {
             self.oldText = oldTextValue! as? String
         }
-        let newTextValue = source["newText"]
+        let newTextValue = source["newText"] ?? source["NewText"]
         if newTextValue != nil {
             self.newText = newTextValue! as? String
         }
-        let ignoreCaseValue = source["ignoreCase"]
+        let ignoreCaseValue = source["ignoreCase"] ?? source["IgnoreCase"]
         if ignoreCaseValue != nil {
             self.ignoreCase = ignoreCaseValue! as? Bool
         }
-        let slidePositionValue = source["slidePosition"]
+        let slidePositionValue = source["slidePosition"] ?? source["SlidePosition"]
         if slidePositionValue != nil {
             self.slidePosition = slidePositionValue! as? Int
         }

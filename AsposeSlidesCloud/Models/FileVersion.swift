@@ -39,11 +39,11 @@ public class FileVersion: StorageFile {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let versionIdValue = source["versionId"]
+        let versionIdValue = source["versionId"] ?? source["VersionId"]
         if versionIdValue != nil {
             self.versionId = versionIdValue! as? String
         }
-        let isLatestValue = source["isLatest"]
+        let isLatestValue = source["isLatest"] ?? source["IsLatest"]
         if isLatestValue != nil {
             self.isLatest = isLatestValue! as? Bool
         }

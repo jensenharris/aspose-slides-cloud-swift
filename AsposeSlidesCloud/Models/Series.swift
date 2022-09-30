@@ -150,7 +150,7 @@ public class Series: Codable {
     public var dataPointType: DataPointType?
 
     func fillValues(_ source: [String:Any]) throws {
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {
@@ -160,39 +160,39 @@ public class Series: Codable {
                 }
             }
         }
-        let nameValue = source["name"]
+        let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
         }
-        let isColorVariedValue = source["isColorVaried"]
+        let isColorVariedValue = source["isColorVaried"] ?? source["IsColorVaried"]
         if isColorVariedValue != nil {
             self.isColorVaried = isColorVariedValue! as? Bool
         }
-        let invertedSolidFillColorValue = source["invertedSolidFillColor"]
+        let invertedSolidFillColorValue = source["invertedSolidFillColor"] ?? source["InvertedSolidFillColor"]
         if invertedSolidFillColorValue != nil {
             self.invertedSolidFillColor = invertedSolidFillColorValue! as? String
         }
-        let smoothValue = source["smooth"]
+        let smoothValue = source["smooth"] ?? source["Smooth"]
         if smoothValue != nil {
             self.smooth = smoothValue! as? Bool
         }
-        let plotOnSecondAxisValue = source["plotOnSecondAxis"]
+        let plotOnSecondAxisValue = source["plotOnSecondAxis"] ?? source["PlotOnSecondAxis"]
         if plotOnSecondAxisValue != nil {
             self.plotOnSecondAxis = plotOnSecondAxisValue! as? Bool
         }
-        let orderValue = source["order"]
+        let orderValue = source["order"] ?? source["Order"]
         if orderValue != nil {
             self.order = orderValue! as? Int
         }
-        let invertIfNegativeValue = source["invertIfNegative"]
+        let invertIfNegativeValue = source["invertIfNegative"] ?? source["InvertIfNegative"]
         if invertIfNegativeValue != nil {
             self.invertIfNegative = invertIfNegativeValue! as? Bool
         }
-        let explosionValue = source["explosion"]
+        let explosionValue = source["explosion"] ?? source["Explosion"]
         if explosionValue != nil {
             self.explosion = explosionValue! as? Int
         }
-        let markerValue = source["marker"]
+        let markerValue = source["marker"] ?? source["Marker"]
         if markerValue != nil {
             let markerDictionaryValue = markerValue! as? [String:Any]
             if markerDictionaryValue != nil {
@@ -202,7 +202,7 @@ public class Series: Codable {
                 }
             }
         }
-        let fillFormatValue = source["fillFormat"]
+        let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
         if fillFormatValue != nil {
             let fillFormatDictionaryValue = fillFormatValue! as? [String:Any]
             if fillFormatDictionaryValue != nil {
@@ -212,7 +212,7 @@ public class Series: Codable {
                 }
             }
         }
-        let effectFormatValue = source["effectFormat"]
+        let effectFormatValue = source["effectFormat"] ?? source["EffectFormat"]
         if effectFormatValue != nil {
             let effectFormatDictionaryValue = effectFormatValue! as? [String:Any]
             if effectFormatDictionaryValue != nil {
@@ -222,7 +222,7 @@ public class Series: Codable {
                 }
             }
         }
-        let lineFormatValue = source["lineFormat"]
+        let lineFormatValue = source["lineFormat"] ?? source["LineFormat"]
         if lineFormatValue != nil {
             let lineFormatDictionaryValue = lineFormatValue! as? [String:Any]
             if lineFormatDictionaryValue != nil {
@@ -232,7 +232,7 @@ public class Series: Codable {
                 }
             }
         }
-        let dataPointTypeValue = source["dataPointType"]
+        let dataPointTypeValue = source["dataPointType"] ?? source["DataPointType"]
         if dataPointTypeValue != nil {
             let dataPointTypeStringValue = dataPointTypeValue! as? String
             if dataPointTypeStringValue != nil {

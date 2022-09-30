@@ -47,15 +47,15 @@ public class SlideModernComment: SlideCommentBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let textSelectionStartValue = source["textSelectionStart"]
+        let textSelectionStartValue = source["textSelectionStart"] ?? source["TextSelectionStart"]
         if textSelectionStartValue != nil {
             self.textSelectionStart = textSelectionStartValue! as? Int
         }
-        let textSelectionLengthValue = source["textSelectionLength"]
+        let textSelectionLengthValue = source["textSelectionLength"] ?? source["TextSelectionLength"]
         if textSelectionLengthValue != nil {
             self.textSelectionLength = textSelectionLengthValue! as? Int
         }
-        let statusValue = source["status"]
+        let statusValue = source["status"] ?? source["Status"]
         if statusValue != nil {
             let statusStringValue = statusValue! as? String
             if statusStringValue != nil {

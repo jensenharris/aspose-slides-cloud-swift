@@ -41,22 +41,22 @@ public class XpsExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let showHiddenSlidesValue = source["showHiddenSlides"]
+        let showHiddenSlidesValue = source["showHiddenSlides"] ?? source["ShowHiddenSlides"]
         if showHiddenSlidesValue != nil {
             self.showHiddenSlides = showHiddenSlidesValue! as? Bool
         }
-        let saveMetafilesAsPngValue = source["saveMetafilesAsPng"]
+        let saveMetafilesAsPngValue = source["saveMetafilesAsPng"] ?? source["SaveMetafilesAsPng"]
         if saveMetafilesAsPngValue != nil {
             self.saveMetafilesAsPng = saveMetafilesAsPngValue! as? Bool
         }
-        let drawSlidesFrameValue = source["drawSlidesFrame"]
+        let drawSlidesFrameValue = source["drawSlidesFrame"] ?? source["DrawSlidesFrame"]
         if drawSlidesFrameValue != nil {
             self.drawSlidesFrame = drawSlidesFrameValue! as? Bool
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, drawSlidesFrame: Bool? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, drawSlidesFrame: Bool? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.showHiddenSlides = showHiddenSlides
         self.saveMetafilesAsPng = saveMetafilesAsPng
         self.drawSlidesFrame = drawSlidesFrame

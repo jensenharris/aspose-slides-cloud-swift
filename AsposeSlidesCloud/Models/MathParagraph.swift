@@ -44,7 +44,7 @@ public class MathParagraph: Codable {
     public var justification: Justification?
 
     func fillValues(_ source: [String:Any]) throws {
-        let mathBlockListValue = source["mathBlockList"]
+        let mathBlockListValue = source["mathBlockList"] ?? source["MathBlockList"]
         if mathBlockListValue != nil {
             var mathBlockListArray: [BlockElement] = []
             let mathBlockListDictionaryValue = mathBlockListValue! as? [Any]
@@ -69,7 +69,7 @@ public class MathParagraph: Codable {
             }
             self.mathBlockList = mathBlockListArray
         }
-        let justificationValue = source["justification"]
+        let justificationValue = source["justification"] ?? source["Justification"]
         if justificationValue != nil {
             let justificationStringValue = justificationValue! as? String
             if justificationStringValue != nil {

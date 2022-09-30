@@ -36,7 +36,7 @@ public class SoftEdgeEffect: Codable {
     public var radius: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let radiusValue = source["radius"]
+        let radiusValue = source["radius"] ?? source["Radius"]
         if radiusValue != nil {
             self.radius = radiusValue! as? Double
         }

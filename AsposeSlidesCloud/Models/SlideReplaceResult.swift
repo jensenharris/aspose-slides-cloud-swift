@@ -37,7 +37,7 @@ public class SlideReplaceResult: Slide {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let matchesValue = source["matches"]
+        let matchesValue = source["matches"] ?? source["Matches"]
         if matchesValue != nil {
             self.matches = matchesValue! as? Int
         }

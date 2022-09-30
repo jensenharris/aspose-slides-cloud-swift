@@ -38,11 +38,11 @@ public class GlowEffect: Codable {
     public var color: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let radiusValue = source["radius"]
+        let radiusValue = source["radius"] ?? source["Radius"]
         if radiusValue != nil {
             self.radius = radiusValue! as? Double
         }
-        let colorValue = source["color"]
+        let colorValue = source["color"] ?? source["Color"]
         if colorValue != nil {
             self.color = colorValue! as? String
         }

@@ -40,15 +40,15 @@ public class FontFallbackRule: Codable {
     public var fallbackFontList: [String]?
 
     func fillValues(_ source: [String:Any]) throws {
-        let rangeStartIndexValue = source["rangeStartIndex"]
+        let rangeStartIndexValue = source["rangeStartIndex"] ?? source["RangeStartIndex"]
         if rangeStartIndexValue != nil {
             self.rangeStartIndex = rangeStartIndexValue! as? Int
         }
-        let rangeEndIndexValue = source["rangeEndIndex"]
+        let rangeEndIndexValue = source["rangeEndIndex"] ?? source["RangeEndIndex"]
         if rangeEndIndexValue != nil {
             self.rangeEndIndex = rangeEndIndexValue! as? Int
         }
-        let fallbackFontListValue = source["fallbackFontList"]
+        let fallbackFontListValue = source["fallbackFontList"] ?? source["FallbackFontList"]
         if fallbackFontListValue != nil {
             self.fallbackFontList = fallbackFontListValue! as? [String]
         }

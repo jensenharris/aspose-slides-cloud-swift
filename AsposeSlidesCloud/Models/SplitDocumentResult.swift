@@ -37,7 +37,7 @@ public class SplitDocumentResult: ResourceBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let slidesValue = source["slides"]
+        let slidesValue = source["slides"] ?? source["Slides"]
         if slidesValue != nil {
             var slidesArray: [ResourceUri] = []
             let slidesDictionaryValue = slidesValue! as? [Any]

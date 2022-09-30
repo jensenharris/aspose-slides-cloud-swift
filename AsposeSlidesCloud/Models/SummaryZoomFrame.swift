@@ -43,7 +43,7 @@ public class SummaryZoomFrame: ShapeBase {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let zoomLayoutValue = source["zoomLayout"]
+        let zoomLayoutValue = source["zoomLayout"] ?? source["ZoomLayout"]
         if zoomLayoutValue != nil {
             let zoomLayoutStringValue = zoomLayoutValue! as? String
             if zoomLayoutStringValue != nil {
@@ -53,7 +53,7 @@ public class SummaryZoomFrame: ShapeBase {
                 }
             }
         }
-        let sectionsValue = source["sections"]
+        let sectionsValue = source["sections"] ?? source["Sections"]
         if sectionsValue != nil {
             var sectionsArray: [SummaryZoomSection] = []
             let sectionsDictionaryValue = sectionsValue! as? [Any]

@@ -60,7 +60,7 @@ public class ArrayElement: MathElement {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let argumentsValue = source["arguments"]
+        let argumentsValue = source["arguments"] ?? source["Arguments"]
         if argumentsValue != nil {
             var argumentsArray: [MathElement] = []
             let argumentsDictionaryValue = argumentsValue! as? [Any]
@@ -85,7 +85,7 @@ public class ArrayElement: MathElement {
             }
             self.arguments = argumentsArray
         }
-        let baseJustificationValue = source["baseJustification"]
+        let baseJustificationValue = source["baseJustification"] ?? source["BaseJustification"]
         if baseJustificationValue != nil {
             let baseJustificationStringValue = baseJustificationValue! as? String
             if baseJustificationStringValue != nil {
@@ -95,15 +95,15 @@ public class ArrayElement: MathElement {
                 }
             }
         }
-        let maximumDistributionValue = source["maximumDistribution"]
+        let maximumDistributionValue = source["maximumDistribution"] ?? source["MaximumDistribution"]
         if maximumDistributionValue != nil {
             self.maximumDistribution = maximumDistributionValue! as? Bool
         }
-        let objectDistributionValue = source["objectDistribution"]
+        let objectDistributionValue = source["objectDistribution"] ?? source["ObjectDistribution"]
         if objectDistributionValue != nil {
             self.objectDistribution = objectDistributionValue! as? Bool
         }
-        let rowSpacingRuleValue = source["rowSpacingRule"]
+        let rowSpacingRuleValue = source["rowSpacingRule"] ?? source["RowSpacingRule"]
         if rowSpacingRuleValue != nil {
             let rowSpacingRuleStringValue = rowSpacingRuleValue! as? String
             if rowSpacingRuleStringValue != nil {
@@ -113,7 +113,7 @@ public class ArrayElement: MathElement {
                 }
             }
         }
-        let rowSpacingValue = source["rowSpacing"]
+        let rowSpacingValue = source["rowSpacing"] ?? source["RowSpacing"]
         if rowSpacingValue != nil {
             self.rowSpacing = rowSpacingValue! as? Int
         }

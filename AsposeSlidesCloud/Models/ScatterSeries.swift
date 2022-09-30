@@ -37,7 +37,7 @@ public class ScatterSeries: XYSeries {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let dataPointsValue = source["dataPoints"]
+        let dataPointsValue = source["dataPoints"] ?? source["DataPoints"]
         if dataPointsValue != nil {
             var dataPointsArray: [ScatterChartDataPoint] = []
             let dataPointsDictionaryValue = dataPointsValue! as? [Any]

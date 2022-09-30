@@ -292,7 +292,7 @@ public class Effect: Codable {
     public var triggerDelayTime: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let typeValue = source["type"]
+        let typeValue = source["type"] ?? source["Type"]
         if typeValue != nil {
             let typeStringValue = typeValue! as? String
             if typeStringValue != nil {
@@ -302,7 +302,7 @@ public class Effect: Codable {
                 }
             }
         }
-        let subtypeValue = source["subtype"]
+        let subtypeValue = source["subtype"] ?? source["Subtype"]
         if subtypeValue != nil {
             let subtypeStringValue = subtypeValue! as? String
             if subtypeStringValue != nil {
@@ -312,7 +312,7 @@ public class Effect: Codable {
                 }
             }
         }
-        let presetClassTypeValue = source["presetClassType"]
+        let presetClassTypeValue = source["presetClassType"] ?? source["PresetClassType"]
         if presetClassTypeValue != nil {
             let presetClassTypeStringValue = presetClassTypeValue! as? String
             if presetClassTypeStringValue != nil {
@@ -322,15 +322,15 @@ public class Effect: Codable {
                 }
             }
         }
-        let shapeIndexValue = source["shapeIndex"]
+        let shapeIndexValue = source["shapeIndex"] ?? source["ShapeIndex"]
         if shapeIndexValue != nil {
             self.shapeIndex = shapeIndexValue! as? Int
         }
-        let paragraphIndexValue = source["paragraphIndex"]
+        let paragraphIndexValue = source["paragraphIndex"] ?? source["ParagraphIndex"]
         if paragraphIndexValue != nil {
             self.paragraphIndex = paragraphIndexValue! as? Int
         }
-        let triggerTypeValue = source["triggerType"]
+        let triggerTypeValue = source["triggerType"] ?? source["TriggerType"]
         if triggerTypeValue != nil {
             let triggerTypeStringValue = triggerTypeValue! as? String
             if triggerTypeStringValue != nil {
@@ -340,31 +340,31 @@ public class Effect: Codable {
                 }
             }
         }
-        let accelerateValue = source["accelerate"]
+        let accelerateValue = source["accelerate"] ?? source["Accelerate"]
         if accelerateValue != nil {
             self.accelerate = accelerateValue! as? Double
         }
-        let autoReverseValue = source["autoReverse"]
+        let autoReverseValue = source["autoReverse"] ?? source["AutoReverse"]
         if autoReverseValue != nil {
             self.autoReverse = autoReverseValue! as? Bool
         }
-        let decelerateValue = source["decelerate"]
+        let decelerateValue = source["decelerate"] ?? source["Decelerate"]
         if decelerateValue != nil {
             self.decelerate = decelerateValue! as? Double
         }
-        let durationValue = source["duration"]
+        let durationValue = source["duration"] ?? source["Duration"]
         if durationValue != nil {
             self.duration = durationValue! as? Double
         }
-        let repeatCountValue = source["repeatCount"]
+        let repeatCountValue = source["repeatCount"] ?? source["RepeatCount"]
         if repeatCountValue != nil {
             self.repeatCount = repeatCountValue! as? Double
         }
-        let repeatDurationValue = source["repeatDuration"]
+        let repeatDurationValue = source["repeatDuration"] ?? source["RepeatDuration"]
         if repeatDurationValue != nil {
             self.repeatDuration = repeatDurationValue! as? Double
         }
-        let restartValue = source["restart"]
+        let restartValue = source["restart"] ?? source["Restart"]
         if restartValue != nil {
             let restartStringValue = restartValue! as? String
             if restartStringValue != nil {
@@ -374,11 +374,11 @@ public class Effect: Codable {
                 }
             }
         }
-        let speedValue = source["speed"]
+        let speedValue = source["speed"] ?? source["Speed"]
         if speedValue != nil {
             self.speed = speedValue! as? Double
         }
-        let triggerDelayTimeValue = source["triggerDelayTime"]
+        let triggerDelayTimeValue = source["triggerDelayTime"] ?? source["TriggerDelayTime"]
         if triggerDelayTimeValue != nil {
             self.triggerDelayTime = triggerDelayTimeValue! as? Double
         }

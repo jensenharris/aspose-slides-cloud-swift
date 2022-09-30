@@ -47,15 +47,15 @@ public class ShapeImageExportOptions: Codable {
     public var format: String?
 
     func fillValues(_ source: [String:Any]) throws {
-        let scaleXValue = source["scaleX"]
+        let scaleXValue = source["scaleX"] ?? source["ScaleX"]
         if scaleXValue != nil {
             self.scaleX = scaleXValue! as? Double
         }
-        let scaleYValue = source["scaleY"]
+        let scaleYValue = source["scaleY"] ?? source["ScaleY"]
         if scaleYValue != nil {
             self.scaleY = scaleYValue! as? Double
         }
-        let thumbnailBoundsValue = source["thumbnailBounds"]
+        let thumbnailBoundsValue = source["thumbnailBounds"] ?? source["ThumbnailBounds"]
         if thumbnailBoundsValue != nil {
             let thumbnailBoundsStringValue = thumbnailBoundsValue! as? String
             if thumbnailBoundsStringValue != nil {
@@ -65,7 +65,7 @@ public class ShapeImageExportOptions: Codable {
                 }
             }
         }
-        let formatValue = source["format"]
+        let formatValue = source["format"] ?? source["Format"]
         if formatValue != nil {
             self.format = formatValue! as? String
         }

@@ -93,7 +93,7 @@ public class PdfExportOptions: ExportOptions {
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let textCompressionValue = source["textCompression"]
+        let textCompressionValue = source["textCompression"] ?? source["TextCompression"]
         if textCompressionValue != nil {
             let textCompressionStringValue = textCompressionValue! as? String
             if textCompressionStringValue != nil {
@@ -103,11 +103,11 @@ public class PdfExportOptions: ExportOptions {
                 }
             }
         }
-        let embedFullFontsValue = source["embedFullFonts"]
+        let embedFullFontsValue = source["embedFullFonts"] ?? source["EmbedFullFonts"]
         if embedFullFontsValue != nil {
             self.embedFullFonts = embedFullFontsValue! as? Bool
         }
-        let complianceValue = source["compliance"]
+        let complianceValue = source["compliance"] ?? source["Compliance"]
         if complianceValue != nil {
             let complianceStringValue = complianceValue! as? String
             if complianceStringValue != nil {
@@ -117,39 +117,39 @@ public class PdfExportOptions: ExportOptions {
                 }
             }
         }
-        let sufficientResolutionValue = source["sufficientResolution"]
+        let sufficientResolutionValue = source["sufficientResolution"] ?? source["SufficientResolution"]
         if sufficientResolutionValue != nil {
             self.sufficientResolution = sufficientResolutionValue! as? Double
         }
-        let jpegQualityValue = source["jpegQuality"]
+        let jpegQualityValue = source["jpegQuality"] ?? source["JpegQuality"]
         if jpegQualityValue != nil {
             self.jpegQuality = jpegQualityValue! as? Int
         }
-        let drawSlidesFrameValue = source["drawSlidesFrame"]
+        let drawSlidesFrameValue = source["drawSlidesFrame"] ?? source["DrawSlidesFrame"]
         if drawSlidesFrameValue != nil {
             self.drawSlidesFrame = drawSlidesFrameValue! as? Bool
         }
-        let showHiddenSlidesValue = source["showHiddenSlides"]
+        let showHiddenSlidesValue = source["showHiddenSlides"] ?? source["ShowHiddenSlides"]
         if showHiddenSlidesValue != nil {
             self.showHiddenSlides = showHiddenSlidesValue! as? Bool
         }
-        let saveMetafilesAsPngValue = source["saveMetafilesAsPng"]
+        let saveMetafilesAsPngValue = source["saveMetafilesAsPng"] ?? source["SaveMetafilesAsPng"]
         if saveMetafilesAsPngValue != nil {
             self.saveMetafilesAsPng = saveMetafilesAsPngValue! as? Bool
         }
-        let passwordValue = source["password"]
+        let passwordValue = source["password"] ?? source["Password"]
         if passwordValue != nil {
             self.password = passwordValue! as? String
         }
-        let embedTrueTypeFontsForASCIIValue = source["embedTrueTypeFontsForASCII"]
+        let embedTrueTypeFontsForASCIIValue = source["embedTrueTypeFontsForASCII"] ?? source["EmbedTrueTypeFontsForASCII"]
         if embedTrueTypeFontsForASCIIValue != nil {
             self.embedTrueTypeFontsForASCII = embedTrueTypeFontsForASCIIValue! as? Bool
         }
-        let additionalCommonFontFamiliesValue = source["additionalCommonFontFamilies"]
+        let additionalCommonFontFamiliesValue = source["additionalCommonFontFamilies"] ?? source["AdditionalCommonFontFamilies"]
         if additionalCommonFontFamiliesValue != nil {
             self.additionalCommonFontFamilies = additionalCommonFontFamiliesValue! as? [String]
         }
-        let notesPositionValue = source["notesPosition"]
+        let notesPositionValue = source["notesPosition"] ?? source["NotesPosition"]
         if notesPositionValue != nil {
             let notesPositionStringValue = notesPositionValue! as? String
             if notesPositionStringValue != nil {
@@ -159,7 +159,7 @@ public class PdfExportOptions: ExportOptions {
                 }
             }
         }
-        let commentsPositionValue = source["commentsPosition"]
+        let commentsPositionValue = source["commentsPosition"] ?? source["CommentsPosition"]
         if commentsPositionValue != nil {
             let commentsPositionStringValue = commentsPositionValue! as? String
             if commentsPositionStringValue != nil {
@@ -169,27 +169,27 @@ public class PdfExportOptions: ExportOptions {
                 }
             }
         }
-        let commentsAreaWidthValue = source["commentsAreaWidth"]
+        let commentsAreaWidthValue = source["commentsAreaWidth"] ?? source["CommentsAreaWidth"]
         if commentsAreaWidthValue != nil {
             self.commentsAreaWidth = commentsAreaWidthValue! as? Int
         }
-        let commentsAreaColorValue = source["commentsAreaColor"]
+        let commentsAreaColorValue = source["commentsAreaColor"] ?? source["CommentsAreaColor"]
         if commentsAreaColorValue != nil {
             self.commentsAreaColor = commentsAreaColorValue! as? String
         }
-        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"]
+        let showCommentsByNoAuthorValue = source["showCommentsByNoAuthor"] ?? source["ShowCommentsByNoAuthor"]
         if showCommentsByNoAuthorValue != nil {
             self.showCommentsByNoAuthor = showCommentsByNoAuthorValue! as? Bool
         }
-        let imageTransparentColorValue = source["imageTransparentColor"]
+        let imageTransparentColorValue = source["imageTransparentColor"] ?? source["ImageTransparentColor"]
         if imageTransparentColorValue != nil {
             self.imageTransparentColor = imageTransparentColorValue! as? String
         }
-        let applyImageTransparentValue = source["applyImageTransparent"]
+        let applyImageTransparentValue = source["applyImageTransparent"] ?? source["ApplyImageTransparent"]
         if applyImageTransparentValue != nil {
             self.applyImageTransparent = applyImageTransparentValue! as? Bool
         }
-        let accessPermissionsValue = source["accessPermissions"]
+        let accessPermissionsValue = source["accessPermissions"] ?? source["AccessPermissions"]
         if accessPermissionsValue != nil {
             let accessPermissionsDictionaryValue = accessPermissionsValue! as? [String:Any]
             if accessPermissionsDictionaryValue != nil {
@@ -201,8 +201,8 @@ public class PdfExportOptions: ExportOptions {
         }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, format: String? = nil, textCompression: TextCompression? = nil, embedFullFonts: Bool? = nil, compliance: Compliance? = nil, sufficientResolution: Double? = nil, jpegQuality: Int? = nil, drawSlidesFrame: Bool? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, password: String? = nil, embedTrueTypeFontsForASCII: Bool? = nil, additionalCommonFontFamilies: [String]? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil, imageTransparentColor: String? = nil, applyImageTransparent: Bool? = nil, accessPermissions: AccessPermissions? = nil) {
-        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, format: format)
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, textCompression: TextCompression? = nil, embedFullFonts: Bool? = nil, compliance: Compliance? = nil, sufficientResolution: Double? = nil, jpegQuality: Int? = nil, drawSlidesFrame: Bool? = nil, showHiddenSlides: Bool? = nil, saveMetafilesAsPng: Bool? = nil, password: String? = nil, embedTrueTypeFontsForASCII: Bool? = nil, additionalCommonFontFamilies: [String]? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showCommentsByNoAuthor: Bool? = nil, imageTransparentColor: String? = nil, applyImageTransparent: Bool? = nil, accessPermissions: AccessPermissions? = nil) {
+        super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.textCompression = textCompression
         self.embedFullFonts = embedFullFonts
         self.compliance = compliance
