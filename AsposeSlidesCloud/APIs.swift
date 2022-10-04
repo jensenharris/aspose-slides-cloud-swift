@@ -26,7 +26,9 @@
  */
 
 import Foundation
-import FoundationNetworking
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
 
 open class AsposeSlidesCloudAPI {
     public static var basePath = "https://api.aspose.cloud"
