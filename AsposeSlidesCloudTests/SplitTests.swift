@@ -84,7 +84,7 @@ class SplitTests : XCTestCase {
     func testSplitRequest() {
         let expectation = self.expectation(description: "testSplitRequest")
         TestUtils.initialize("") { (response, error) -> Void in
-            let source = FileManager.default.contents(atPath: "TestData/Test.pptx")
+            let source = FileManager.default.contents(atPath: "TestData/test.pptx")
             XCTAssertNotNil(source)
             let password = "password"
             SlidesAPI.splitOnline(source!, "png", nil, nil, nil, nil, password) { (result1, error) -> Void in
@@ -115,7 +115,7 @@ class SplitTests : XCTestCase {
     func testSplitRequestToStorage() {
         let expectation = self.expectation(description: "testSplitRequestToStorage")
         TestUtils.initialize("") { (response, error) -> Void in
-            let source = FileManager.default.contents(atPath: "TestData/Test.pptx")
+            let source = FileManager.default.contents(atPath: "TestData/test.pptx")
             XCTAssertNotNil(source)
             let password = "password"
             SlidesAPI.splitAndSaveOnline(source!, "png", "", nil, nil, nil, nil, password) { (result1, error) -> Void in

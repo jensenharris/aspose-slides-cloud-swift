@@ -835,6 +835,10 @@ class ClassRegistry {
             let value = SlideProperties()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "SlideShowProperties" {
+            let value = SlideShowProperties()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Slides" {
             let value = Slides()
             try? value.fillValues(object)
@@ -1119,6 +1123,7 @@ class ClassRegistry {
         "SlideComments": "ResourceBase",
         "SlideModernComment": "SlideCommentBase",
         "SlideProperties": "ResourceBase",
+        "SlideShowProperties": "ResourceBase",
         "Slides": "ResourceBase",
         "SolidFill": "FillFormat",
         "SplitDocumentResult": "ResourceBase",
@@ -1344,6 +1349,7 @@ class ClassRegistry {
         typeDeterminers["SlideModernComment"] = [ : ]
         typeDeterminers["SlideModernComment"]!["Type"] = "Modern"
         typeDeterminers["SlideProperties"] = [ : ]
+        typeDeterminers["SlideShowProperties"] = [ : ]
         typeDeterminers["Slides"] = [ : ]
         typeDeterminers["SolidFill"] = [ : ]
         typeDeterminers["SolidFill"]!["Type"] = "Solid"

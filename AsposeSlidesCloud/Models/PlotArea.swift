@@ -37,9 +37,9 @@ public class PlotArea: Codable {
         case outer = "Outer"
     }
     /** the X location */
-    public var X: Double?
+    public var x: Double?
     /** the Y location */
-    public var Y: Double?
+    public var y: Double?
     /** Width */
     public var width: Double?
     /** Height */
@@ -54,13 +54,13 @@ public class PlotArea: Codable {
     public var lineFormat: LineFormat?
 
     func fillValues(_ source: [String:Any]) throws {
-        let XValue = source["X"] ?? source["X"]
-        if XValue != nil {
-            self.X = XValue! as? Double
+        let xValue = source["x"] ?? source["X"]
+        if xValue != nil {
+            self.x = xValue! as? Double
         }
-        let YValue = source["Y"] ?? source["Y"]
-        if YValue != nil {
-            self.Y = YValue! as? Double
+        let yValue = source["y"] ?? source["Y"]
+        if yValue != nil {
+            self.y = yValue! as? Double
         }
         let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
@@ -112,9 +112,9 @@ public class PlotArea: Codable {
         }
     }
 
-    public init(X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil, layoutTargetType: LayoutTargetType? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
-        self.X = X
-        self.Y = Y
+    public init(x: Double? = nil, y: Double? = nil, width: Double? = nil, height: Double? = nil, layoutTargetType: LayoutTargetType? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil) {
+        self.x = x
+        self.y = y
         self.width = width
         self.height = height
         self.layoutTargetType = layoutTargetType
@@ -124,8 +124,8 @@ public class PlotArea: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case X
-        case Y
+        case x
+        case y
         case width
         case height
         case layoutTargetType

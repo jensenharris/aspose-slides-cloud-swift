@@ -431,8 +431,8 @@ class ChartTests : XCTestCase {
         TestUtils.initialize("") { (response, error) -> Void in
             let chart = Chart()
             chart.chartType = Chart.ChartType.clusteredColumn
-            chart.X = 100
-            chart.Y = 100
+            chart.x = 100
+            chart.y = 100
             chart.width = 400
             chart.height = 300
             let series1 = OneValueSeries()

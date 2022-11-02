@@ -290,6 +290,10 @@ public class Effect: Codable {
     public var speed: Double?
     /** Delay time after trigger. */
     public var triggerDelayTime: Double?
+    /** Specifies if the effect will repeat until the end of slide. */
+    public var repeatUntilEndSlide: Bool?
+    /** Specifies if the effect will repeat until the next click. */
+    public var repeatUntilNextClick: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
         let typeValue = source["type"] ?? source["Type"]
@@ -382,9 +386,17 @@ public class Effect: Codable {
         if triggerDelayTimeValue != nil {
             self.triggerDelayTime = triggerDelayTimeValue! as? Double
         }
+        let repeatUntilEndSlideValue = source["repeatUntilEndSlide"] ?? source["RepeatUntilEndSlide"]
+        if repeatUntilEndSlideValue != nil {
+            self.repeatUntilEndSlide = repeatUntilEndSlideValue! as? Bool
+        }
+        let repeatUntilNextClickValue = source["repeatUntilNextClick"] ?? source["RepeatUntilNextClick"]
+        if repeatUntilNextClickValue != nil {
+            self.repeatUntilNextClick = repeatUntilNextClickValue! as? Bool
+        }
     }
 
-    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil) {
+    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil, repeatUntilEndSlide: Bool? = nil, repeatUntilNextClick: Bool? = nil) {
         self.type = type
         self.subtype = subtype
         self.presetClassType = presetClassType
@@ -400,6 +412,8 @@ public class Effect: Codable {
         self.restart = restart
         self.speed = speed
         self.triggerDelayTime = triggerDelayTime
+        self.repeatUntilEndSlide = repeatUntilEndSlide
+        self.repeatUntilNextClick = repeatUntilNextClick
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -418,6 +432,8 @@ public class Effect: Codable {
         case restart
         case speed
         case triggerDelayTime
+        case repeatUntilEndSlide
+        case repeatUntilNextClick
     }
 
 }

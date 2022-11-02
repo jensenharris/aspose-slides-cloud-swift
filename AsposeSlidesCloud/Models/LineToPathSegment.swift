@@ -33,50 +33,50 @@ import Foundation
 public class LineToPathSegment: PathSegment {
 
     /** X coordinate of the end point of the line */
-    public var X: Double?
+    public var x: Double?
     /** Y coordinate of the end point of the line */
-    public var Y: Double?
+    public var y: Double?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let XValue = source["X"] ?? source["X"]
-        if XValue != nil {
-            self.X = XValue! as? Double
+        let xValue = source["x"] ?? source["X"]
+        if xValue != nil {
+            self.x = xValue! as? Double
         }
-        let YValue = source["Y"] ?? source["Y"]
-        if YValue != nil {
-            self.Y = YValue! as? Double
+        let yValue = source["y"] ?? source["Y"]
+        if yValue != nil {
+            self.y = yValue! as? Double
         }
     }
 
-    public init(type: ModelType? = nil, X: Double? = nil, Y: Double? = nil) {
+    public init(type: ModelType? = nil, x: Double? = nil, y: Double? = nil) {
         super.init(type: type)
-        self.X = X
-        self.Y = Y
+        self.x = x
+        self.y = y
         self.type = ModelType.lineTo
     }
 
     private enum CodingKeys: String, CodingKey {
-        case X
-        case Y
+        case x
+        case y
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        X = try? values.decode(Double.self, forKey: .X)
-        Y = try? values.decode(Double.self, forKey: .Y)
+        x = try? values.decode(Double.self, forKey: .x)
+        y = try? values.decode(Double.self, forKey: .y)
         self.type = ModelType.lineTo
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        if (X != nil) {
-            try? container.encode(X, forKey: .X)
+        if (x != nil) {
+            try? container.encode(x, forKey: .x)
         }
-        if (Y != nil) {
-            try? container.encode(Y, forKey: .Y)
+        if (y != nil) {
+            try? container.encode(y, forKey: .y)
         }
     }
 

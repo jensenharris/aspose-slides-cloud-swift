@@ -49,8 +49,8 @@ class TextFormatTests : XCTestCase {
         TestUtils.initialize("") { (response, error) -> Void in
             let dto = Shape()
             dto.shapeType = Shape.ShapeType.rectangle
-            dto.X = 100
-            dto.Y = 100
+            dto.y = 100
+            dto.y = 100
             dto.height = 100
             dto.width = 200
             dto.text = "Sample text"

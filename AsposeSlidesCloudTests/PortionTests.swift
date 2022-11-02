@@ -78,7 +78,7 @@ class PortionTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapePortionsGet")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.getSubshapePortions("test.pptx", 6, "3/shapes", 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.getPortions("test.pptx", 6, 3, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.items)
@@ -107,7 +107,7 @@ class PortionTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapePortionGet")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.getSubshapePortion("test.pptx", 6, "3/shapes", 1, 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.getPortion("test.pptx", 6, 3, 1, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual("Subshape Paragraph 1 portion 1 ", result!.text)
@@ -156,7 +156,7 @@ class PortionTests : XCTestCase {
             let fillFormat = SolidFill()
             fillFormat.color = "#FFF5FF8A"
             dto.fillFormat = fillFormat
-            SlidesAPI.createSubshapePortion("test.pptx", 6, "3/shapes", 1, 1, dto, nil, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.createPortion("test.pptx", 6, 3, 1, dto, nil, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual(dto.text, result!.text)
@@ -210,7 +210,7 @@ class PortionTests : XCTestCase {
             let fillFormat = SolidFill()
             fillFormat.color = "#FFF5FF8A"
             dto.fillFormat = fillFormat
-            SlidesAPI.updateSubshapePortion("test.pptx", 6, "3/shapes", 1, 1, 1, dto, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.updatePortion("test.pptx", 6, 3, 1, 1, dto, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual(dto.text, result!.text)
@@ -259,7 +259,7 @@ class PortionTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapePortionsDelete")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.deleteSubshapePortions("test.pptx", 6, "3/shapes", 1, 1, [], "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.deletePortions("test.pptx", 6, 3, 1, [], "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.items)
@@ -274,7 +274,7 @@ class PortionTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapePortionsDeleteByIndices")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.deleteSubshapePortions("test.pptx", 6, "3/shapes", 1, 1, [ 1 ], "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.deletePortions("test.pptx", 6, 3, 1, [ 1 ], "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.items)
@@ -304,7 +304,7 @@ class PortionTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapePortionDelete")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.deleteSubshapePortion("test.pptx", 6, "3/shapes", 1, 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.deletePortion("test.pptx", 6, 3, 1, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.items)
@@ -322,10 +322,10 @@ class PortionTests : XCTestCase {
             SlidesAPI.getPortionRectangle("test.pptx", 6, 2, 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
-                XCTAssertNotNil(result!.X)
-                XCTAssertGreaterThan(result!.X!, 0.0)
-                XCTAssertNotNil(result!.Y)
-                XCTAssertGreaterThan(result!.Y!, 0.0)
+                XCTAssertNotNil(result!.x)
+                XCTAssertGreaterThan(result!.x!, 0.0)
+                XCTAssertNotNil(result!.y)
+                XCTAssertGreaterThan(result!.y!, 0.0)
                 XCTAssertNotNil(result!.width)
                 XCTAssertGreaterThan(result!.width!, 0.0)
                 XCTAssertNotNil(result!.height)
@@ -354,7 +354,7 @@ class PortionTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapePortionGetEffective")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.getSubshapePortionEffective("test.pptx", 6, "3/shapes", 1, 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.getPortionEffective("test.pptx", 6, 3, 1, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual(18, result!.fontHeight)

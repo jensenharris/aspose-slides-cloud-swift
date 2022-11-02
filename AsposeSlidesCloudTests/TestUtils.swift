@@ -43,6 +43,8 @@ class TestUtils {
                 fileName = "shapes.svg"
             } else if name.caseInsensitiveCompare("image") == .orderedSame {
                 fileName = "watermark.png"
+            } else if name.caseInsensitiveCompare("font") == .orderedSame {
+                fileName = "calibri.ttf"
             }
             return (FileManager.default.contents(atPath: "TestData/" + fileName), nil)
         }
@@ -89,6 +91,14 @@ class TestUtils {
         return (value, ruleType)
     }
     
+    class func getTestValueForInvalid<T:Decodable>(functionName: String, name: String, invalidFieldName: String, type: String) -> T {
+        let value : T = getTestValue(functionName: functionName, name: name, type: type)
+        if name == invalidFieldName {
+            return getInvalidTestValue(functionName: functionName, name: name, value: value, type: type)
+        }
+        return value
+    }
+    
     class func getTestValue<T:Decodable>(functionName: String, name: String, type: String) -> T {
         let valueInternal = getTestValueInternal(functionName: functionName, name: name, type: type)
         var value: Any? = valueInternal.value
@@ -112,7 +122,27 @@ class TestUtils {
         if type == "String" {
             return "\(value!)" as! T
         }
-        return value as! T
+        let typedValue = value as? T
+        if typedValue == nil {
+            if (type == "String") {
+                return "" as! T
+            }
+            if (type == "Bool") {
+                return false as! T
+            }
+            if (type == "Int") {
+                return 0 as! T
+            }
+            if (type == "Double") {
+                return 0.0 as! T
+            }
+            if (type.starts(with: "[")) {
+                return [] as! T
+            }
+            let result: (decodableObj: Decodable?, error: Error?) = ClassRegistry.getClassInstance(type, "{}".data(using: .utf8)!)
+            return result.decodableObj as! T
+        }
+        return typedValue!
     }
     
     class func getInvalidTestValue<T:Decodable>(functionName: String, name: String, value: Any, type: String) -> T {
@@ -134,7 +164,25 @@ class TestUtils {
         if type == "String" {
             return "\(invalidValue!)" as! T
         }
-        return invalidValue as! T
+        let typedValue = invalidValue as? T
+        if typedValue == nil {
+            if (type == "String") {
+                return "" as! T
+            }
+            if (type == "Bool") {
+                return false as! T
+            }
+            if (type == "Int") {
+                return 0 as! T
+            }
+            if (type == "Double") {
+                return 0.0 as! T
+            }
+            if (type.starts(with: "[")) {
+                return [] as! T
+            }
+        }
+        return typedValue!
     }
 
     class func getInvalidTestValueInternal(functionName: String, name: String, value: Any, type: String) -> Any? {

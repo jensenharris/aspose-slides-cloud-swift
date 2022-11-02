@@ -71,9 +71,9 @@ class TextTests : XCTestCase {
                             XCTAssertNil(error)
                             XCTAssertNotNil(slideResultWithEmpty)
                             XCTAssertNotNil(slideResultWithEmpty!.items)
-                            XCTAssertLessThan(resultWithEmpty!.items!.count, result!.items!.count)
+                            XCTAssertLessThan(result!.items!.count, resultWithEmpty!.items!.count)
                             XCTAssertLessThan(slideResult!.items!.count, result!.items!.count)
-                            XCTAssertLessThan(slideResultWithEmpty!.items!.count, slideResult!.items!.count)
+                            XCTAssertLessThan(slideResult!.items!.count, slideResultWithEmpty!.items!.count)
                             expectation.fulfill()
                         }
                     }
@@ -117,9 +117,9 @@ class TextTests : XCTestCase {
                                         XCTAssertNil(error)
                                         XCTAssertNotNil(slideResultWithEmpty)
                                         XCTAssertNotNil(slideResultWithEmpty!.matches)
-                                        XCTAssertLessThan(resultWithEmpty!.matches!, result!.matches!)
+                                        XCTAssertLessThan(result!.matches!, resultWithEmpty!.matches!)
                                         XCTAssertLessThan(slideResult!.matches!, result!.matches!)
-                                        XCTAssertLessThan(slideResultWithEmpty!.matches!, slideResult!.matches!)
+                                        XCTAssertLessThan(slideResult!.matches!, slideResultWithEmpty!.matches!)
                                         expectation.fulfill()
                                     }
                                 }
@@ -139,7 +139,7 @@ class TextTests : XCTestCase {
             let slideIndex = 1
             let oldValue = "text"
             let newValue = "new_text"
-            let source = FileManager.default.contents(atPath: "TestData/Test.pptx")
+            let source = FileManager.default.contents(atPath: "TestData/test.pptx")
             XCTAssertNotNil(source)
             SlidesAPI.replacePresentationTextOnline(source!, oldValue, newValue, nil, password) { (result, error) -> Void in
                 XCTAssertNil(error)

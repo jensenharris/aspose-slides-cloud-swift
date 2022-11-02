@@ -106,8 +106,8 @@ class MasterSlideTests : XCTestCase {
                 XCTAssertEqual(shapeCount, shapes!.shapesLinks!.count)
 
                 let dto = Shape()
-                dto.X = 100
-                dto.Y = 100
+                dto.x = 100
+                dto.y = 100
                 dto.width = 500
                 dto.height = 200
                 dto.shapeType = GeometryShape.ShapeType.rectangle

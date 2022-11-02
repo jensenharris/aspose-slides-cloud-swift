@@ -335,7 +335,7 @@ class ConvertTests : XCTestCase {
     func testConvertSubshapePostFromStorage() {
         let expectation = self.expectation(description: "testConvertSubshapePostFromStorage")
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.downloadSubshape("test.pptx", 1, "4/shapes", 1, "png", nil, nil, nil, "", "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.downloadShape("test.pptx", 1, 4, "png", nil, nil, nil, "", "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 expectation.fulfill()
@@ -367,7 +367,7 @@ class ConvertTests : XCTestCase {
         let expectation = self.expectation(description: "testConvertSubshapePutFromStorage")
         TestUtils.initialize("") { (response, error) -> Void in
             let outPath = "TempSlidesSDK/test.pptx"
-            SlidesAPI.saveSubshape("test.pptx", 1, "4/shapes", 1, "png", outPath, nil, nil, nil, "", "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.saveShape("test.pptx", 1, 4, "png", outPath, nil, nil, nil, "", "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 SlidesAPI.objectExists(outPath) { (exists, error) -> Void in

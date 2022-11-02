@@ -55,10 +55,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func alignShapes(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        alignShapesWithRequestBuilder(name, slideIndex, alignmentType, alignToSlide, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func alignShapes(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        alignShapesWithRequestBuilder(name, slideIndex, alignmentType, alignToSlide, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -79,9 +80,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func alignShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func alignShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/align/{alignmentType}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -97,7 +99,8 @@ open class SlidesAPI {
             "alignToSlide": alignToSlide, 
             "shapes": shapes, 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -142,10 +145,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func alignSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        alignSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, alignmentType, alignToSlide, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func alignSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        alignSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, alignmentType, alignToSlide, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -167,9 +171,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func alignSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func alignSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/align/{alignmentType}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -186,87 +191,8 @@ open class SlidesAPI {
             "alignToSlide": alignToSlide, 
             "shapes": shapes, 
             "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter alignmentType
-     */
-    public enum AlignmentType_alignSubshapes: String { 
-        case alignLeft = "AlignLeft"
-        case alignRight = "AlignRight"
-        case alignCenter = "AlignCenter"
-        case alignTop = "AlignTop"
-        case alignMiddle = "AlignMiddle"
-        case alignBottom = "AlignBottom"
-        case distributeHorizontally = "DistributeHorizontally"
-        case distributeVertically = "DistributeVertically"
-    }
-
-    /**
-     Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other (for group shapes only).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter alignmentType: Alignment type that will be applied to the shapes.
-     - parameter alignToSlide: If true, shapes will be aligned relative to the slide edges.
-     - parameter shapes: Shapes indexes.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func alignSubshapes(_ name: String, _ slideIndex: Int, _ path: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        alignSubshapesWithRequestBuilder(name, slideIndex, path, alignmentType, alignToSlide, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Changes the placement of selected shapes on the slide. Aligns shapes to the margins or the edge of the slide or aligns them relative to each other (for group shapes only).
-     - POST /slides/{name}/slides/{slideIndex}/shapes/{path}/align/{alignmentType}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter alignmentType: Alignment type that will be applied to the shapes.
-     - parameter alignToSlide: If true, shapes will be aligned relative to the slide edges.
-     - parameter shapes: Shapes indexes.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func alignSubshapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/align/{alignmentType}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "alignmentType", alignmentType)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "alignToSlide": alignToSlide, 
-            "shapes": shapes, 
-            "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -1449,10 +1375,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        createParagraphWithRequestBuilder(name, slideIndex, shapeIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        createParagraphWithRequestBuilder(name, slideIndex, shapeIndex, dto, position, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1473,9 +1400,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func createParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func createParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -1490,7 +1418,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "position": position?.encodeToJSON(), 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -1512,10 +1441,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createPortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        createPortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createPortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        createPortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, dto, position, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1537,9 +1467,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func createPortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func createPortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -1555,7 +1486,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "position": position?.encodeToJSON(), 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -1817,10 +1749,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createShape(_ name: String, _ slideIndex: Int, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        createShapeWithRequestBuilder(name, slideIndex, dto, shapeToClone, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createShape(_ name: String, _ slideIndex: Int, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
+        createShapeWithRequestBuilder(name, slideIndex, dto, shapeToClone, position, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -1841,9 +1774,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<ShapeBase> 
      */
-    open class func createShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
+    open class func createShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<ShapeBase> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -1858,7 +1792,8 @@ open class SlidesAPI {
             "shapeToClone": shapeToClone?.encodeToJSON(), 
             "position": position?.encodeToJSON(), 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -1948,7 +1883,7 @@ open class SlidesAPI {
 
     /**
      Add SmartArt node
-     - POST /slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes
+     - POST /slides/{name}/slides/{slideIndex}/smartArts/{smartArtIndex}/nodes
      - OAuth:
        - type: oauth2
        - name: JWT
@@ -1965,7 +1900,7 @@ open class SlidesAPI {
      - returns: RequestBuilder<SmartArt> 
      */
     open class func createSmartArtNodeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ smartArtIndex: Int, _ subNode: String = "", _ text: String = "", _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SmartArt> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes"
+        var methodPath = "/slides/{name}/slides/{slideIndex}/smartArts/{smartArtIndex}/nodes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         methodPath = APIHelper.replacePathParameter(methodPath, "smartArtIndex", smartArtIndex)
@@ -2219,10 +2154,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        createSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        createSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, dto, position, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -2244,9 +2180,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func createSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func createSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -2262,7 +2199,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "position": position?.encodeToJSON(), 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -2294,10 +2232,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        createSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        createSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, dto, position, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -2320,9 +2259,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func createSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func createSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -2339,7 +2279,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "position": position?.encodeToJSON(), 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -2370,10 +2311,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func createSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        createSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, dto, shapeToClone, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func createSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
+        createSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, dto, shapeToClone, position, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -2395,9 +2337,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<ShapeBase> 
      */
-    open class func createSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
+    open class func createSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<ShapeBase> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -2413,7 +2356,8 @@ open class SlidesAPI {
             "shapeToClone": shapeToClone?.encodeToJSON(), 
             "position": position?.encodeToJSON(), 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -2421,438 +2365,6 @@ open class SlidesAPI {
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_createSpecialSlideSubshape: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Create new shape (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter dto: Shape DTO.
-     - parameter shapeToClone: Optional index for clone shape instead of adding a new one.
-     - parameter position: Position of the new shape in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func createSpecialSlideSubshape(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        createSpecialSlideSubshapeWithRequestBuilder(name, slideIndex, slideType, path, dto, shapeToClone, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Create new shape (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter dto: Shape DTO.
-     - parameter shapeToClone: Optional index for clone shape instead of adding a new one.
-     - parameter position: Position of the new shape in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<ShapeBase> 
-     */
-    open class func createSpecialSlideSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "shapeToClone": shapeToClone?.encodeToJSON(), 
-            "position": position?.encodeToJSON(), 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_createSpecialSlideSubshapeParagraph: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Creates new paragraph (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Paragraph DTO.
-     - parameter position: Position of the new paragraph in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func createSpecialSlideSubshapeParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        createSpecialSlideSubshapeParagraphWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Creates new paragraph (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Paragraph DTO.
-     - parameter position: Position of the new paragraph in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func createSpecialSlideSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "position": position?.encodeToJSON(), 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_createSpecialSlideSubshapePortion: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Creates new portion (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Portion DTO.
-     - parameter position: Position of the new portion in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func createSpecialSlideSubshapePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        createSpecialSlideSubshapePortionWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Creates new portion (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Portion DTO.
-     - parameter position: Position of the new portion in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func createSpecialSlideSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "position": position?.encodeToJSON(), 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Create new shape (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter dto: Shape DTO.
-     - parameter shapeToClone: Optional index for clone shape instead of adding a new one.
-     - parameter position: Position of the new shape in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func createSubshape(_ name: String, _ slideIndex: Int, _ path: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        createSubshapeWithRequestBuilder(name, slideIndex, path, dto, shapeToClone, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Create new shape (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/shapes/{path}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter dto: Shape DTO.
-     - parameter shapeToClone: Optional index for clone shape instead of adding a new one.
-     - parameter position: Position of the new shape in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<ShapeBase> 
-     */
-    open class func createSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ dto: ShapeBase? = nil, _ shapeToClone: Int? = nil, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "shapeToClone": shapeToClone?.encodeToJSON(), 
-            "position": position?.encodeToJSON(), 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Creates new paragraph (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Paragraph DTO.
-     - parameter position: Position of the new paragraph in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func createSubshapeParagraph(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        createSubshapeParagraphWithRequestBuilder(name, slideIndex, path, shapeIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Creates new paragraph (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Paragraph DTO.
-     - parameter position: Position of the new paragraph in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func createSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ dto: Paragraph, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "position": position?.encodeToJSON(), 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Creates new portion (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Portion DTO.
-     - parameter position: Position of the new portion in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func createSubshapePortion(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        createSubshapePortionWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, dto, position, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Creates new portion (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Portion DTO.
-     - parameter position: Position of the new portion in the list. Default is at the end of the list.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func createSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Portion, _ position: Int? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "position": position?.encodeToJSON(), 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
     }
@@ -4034,10 +3546,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteParagraphWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+        deleteParagraphWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -4057,9 +3570,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func deleteParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
+    open class func deleteParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4074,7 +3588,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -4094,10 +3609,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteParagraphs(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteParagraphsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphs, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteParagraphs(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+        deleteParagraphsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphs, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -4117,9 +3633,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func deleteParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
+    open class func deleteParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4134,7 +3651,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "paragraphs": paragraphs, 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -4155,10 +3673,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deletePortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deletePortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deletePortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+        deletePortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -4179,9 +3698,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func deletePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
+    open class func deletePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4197,7 +3717,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -4218,10 +3739,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deletePortions(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deletePortionsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portions, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deletePortions(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+        deletePortionsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portions, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -4242,9 +3764,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func deletePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
+    open class func deletePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4260,7 +3783,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "portions": portions, 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -4488,10 +4012,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteShapeWithRequestBuilder(name, slideIndex, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        deleteShapeWithRequestBuilder(name, slideIndex, shapeIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -4510,9 +4035,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func deleteShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func deleteShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4526,7 +4052,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -4545,10 +4072,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteShapes(_ name: String, _ slideIndex: Int, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteShapesWithRequestBuilder(name, slideIndex, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteShapes(_ name: String, _ slideIndex: Int, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        deleteShapesWithRequestBuilder(name, slideIndex, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -4567,9 +4095,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func deleteShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func deleteShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4583,7 +4112,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "shapes": shapes, 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -4831,7 +4361,7 @@ open class SlidesAPI {
 
     /**
      Delete SmartArt node
-     - DELETE /slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes/{nodeIndex}
+     - DELETE /slides/{name}/slides/{slideIndex}/smartArts/{smartArtIndex}/nodes/{nodeIndex}
      - OAuth:
        - type: oauth2
        - name: JWT
@@ -4847,7 +4377,7 @@ open class SlidesAPI {
      - returns: RequestBuilder<SmartArt> 
      */
     open class func deleteSmartArtNodeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ smartArtIndex: Int, _ nodeIndex: Int, _ subNode: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SmartArt> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/SmartArts/{smartArtIndex}/nodes/{nodeIndex}"
+        var methodPath = "/slides/{name}/slides/{slideIndex}/smartArts/{smartArtIndex}/nodes/{nodeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
         methodPath = APIHelper.replacePathParameter(methodPath, "smartArtIndex", smartArtIndex)
@@ -5300,10 +4830,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+        deleteSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5324,9 +4855,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func deleteSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
+    open class func deleteSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5342,7 +4874,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -5372,10 +4905,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlideParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideParagraphsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphs, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteSpecialSlideParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+        deleteSpecialSlideParagraphsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphs, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5396,9 +4930,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func deleteSpecialSlideParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
+    open class func deleteSpecialSlideParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5414,7 +4949,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "paragraphs": paragraphs, 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -5445,10 +4981,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deleteSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+        deleteSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5470,9 +5007,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func deleteSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
+    open class func deleteSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5489,7 +5027,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -5520,10 +5059,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlidePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deleteSpecialSlidePortionsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portions, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteSpecialSlidePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+        deleteSpecialSlidePortionsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portions, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5545,9 +5085,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func deleteSpecialSlidePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
+    open class func deleteSpecialSlidePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5564,7 +5105,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "portions": portions, 
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -5593,10 +5135,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        deleteSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5616,9 +5159,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func deleteSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func deleteSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5633,7 +5177,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -5662,10 +5207,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func deleteSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        deleteSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -5685,9 +5231,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func deleteSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func deleteSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5702,835 +5249,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "shapes": shapes, 
             "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_deleteSpecialSlideSubshape: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Remove a shape (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSpecialSlideSubshape(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideSubshapeWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a shape (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func deleteSpecialSlideSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_deleteSpecialSlideSubshapeParagraph: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Remove a paragraph (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSpecialSlideSubshapeParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideSubshapeParagraphWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a paragraph (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraphs> 
-     */
-    open class func deleteSpecialSlideSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraphs>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_deleteSpecialSlideSubshapeParagraphs: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Remove a range of paragraphs (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphs: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSpecialSlideSubshapeParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideSubshapeParagraphsWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphs, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a range of paragraphs (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphs: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraphs> 
-     */
-    open class func deleteSpecialSlideSubshapeParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "paragraphs": paragraphs, 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraphs>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_deleteSpecialSlideSubshapePortion: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Remove a portion (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSpecialSlideSubshapePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideSubshapePortionWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a portion (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portions> 
-     */
-    open class func deleteSpecialSlideSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portions>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_deleteSpecialSlideSubshapePortions: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Remove a range of portions (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portions: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSpecialSlideSubshapePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideSubshapePortionsWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, portions, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a range of portions (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portions: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portions> 
-     */
-    open class func deleteSpecialSlideSubshapePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "portions": portions, 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portions>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_deleteSpecialSlideSubshapes: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Remove a range of shapes (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapes: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSpecialSlideSubshapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteSpecialSlideSubshapesWithRequestBuilder(name, slideIndex, slideType, path, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a range of shapes (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapes: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func deleteSpecialSlideSubshapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "shapes": shapes, 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Remove a shape (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSubshape(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteSubshapeWithRequestBuilder(name, slideIndex, path, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a shape (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func deleteSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Remove a paragraph (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSubshapeParagraph(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteSubshapeParagraphWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a paragraph (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraphs> 
-     */
-    open class func deleteSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraphs>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Remove a range of paragraphs (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphs: The indices of the paragraphs to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSubshapeParagraphs(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        deleteSubshapeParagraphsWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphs, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a range of paragraphs (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphs: The indices of the paragraphs to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraphs> 
-     */
-    open class func deleteSubshapeParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "paragraphs": paragraphs, 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraphs>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Remove a portion (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSubshapePortion(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deleteSubshapePortionWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a portion (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portions> 
-     */
-    open class func deleteSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portions>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Remove a range of portions (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portions: The indices of the portions to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSubshapePortions(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        deleteSubshapePortionsWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, portions, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a range of portions (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portions: The indices of the portions to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portions> 
-     */
-    open class func deleteSubshapePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "portions": portions, 
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portions>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Remove a range of shapes (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapes: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func deleteSubshapes(_ name: String, _ slideIndex: Int, _ path: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        deleteSubshapesWithRequestBuilder(name, slideIndex, path, shapes, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Remove a range of shapes (for smart art and group shapes).
-     - DELETE /slides/{name}/slides/{slideIndex}/shapes/{path}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapes: The indices of the shapes to be deleted; delete all by default.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func deleteSubshapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "shapes": shapes, 
-            "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -7711,10 +6431,11 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func downloadShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        downloadShapeWithRequestBuilder(name, slideIndex, shapeIndex, format, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func downloadShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        downloadShapeWithRequestBuilder(name, slideIndex, shapeIndex, format, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -7739,9 +6460,10 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Data> 
      */
-    open class func downloadShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+    open class func downloadShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "") -> RequestBuilder<Data> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -7760,7 +6482,8 @@ open class SlidesAPI {
             "bounds": bounds, 
             "folder": folder, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -8099,10 +6822,11 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func downloadSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        downloadSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, format, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func downloadSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        downloadSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, format, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -8128,9 +6852,10 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Data> 
      */
-    open class func downloadSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+    open class func downloadSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "") -> RequestBuilder<Data> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -8150,215 +6875,8 @@ open class SlidesAPI {
             "bounds": bounds, 
             "folder": folder, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_downloadSpecialSlideSubshape: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     * enum for parameter format
-     */
-    public enum Format_downloadSpecialSlideSubshape: String { 
-        case jpeg = "Jpeg"
-        case png = "Png"
-        case gif = "Gif"
-        case bmp = "Bmp"
-        case tiff = "Tiff"
-        case svg = "Svg"
-    }
-
-    /**
-     * enum for parameter bounds
-     */
-    public enum Bounds_downloadSpecialSlideSubshape: String { 
-        case slide = "Slide"
-        case shape = "Shape"
-        case appearance = "Appearance"
-    }
-
-    /**
-     Render shape to specified picture format (for smart art and group shapes).
-     - parameter name: Presentation name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func downloadSpecialSlideSubshape(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        downloadSpecialSlideSubshapeWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, format, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Render shape to specified picture format (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{output=none}]
-     - parameter name: Presentation name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - returns: RequestBuilder<Data> 
-     */
-    open class func downloadSpecialSlideSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: options)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "scaleX": scaleX, 
-            "scaleY": scaleY, 
-            "bounds": bounds, 
-            "folder": folder, 
-            "storage": storage, 
-            "fontsFolder": fontsFolder
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter format
-     */
-    public enum Format_downloadSubshape: String { 
-        case jpeg = "Jpeg"
-        case png = "Png"
-        case gif = "Gif"
-        case bmp = "Bmp"
-        case tiff = "Tiff"
-        case svg = "Svg"
-    }
-
-    /**
-     * enum for parameter bounds
-     */
-    public enum Bounds_downloadSubshape: String { 
-        case slide = "Slide"
-        case shape = "Shape"
-        case appearance = "Appearance"
-    }
-
-    /**
-     Render shape to specified picture format (for smart art and group shapes).
-     - parameter name: Presentation name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func downloadSubshape(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        downloadSubshapeWithRequestBuilder(name, slideIndex, path, shapeIndex, format, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Render shape to specified picture format (for smart art and group shapes).
-     - POST /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{output=none}]
-     - parameter name: Presentation name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - returns: RequestBuilder<Data> 
-     */
-    open class func downloadSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ format: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: options)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "scaleX": scaleX, 
-            "scaleY": scaleY, 
-            "bounds": bounds, 
-            "folder": folder, 
-            "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9415,10 +7933,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        getParagraphWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        getParagraphWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9438,9 +7957,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func getParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func getParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -9455,7 +7975,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9475,10 +7996,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getParagraphEffective(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        getParagraphEffectiveWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getParagraphEffective(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        getParagraphEffectiveWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9498,9 +8020,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func getParagraphEffectiveWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func getParagraphEffectiveWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/effective"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -9515,7 +8038,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9599,10 +8123,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getParagraphs(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        getParagraphsWithRequestBuilder(name, slideIndex, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getParagraphs(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+        getParagraphsWithRequestBuilder(name, slideIndex, shapeIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9621,9 +8146,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func getParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
+    open class func getParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -9637,7 +8163,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9769,10 +8296,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getPortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        getPortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getPortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        getPortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9793,9 +8321,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func getPortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func getPortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -9811,7 +8340,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9832,10 +8362,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getPortionEffective(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        getPortionEffectiveWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getPortionEffective(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        getPortionEffectiveWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9856,9 +8387,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func getPortionEffectiveWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func getPortionEffectiveWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/effective"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -9874,7 +8406,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -9962,10 +8495,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getPortions(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        getPortionsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getPortions(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+        getPortionsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -9985,9 +8519,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func getPortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
+    open class func getPortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -10002,7 +8537,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -10279,10 +8815,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        getShapeWithRequestBuilder(name, slideIndex, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
+        getShapeWithRequestBuilder(name, slideIndex, shapeIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -10301,9 +8838,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<ShapeBase> 
      */
-    open class func getShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
+    open class func getShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<ShapeBase> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -10317,7 +8855,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -10433,10 +8972,11 @@ open class SlidesAPI {
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter shapeType: Shape type.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getShapes(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ shapeType: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        getShapesWithRequestBuilder(name, slideIndex, password, folder, storage, shapeType).executeAuthorized { (response, error) -> Void in
+    open class func getShapes(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ shapeType: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        getShapesWithRequestBuilder(name, slideIndex, password, folder, storage, shapeType, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -10455,9 +8995,10 @@ open class SlidesAPI {
      - parameter folder: Document folder.
      - parameter storage: Document storage.
      - parameter shapeType: Shape type.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func getShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ shapeType: String = "") -> RequestBuilder<Shapes> {
+    open class func getShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ shapeType: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -10471,7 +9012,8 @@ open class SlidesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
             "storage": storage, 
-            "shapeType": shapeType
+            "shapeType": shapeType, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -10750,6 +9292,57 @@ open class SlidesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
+     Read presentation slide show properties.
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func getSlideShowProperties(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: SlideShowProperties?,_ error: Error?) -> Void)) {
+        getSlideShowPropertiesWithRequestBuilder(name, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Read presentation slide show properties.
+     - GET /slides/{name}/slideShowProperties
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<SlideShowProperties> 
+     */
+    open class func getSlideShowPropertiesWithRequestBuilder(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SlideShowProperties> {
+        var methodPath = "/slides/{name}/slideShowProperties"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<SlideShowProperties>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
      Extract slide text items.
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
@@ -10948,10 +9541,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        getSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        getSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -10972,9 +9566,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func getSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func getSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -10990,7 +9585,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -11019,10 +9615,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getSpecialSlideParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        getSpecialSlideParagraphsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getSpecialSlideParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+        getSpecialSlideParagraphsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -11042,9 +9639,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func getSpecialSlideParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
+    open class func getSpecialSlideParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -11059,7 +9657,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -11090,10 +9689,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        getSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        getSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portionIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -11115,9 +9715,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func getSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func getSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -11134,7 +9735,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -11164,10 +9766,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getSpecialSlidePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        getSpecialSlidePortionsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getSpecialSlidePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+        getSpecialSlidePortionsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -11188,9 +9791,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func getSpecialSlidePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
+    open class func getSpecialSlidePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -11206,7 +9810,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -11235,10 +9840,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        getSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
+        getSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -11258,9 +9864,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<ShapeBase> 
      */
-    open class func getSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
+    open class func getSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<ShapeBase> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -11275,7 +9882,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -11303,10 +9911,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        getSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func getSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+        getSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -11325,9 +9934,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func getSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func getSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -11341,946 +9951,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_getSpecialSlideSubshape: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Read special slide shape info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSpecialSlideSubshape(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        getSpecialSlideSubshapeWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read special slide shape info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<ShapeBase> 
-     */
-    open class func getSpecialSlideSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_getSpecialSlideSubshapeParagraph: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Read shape paragraph info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSpecialSlideSubshapeParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        getSpecialSlideSubshapeParagraphWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read shape paragraph info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func getSpecialSlideSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_getSpecialSlideSubshapeParagraphs: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Read shape paragraphs info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSpecialSlideSubshapeParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        getSpecialSlideSubshapeParagraphsWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read shape paragraphs info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraphs> 
-     */
-    open class func getSpecialSlideSubshapeParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraphs>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_getSpecialSlideSubshapePortion: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Read paragraph portion info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSpecialSlideSubshapePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        getSpecialSlideSubshapePortionWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read paragraph portion info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func getSpecialSlideSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_getSpecialSlideSubshapePortions: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Read paragraph portions info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSpecialSlideSubshapePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        getSpecialSlideSubshapePortionsWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read paragraph portions info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portions> 
-     */
-    open class func getSpecialSlideSubshapePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portions>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_getSpecialSlideSubshapes: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Read special slide shapes info.
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSpecialSlideSubshapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        getSpecialSlideSubshapesWithRequestBuilder(name, slideIndex, slideType, path, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read special slide shapes info.
-     - GET /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func getSpecialSlideSubshapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Shapes>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read slide shape info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshape(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        getSubshapeWithRequestBuilder(name, slideIndex, path, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read slide shape info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<ShapeBase> 
-     */
-    open class func getSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read shape paragraph info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapeParagraph(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        getSubshapeParagraphWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read shape paragraph info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func getSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read effective paragraph info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapeParagraphEffective(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        getSubshapeParagraphEffectiveWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read effective paragraph info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/effective
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func getSubshapeParagraphEffectiveWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/effective"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read shape paragraphs info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapeParagraphs(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
-        getSubshapeParagraphsWithRequestBuilder(name, slideIndex, path, shapeIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read shape paragraphs info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraphs> 
-     */
-    open class func getSubshapeParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraphs> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraphs>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read paragraph portion info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapePortion(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        getSubshapePortionWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read paragraph portion info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func getSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read effective portion info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapePortionEffective(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        getSubshapePortionEffectiveWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, portionIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read effective portion info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/effective
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func getSubshapePortionEffectiveWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}/effective"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read paragraph portions info (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapePortions(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
-        getSubshapePortionsWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read paragraph portions info (for smart art and group shapes).
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portions> 
-     */
-    open class func getSubshapePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portions> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portions>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Read slide shapes info.
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func getSubshapes(_ name: String, _ slideIndex: Int, _ path: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
-        getSubshapesWithRequestBuilder(name, slideIndex, path, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Read slide shapes info.
-     - GET /slides/{name}/slides/{slideIndex}/shapes/{path}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Shapes> 
-     */
-    open class func getSubshapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -13959,10 +11631,11 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func saveShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        saveShapeWithRequestBuilder(name, slideIndex, shapeIndex, format, outPath, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func saveShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+        saveShapeWithRequestBuilder(name, slideIndex, shapeIndex, format, outPath, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder, subShape).executeAuthorized { (response, error) -> Void in
             if error == nil {
                 completion((), error)
             } else {
@@ -13991,9 +11664,10 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Void> 
      */
-    open class func saveShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Void> {
+    open class func saveShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "") -> RequestBuilder<Void> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -14013,7 +11687,8 @@ open class SlidesAPI {
             "bounds": bounds, 
             "folder": folder, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -14371,10 +12046,11 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func saveSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        saveSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, format, outPath, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func saveSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+        saveSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, format, outPath, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder, subShape).executeAuthorized { (response, error) -> Void in
             if error == nil {
                 completion((), error)
             } else {
@@ -14404,9 +12080,10 @@ open class SlidesAPI {
      - parameter folder: Presentation folder.
      - parameter storage: Presentation storage.
      - parameter fontsFolder: Fonts folder.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Void> 
      */
-    open class func saveSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Void> {
+    open class func saveSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ subShape: String = "") -> RequestBuilder<Void> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -14427,227 +12104,8 @@ open class SlidesAPI {
             "bounds": bounds, 
             "folder": folder, 
             "storage": storage, 
-            "fontsFolder": fontsFolder
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Void>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_saveSpecialSlideSubshape: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     * enum for parameter format
-     */
-    public enum Format_saveSpecialSlideSubshape: String { 
-        case jpeg = "Jpeg"
-        case png = "Png"
-        case gif = "Gif"
-        case bmp = "Bmp"
-        case tiff = "Tiff"
-        case svg = "Svg"
-    }
-
-    /**
-     * enum for parameter bounds
-     */
-    public enum Bounds_saveSpecialSlideSubshape: String { 
-        case slide = "Slide"
-        case shape = "Shape"
-        case appearance = "Appearance"
-    }
-
-    /**
-     Render shape to specified picture format.
-     - parameter name: Presentation name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter outPath: Output path.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func saveSpecialSlideSubshape(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        saveSpecialSlideSubshapeWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, format, outPath, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
-        }
-    }
-
-
-    /**
-     Render shape to specified picture format.
-     - PUT /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - parameter name: Presentation name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter outPath: Output path.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - returns: RequestBuilder<Void> 
-     */
-    open class func saveSpecialSlideSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Void> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/{format}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: options)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "outPath": outPath, 
-            "scaleX": scaleX, 
-            "scaleY": scaleY, 
-            "bounds": bounds, 
-            "folder": folder, 
-            "storage": storage, 
-            "fontsFolder": fontsFolder
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Void>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter format
-     */
-    public enum Format_saveSubshape: String { 
-        case jpeg = "Jpeg"
-        case png = "Png"
-        case gif = "Gif"
-        case bmp = "Bmp"
-        case tiff = "Tiff"
-        case svg = "Svg"
-    }
-
-    /**
-     * enum for parameter bounds
-     */
-    public enum Bounds_saveSubshape: String { 
-        case slide = "Slide"
-        case shape = "Shape"
-        case appearance = "Appearance"
-    }
-
-    /**
-     Render shape to specified picture format.
-     - parameter name: Presentation name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter outPath: Output path.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func saveSubshape(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        saveSubshapeWithRequestBuilder(name, slideIndex, path, shapeIndex, format, outPath, options, scaleX, scaleY, bounds, password, folder, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
-        }
-    }
-
-
-    /**
-     Render shape to specified picture format.
-     - PUT /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - parameter name: Presentation name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path (for smart art and group shapes).
-     - parameter shapeIndex: Index of shape starting from 1
-     - parameter format: Export picture format.
-     - parameter outPath: Output path.
-     - parameter options: export options
-     - parameter scaleX: X scale ratio.
-     - parameter scaleY: Y scale ratio.
-     - parameter bounds: Shape thumbnail bounds type.
-     - parameter password: Document password.
-     - parameter folder: Presentation folder.
-     - parameter storage: Presentation storage.
-     - parameter fontsFolder: Fonts folder.
-     - returns: RequestBuilder<Void> 
-     */
-    open class func saveSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ format: String, _ outPath: String, _ options: IShapeExportOptions? = nil, _ scaleX: Double? = nil, _ scaleY: Double? = nil, _ bounds: String = "", _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Void> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: options)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "outPath": outPath, 
-            "scaleX": scaleX, 
-            "scaleY": scaleY, 
-            "bounds": bounds, 
-            "folder": folder, 
-            "storage": storage, 
-            "fontsFolder": fontsFolder
+            "fontsFolder": fontsFolder, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -16306,6 +13764,59 @@ open class SlidesAPI {
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
     }
     /**
+     Update presentation slide show properties.
+     - parameter name: Document name.
+     - parameter dto: The slide show properties data.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func setSlideShowProperties(_ name: String, _ dto: SlideShowProperties, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: SlideShowProperties?,_ error: Error?) -> Void)) {
+        setSlideShowPropertiesWithRequestBuilder(name, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Update presentation slide show properties.
+     - PUT /slides/{name}/slideShowProperties
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example=""}]
+     - parameter name: Document name.
+     - parameter dto: The slide show properties data.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<SlideShowProperties> 
+     */
+    open class func setSlideShowPropertiesWithRequestBuilder(_ name: String, _ dto: SlideShowProperties, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<SlideShowProperties> {
+        var methodPath = "/slides/{name}/slideShowProperties"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<SlideShowProperties>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
      * enum for parameter slideType
      */
     public enum SlideType_setSpecialSlideAnimation: String { 
@@ -17194,10 +14705,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updateParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        updateParagraphWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func updateParagraph(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        updateParagraphWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, dto, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -17218,9 +14730,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func updateParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func updateParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -17235,7 +14748,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -17257,10 +14771,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updatePortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        updatePortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func updatePortion(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        updatePortionWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portionIndex, dto, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -17282,9 +14797,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func updatePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func updatePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -17300,7 +14816,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -17377,10 +14894,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updateShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        updateShapeWithRequestBuilder(name, slideIndex, shapeIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func updateShape(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
+        updateShapeWithRequestBuilder(name, slideIndex, shapeIndex, dto, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -17400,9 +14918,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<ShapeBase> 
      */
-    open class func updateShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
+    open class func updateShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<ShapeBase> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -17416,7 +14935,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -17648,10 +15168,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updateSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        updateSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func updateSpecialSlideParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
+        updateSpecialSlideParagraphWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, dto, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -17673,9 +15194,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraph> 
      */
-    open class func updateSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
+    open class func updateSpecialSlideParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraph> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -17691,7 +15213,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -17723,10 +15246,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updateSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        updateSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portionIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func updateSpecialSlidePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
+        updateSpecialSlidePortionWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portionIndex, dto, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -17749,9 +15273,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portion> 
      */
-    open class func updateSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
+    open class func updateSpecialSlidePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portion> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -17768,7 +15293,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -17798,10 +15324,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updateSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        updateSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
+    open class func updateSpecialSlideShape(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
+        updateSpecialSlideShapeWithRequestBuilder(name, slideIndex, slideType, shapeIndex, dto, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -17822,9 +15349,10 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter folder: Document folder.
      - parameter storage: Document storage.
+     - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<ShapeBase> 
      */
-    open class func updateSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
+    open class func updateSpecialSlideShapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<ShapeBase> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -17839,7 +15367,8 @@ open class SlidesAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "folder": folder, 
-            "storage": storage
+            "storage": storage, 
+            "subShape": subShape
         ])
         let nillableHeaders: [String: Any?] = [
             "password": password
@@ -17847,432 +15376,6 @@ open class SlidesAPI {
         let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_updateSpecialSlideSubshape: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Update shape properties (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Shape DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateSpecialSlideSubshape(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        updateSpecialSlideSubshapeWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update shape properties (for smart art and group shapes).
-     - PUT /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Shape DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<ShapeBase> 
-     */
-    open class func updateSpecialSlideSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_updateSpecialSlideSubshapeParagraph: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Update paragraph properties (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Paragraph DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateSpecialSlideSubshapeParagraph(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        updateSpecialSlideSubshapeParagraphWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update paragraph properties (for smart art and group shapes).
-     - PUT /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Paragraph DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func updateSpecialSlideSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     * enum for parameter slideType
-     */
-    public enum SlideType_updateSpecialSlideSubshapePortion: String { 
-        case masterSlide = "MasterSlide"
-        case layoutSlide = "LayoutSlide"
-        case notesSlide = "NotesSlide"
-    }
-
-    /**
-     Update portion properties (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter dto: Portion DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateSpecialSlideSubshapePortion(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        updateSpecialSlideSubshapePortionWithRequestBuilder(name, slideIndex, slideType, path, shapeIndex, paragraphIndex, portionIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update portion properties (for smart art and group shapes).
-     - PUT /slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Parent slide index.
-     - parameter slideType: Slide type (master, layout or notes).
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter dto: Portion DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func updateSpecialSlideSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideType", slideType)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Update shape properties (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Shape DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateSubshape(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: ShapeBase?,_ error: Error?) -> Void)) {
-        updateSubshapeWithRequestBuilder(name, slideIndex, path, shapeIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update shape properties (for smart art and group shapes).
-     - PUT /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter dto: Shape DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<ShapeBase> 
-     */
-    open class func updateSubshapeWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ dto: ShapeBase, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<ShapeBase> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<ShapeBase>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Update paragraph properties (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Paragraph DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateSubshapeParagraph(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Paragraph?,_ error: Error?) -> Void)) {
-        updateSubshapeParagraphWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update paragraph properties (for smart art and group shapes).
-     - PUT /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter dto: Paragraph DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Paragraph> 
-     */
-    open class func updateSubshapeParagraphWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ dto: Paragraph, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Paragraph> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Paragraph>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
-    }
-    /**
-     Update portion properties (for smart art and group shapes).
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter dto: Portion DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func updateSubshapePortion(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Portion?,_ error: Error?) -> Void)) {
-        updateSubshapePortionWithRequestBuilder(name, slideIndex, path, shapeIndex, paragraphIndex, portionIndex, dto, password, folder, storage).executeAuthorized { (response, error) -> Void in
-            completion(response?.body, error)
-        }
-    }
-
-
-    /**
-     Update portion properties (for smart art and group shapes).
-     - PUT /slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}
-     - OAuth:
-       - type: oauth2
-       - name: JWT
-     - examples: [{contentType=application/json, example=""}]
-     - parameter name: Document name.
-     - parameter slideIndex: Slide index.
-     - parameter path: Shape path.
-     - parameter shapeIndex: Shape index.
-     - parameter paragraphIndex: Paragraph index.
-     - parameter portionIndex: Portion index.
-     - parameter dto: Portion DTO.
-     - parameter password: Document password.
-     - parameter folder: Document folder.
-     - parameter storage: Document storage.
-     - returns: RequestBuilder<Portion> 
-     */
-    open class func updateSubshapePortionWithRequestBuilder(_ name: String, _ slideIndex: Int, _ path: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portionIndex: Int, _ dto: Portion, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Portion> {
-        var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}"
-        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
-        methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "path", path)
-        methodPath = APIHelper.replacePathParameter(methodPath, "shapeIndex", shapeIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "paragraphIndex", paragraphIndex)
-        methodPath = APIHelper.replacePathParameter(methodPath, "portionIndex", portionIndex)
-        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
-
-
-        var fileParams = [Data]()
-
-        var url = URLComponents(string: URLString)
-        url?.queryItems = APIHelper.mapValuesToQueryItems([
-            "folder": folder, 
-            "storage": storage
-        ])
-        let nillableHeaders: [String: Any?] = [
-            "password": password
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
-
-        let requestBuilder: RequestBuilder<Portion>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
     }

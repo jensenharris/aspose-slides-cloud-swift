@@ -42,9 +42,9 @@ public class Legend: Codable {
     /** position */
     public var position: Position?
     /** the X location */
-    public var X: Double?
+    public var x: Double?
     /** the Y location */
-    public var Y: Double?
+    public var y: Double?
     /** Width */
     public var width: Double?
     /** Height */
@@ -71,13 +71,13 @@ public class Legend: Codable {
                 }
             }
         }
-        let XValue = source["X"] ?? source["X"]
-        if XValue != nil {
-            self.X = XValue! as? Double
+        let xValue = source["x"] ?? source["X"]
+        if xValue != nil {
+            self.x = xValue! as? Double
         }
-        let YValue = source["Y"] ?? source["Y"]
-        if YValue != nil {
-            self.Y = YValue! as? Double
+        let yValue = source["y"] ?? source["Y"]
+        if yValue != nil {
+            self.y = yValue! as? Double
         }
         let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
@@ -127,10 +127,10 @@ public class Legend: Codable {
         }
     }
 
-    public init(position: Position? = nil, X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil, overlay: Bool? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, hasLegend: Bool? = nil) {
+    public init(position: Position? = nil, x: Double? = nil, y: Double? = nil, width: Double? = nil, height: Double? = nil, overlay: Bool? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, hasLegend: Bool? = nil) {
         self.position = position
-        self.X = X
-        self.Y = Y
+        self.x = x
+        self.y = y
         self.width = width
         self.height = height
         self.overlay = overlay
@@ -142,8 +142,8 @@ public class Legend: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case position
-        case X
-        case Y
+        case x
+        case y
         case width
         case height
         case overlay

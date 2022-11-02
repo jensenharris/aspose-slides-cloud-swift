@@ -227,8 +227,8 @@ class WatermarkTests : XCTestCase {
                             XCTAssertNotNil(result)
                             let shape = result as? Shape
                             XCTAssertNotNil(shape)
-                            XCTAssertEqual("watermark", shape!.name)
-                            SlidesAPI.deleteWatermark(fileName, "", password, folderName) { (result, error) -> Void in
+                            XCTAssertEqual(watermarkName, shape!.name)
+                            SlidesAPI.deleteWatermark(fileName, watermarkName, password, folderName) { (result, error) -> Void in
                                 XCTAssertNil(error)
                                 XCTAssertNotNil(result)
                                 SlidesAPI.getShapes(fileName, slideIndex, password, folderName) { (result3, error) -> Void in

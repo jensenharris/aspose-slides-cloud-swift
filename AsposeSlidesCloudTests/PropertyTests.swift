@@ -304,7 +304,7 @@ class PropertyTests : XCTestCase {
             SlidesAPI.setProtectionOnline(document!, dto, "password") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
-                XCTAssertNotEqual(document!.count, result!.count)
+                XCTAssertGreaterThan(result!.count, 0)
                 expectation.fulfill()
             }
         }
@@ -335,7 +335,7 @@ class PropertyTests : XCTestCase {
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.showComments)
-                XCTAssertEqual(ViewProperties.ShowComments._false, result!.showComments!)
+                XCTAssertEqual(ViewProperties.ShowComments._true, result!.showComments!)
                 expectation.fulfill()
             }
         }

@@ -33,22 +33,22 @@ import Foundation
 public class TextBounds: Codable {
 
     /** X coordinate of the text bounds. */
-    public var X: Double?
+    public var x: Double?
     /** X coordinate of the text bounds.              */
-    public var Y: Double?
+    public var y: Double?
     /** Width of the text bounds. */
     public var width: Double?
     /** Height of the text bounds. */
     public var height: Double?
 
     func fillValues(_ source: [String:Any]) throws {
-        let XValue = source["X"] ?? source["X"]
-        if XValue != nil {
-            self.X = XValue! as? Double
+        let xValue = source["x"] ?? source["X"]
+        if xValue != nil {
+            self.x = xValue! as? Double
         }
-        let YValue = source["Y"] ?? source["Y"]
-        if YValue != nil {
-            self.Y = YValue! as? Double
+        let yValue = source["y"] ?? source["Y"]
+        if yValue != nil {
+            self.y = yValue! as? Double
         }
         let widthValue = source["width"] ?? source["Width"]
         if widthValue != nil {
@@ -60,16 +60,16 @@ public class TextBounds: Codable {
         }
     }
 
-    public init(X: Double? = nil, Y: Double? = nil, width: Double? = nil, height: Double? = nil) {
-        self.X = X
-        self.Y = Y
+    public init(x: Double? = nil, y: Double? = nil, width: Double? = nil, height: Double? = nil) {
+        self.x = x
+        self.y = y
         self.width = width
         self.height = height
     }
 
     private enum CodingKeys: String, CodingKey {
-        case X
-        case Y
+        case x
+        case y
         case width
         case height
     }

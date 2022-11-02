@@ -103,7 +103,7 @@ class ParagraphTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapeParagraphGet")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.getSubshapeParagraph("test.pptx", 6, "3/shapes", 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.getParagraph("test.pptx", 6, 3, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.portionList)
@@ -118,7 +118,7 @@ class ParagraphTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapeParagraphsGet")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.getSubshapeParagraphs("test.pptx", 6, "3/shapes", 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.getParagraphs("test.pptx", 6, 3, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.paragraphLinks)
@@ -178,7 +178,7 @@ class ParagraphTests : XCTestCase {
             dto.marginLeft = 2
             dto.marginRight = 2
             dto.alignment = Paragraph.Alignment.center
-            SlidesAPI.createSubshapeParagraph("test.pptx", 6, "3/shapes", 1, dto, nil, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.createParagraph("test.pptx", 6, 3, dto, nil, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual(dto.marginLeft, result!.marginLeft)
@@ -218,7 +218,7 @@ class ParagraphTests : XCTestCase {
             dto.marginLeft = 2
             dto.marginRight = 2
             dto.alignment = Paragraph.Alignment.center
-            SlidesAPI.updateSubshapeParagraph("test.pptx", 6, "3/shapes", 1, 1, dto, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.updateParagraph("test.pptx", 6, 3, 1, dto, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual(dto.marginLeft, result!.marginLeft)
@@ -264,7 +264,7 @@ class ParagraphTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapeParagraphsDelete")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.deleteSubshapeParagraphs("test.pptx", 6, "3/shapes", 1, [], "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.deleteParagraphs("test.pptx", 6, 3, [], "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.paragraphLinks)
@@ -279,7 +279,7 @@ class ParagraphTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapeParagraphsDeleteByIndices")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.deleteSubshapeParagraphs("test.pptx", 6, "3/shapes", 1, [ 1 ], "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.deleteParagraphs("test.pptx", 6, 3, [ 1 ], "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.paragraphLinks)
@@ -309,7 +309,7 @@ class ParagraphTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapeParagraphDelete")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.deleteSubshapeParagraph("test.pptx", 6, "3/shapes", 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.deleteParagraph("test.pptx", 6, 3, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertNotNil(result!.paragraphLinks)
@@ -327,10 +327,10 @@ class ParagraphTests : XCTestCase {
             SlidesAPI.getParagraphRectangle("test.pptx", 6, 2, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
-                XCTAssertNotNil(result!.X)
-                XCTAssertGreaterThan(result!.X!, 0.0)
-                XCTAssertNotNil(result!.Y)
-                XCTAssertGreaterThan(result!.Y!, 0.0)
+                XCTAssertNotNil(result!.x)
+                XCTAssertGreaterThan(result!.x!, 0.0)
+                XCTAssertNotNil(result!.y)
+                XCTAssertGreaterThan(result!.y!, 0.0)
                 XCTAssertNotNil(result!.width)
                 XCTAssertGreaterThan(result!.width!, 0.0)
                 XCTAssertNotNil(result!.height)
@@ -387,7 +387,7 @@ class ParagraphTests : XCTestCase {
         let expectation = self.expectation(description: "testSubshapeParagraphGetEffective")
 
         TestUtils.initialize("") { (response, error) -> Void in
-            SlidesAPI.getSubshapeParagraphEffective("test.pptx", 6, "3/shapes", 1, 1, "password", "TempSlidesSDK") { (result, error) -> Void in
+            SlidesAPI.getParagraphEffective("test.pptx", 6, 3, 1, "password", "TempSlidesSDK", "", "1") { (result, error) -> Void in
                 XCTAssertNil(error)
                 XCTAssertNotNil(result)
                 XCTAssertEqual(72, result!.defaultTabSize)

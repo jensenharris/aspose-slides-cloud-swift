@@ -63,9 +63,9 @@ public class ShapeBase: ResourceBase {
     /** Gets or sets a value indicating whether this ShapeBase is hidden. */
     public var hidden: Bool?
     /** Gets or sets the X */
-    public var X: Double?
+    public var x: Double?
     /** Gets or sets the Y. */
-    public var Y: Double?
+    public var y: Double?
     /** Gets z-order position of shape */
     public var zOrderPosition: Int?
     /** Gets or sets the fill format. */
@@ -108,13 +108,13 @@ public class ShapeBase: ResourceBase {
         if hiddenValue != nil {
             self.hidden = hiddenValue! as? Bool
         }
-        let XValue = source["X"] ?? source["X"]
-        if XValue != nil {
-            self.X = XValue! as? Double
+        let xValue = source["x"] ?? source["X"]
+        if xValue != nil {
+            self.x = xValue! as? Double
         }
-        let YValue = source["Y"] ?? source["Y"]
-        if YValue != nil {
-            self.Y = YValue! as? Double
+        let yValue = source["y"] ?? source["Y"]
+        if yValue != nil {
+            self.y = yValue! as? Double
         }
         let zOrderPositionValue = source["zOrderPosition"] ?? source["ZOrderPosition"]
         if zOrderPositionValue != nil {
@@ -192,7 +192,7 @@ public class ShapeBase: ResourceBase {
         }
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, X: Double? = nil, Y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, x: Double? = nil, y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks)
         self.name = name
         self.width = width
@@ -200,8 +200,8 @@ public class ShapeBase: ResourceBase {
         self.alternativeText = alternativeText
         self.alternativeTextTitle = alternativeTextTitle
         self.hidden = hidden
-        self.X = X
-        self.Y = Y
+        self.x = x
+        self.y = y
         self.zOrderPosition = zOrderPosition
         self.fillFormat = fillFormat
         self.effectFormat = effectFormat
@@ -219,8 +219,8 @@ public class ShapeBase: ResourceBase {
         case alternativeText
         case alternativeTextTitle
         case hidden
-        case X
-        case Y
+        case x
+        case y
         case zOrderPosition
         case fillFormat
         case effectFormat
@@ -240,8 +240,8 @@ public class ShapeBase: ResourceBase {
         alternativeText = try? values.decode(String.self, forKey: .alternativeText)
         alternativeTextTitle = try? values.decode(String.self, forKey: .alternativeTextTitle)
         hidden = try? values.decode(Bool.self, forKey: .hidden)
-        X = try? values.decode(Double.self, forKey: .X)
-        Y = try? values.decode(Double.self, forKey: .Y)
+        x = try? values.decode(Double.self, forKey: .x)
+        y = try? values.decode(Double.self, forKey: .y)
         zOrderPosition = try? values.decode(Int.self, forKey: .zOrderPosition)
         fillFormat = try? values.decode(FillFormat.self, forKey: .fillFormat)
         effectFormat = try? values.decode(EffectFormat.self, forKey: .effectFormat)
@@ -273,11 +273,11 @@ public class ShapeBase: ResourceBase {
         if (hidden != nil) {
             try? container.encode(hidden, forKey: .hidden)
         }
-        if (X != nil) {
-            try? container.encode(X, forKey: .X)
+        if (x != nil) {
+            try? container.encode(x, forKey: .x)
         }
-        if (Y != nil) {
-            try? container.encode(Y, forKey: .Y)
+        if (y != nil) {
+            try? container.encode(y, forKey: .y)
         }
         if (zOrderPosition != nil) {
             try? container.encode(zOrderPosition, forKey: .zOrderPosition)
