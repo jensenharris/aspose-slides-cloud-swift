@@ -34,6 +34,8 @@ public class OneValueChartDataPoint: DataPoint {
 
     /** Value. */
     public var value: Double?
+    /** Spreadsheet formula in A1-style. */
+    public var valueFormula: String?
     /** SetAsTotal. Applied to Waterfall data points only. */
     public var setAsTotal: Bool?
     /** True if the data point shall invert its colors if the value is negative. Applies to bar, column and bubble series. */
@@ -45,6 +47,10 @@ public class OneValueChartDataPoint: DataPoint {
         if valueValue != nil {
             self.value = valueValue! as? Double
         }
+        let valueFormulaValue = source["valueFormula"] ?? source["ValueFormula"]
+        if valueFormulaValue != nil {
+            self.valueFormula = valueFormulaValue! as? String
+        }
         let setAsTotalValue = source["setAsTotal"] ?? source["SetAsTotal"]
         if setAsTotalValue != nil {
             self.setAsTotal = setAsTotalValue! as? Bool
@@ -55,15 +61,17 @@ public class OneValueChartDataPoint: DataPoint {
         }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, value: Double? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, value: Double? = nil, valueFormula: String? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
         super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat)
         self.value = value
+        self.valueFormula = valueFormula
         self.setAsTotal = setAsTotal
         self.invertIfNegative = invertIfNegative
     }
 
     private enum CodingKeys: String, CodingKey {
         case value
+        case valueFormula
         case setAsTotal
         case invertIfNegative
     }
@@ -72,6 +80,7 @@ public class OneValueChartDataPoint: DataPoint {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
         value = try? values.decode(Double.self, forKey: .value)
+        valueFormula = try? values.decode(String.self, forKey: .valueFormula)
         setAsTotal = try? values.decode(Bool.self, forKey: .setAsTotal)
         invertIfNegative = try? values.decode(Bool.self, forKey: .invertIfNegative)
     }
@@ -81,6 +90,9 @@ public class OneValueChartDataPoint: DataPoint {
         var container = encoder.container(keyedBy: CodingKeys.self)
         if (value != nil) {
             try? container.encode(value, forKey: .value)
+        }
+        if (valueFormula != nil) {
+            try? container.encode(valueFormula, forKey: .valueFormula)
         }
         if (setAsTotal != nil) {
             try? container.encode(setAsTotal, forKey: .setAsTotal)

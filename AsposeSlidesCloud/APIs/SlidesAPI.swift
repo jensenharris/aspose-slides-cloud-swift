@@ -58,7 +58,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func alignShapes(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+    open class func alignShapes(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
         alignShapesWithRequestBuilder(name, slideIndex, alignmentType, alignToSlide, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -71,7 +71,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter alignmentType: Alignment type that will be applied to the shapes.
@@ -83,7 +87,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func alignShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
+    open class func alignShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/align/{alignmentType}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -148,7 +152,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func alignSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+    open class func alignSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
         alignSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, alignmentType, alignToSlide, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -161,7 +165,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -174,7 +182,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func alignSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
+    open class func alignSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ alignmentType: String, _ alignToSlide: Bool? = nil, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/align/{alignmentType}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -245,7 +253,7 @@ open class SlidesAPI {
      - parameter options: Export options.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func convert(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), _ options: ExportOptions? = nil, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+    open class func convert(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil, _ options: ExportOptions? = nil, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
         convertWithRequestBuilder(document, format, password, storage, fontsFolder, slides, options).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -268,7 +276,7 @@ open class SlidesAPI {
      - parameter options: Export options.
      - returns: RequestBuilder<Data> 
      */
-    open class func convertWithRequestBuilder(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), _ options: ExportOptions? = nil) -> RequestBuilder<Data> {
+    open class func convertWithRequestBuilder(_ document: Data, _ format: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil, _ options: ExportOptions? = nil) -> RequestBuilder<Data> {
         var methodPath = "/slides/convert/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -336,7 +344,7 @@ open class SlidesAPI {
      - parameter options: Export options.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func convertAndSave(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), _ options: ExportOptions? = nil, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func convertAndSave(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil, _ options: ExportOptions? = nil, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
         convertAndSaveWithRequestBuilder(document, format, outPath, password, storage, fontsFolder, slides, options).executeAuthorized { (response, error) -> Void in
             if error == nil {
                 completion((), error)
@@ -363,7 +371,7 @@ open class SlidesAPI {
      - parameter options: Export options.
      - returns: RequestBuilder<Void> 
      */
-    open class func convertAndSaveWithRequestBuilder(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), _ options: ExportOptions? = nil) -> RequestBuilder<Void> {
+    open class func convertAndSaveWithRequestBuilder(_ document: Data, _ format: String, _ outPath: String, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil, _ options: ExportOptions? = nil) -> RequestBuilder<Void> {
         var methodPath = "/slides/convert/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -519,7 +527,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter cloneFrom: Name of the document to clone layoutSlide from.
      - parameter cloneFromPosition: Position of cloned layout slide.
@@ -583,7 +595,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter cloneFrom: Name of the document to clone masterSlide from.
      - parameter cloneFromPosition: Position of cloned master slide.
@@ -649,7 +665,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideToCopy: The index of the slide to be copied from the source presentation.
      - parameter position: The target position at which to copy the slide. Copy to the end by default.
@@ -712,7 +732,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter effect: Animation effect DTO.
@@ -768,7 +792,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter sequence: Animation sequence DTO.
@@ -825,7 +853,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter sequenceIndex: The position of the interactive sequence.
@@ -884,7 +916,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -944,7 +980,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -1005,7 +1045,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index (must be a chart).
@@ -1064,7 +1108,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: Comment DTO.
@@ -1332,7 +1380,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: A NotesSlide object with notes slide data.
@@ -1391,7 +1443,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -1457,7 +1513,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -1521,7 +1581,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter data: Source presentation binary data.
      - parameter inputPassword: The password for source presentation.
@@ -1581,7 +1645,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sourcePath: Source file path.
      - parameter sourcePassword: Source file password.
@@ -1643,7 +1711,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter templatePath: Template file path.
      - parameter data: Document input data.
@@ -1705,7 +1777,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sectionName: Section name.
      - parameter slideIndex: Slide index (one-based).
@@ -1765,7 +1841,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: Shape DTO.
@@ -1827,7 +1907,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter layoutAlias: Alias of layout slide for new slide. Alias may be the type of layout, name of layout slide or index
      - parameter position: The target position at which to create the slide. Add to the end by default.
@@ -1887,7 +1971,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter smartArtIndex: Index of the object on the slide among the same type of objects.
@@ -1960,7 +2048,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -2028,7 +2120,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -2097,7 +2193,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -2170,7 +2270,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -2248,7 +2352,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -2327,7 +2435,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -2517,7 +2629,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -2572,7 +2688,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter effectIndex: Index of the effect to be removed.
@@ -2629,7 +2749,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter sequenceIndex: The index of an interactive sequence to be deleted.
@@ -2687,7 +2811,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter sequenceIndex: Interactive sequence index.
@@ -2745,7 +2873,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -2799,7 +2931,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -2853,7 +2989,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -2909,7 +3049,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -2970,7 +3114,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -3032,7 +3180,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index (must be a chart).
@@ -3194,7 +3346,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -3246,7 +3402,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter propertyName: The property name.
      - parameter password: Document password.
@@ -3300,15 +3460,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "List" : [ {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  }, {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter fontName: Font name.
      - parameter password: Document password.
@@ -3505,7 +3657,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -3562,7 +3718,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -3612,7 +3772,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteParagraphs(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+    open class func deleteParagraphs(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
         deleteParagraphsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphs, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -3625,7 +3785,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -3636,7 +3800,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func deleteParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
+    open class func deleteParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphs: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -3689,7 +3853,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -3742,7 +3910,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deletePortions(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+    open class func deletePortions(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
         deletePortionsWithRequestBuilder(name, slideIndex, shapeIndex, paragraphIndex, portions, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -3755,7 +3923,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -3767,7 +3939,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func deletePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
+    open class func deletePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -3816,7 +3988,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Presentation password.
      - parameter folder: Document folder.
@@ -3913,7 +4089,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sectionIndex: Section index.
      - parameter withSlides: True to delete the slides related to the deleted section; move them to the remaining sections otherwise.
@@ -3957,7 +4137,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSections(_ name: String, _ sections: [Int] = [Int](), _ withSlides: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Sections?,_ error: Error?) -> Void)) {
+    open class func deleteSections(_ name: String, _ sections: [Int]? = nil, _ withSlides: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Sections?,_ error: Error?) -> Void)) {
         deleteSectionsWithRequestBuilder(name, sections, withSlides, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -3970,7 +4150,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sections: The indices of the sections to be deleted; delete all by default.
      - parameter withSlides: True to delete the slides related to the deleted sections; move them to the remaining sections otherwise.
@@ -3979,7 +4163,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - returns: RequestBuilder<Sections> 
      */
-    open class func deleteSectionsWithRequestBuilder(_ name: String, _ sections: [Int] = [Int](), _ withSlides: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Sections> {
+    open class func deleteSectionsWithRequestBuilder(_ name: String, _ sections: [Int]? = nil, _ withSlides: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Sections> {
         var methodPath = "/slides/{name}/sections"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -4028,7 +4212,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -4075,7 +4263,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteShapes(_ name: String, _ slideIndex: Int, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+    open class func deleteShapes(_ name: String, _ slideIndex: Int, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
         deleteShapesWithRequestBuilder(name, slideIndex, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -4088,7 +4276,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapes: The indices of the shapes to be deleted; delete all by default.
@@ -4098,7 +4290,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func deleteShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
+    open class func deleteShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4146,7 +4338,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -4201,7 +4397,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter author: Author of comments.
@@ -4295,7 +4495,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSlides(_ name: String, _ slides: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Slides?,_ error: Error?) -> Void)) {
+    open class func deleteSlides(_ name: String, _ slides: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Slides?,_ error: Error?) -> Void)) {
         deleteSlidesWithRequestBuilder(name, slides, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -4308,7 +4508,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slides: The indices of the slides to be deleted; delete all by default.
      - parameter password: Document password.
@@ -4316,7 +4520,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - returns: RequestBuilder<Slides> 
      */
-    open class func deleteSlidesWithRequestBuilder(_ name: String, _ slides: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Slides> {
+    open class func deleteSlidesWithRequestBuilder(_ name: String, _ slides: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Slides> {
         var methodPath = "/slides/{name}/slides"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -4365,7 +4569,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter smartArtIndex: Index of the object on the slide among the same type of objects.
@@ -4435,7 +4643,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4502,7 +4714,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4571,7 +4787,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4641,7 +4861,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4711,7 +4935,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4777,7 +5005,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4846,7 +5078,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4908,7 +5144,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlideParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
+    open class func deleteSpecialSlideParagraphs(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Paragraphs?,_ error: Error?) -> Void)) {
         deleteSpecialSlideParagraphsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphs, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -4921,7 +5157,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -4933,7 +5173,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Paragraphs> 
      */
-    open class func deleteSpecialSlideParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
+    open class func deleteSpecialSlideParagraphsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphs: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Paragraphs> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -4997,7 +5237,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -5062,7 +5306,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlidePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
+    open class func deleteSpecialSlidePortions(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Portions?,_ error: Error?) -> Void)) {
         deleteSpecialSlidePortionsWithRequestBuilder(name, slideIndex, slideType, shapeIndex, paragraphIndex, portions, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -5075,7 +5319,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -5088,7 +5336,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Portions> 
      */
-    open class func deleteSpecialSlidePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
+    open class func deleteSpecialSlidePortionsWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapeIndex: Int, _ paragraphIndex: Int, _ portions: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Portions> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5151,7 +5399,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -5210,7 +5462,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func deleteSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+    open class func deleteSpecialSlideShapes(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
         deleteSpecialSlideShapesWithRequestBuilder(name, slideIndex, slideType, shapes, password, folder, storage, subShape).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -5223,7 +5475,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -5234,7 +5490,7 @@ open class SlidesAPI {
      - parameter subShape: Sub-shape path (e.g. \"3\", \"3/shapes/2).
      - returns: RequestBuilder<Shapes> 
      */
-    open class func deleteSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
+    open class func deleteSpecialSlideShapesWithRequestBuilder(_ name: String, _ slideIndex: Int, _ slideType: String, _ shapes: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ subShape: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/{slideType}/shapes"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -5282,7 +5538,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -5378,7 +5638,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter ignorePreserveField: Determines, whether this method should remove unused master even if its             preserve property is set to true.
      - parameter password: Document password.
@@ -6346,7 +6610,7 @@ open class SlidesAPI {
      - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func downloadPresentation(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+    open class func downloadPresentation(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
         downloadPresentationWithRequestBuilder(name, format, options, password, folder, storage, fontsFolder, slides).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -6370,7 +6634,7 @@ open class SlidesAPI {
      - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - returns: RequestBuilder<Data> 
      */
-    open class func downloadPresentationWithRequestBuilder(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int]()) -> RequestBuilder<Data> {
+    open class func downloadPresentationWithRequestBuilder(_ name: String, _ format: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil) -> RequestBuilder<Data> {
         var methodPath = "/slides/{name}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
@@ -6911,7 +7175,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index. If specified, only effects related to that shape are returned.
@@ -6964,10 +7232,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Version" : "Version",
-  "Name" : "Name"
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - returns: RequestBuilder<ApiInfo> 
      */
     open class func getApiInfoWithRequestBuilder() -> RequestBuilder<ApiInfo> {
@@ -7007,7 +7272,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7061,7 +7330,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7111,10 +7384,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "UsedSize" : 0,
-  "TotalSize" : 6
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter storageName: Storage name
      - returns: RequestBuilder<DiscUsage> 
      */
@@ -7156,7 +7426,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -7208,7 +7482,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter propertyName: The property name.
      - parameter password: Document password.
@@ -7259,9 +7537,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Value" : [ "", "" ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter path: File path e.g. '/file.ext'
      - parameter storageName: Storage name
      - returns: RequestBuilder<FileVersions> 
@@ -7303,21 +7579,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Value" : [ {
-    "Path" : "Path",
-    "Size" : 0,
-    "IsFolder" : true,
-    "ModifiedDate" : "2000-01-23T04:56:07.000+00:00",
-    "Name" : "Name"
-  }, {
-    "Path" : "Path",
-    "Size" : 0,
-    "IsFolder" : true,
-    "ModifiedDate" : "2000-01-23T04:56:07.000+00:00",
-    "Name" : "Name"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter path: Folder path e.g. '/folder'
      - parameter storageName: Storage name
      - returns: RequestBuilder<FilesList> 
@@ -7362,7 +7624,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7415,15 +7681,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "List" : [ {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  }, {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -7472,15 +7730,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "List" : [ {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  }, {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter document: Document data.
      - parameter password: Document password.
      - returns: RequestBuilder<FontsData> 
@@ -7527,7 +7777,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7581,7 +7835,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7634,7 +7892,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -7686,7 +7948,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7739,7 +8005,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -7791,7 +8061,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7845,7 +8119,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7897,7 +8175,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter document: Document data.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -7949,7 +8231,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8012,7 +8298,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8074,12 +8364,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "X" : 0.8008281904610115,
-  "Y" : 6.027456183070403,
-  "Height" : 5.962133916683182,
-  "Width" : 1.4658129805029452
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8139,7 +8424,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8198,7 +8487,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter placeholderIndex: Placeholder index.
@@ -8254,7 +8547,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -8312,7 +8609,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8378,7 +8679,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8443,12 +8748,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "X" : 0.8008281904610115,
-  "Y" : 6.027456183070403,
-  "Height" : 5.962133916683182,
-  "Width" : 1.4658129805029452
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8511,7 +8811,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8570,7 +8874,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -8621,7 +8929,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -8673,7 +8985,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter withEmpty: True to incude empty items.
      - parameter password: Document password.
@@ -8726,7 +9042,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -8777,7 +9097,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -8831,7 +9155,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8890,25 +9218,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Paths" : [ {
-    "Stroke" : true,
-    "FillMode" : "None",
-    "PathData" : [ {
-      "Type" : "Close"
-    }, {
-      "Type" : "Close"
-    } ]
-  }, {
-    "Stroke" : true,
-    "FillMode" : "None",
-    "PathData" : [ {
-      "Type" : "Close"
-    }, {
-      "Type" : "Close"
-    } ]
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -8988,7 +9298,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -9046,7 +9360,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -9100,7 +9418,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -9154,7 +9476,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: The position of the slide to be reordered.
      - parameter password: Document password.
@@ -9208,7 +9534,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -9261,7 +9591,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -9312,7 +9646,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -9365,7 +9703,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter withEmpty: True to include empty items.
@@ -9420,7 +9762,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -9484,7 +9830,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9557,7 +9907,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9631,7 +9985,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9705,7 +10063,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9782,7 +10144,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9856,7 +10222,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9927,7 +10297,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -9985,7 +10359,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -10018,7 +10396,7 @@ open class SlidesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
-     Read presentation document properties.
+     Read presentation view properties.
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -10033,12 +10411,16 @@ open class SlidesAPI {
 
 
     /**
-     Read presentation document properties.
+     Read presentation view properties.
      - GET /slides/{name}/viewProperties
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter password: Document password.
      - parameter folder: Document folder.
@@ -10095,7 +10477,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -10164,7 +10550,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -10228,7 +10618,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter html: HTML data.
      - parameter password: Document password.
@@ -10281,7 +10675,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter pdf: PDF data.
      - parameter password: Document password.
@@ -10329,7 +10727,7 @@ open class SlidesAPI {
      - parameter storage: Presentation storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func importShapesFromSvg(_ name: String, _ slideIndex: Int, _ image: Data? = nil, _ x: Int? = nil, _ y: Int? = nil, _ width: Int? = nil, _ height: Int? = nil, _ shapes: [Int] = [Int](), _ group: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
+    open class func importShapesFromSvg(_ name: String, _ slideIndex: Int, _ image: Data? = nil, _ x: Int? = nil, _ y: Int? = nil, _ width: Int? = nil, _ height: Int? = nil, _ shapes: [Int]? = nil, _ group: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Shapes?,_ error: Error?) -> Void)) {
         importShapesFromSvgWithRequestBuilder(name, slideIndex, image, x, y, width, height, shapes, group, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -10342,7 +10740,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter image: SVG image data.
@@ -10357,7 +10759,7 @@ open class SlidesAPI {
      - parameter storage: Presentation storage.
      - returns: RequestBuilder<Shapes> 
      */
-    open class func importShapesFromSvgWithRequestBuilder(_ name: String, _ slideIndex: Int, _ image: Data? = nil, _ x: Int? = nil, _ y: Int? = nil, _ width: Int? = nil, _ height: Int? = nil, _ shapes: [Int] = [Int](), _ group: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
+    open class func importShapesFromSvgWithRequestBuilder(_ name: String, _ slideIndex: Int, _ image: Data? = nil, _ x: Int? = nil, _ y: Int? = nil, _ width: Int? = nil, _ height: Int? = nil, _ shapes: [Int]? = nil, _ group: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Shapes> {
         var methodPath = "/slides/{name}/slides/{slideIndex}/shapes/fromSvg"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "slideIndex", slideIndex)
@@ -10412,7 +10814,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter request: PresentationsMergeRequest with a list of presentations to merge.
      - parameter password: Document password.
@@ -10669,7 +11075,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sectionIndex: The position of the section to be reordered.
      - parameter newPosition: The new position of the reordered section.
@@ -10726,7 +11136,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: The position of the slide to be reordered.
      - parameter newPosition: The new position of the reordered slide.
@@ -10782,9 +11196,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Exists" : true
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -10836,9 +11248,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Exists" : true
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter document: Document data.
      - parameter slideIndex: Slide index.
      - parameter password: Document password.
@@ -10885,10 +11295,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Exists" : true,
-  "IsFolder" : true
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter path: File or folder path e.g. '/file.ext' or '/folder'
      - parameter storageName: Storage name
      - parameter versionId: File version ID
@@ -10935,7 +11342,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter request: OrderedMergeRequest with a list of presentations and slide indices to merge.
      - parameter password: Document password.
@@ -11018,7 +11429,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func reorderSlides(_ name: String, _ oldPositions: [Int] = [Int](), _ newPositions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Slides?,_ error: Error?) -> Void)) {
+    open class func reorderSlides(_ name: String, _ oldPositions: [Int]? = nil, _ newPositions: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Slides?,_ error: Error?) -> Void)) {
         reorderSlidesWithRequestBuilder(name, oldPositions, newPositions, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -11031,7 +11442,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter oldPositions: A comma separated array of positions of slides to be reordered.
      - parameter newPositions: A comma separated array of new slide positions.
@@ -11040,7 +11455,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - returns: RequestBuilder<Slides> 
      */
-    open class func reorderSlidesWithRequestBuilder(_ name: String, _ oldPositions: [Int] = [Int](), _ newPositions: [Int] = [Int](), _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Slides> {
+    open class func reorderSlidesWithRequestBuilder(_ name: String, _ oldPositions: [Int]? = nil, _ newPositions: [Int]? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Slides> {
         var methodPath = "/slides/{name}/slides/reorder"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
@@ -11090,15 +11505,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "List" : [ {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  }, {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter sourceFont: Source font name.
      - parameter targetFont: Target font name.
@@ -11217,7 +11624,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter oldValue: Text value to be replaced.
      - parameter newValue: Text value to replace with.
@@ -11332,7 +11743,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter oldValue: Text value to be replaced.
@@ -11540,7 +11955,7 @@ open class SlidesAPI {
      - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func savePresentation(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int](), completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func savePresentation(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
         savePresentationWithRequestBuilder(name, format, outPath, options, password, folder, storage, fontsFolder, slides).executeAuthorized { (response, error) -> Void in
             if error == nil {
                 completion((), error)
@@ -11568,7 +11983,7 @@ open class SlidesAPI {
      - parameter slides: The indices of the slides to be saved. If not specified, all slides are saved by default.
      - returns: RequestBuilder<Void> 
      */
-    open class func savePresentationWithRequestBuilder(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int] = [Int]()) -> RequestBuilder<Void> {
+    open class func savePresentationWithRequestBuilder(_ name: String, _ format: String, _ outPath: String, _ options: ExportOptions? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", _ fontsFolder: String = "", _ slides: [Int]? = nil) -> RequestBuilder<Void> {
         var methodPath = "/slides/{name}/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
@@ -12139,7 +12554,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter animation: Animation DTO.
@@ -12195,7 +12614,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter background: Slide background update data.
@@ -12251,7 +12674,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter color: Slide background target color in RRGGBB format.
@@ -12320,276 +12747,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "TickMarksSpacing" : 9,
-  "IsAutomaticTickLabelSpacing" : true,
-  "MajorTickMark" : "Cross",
-  "CrossType" : "AxisCrossesAtZero",
-  "CategoryAxisType" : "Text",
-  "IsNumberFormatLinkedToSource" : true,
-  "IsAutomaticMinorUnit" : true,
-  "MinorUnit" : 6.027456183070403,
-  "TickLabelRotationAngle" : 2.027123023002322,
-  "MinorUnitScale" : "None",
-  "LineFormat" : {
-    "JoinStyle" : "Round",
-    "FillFormat" : {
-      "Type" : "NoFill"
-    },
-    "Alignment" : "Center",
-    "SketchType" : "None",
-    "EndArrowHead" : {
-      "Length" : "Short",
-      "Style" : "None",
-      "Width" : "Narrow"
-    },
-    "CustomDashPattern" : {
-      "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
-    },
-    "DashStyle" : "Solid",
-    "Style" : "Single",
-    "MiterLimit" : 6.965117697638846,
-    "BeginArrowHead" : {
-      "Length" : "Short",
-      "Style" : "None",
-      "Width" : "Narrow"
-    },
-    "CapStyle" : "Round",
-    "Width" : 1.284659006116532
-  },
-  "BaseUnitScale" : "None",
-  "MinorGridLinesFormat" : {
-    "LineFormat" : {
-      "JoinStyle" : "Round",
-      "FillFormat" : {
-        "Type" : "NoFill"
-      },
-      "Alignment" : "Center",
-      "SketchType" : "None",
-      "EndArrowHead" : {
-        "Length" : "Short",
-        "Style" : "None",
-        "Width" : "Narrow"
-      },
-      "CustomDashPattern" : {
-        "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
-      },
-      "DashStyle" : "Solid",
-      "Style" : "Single",
-      "MiterLimit" : 6.965117697638846,
-      "BeginArrowHead" : {
-        "Length" : "Short",
-        "Style" : "None",
-        "Width" : "Narrow"
-      },
-      "CapStyle" : "Round",
-      "Width" : 1.284659006116532
-    },
-    "EffectFormat" : {
-      "SoftEdge" : {
-        "Radius" : 1.0246457001441578
-      },
-      "InnerShadow" : {
-        "BlurRadius" : 9.301444243932576,
-        "ShadowColor" : "ShadowColor",
-        "Direction" : 2.3021358869347655,
-        "Distance" : 7.061401241503109
-      },
-      "OuterShadow" : {
-        "BlurRadius" : 4.145608029883936,
-        "ShadowColor" : "ShadowColor",
-        "Direction" : 3.616076749251911,
-        "Distance" : 2.027123023002322
-      },
-      "Blur" : {
-        "Radius" : 5.962133916683182,
-        "Grow" : true
-      },
-      "PresetShadow" : {
-        "Preset" : "TopLeftDropShadow",
-        "ShadowColor" : "ShadowColor",
-        "Direction" : 7.386281948385884,
-        "Distance" : 1.2315135367772556
-      },
-      "Reflection" : {
-        "StartPosAlpha" : 6.683562403749608,
-        "EndReflectionOpacity" : 6.438423552598547,
-        "FadeDirection" : 6.84685269835264,
-        "EndPosAlpha" : 8.762042012749001,
-        "BlurRadius" : 1.1730742509559433,
-        "ScaleVertical" : 5.025004791520295,
-        "RotateShadowWithShape" : true,
-        "Direction" : 1.4894159098541704,
-        "ScaleHorizontal" : 4.965218492984954,
-        "SkewVertical" : 9.369310271410669,
-        "StartReflectionOpacity" : 9.018348186070783,
-        "RectangleAlign" : "TopLeft",
-        "SkewHorizontal" : 9.965781217890562,
-        "Distance" : 7.457744773683766
-      },
-      "Glow" : {
-        "Radius" : 5.637376656633329,
-        "Color" : "Color"
-      },
-      "FillOverlay" : {
-        "Blend" : "Darken"
-      }
-    }
-  },
-  "MinValue" : 5.962133916683182,
-  "MinorTickMark" : "Cross",
-  "LogBase" : 5.637376656633329,
-  "AxisBetweenCategories" : true,
-  "IsLogarithmic" : true,
-  "DisplayUnit" : "None",
-  "HasTitle" : true,
-  "TickLabelSpacing" : 3,
-  "MajorGridLinesFormat" : {
-    "LineFormat" : {
-      "JoinStyle" : "Round",
-      "FillFormat" : {
-        "Type" : "NoFill"
-      },
-      "Alignment" : "Center",
-      "SketchType" : "None",
-      "EndArrowHead" : {
-        "Length" : "Short",
-        "Style" : "None",
-        "Width" : "Narrow"
-      },
-      "CustomDashPattern" : {
-        "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
-      },
-      "DashStyle" : "Solid",
-      "Style" : "Single",
-      "MiterLimit" : 6.965117697638846,
-      "BeginArrowHead" : {
-        "Length" : "Short",
-        "Style" : "None",
-        "Width" : "Narrow"
-      },
-      "CapStyle" : "Round",
-      "Width" : 1.284659006116532
-    },
-    "EffectFormat" : {
-      "SoftEdge" : {
-        "Radius" : 1.0246457001441578
-      },
-      "InnerShadow" : {
-        "BlurRadius" : 9.301444243932576,
-        "ShadowColor" : "ShadowColor",
-        "Direction" : 2.3021358869347655,
-        "Distance" : 7.061401241503109
-      },
-      "OuterShadow" : {
-        "BlurRadius" : 4.145608029883936,
-        "ShadowColor" : "ShadowColor",
-        "Direction" : 3.616076749251911,
-        "Distance" : 2.027123023002322
-      },
-      "Blur" : {
-        "Radius" : 5.962133916683182,
-        "Grow" : true
-      },
-      "PresetShadow" : {
-        "Preset" : "TopLeftDropShadow",
-        "ShadowColor" : "ShadowColor",
-        "Direction" : 7.386281948385884,
-        "Distance" : 1.2315135367772556
-      },
-      "Reflection" : {
-        "StartPosAlpha" : 6.683562403749608,
-        "EndReflectionOpacity" : 6.438423552598547,
-        "FadeDirection" : 6.84685269835264,
-        "EndPosAlpha" : 8.762042012749001,
-        "BlurRadius" : 1.1730742509559433,
-        "ScaleVertical" : 5.025004791520295,
-        "RotateShadowWithShape" : true,
-        "Direction" : 1.4894159098541704,
-        "ScaleHorizontal" : 4.965218492984954,
-        "SkewVertical" : 9.369310271410669,
-        "StartReflectionOpacity" : 9.018348186070783,
-        "RectangleAlign" : "TopLeft",
-        "SkewHorizontal" : 9.965781217890562,
-        "Distance" : 7.457744773683766
-      },
-      "Glow" : {
-        "Radius" : 5.637376656633329,
-        "Color" : "Color"
-      },
-      "FillOverlay" : {
-        "Blend" : "Darken"
-      }
-    }
-  },
-  "Position" : "Bottom",
-  "TickLabelPosition" : "High",
-  "EffectFormat" : {
-    "SoftEdge" : {
-      "Radius" : 1.0246457001441578
-    },
-    "InnerShadow" : {
-      "BlurRadius" : 9.301444243932576,
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 2.3021358869347655,
-      "Distance" : 7.061401241503109
-    },
-    "OuterShadow" : {
-      "BlurRadius" : 4.145608029883936,
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 3.616076749251911,
-      "Distance" : 2.027123023002322
-    },
-    "Blur" : {
-      "Radius" : 5.962133916683182,
-      "Grow" : true
-    },
-    "PresetShadow" : {
-      "Preset" : "TopLeftDropShadow",
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 7.386281948385884,
-      "Distance" : 1.2315135367772556
-    },
-    "Reflection" : {
-      "StartPosAlpha" : 6.683562403749608,
-      "EndReflectionOpacity" : 6.438423552598547,
-      "FadeDirection" : 6.84685269835264,
-      "EndPosAlpha" : 8.762042012749001,
-      "BlurRadius" : 1.1730742509559433,
-      "ScaleVertical" : 5.025004791520295,
-      "RotateShadowWithShape" : true,
-      "Direction" : 1.4894159098541704,
-      "ScaleHorizontal" : 4.965218492984954,
-      "SkewVertical" : 9.369310271410669,
-      "StartReflectionOpacity" : 9.018348186070783,
-      "RectangleAlign" : "TopLeft",
-      "SkewHorizontal" : 9.965781217890562,
-      "Distance" : 7.457744773683766
-    },
-    "Glow" : {
-      "Radius" : 5.637376656633329,
-      "Color" : "Color"
-    },
-    "FillOverlay" : {
-      "Blend" : "Darken"
-    }
-  },
-  "IsAutomaticMajorUnit" : true,
-  "MajorUnit" : 0.8008281904610115,
-  "MaxValue" : 1.4658129805029452,
-  "IsPlotOrderReversed" : true,
-  "MajorUnitScale" : "None",
-  "CrossAt" : 7.061401241503109,
-  "IsAutomaticTickMarksSpacing" : true,
-  "FillFormat" : {
-    "Type" : "NoFill"
-  },
-  "LabelOffset" : 2,
-  "IsAutomaticMaxValue" : true,
-  "IsAutomaticMinValue" : true,
-  "IsVisible" : true,
-  "NumberFormat" : "NumberFormat"
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -12650,94 +12808,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "FillFormat" : {
-    "Type" : "NoFill"
-  },
-  "LineFormat" : {
-    "JoinStyle" : "Round",
-    "FillFormat" : {
-      "Type" : "NoFill"
-    },
-    "Alignment" : "Center",
-    "SketchType" : "None",
-    "EndArrowHead" : {
-      "Length" : "Short",
-      "Style" : "None",
-      "Width" : "Narrow"
-    },
-    "CustomDashPattern" : {
-      "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
-    },
-    "DashStyle" : "Solid",
-    "Style" : "Single",
-    "MiterLimit" : 6.965117697638846,
-    "BeginArrowHead" : {
-      "Length" : "Short",
-      "Style" : "None",
-      "Width" : "Narrow"
-    },
-    "CapStyle" : "Round",
-    "Width" : 1.284659006116532
-  },
-  "Position" : "Bottom",
-  "EffectFormat" : {
-    "SoftEdge" : {
-      "Radius" : 1.0246457001441578
-    },
-    "InnerShadow" : {
-      "BlurRadius" : 9.301444243932576,
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 2.3021358869347655,
-      "Distance" : 7.061401241503109
-    },
-    "OuterShadow" : {
-      "BlurRadius" : 4.145608029883936,
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 3.616076749251911,
-      "Distance" : 2.027123023002322
-    },
-    "Blur" : {
-      "Radius" : 5.962133916683182,
-      "Grow" : true
-    },
-    "PresetShadow" : {
-      "Preset" : "TopLeftDropShadow",
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 7.386281948385884,
-      "Distance" : 1.2315135367772556
-    },
-    "Reflection" : {
-      "StartPosAlpha" : 6.683562403749608,
-      "EndReflectionOpacity" : 6.438423552598547,
-      "FadeDirection" : 6.84685269835264,
-      "EndPosAlpha" : 8.762042012749001,
-      "BlurRadius" : 1.1730742509559433,
-      "ScaleVertical" : 5.025004791520295,
-      "RotateShadowWithShape" : true,
-      "Direction" : 1.4894159098541704,
-      "ScaleHorizontal" : 4.965218492984954,
-      "SkewVertical" : 9.369310271410669,
-      "StartReflectionOpacity" : 9.018348186070783,
-      "RectangleAlign" : "TopLeft",
-      "SkewHorizontal" : 9.965781217890562,
-      "Distance" : 7.457744773683766
-    },
-    "Glow" : {
-      "Radius" : 5.637376656633329,
-      "Color" : "Color"
-    },
-    "FillOverlay" : {
-      "Blend" : "Darken"
-    }
-  },
-  "X" : 0.8008281904610115,
-  "Y" : 6.027456183070403,
-  "Height" : 5.962133916683182,
-  "HasLegend" : true,
-  "Overlay" : true,
-  "Width" : 1.4658129805029452
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -12797,7 +12868,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index (must be a chart).
@@ -12868,89 +12943,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Thickness" : 0,
-  "FillFormat" : {
-    "Type" : "NoFill"
-  },
-  "LineFormat" : {
-    "JoinStyle" : "Round",
-    "FillFormat" : {
-      "Type" : "NoFill"
-    },
-    "Alignment" : "Center",
-    "SketchType" : "None",
-    "EndArrowHead" : {
-      "Length" : "Short",
-      "Style" : "None",
-      "Width" : "Narrow"
-    },
-    "CustomDashPattern" : {
-      "Items" : [ 3.5571952270680973, 3.5571952270680973 ]
-    },
-    "DashStyle" : "Solid",
-    "Style" : "Single",
-    "MiterLimit" : 6.965117697638846,
-    "BeginArrowHead" : {
-      "Length" : "Short",
-      "Style" : "None",
-      "Width" : "Narrow"
-    },
-    "CapStyle" : "Round",
-    "Width" : 1.284659006116532
-  },
-  "EffectFormat" : {
-    "SoftEdge" : {
-      "Radius" : 1.0246457001441578
-    },
-    "InnerShadow" : {
-      "BlurRadius" : 9.301444243932576,
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 2.3021358869347655,
-      "Distance" : 7.061401241503109
-    },
-    "OuterShadow" : {
-      "BlurRadius" : 4.145608029883936,
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 3.616076749251911,
-      "Distance" : 2.027123023002322
-    },
-    "Blur" : {
-      "Radius" : 5.962133916683182,
-      "Grow" : true
-    },
-    "PresetShadow" : {
-      "Preset" : "TopLeftDropShadow",
-      "ShadowColor" : "ShadowColor",
-      "Direction" : 7.386281948385884,
-      "Distance" : 1.2315135367772556
-    },
-    "Reflection" : {
-      "StartPosAlpha" : 6.683562403749608,
-      "EndReflectionOpacity" : 6.438423552598547,
-      "FadeDirection" : 6.84685269835264,
-      "EndPosAlpha" : 8.762042012749001,
-      "BlurRadius" : 1.1730742509559433,
-      "ScaleVertical" : 5.025004791520295,
-      "RotateShadowWithShape" : true,
-      "Direction" : 1.4894159098541704,
-      "ScaleHorizontal" : 4.965218492984954,
-      "SkewVertical" : 9.369310271410669,
-      "StartReflectionOpacity" : 9.018348186070783,
-      "RectangleAlign" : "TopLeft",
-      "SkewHorizontal" : 9.965781217890562,
-      "Distance" : 7.457744773683766
-    },
-    "Glow" : {
-      "Radius" : 5.637376656633329,
-      "Color" : "Color"
-    },
-    "FillOverlay" : {
-      "Blend" : "Darken"
-    }
-  },
-  "PictureType" : "Stack"
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -13009,7 +13002,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter properties: New properties.
      - parameter password: Document password.
@@ -13063,7 +13060,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter propertyName: The property name.
      - parameter property: Property with the value.
@@ -13120,15 +13121,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "List" : [ {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  }, {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter name: Document name.
      - parameter fontName: Font name.
      - parameter onlyUsed: Only used characters will be embedded.
@@ -13187,15 +13180,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "List" : [ {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  }, {
-    "IsEmbedded" : true,
-    "FontName" : "FontName"
-  } ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter font: Font data.
      - parameter name: Document name.
      - parameter onlyUsed: Only used characters will be embedded.
@@ -13357,7 +13342,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: Header/footer to set.
@@ -13412,7 +13401,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter dto: HeaderFooter instance.
      - parameter password: Document password.
@@ -13465,7 +13458,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter dto: Protection properties.
      - parameter password: Document password.
@@ -13564,7 +13561,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sections: Sections DTO.
      - parameter password: Document password.
@@ -13619,7 +13620,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -13677,7 +13682,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: The position of the slide to be reordered.
      - parameter dto: Footer to set.
@@ -13732,7 +13741,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter dto: The view properties data.
      - parameter password: Document password.
@@ -13785,7 +13798,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter dto: The slide show properties data.
      - parameter password: Document password.
@@ -13849,7 +13866,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -13885,7 +13906,7 @@ open class SlidesAPI {
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
     }
     /**
-     Update presentation document properties.
+     Update presentation view properties.
      - parameter name: Document name.
      - parameter dto: The view properties data.
      - parameter password: Document password.
@@ -13901,12 +13922,16 @@ open class SlidesAPI {
 
 
     /**
-     Update presentation document properties.
+     Update presentation view properties.
      - PUT /slides/{name}/viewProperties
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter dto: The view properties data.
      - parameter password: Document password.
@@ -13995,7 +14020,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter options: Export options.
      - parameter format: Export format. Default value is jpeg.
@@ -14096,7 +14125,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter document: Document data.
      - parameter format: ExportFormat
      - parameter destFolder: Folder on storage where images are going to be uploaded. If not specified then images are uploaded to the root folder.
@@ -14251,9 +14284,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Exists" : true
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter storageName: Storage name
      - returns: RequestBuilder<StorageExist> 
      */
@@ -14297,7 +14328,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter effectIndex: The position of the effect to be modified.
@@ -14357,7 +14392,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter sequenceIndex: The position of the interactive sequence.
@@ -14419,7 +14458,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -14482,7 +14525,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -14546,7 +14593,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index (must be a chart).
@@ -14606,7 +14657,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter slideDto: Slide update data.
@@ -14662,7 +14717,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter dto: A NotesSlide object with notes slide data.
@@ -14721,7 +14780,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -14787,7 +14850,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -14851,7 +14918,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter sectionIndex: The position of the section to be updated.
      - parameter sectionName: Section name.
@@ -14910,7 +14981,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter shapeIndex: Shape index.
@@ -14970,7 +15045,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
      - parameter slideDto: Slide update data.
@@ -15037,7 +15116,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -15109,7 +15192,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -15184,7 +15271,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -15262,7 +15353,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -15340,7 +15435,11 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example=""}]
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
      - parameter name: Document name.
      - parameter slideIndex: Parent slide index.
      - parameter slideType: Slide type (master, layout or notes).
@@ -15399,26 +15498,7 @@ open class SlidesAPI {
      - OAuth:
        - type: oauth2
        - name: JWT
-     - examples: [{contentType=application/json, example={
-  "Errors" : [ {
-    "Description" : "Description",
-    "Message" : "Message",
-    "InnerError" : {
-      "RequestId" : "RequestId",
-      "Date" : "2000-01-23T04:56:07.000+00:00"
-    },
-    "Code" : "Code"
-  }, {
-    "Description" : "Description",
-    "Message" : "Message",
-    "InnerError" : {
-      "RequestId" : "RequestId",
-      "Date" : "2000-01-23T04:56:07.000+00:00"
-    },
-    "Code" : "Code"
-  } ],
-  "Uploaded" : [ "Uploaded", "Uploaded" ]
-}}]
+     - examples: [{contentType=application/json, example={"empty": false}}]
      - parameter path: Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.             
      - parameter file: File to upload
      - parameter storageName: Storage name

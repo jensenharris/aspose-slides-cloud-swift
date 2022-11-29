@@ -36,6 +36,8 @@ public class BubbleSeries: XYSeries {
     public var dataPoints: [BubbleChartDataPoint]?
     /** The number format for the series bubble sizes. */
     public var numberFormatOfBubbleSizes: String?
+    /** Data source type for Bubble size values. */
+    public var dataSourceForBubbleSizeValues: DataSource?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
@@ -68,18 +70,30 @@ public class BubbleSeries: XYSeries {
         if numberFormatOfBubbleSizesValue != nil {
             self.numberFormatOfBubbleSizes = numberFormatOfBubbleSizesValue! as? String
         }
+        let dataSourceForBubbleSizeValuesValue = source["dataSourceForBubbleSizeValues"] ?? source["DataSourceForBubbleSizeValues"]
+        if dataSourceForBubbleSizeValuesValue != nil {
+            let dataSourceForBubbleSizeValuesDictionaryValue = dataSourceForBubbleSizeValuesValue! as? [String:Any]
+            if dataSourceForBubbleSizeValuesDictionaryValue != nil {
+                let (dataSourceForBubbleSizeValuesInstance, error) = ClassRegistry.getClassFromDictionary(DataSource.self, dataSourceForBubbleSizeValuesDictionaryValue!)
+                if error == nil && dataSourceForBubbleSizeValuesInstance != nil {
+                    self.dataSourceForBubbleSizeValues = dataSourceForBubbleSizeValuesInstance! as? DataSource
+                }
+            }
+        }
     }
 
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil, dataPoints: [BubbleChartDataPoint]? = nil, numberFormatOfBubbleSizes: String? = nil) {
-        super.init(type: type, name: name, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType, numberFormatOfYValues: numberFormatOfYValues, numberFormatOfXValues: numberFormatOfXValues)
+    public init(type: ModelType? = nil, name: String? = nil, dataSourceForSeriesName: DataSource? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil, dataSourceForXValues: DataSource? = nil, dataSourceForYValues: DataSource? = nil, dataPoints: [BubbleChartDataPoint]? = nil, numberFormatOfBubbleSizes: String? = nil, dataSourceForBubbleSizeValues: DataSource? = nil) {
+        super.init(type: type, name: name, dataSourceForSeriesName: dataSourceForSeriesName, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType, numberFormatOfYValues: numberFormatOfYValues, numberFormatOfXValues: numberFormatOfXValues, dataSourceForXValues: dataSourceForXValues, dataSourceForYValues: dataSourceForYValues)
         self.dataPoints = dataPoints
         self.numberFormatOfBubbleSizes = numberFormatOfBubbleSizes
+        self.dataSourceForBubbleSizeValues = dataSourceForBubbleSizeValues
         self.dataPointType = DataPointType.bubble
     }
 
     private enum CodingKeys: String, CodingKey {
         case dataPoints
         case numberFormatOfBubbleSizes
+        case dataSourceForBubbleSizeValues
     }
 
     required init(from decoder: Decoder) throws {
@@ -87,6 +101,7 @@ public class BubbleSeries: XYSeries {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         dataPoints = try? values.decode([BubbleChartDataPoint].self, forKey: .dataPoints)
         numberFormatOfBubbleSizes = try? values.decode(String.self, forKey: .numberFormatOfBubbleSizes)
+        dataSourceForBubbleSizeValues = try? values.decode(DataSource.self, forKey: .dataSourceForBubbleSizeValues)
         self.dataPointType = DataPointType.bubble
     }
 
@@ -98,6 +113,9 @@ public class BubbleSeries: XYSeries {
         }
         if (numberFormatOfBubbleSizes != nil) {
             try? container.encode(numberFormatOfBubbleSizes, forKey: .numberFormatOfBubbleSizes)
+        }
+        if (dataSourceForBubbleSizeValues != nil) {
+            try? container.encode(dataSourceForBubbleSizeValues, forKey: .dataSourceForBubbleSizeValues)
         }
     }
 

@@ -36,6 +36,10 @@ public class XYSeries: Series {
     public var numberFormatOfYValues: String?
     /** The number format for the series x values. */
     public var numberFormatOfXValues: String?
+    /** Data source type for X Values. */
+    public var dataSourceForXValues: DataSource?
+    /** Data source type for Y Values. */
+    public var dataSourceForYValues: DataSource?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
@@ -47,17 +51,41 @@ public class XYSeries: Series {
         if numberFormatOfXValuesValue != nil {
             self.numberFormatOfXValues = numberFormatOfXValuesValue! as? String
         }
+        let dataSourceForXValuesValue = source["dataSourceForXValues"] ?? source["DataSourceForXValues"]
+        if dataSourceForXValuesValue != nil {
+            let dataSourceForXValuesDictionaryValue = dataSourceForXValuesValue! as? [String:Any]
+            if dataSourceForXValuesDictionaryValue != nil {
+                let (dataSourceForXValuesInstance, error) = ClassRegistry.getClassFromDictionary(DataSource.self, dataSourceForXValuesDictionaryValue!)
+                if error == nil && dataSourceForXValuesInstance != nil {
+                    self.dataSourceForXValues = dataSourceForXValuesInstance! as? DataSource
+                }
+            }
+        }
+        let dataSourceForYValuesValue = source["dataSourceForYValues"] ?? source["DataSourceForYValues"]
+        if dataSourceForYValuesValue != nil {
+            let dataSourceForYValuesDictionaryValue = dataSourceForYValuesValue! as? [String:Any]
+            if dataSourceForYValuesDictionaryValue != nil {
+                let (dataSourceForYValuesInstance, error) = ClassRegistry.getClassFromDictionary(DataSource.self, dataSourceForYValuesDictionaryValue!)
+                if error == nil && dataSourceForYValuesInstance != nil {
+                    self.dataSourceForYValues = dataSourceForYValuesInstance! as? DataSource
+                }
+            }
+        }
     }
 
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil) {
-        super.init(type: type, name: name, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType)
+    public init(type: ModelType? = nil, name: String? = nil, dataSourceForSeriesName: DataSource? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, numberFormatOfYValues: String? = nil, numberFormatOfXValues: String? = nil, dataSourceForXValues: DataSource? = nil, dataSourceForYValues: DataSource? = nil) {
+        super.init(type: type, name: name, dataSourceForSeriesName: dataSourceForSeriesName, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType)
         self.numberFormatOfYValues = numberFormatOfYValues
         self.numberFormatOfXValues = numberFormatOfXValues
+        self.dataSourceForXValues = dataSourceForXValues
+        self.dataSourceForYValues = dataSourceForYValues
     }
 
     private enum CodingKeys: String, CodingKey {
         case numberFormatOfYValues
         case numberFormatOfXValues
+        case dataSourceForXValues
+        case dataSourceForYValues
     }
 
     required init(from decoder: Decoder) throws {
@@ -65,6 +93,8 @@ public class XYSeries: Series {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         numberFormatOfYValues = try? values.decode(String.self, forKey: .numberFormatOfYValues)
         numberFormatOfXValues = try? values.decode(String.self, forKey: .numberFormatOfXValues)
+        dataSourceForXValues = try? values.decode(DataSource.self, forKey: .dataSourceForXValues)
+        dataSourceForYValues = try? values.decode(DataSource.self, forKey: .dataSourceForYValues)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -75,6 +105,12 @@ public class XYSeries: Series {
         }
         if (numberFormatOfXValues != nil) {
             try? container.encode(numberFormatOfXValues, forKey: .numberFormatOfXValues)
+        }
+        if (dataSourceForXValues != nil) {
+            try? container.encode(dataSourceForXValues, forKey: .dataSourceForXValues)
+        }
+        if (dataSourceForYValues != nil) {
+            try? container.encode(dataSourceForYValues, forKey: .dataSourceForYValues)
         }
     }
 

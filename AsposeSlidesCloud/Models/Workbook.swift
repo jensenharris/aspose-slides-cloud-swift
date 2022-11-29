@@ -29,52 +29,66 @@
 import Foundation
 
 
-/** Bubble chart data point. */
-public class BubbleChartDataPoint: ScatterChartDataPoint {
+/** Represents Excel spreadsheet data source. */
+public class Workbook: DataSource {
 
-    /** Bubble size. */
-    public var bubbleSize: Double?
-    /** Spreadsheet formula in A1-style. */
-    public var bubbleSizeFormula: String?
+    /** Worksheet index. */
+    public var worksheetIndex: Int?
+    /** Column index of the first value. */
+    public var columnIndex: Int?
+    /** Row index of the first value. */
+    public var rowIndex: Int?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
-        let bubbleSizeValue = source["bubbleSize"] ?? source["BubbleSize"]
-        if bubbleSizeValue != nil {
-            self.bubbleSize = bubbleSizeValue! as? Double
+        let worksheetIndexValue = source["worksheetIndex"] ?? source["WorksheetIndex"]
+        if worksheetIndexValue != nil {
+            self.worksheetIndex = worksheetIndexValue! as? Int
         }
-        let bubbleSizeFormulaValue = source["bubbleSizeFormula"] ?? source["BubbleSizeFormula"]
-        if bubbleSizeFormulaValue != nil {
-            self.bubbleSizeFormula = bubbleSizeFormulaValue! as? String
+        let columnIndexValue = source["columnIndex"] ?? source["ColumnIndex"]
+        if columnIndexValue != nil {
+            self.columnIndex = columnIndexValue! as? Int
+        }
+        let rowIndexValue = source["rowIndex"] ?? source["RowIndex"]
+        if rowIndexValue != nil {
+            self.rowIndex = rowIndexValue! as? Int
         }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil, xValueFormula: String? = nil, yValueFormula: String? = nil, bubbleSize: Double? = nil, bubbleSizeFormula: String? = nil) {
-        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, xValue: xValue, yValue: yValue, xValueFormula: xValueFormula, yValueFormula: yValueFormula)
-        self.bubbleSize = bubbleSize
-        self.bubbleSizeFormula = bubbleSizeFormula
+    public init(type: ModelType? = nil, worksheetIndex: Int? = nil, columnIndex: Int? = nil, rowIndex: Int? = nil) {
+        super.init(type: type)
+        self.worksheetIndex = worksheetIndex
+        self.columnIndex = columnIndex
+        self.rowIndex = rowIndex
+        self.type = ModelType.workbook
     }
 
     private enum CodingKeys: String, CodingKey {
-        case bubbleSize
-        case bubbleSizeFormula
+        case worksheetIndex
+        case columnIndex
+        case rowIndex
     }
 
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        bubbleSize = try? values.decode(Double.self, forKey: .bubbleSize)
-        bubbleSizeFormula = try? values.decode(String.self, forKey: .bubbleSizeFormula)
+        worksheetIndex = try? values.decode(Int.self, forKey: .worksheetIndex)
+        columnIndex = try? values.decode(Int.self, forKey: .columnIndex)
+        rowIndex = try? values.decode(Int.self, forKey: .rowIndex)
+        self.type = ModelType.workbook
     }
 
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        if (bubbleSize != nil) {
-            try? container.encode(bubbleSize, forKey: .bubbleSize)
+        if (worksheetIndex != nil) {
+            try? container.encode(worksheetIndex, forKey: .worksheetIndex)
         }
-        if (bubbleSizeFormula != nil) {
-            try? container.encode(bubbleSizeFormula, forKey: .bubbleSizeFormula)
+        if (columnIndex != nil) {
+            try? container.encode(columnIndex, forKey: .columnIndex)
+        }
+        if (rowIndex != nil) {
+            try? container.encode(rowIndex, forKey: .rowIndex)
         }
     }
 

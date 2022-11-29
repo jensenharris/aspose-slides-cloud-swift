@@ -40,6 +40,8 @@ public class OneValueSeries: Series {
     public var dataPoints: [OneValueChartDataPoint]?
     /** The number format for the series values. */
     public var numberFormatOfValues: String?
+    /** Data source type for values. */
+    public var dataSourceForValues: DataSource?
     /** True if inner points are shown. Applied to Waterfall series only. */
     public var showConnectorLines: Bool?
     /** Quartile method. Applied to BoxAndWhisker series only. */
@@ -84,6 +86,16 @@ public class OneValueSeries: Series {
         if numberFormatOfValuesValue != nil {
             self.numberFormatOfValues = numberFormatOfValuesValue! as? String
         }
+        let dataSourceForValuesValue = source["dataSourceForValues"] ?? source["DataSourceForValues"]
+        if dataSourceForValuesValue != nil {
+            let dataSourceForValuesDictionaryValue = dataSourceForValuesValue! as? [String:Any]
+            if dataSourceForValuesDictionaryValue != nil {
+                let (dataSourceForValuesInstance, error) = ClassRegistry.getClassFromDictionary(DataSource.self, dataSourceForValuesDictionaryValue!)
+                if error == nil && dataSourceForValuesInstance != nil {
+                    self.dataSourceForValues = dataSourceForValuesInstance! as? DataSource
+                }
+            }
+        }
         let showConnectorLinesValue = source["showConnectorLines"] ?? source["ShowConnectorLines"]
         if showConnectorLinesValue != nil {
             self.showConnectorLines = showConnectorLinesValue! as? Bool
@@ -116,10 +128,11 @@ public class OneValueSeries: Series {
         }
     }
 
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, dataPoints: [OneValueChartDataPoint]? = nil, numberFormatOfValues: String? = nil, showConnectorLines: Bool? = nil, quartileMethod: QuartileMethod? = nil, showInnerPoints: Bool? = nil, showMeanLine: Bool? = nil, showMeanMarkers: Bool? = nil, showOutlierPoints: Bool? = nil) {
-        super.init(type: type, name: name, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType)
+    public init(type: ModelType? = nil, name: String? = nil, dataSourceForSeriesName: DataSource? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil, dataPoints: [OneValueChartDataPoint]? = nil, numberFormatOfValues: String? = nil, dataSourceForValues: DataSource? = nil, showConnectorLines: Bool? = nil, quartileMethod: QuartileMethod? = nil, showInnerPoints: Bool? = nil, showMeanLine: Bool? = nil, showMeanMarkers: Bool? = nil, showOutlierPoints: Bool? = nil) {
+        super.init(type: type, name: name, dataSourceForSeriesName: dataSourceForSeriesName, isColorVaried: isColorVaried, invertedSolidFillColor: invertedSolidFillColor, smooth: smooth, plotOnSecondAxis: plotOnSecondAxis, order: order, invertIfNegative: invertIfNegative, explosion: explosion, marker: marker, fillFormat: fillFormat, effectFormat: effectFormat, lineFormat: lineFormat, dataPointType: dataPointType)
         self.dataPoints = dataPoints
         self.numberFormatOfValues = numberFormatOfValues
+        self.dataSourceForValues = dataSourceForValues
         self.showConnectorLines = showConnectorLines
         self.quartileMethod = quartileMethod
         self.showInnerPoints = showInnerPoints
@@ -132,6 +145,7 @@ public class OneValueSeries: Series {
     private enum CodingKeys: String, CodingKey {
         case dataPoints
         case numberFormatOfValues
+        case dataSourceForValues
         case showConnectorLines
         case quartileMethod
         case showInnerPoints
@@ -145,6 +159,7 @@ public class OneValueSeries: Series {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         dataPoints = try? values.decode([OneValueChartDataPoint].self, forKey: .dataPoints)
         numberFormatOfValues = try? values.decode(String.self, forKey: .numberFormatOfValues)
+        dataSourceForValues = try? values.decode(DataSource.self, forKey: .dataSourceForValues)
         showConnectorLines = try? values.decode(Bool.self, forKey: .showConnectorLines)
         quartileMethod = try? values.decode(QuartileMethod.self, forKey: .quartileMethod)
         showInnerPoints = try? values.decode(Bool.self, forKey: .showInnerPoints)
@@ -162,6 +177,9 @@ public class OneValueSeries: Series {
         }
         if (numberFormatOfValues != nil) {
             try? container.encode(numberFormatOfValues, forKey: .numberFormatOfValues)
+        }
+        if (dataSourceForValues != nil) {
+            try? container.encode(dataSourceForValues, forKey: .dataSourceForValues)
         }
         if (showConnectorLines != nil) {
             try? container.encode(showConnectorLines, forKey: .showConnectorLines)

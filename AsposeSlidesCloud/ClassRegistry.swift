@@ -103,332 +103,12 @@ class ClassRegistry {
 
     class func createInstance(_ className: String, _ object: Dictionary<String, Any>) -> (decodableObj: Decodable?, error: Error?) {
         if false { //just to simplify autogeneration
-        } else if className == "AccessPermissions" {
-            let value = AccessPermissions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ApiInfo" {
-            let value = ApiInfo()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ArrowHeadProperties" {
-            let value = ArrowHeadProperties()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Axes" {
-            let value = Axes()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Axis" {
-            let value = Axis()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "BlurEffect" {
-            let value = BlurEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Camera" {
-            let value = Camera()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ChartCategory" {
-            let value = ChartCategory()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ChartLinesFormat" {
-            let value = ChartLinesFormat()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ChartSeriesGroup" {
-            let value = ChartSeriesGroup()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ChartTitle" {
-            let value = ChartTitle()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ChartWall" {
-            let value = ChartWall()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "CommonSlideViewProperties" {
-            let value = CommonSlideViewProperties()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "CustomDashPattern" {
-            let value = CustomDashPattern()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "DataPoint" {
-            let value = DataPoint()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "DiscUsage" {
-            let value = DiscUsage()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Effect" {
-            let value = Effect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "EffectFormat" {
-            let value = EffectFormat()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "EntityExists" {
-            let value = EntityExists()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ErrorDetails" {
-            let value = ErrorDetails()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ExportOptions" {
-            let value = ExportOptions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FileVersions" {
-            let value = FileVersions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FilesList" {
-            let value = FilesList()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FilesUploadResult" {
-            let value = FilesUploadResult()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FillFormat" {
-            let value = FillFormat()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FillOverlayEffect" {
-            let value = FillOverlayEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FontData" {
-            let value = FontData()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FontFallbackRule" {
-            let value = FontFallbackRule()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FontSet" {
-            let value = FontSet()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FontSubstRule" {
-            let value = FontSubstRule()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "FontsData" {
-            let value = FontsData()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GeometryPath" {
-            let value = GeometryPath()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GeometryPaths" {
-            let value = GeometryPaths()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GlowEffect" {
-            let value = GlowEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GradientFillStop" {
-            let value = GradientFillStop()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Hyperlink" {
-            let value = Hyperlink()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "IShapeExportOptions" {
-            let value = IShapeExportOptions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ImageTransformEffect" {
-            let value = ImageTransformEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "InnerShadowEffect" {
-            let value = InnerShadowEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Input" {
-            let value = Input()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "InputFile" {
-            let value = InputFile()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "InteractiveSequence" {
-            let value = InteractiveSequence()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Legend" {
-            let value = Legend()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "LightRig" {
-            let value = LightRig()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "LineFormat" {
-            let value = LineFormat()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "MathElement" {
-            let value = MathElement()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "MathParagraph" {
-            let value = MathParagraph()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "MergingSource" {
-            let value = MergingSource()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ModelError" {
-            let value = ModelError()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "NormalViewRestoredProperties" {
-            let value = NormalViewRestoredProperties()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ObjectExist" {
-            let value = ObjectExist()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "OrderedMergeRequest" {
-            let value = OrderedMergeRequest()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "OuterShadowEffect" {
-            let value = OuterShadowEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "OutputFile" {
-            let value = OutputFile()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PathSegment" {
-            let value = PathSegment()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Pipeline" {
-            let value = Pipeline()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PlotArea" {
-            let value = PlotArea()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PortionFormat" {
-            let value = PortionFormat()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PresentationToMerge" {
-            let value = PresentationToMerge()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PresentationsMergeRequest" {
-            let value = PresentationsMergeRequest()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PresetShadowEffect" {
-            let value = PresetShadowEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ReflectionEffect" {
-            let value = ReflectionEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ResourceBase" {
-            let value = ResourceBase()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ResourceUri" {
-            let value = ResourceUri()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Series" {
-            let value = Series()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SeriesMarker" {
-            let value = SeriesMarker()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ShapeBevel" {
-            let value = ShapeBevel()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ShapeImageExportOptions" {
-            let value = ShapeImageExportOptions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SlideCommentBase" {
-            let value = SlideCommentBase()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SmartArtNode" {
-            let value = SmartArtNode()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SoftEdgeEffect" {
-            let value = SoftEdgeEffect()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "StorageExist" {
-            let value = StorageExist()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "StorageFile" {
-            let value = StorageFile()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TableCell" {
-            let value = TableCell()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TableColumn" {
-            let value = TableColumn()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TableRow" {
-            let value = TableRow()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Task" {
-            let value = Task()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TextBounds" {
-            let value = TextBounds()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TextFrameFormat" {
-            let value = TextFrameFormat()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TextItem" {
-            let value = TextItem()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ThreeDFormat" {
-            let value = ThreeDFormat()
-            try? value.fillValues(object)
-            return (value, nil)
         } else if className == "AccentElement" {
             let value = AccentElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "AccessPermissions" {
+            let value = AccessPermissions()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "AddLayoutSlide" {
@@ -475,12 +155,32 @@ class ClassRegistry {
             let value = AlphaReplaceEffect()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "ApiInfo" {
+            let value = ApiInfo()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "ArcToPathSegment" {
             let value = ArcToPathSegment()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "ArrayElement" {
             let value = ArrayElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ArrowHeadProperties" {
+            let value = ArrowHeadProperties()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "AudioFrame" {
+            let value = AudioFrame()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Axes" {
+            let value = Axes()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Axis" {
+            let value = Axis()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "BarElement" {
@@ -499,6 +199,10 @@ class ClassRegistry {
             let value = BlockElement()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "BlurEffect" {
+            let value = BlurEffect()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "BlurImageEffect" {
             let value = BlurImageEffect()
             try? value.fillValues(object)
@@ -509,6 +213,42 @@ class ClassRegistry {
             return (value, nil)
         } else if className == "BoxElement" {
             let value = BoxElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "BubbleChartDataPoint" {
+            let value = BubbleChartDataPoint()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "BubbleSeries" {
+            let value = BubbleSeries()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Camera" {
+            let value = Camera()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Chart" {
+            let value = Chart()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ChartCategory" {
+            let value = ChartCategory()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ChartLinesFormat" {
+            let value = ChartLinesFormat()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ChartSeriesGroup" {
+            let value = ChartSeriesGroup()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ChartTitle" {
+            let value = ChartTitle()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ChartWall" {
+            let value = ChartWall()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "ClosePathSegment" {
@@ -527,12 +267,36 @@ class ClassRegistry {
             let value = ColorScheme()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "CommonSlideViewProperties" {
+            let value = CommonSlideViewProperties()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Connector" {
+            let value = Connector()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "CubicBezierToPathSegment" {
             let value = CubicBezierToPathSegment()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "CustomDashPattern" {
+            let value = CustomDashPattern()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "DataPoint" {
+            let value = DataPoint()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "DataSource" {
+            let value = DataSource()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "DelimiterElement" {
             let value = DelimiterElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "DiscUsage" {
+            let value = DiscUsage()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Document" {
@@ -547,20 +311,84 @@ class ClassRegistry {
             let value = DocumentProperty()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "DocumentReplaceResult" {
+            let value = DocumentReplaceResult()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "DuotoneEffect" {
             let value = DuotoneEffect()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Effect" {
+            let value = Effect()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "EffectFormat" {
+            let value = EffectFormat()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "EntityExists" {
+            let value = EntityExists()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ErrorDetails" {
+            let value = ErrorDetails()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ExportOptions" {
+            let value = ExportOptions()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "FileVersion" {
             let value = FileVersion()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "FileVersions" {
+            let value = FileVersions()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FilesList" {
+            let value = FilesList()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FilesUploadResult" {
+            let value = FilesUploadResult()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FillFormat" {
+            let value = FillFormat()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FillOverlayEffect" {
+            let value = FillOverlayEffect()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "FillOverlayImageEffect" {
             let value = FillOverlayImageEffect()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "FontData" {
+            let value = FontData()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FontFallbackRule" {
+            let value = FontFallbackRule()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "FontScheme" {
             let value = FontScheme()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FontSet" {
+            let value = FontSet()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FontSubstRule" {
+            let value = FontSubstRule()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "FontsData" {
+            let value = FontsData()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "FormatScheme" {
@@ -575,12 +403,44 @@ class ClassRegistry {
             let value = FunctionElement()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "GeometryPath" {
+            let value = GeometryPath()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "GeometryPaths" {
+            let value = GeometryPaths()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "GeometryShape" {
+            let value = GeometryShape()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "GifExportOptions" {
+            let value = GifExportOptions()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "GlowEffect" {
+            let value = GlowEffect()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "GradientFill" {
             let value = GradientFill()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "GradientFillStop" {
+            let value = GradientFillStop()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "GraphicalObject" {
+            let value = GraphicalObject()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "GrayScaleEffect" {
             let value = GrayScaleEffect()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "GroupShape" {
+            let value = GroupShape()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "GroupingCharacterElement" {
@@ -603,16 +463,48 @@ class ClassRegistry {
             let value = HtmlExportOptions()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "Hyperlink" {
+            let value = Hyperlink()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "IShapeExportOptions" {
+            let value = IShapeExportOptions()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Image" {
             let value = Image()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ImageExportOptions" {
+            let value = ImageExportOptions()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "ImageExportOptionsBase" {
             let value = ImageExportOptionsBase()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "ImageTransformEffect" {
+            let value = ImageTransformEffect()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Images" {
             let value = Images()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "InnerShadowEffect" {
+            let value = InnerShadowEffect()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Input" {
+            let value = Input()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "InputFile" {
+            let value = InputFile()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "InteractiveSequence" {
+            let value = InteractiveSequence()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "LayoutSlide" {
@@ -627,12 +519,28 @@ class ClassRegistry {
             let value = LeftSubSuperscriptElement()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "Legend" {
+            let value = Legend()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "LightRig" {
+            let value = LightRig()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "LimitElement" {
             let value = LimitElement()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "LineFormat" {
+            let value = LineFormat()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "LineToPathSegment" {
             let value = LineToPathSegment()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Literals" {
+            let value = Literals()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "LuminanceEffect" {
@@ -647,12 +555,28 @@ class ClassRegistry {
             let value = MasterSlides()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "MathElement" {
+            let value = MathElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "MathParagraph" {
+            let value = MathParagraph()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "MatrixElement" {
             let value = MatrixElement()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Merge" {
             let value = Merge()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "MergingSource" {
+            let value = MergingSource()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ModelError" {
+            let value = ModelError()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "MoveToPathSegment" {
@@ -667,6 +591,10 @@ class ClassRegistry {
             let value = NoFill()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "NormalViewRestoredProperties" {
+            let value = NormalViewRestoredProperties()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "NotesSlide" {
             let value = NotesSlide()
             try? value.fillValues(object)
@@ -675,12 +603,32 @@ class ClassRegistry {
             let value = NotesSlideHeaderFooter()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "ObjectExist" {
+            let value = ObjectExist()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "OleObjectFrame" {
+            let value = OleObjectFrame()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "OneValueChartDataPoint" {
             let value = OneValueChartDataPoint()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "OneValueSeries" {
             let value = OneValueSeries()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "OrderedMergeRequest" {
+            let value = OrderedMergeRequest()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "OuterShadowEffect" {
+            let value = OuterShadowEffect()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "OutputFile" {
+            let value = OutputFile()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Paragraph" {
@@ -699,6 +647,10 @@ class ClassRegistry {
             let value = PathOutputFile()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "PathSegment" {
+            let value = PathSegment()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "PatternFill" {
             let value = PatternFill()
             try? value.fillValues(object)
@@ -711,6 +663,14 @@ class ClassRegistry {
             let value = PictureFill()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "PictureFrame" {
+            let value = PictureFrame()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Pipeline" {
+            let value = Pipeline()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Placeholder" {
             let value = Placeholder()
             try? value.fillValues(object)
@@ -719,8 +679,16 @@ class ClassRegistry {
             let value = Placeholders()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "PlotArea" {
+            let value = PlotArea()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Portion" {
             let value = Portion()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "PortionFormat" {
+            let value = PortionFormat()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Portions" {
@@ -729,6 +697,18 @@ class ClassRegistry {
             return (value, nil)
         } else if className == "PptxExportOptions" {
             let value = PptxExportOptions()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "PresentationToMerge" {
+            let value = PresentationToMerge()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "PresentationsMergeRequest" {
+            let value = PresentationsMergeRequest()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "PresetShadowEffect" {
+            let value = PresetShadowEffect()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "ProtectionProperties" {
@@ -741,6 +721,10 @@ class ClassRegistry {
             return (value, nil)
         } else if className == "RadicalElement" {
             let value = RadicalElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ReflectionEffect" {
+            let value = ReflectionEffect()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "RemoveShape" {
@@ -767,6 +751,14 @@ class ClassRegistry {
             let value = ResetSlide()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "ResourceBase" {
+            let value = ResourceBase()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ResourceUri" {
+            let value = ResourceUri()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "ResponseOutputFile" {
             let value = ResponseOutputFile()
             try? value.fillValues(object)
@@ -791,16 +783,44 @@ class ClassRegistry {
             let value = ScatterChartDataPoint()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "ScatterSeries" {
+            let value = ScatterSeries()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Section" {
             let value = Section()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SectionZoomFrame" {
+            let value = SectionZoomFrame()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Sections" {
             let value = Sections()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "Series" {
+            let value = Series()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SeriesMarker" {
+            let value = SeriesMarker()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Shape" {
+            let value = Shape()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "ShapeBase" {
             let value = ShapeBase()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ShapeBevel" {
+            let value = ShapeBevel()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ShapeImageExportOptions" {
+            let value = ShapeImageExportOptions()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Shapes" {
@@ -823,6 +843,10 @@ class ClassRegistry {
             let value = SlideComment()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "SlideCommentBase" {
+            let value = SlideCommentBase()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "SlideComments" {
             let value = SlideComments()
             try? value.fillValues(object)
@@ -835,12 +859,32 @@ class ClassRegistry {
             let value = SlideProperties()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "SlideReplaceResult" {
+            let value = SlideReplaceResult()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "SlideShowProperties" {
             let value = SlideShowProperties()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "Slides" {
             let value = Slides()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SmartArt" {
+            let value = SmartArt()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SmartArtNode" {
+            let value = SmartArtNode()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SmartArtShape" {
+            let value = SmartArtShape()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SoftEdgeEffect" {
+            let value = SoftEdgeEffect()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "SolidFill" {
@@ -851,8 +895,24 @@ class ClassRegistry {
             let value = SplitDocumentResult()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "StorageExist" {
+            let value = StorageExist()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "StorageFile" {
+            let value = StorageFile()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "SubscriptElement" {
             let value = SubscriptElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SummaryZoomFrame" {
+            let value = SummaryZoomFrame()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "SummaryZoomSection" {
+            let value = SummaryZoomSection()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "SuperscriptElement" {
@@ -867,8 +927,40 @@ class ClassRegistry {
             let value = SwfExportOptions()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "Table" {
+            let value = Table()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TableCell" {
+            let value = TableCell()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TableColumn" {
+            let value = TableColumn()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TableRow" {
+            let value = TableRow()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Task" {
+            let value = Task()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TextBounds" {
+            let value = TextBounds()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "TextElement" {
             let value = TextElement()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TextFrameFormat" {
+            let value = TextFrameFormat()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TextItem" {
+            let value = TextItem()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "TextItems" {
@@ -877,6 +969,14 @@ class ClassRegistry {
             return (value, nil)
         } else if className == "Theme" {
             let value = Theme()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "ThreeDFormat" {
+            let value = ThreeDFormat()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "TiffExportOptions" {
+            let value = TiffExportOptions()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "TintEffect" {
@@ -895,8 +995,16 @@ class ClassRegistry {
             let value = VideoExportOptions()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "VideoFrame" {
+            let value = VideoFrame()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "ViewProperties" {
             let value = ViewProperties()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "Workbook" {
+            let value = Workbook()
             try? value.fillValues(object)
             return (value, nil)
         } else if className == "XYSeries" {
@@ -911,108 +1019,12 @@ class ClassRegistry {
             let value = XpsExportOptions()
             try? value.fillValues(object)
             return (value, nil)
-        } else if className == "BubbleChartDataPoint" {
-            let value = BubbleChartDataPoint()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "BubbleSeries" {
-            let value = BubbleSeries()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Chart" {
-            let value = Chart()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "DocumentReplaceResult" {
-            let value = DocumentReplaceResult()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GeometryShape" {
-            let value = GeometryShape()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GifExportOptions" {
-            let value = GifExportOptions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GraphicalObject" {
-            let value = GraphicalObject()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "GroupShape" {
-            let value = GroupShape()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ImageExportOptions" {
-            let value = ImageExportOptions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "OleObjectFrame" {
-            let value = OleObjectFrame()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ScatterSeries" {
-            let value = ScatterSeries()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SlideReplaceResult" {
-            let value = SlideReplaceResult()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SmartArt" {
-            let value = SmartArt()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SummaryZoomFrame" {
-            let value = SummaryZoomFrame()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Table" {
-            let value = Table()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "TiffExportOptions" {
-            let value = TiffExportOptions()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "ZoomObject" {
-            let value = ZoomObject()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "AudioFrame" {
-            let value = AudioFrame()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Connector" {
-            let value = Connector()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "PictureFrame" {
-            let value = PictureFrame()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SectionZoomFrame" {
-            let value = SectionZoomFrame()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "Shape" {
-            let value = Shape()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "SmartArtShape" {
-            let value = SmartArtShape()
-            try? value.fillValues(object)
-            return (value, nil)
-        } else if className == "VideoFrame" {
-            let value = VideoFrame()
-            try? value.fillValues(object)
-            return (value, nil)
         } else if className == "ZoomFrame" {
             let value = ZoomFrame()
             try? value.fillValues(object)
             return (value, nil)
-        } else if className == "SummaryZoomSection" {
-            let value = SummaryZoomSection()
+        } else if className == "ZoomObject" {
+            let value = ZoomObject()
             try? value.fillValues(object)
             return (value, nil)
         } else {
@@ -1035,6 +1047,7 @@ class ClassRegistry {
         "AlphaReplaceEffect": "ImageTransformEffect",
         "ArcToPathSegment": "PathSegment",
         "ArrayElement": "MathElement",
+        "AudioFrame": "GeometryShape",
         "BarElement": "MathElement",
         "Base64InputFile": "InputFile",
         "BiLevelEffect": "ImageTransformEffect",
@@ -1042,15 +1055,20 @@ class ClassRegistry {
         "BlurImageEffect": "ImageTransformEffect",
         "BorderBoxElement": "MathElement",
         "BoxElement": "MathElement",
+        "BubbleChartDataPoint": "ScatterChartDataPoint",
+        "BubbleSeries": "XYSeries",
+        "Chart": "ShapeBase",
         "ClosePathSegment": "PathSegment",
         "ColorChangeEffect": "ImageTransformEffect",
         "ColorReplaceEffect": "ImageTransformEffect",
         "ColorScheme": "ResourceBase",
+        "Connector": "GeometryShape",
         "CubicBezierToPathSegment": "PathSegment",
         "DelimiterElement": "MathElement",
         "Document": "ResourceBase",
         "DocumentProperties": "ResourceBase",
         "DocumentProperty": "ResourceBase",
+        "DocumentReplaceResult": "Document",
         "DuotoneEffect": "ImageTransformEffect",
         "FileVersion": "StorageFile",
         "FillOverlayImageEffect": "ImageTransformEffect",
@@ -1058,14 +1076,19 @@ class ClassRegistry {
         "FormatScheme": "ResourceBase",
         "FractionElement": "MathElement",
         "FunctionElement": "MathElement",
+        "GeometryShape": "ShapeBase",
+        "GifExportOptions": "ImageExportOptionsBase",
         "GradientFill": "FillFormat",
+        "GraphicalObject": "ShapeBase",
         "GrayScaleEffect": "ImageTransformEffect",
+        "GroupShape": "ShapeBase",
         "GroupingCharacterElement": "MathElement",
         "HeaderFooter": "ResourceBase",
         "HslEffect": "ImageTransformEffect",
         "Html5ExportOptions": "ExportOptions",
         "HtmlExportOptions": "ExportOptions",
         "Image": "ResourceBase",
+        "ImageExportOptions": "ImageExportOptionsBase",
         "ImageExportOptionsBase": "ExportOptions",
         "Images": "ResourceBase",
         "LayoutSlide": "ResourceBase",
@@ -1073,6 +1096,7 @@ class ClassRegistry {
         "LeftSubSuperscriptElement": "MathElement",
         "LimitElement": "MathElement",
         "LineToPathSegment": "PathSegment",
+        "Literals": "DataSource",
         "LuminanceEffect": "ImageTransformEffect",
         "MasterSlide": "ResourceBase",
         "MasterSlides": "ResourceBase",
@@ -1083,6 +1107,7 @@ class ClassRegistry {
         "NoFill": "FillFormat",
         "NotesSlide": "ResourceBase",
         "NotesSlideHeaderFooter": "ResourceBase",
+        "OleObjectFrame": "ShapeBase",
         "OneValueChartDataPoint": "DataPoint",
         "OneValueSeries": "Series",
         "Paragraph": "ResourceBase",
@@ -1092,6 +1117,7 @@ class ClassRegistry {
         "PatternFill": "FillFormat",
         "PdfExportOptions": "ExportOptions",
         "PictureFill": "FillFormat",
+        "PictureFrame": "GeometryShape",
         "Placeholder": "ResourceBase",
         "Placeholders": "ResourceBase",
         "Portion": "ResourceBase",
@@ -1112,8 +1138,11 @@ class ClassRegistry {
         "SaveShape": "Task",
         "SaveSlide": "Task",
         "ScatterChartDataPoint": "DataPoint",
+        "ScatterSeries": "XYSeries",
         "Section": "ResourceBase",
+        "SectionZoomFrame": "ZoomObject",
         "Sections": "ResourceBase",
+        "Shape": "GeometryShape",
         "ShapeBase": "ResourceBase",
         "Shapes": "ResourceBase",
         "Slide": "ResourceBase",
@@ -1123,51 +1152,36 @@ class ClassRegistry {
         "SlideComments": "ResourceBase",
         "SlideModernComment": "SlideCommentBase",
         "SlideProperties": "ResourceBase",
+        "SlideReplaceResult": "Slide",
         "SlideShowProperties": "ResourceBase",
         "Slides": "ResourceBase",
+        "SmartArt": "ShapeBase",
+        "SmartArtShape": "GeometryShape",
         "SolidFill": "FillFormat",
         "SplitDocumentResult": "ResourceBase",
         "SubscriptElement": "MathElement",
+        "SummaryZoomFrame": "ShapeBase",
+        "SummaryZoomSection": "SectionZoomFrame",
         "SuperscriptElement": "MathElement",
         "SvgExportOptions": "ExportOptions",
         "SwfExportOptions": "ExportOptions",
+        "Table": "ShapeBase",
         "TextElement": "MathElement",
         "TextItems": "ResourceBase",
         "Theme": "ResourceBase",
+        "TiffExportOptions": "ImageExportOptionsBase",
         "TintEffect": "ImageTransformEffect",
         "UpdateBackground": "Task",
         "UpdateShape": "Task",
         "VideoExportOptions": "ExportOptions",
+        "VideoFrame": "GeometryShape",
         "ViewProperties": "ResourceBase",
+        "Workbook": "DataSource",
         "XYSeries": "Series",
         "XamlExportOptions": "ExportOptions",
         "XpsExportOptions": "ExportOptions",
-        "BubbleChartDataPoint": "ScatterChartDataPoint",
-        "BubbleSeries": "XYSeries",
-        "Chart": "ShapeBase",
-        "DocumentReplaceResult": "Document",
-        "GeometryShape": "ShapeBase",
-        "GifExportOptions": "ImageExportOptionsBase",
-        "GraphicalObject": "ShapeBase",
-        "GroupShape": "ShapeBase",
-        "ImageExportOptions": "ImageExportOptionsBase",
-        "OleObjectFrame": "ShapeBase",
-        "ScatterSeries": "XYSeries",
-        "SlideReplaceResult": "Slide",
-        "SmartArt": "ShapeBase",
-        "SummaryZoomFrame": "ShapeBase",
-        "Table": "ShapeBase",
-        "TiffExportOptions": "ImageExportOptionsBase",
-        "ZoomObject": "ShapeBase",
-        "AudioFrame": "GeometryShape",
-        "Connector": "GeometryShape",
-        "PictureFrame": "GeometryShape",
-        "SectionZoomFrame": "ZoomObject",
-        "Shape": "GeometryShape",
-        "SmartArtShape": "GeometryShape",
-        "VideoFrame": "GeometryShape",
         "ZoomFrame": "ZoomObject",
-        "SummaryZoomSection": "SectionZoomFrame",
+        "ZoomObject": "ShapeBase",
     ]
 
     class func getTypeDeterminers(_ className: String) -> [String:String]? {
@@ -1208,6 +1222,8 @@ class ClassRegistry {
         typeDeterminers["ArcToPathSegment"]!["Type"] = "ArcTo"
         typeDeterminers["ArrayElement"] = [ : ]
         typeDeterminers["ArrayElement"]!["Type"] = "Array"
+        typeDeterminers["AudioFrame"] = [ : ]
+        typeDeterminers["AudioFrame"]!["Type"] = "AudioFrame"
         typeDeterminers["BarElement"] = [ : ]
         typeDeterminers["BarElement"]!["Type"] = "Bar"
         typeDeterminers["Base64InputFile"] = [ : ]
@@ -1222,6 +1238,11 @@ class ClassRegistry {
         typeDeterminers["BorderBoxElement"]!["Type"] = "BorderBox"
         typeDeterminers["BoxElement"] = [ : ]
         typeDeterminers["BoxElement"]!["Type"] = "Box"
+        typeDeterminers["BubbleChartDataPoint"] = [ : ]
+        typeDeterminers["BubbleSeries"] = [ : ]
+        typeDeterminers["BubbleSeries"]!["DataPointType"] = "Bubble"
+        typeDeterminers["Chart"] = [ : ]
+        typeDeterminers["Chart"]!["Type"] = "Chart"
         typeDeterminers["ClosePathSegment"] = [ : ]
         typeDeterminers["ClosePathSegment"]!["Type"] = "Close"
         typeDeterminers["ColorChangeEffect"] = [ : ]
@@ -1229,6 +1250,8 @@ class ClassRegistry {
         typeDeterminers["ColorReplaceEffect"] = [ : ]
         typeDeterminers["ColorReplaceEffect"]!["Type"] = "ColorReplace"
         typeDeterminers["ColorScheme"] = [ : ]
+        typeDeterminers["Connector"] = [ : ]
+        typeDeterminers["Connector"]!["Type"] = "Connector"
         typeDeterminers["CubicBezierToPathSegment"] = [ : ]
         typeDeterminers["CubicBezierToPathSegment"]!["Type"] = "CubicBezierTo"
         typeDeterminers["DelimiterElement"] = [ : ]
@@ -1236,6 +1259,7 @@ class ClassRegistry {
         typeDeterminers["Document"] = [ : ]
         typeDeterminers["DocumentProperties"] = [ : ]
         typeDeterminers["DocumentProperty"] = [ : ]
+        typeDeterminers["DocumentReplaceResult"] = [ : ]
         typeDeterminers["DuotoneEffect"] = [ : ]
         typeDeterminers["DuotoneEffect"]!["Type"] = "Duotone"
         typeDeterminers["FileVersion"] = [ : ]
@@ -1247,10 +1271,17 @@ class ClassRegistry {
         typeDeterminers["FractionElement"]!["Type"] = "Fraction"
         typeDeterminers["FunctionElement"] = [ : ]
         typeDeterminers["FunctionElement"]!["Type"] = "Function"
+        typeDeterminers["GeometryShape"] = [ : ]
+        typeDeterminers["GifExportOptions"] = [ : ]
+        typeDeterminers["GifExportOptions"]!["Format"] = "gif"
         typeDeterminers["GradientFill"] = [ : ]
         typeDeterminers["GradientFill"]!["Type"] = "Gradient"
+        typeDeterminers["GraphicalObject"] = [ : ]
+        typeDeterminers["GraphicalObject"]!["Type"] = "GraphicalObject"
         typeDeterminers["GrayScaleEffect"] = [ : ]
         typeDeterminers["GrayScaleEffect"]!["Type"] = "GrayScale"
+        typeDeterminers["GroupShape"] = [ : ]
+        typeDeterminers["GroupShape"]!["Type"] = "GroupShape"
         typeDeterminers["GroupingCharacterElement"] = [ : ]
         typeDeterminers["GroupingCharacterElement"]!["Type"] = "GroupingCharacter"
         typeDeterminers["HeaderFooter"] = [ : ]
@@ -1261,6 +1292,8 @@ class ClassRegistry {
         typeDeterminers["HtmlExportOptions"] = [ : ]
         typeDeterminers["HtmlExportOptions"]!["Format"] = "html"
         typeDeterminers["Image"] = [ : ]
+        typeDeterminers["ImageExportOptions"] = [ : ]
+        typeDeterminers["ImageExportOptions"]!["Format"] = "image"
         typeDeterminers["ImageExportOptionsBase"] = [ : ]
         typeDeterminers["Images"] = [ : ]
         typeDeterminers["LayoutSlide"] = [ : ]
@@ -1271,6 +1304,8 @@ class ClassRegistry {
         typeDeterminers["LimitElement"]!["Type"] = "Limit"
         typeDeterminers["LineToPathSegment"] = [ : ]
         typeDeterminers["LineToPathSegment"]!["Type"] = "LineTo"
+        typeDeterminers["Literals"] = [ : ]
+        typeDeterminers["Literals"]!["Type"] = "Literals"
         typeDeterminers["LuminanceEffect"] = [ : ]
         typeDeterminers["LuminanceEffect"]!["Type"] = "Luminance"
         typeDeterminers["MasterSlide"] = [ : ]
@@ -1287,6 +1322,8 @@ class ClassRegistry {
         typeDeterminers["NoFill"]!["Type"] = "NoFill"
         typeDeterminers["NotesSlide"] = [ : ]
         typeDeterminers["NotesSlideHeaderFooter"] = [ : ]
+        typeDeterminers["OleObjectFrame"] = [ : ]
+        typeDeterminers["OleObjectFrame"]!["Type"] = "OleObjectFrame"
         typeDeterminers["OneValueChartDataPoint"] = [ : ]
         typeDeterminers["OneValueSeries"] = [ : ]
         typeDeterminers["OneValueSeries"]!["DataPointType"] = "OneValue"
@@ -1302,6 +1339,8 @@ class ClassRegistry {
         typeDeterminers["PdfExportOptions"]!["Format"] = "pdf"
         typeDeterminers["PictureFill"] = [ : ]
         typeDeterminers["PictureFill"]!["Type"] = "Picture"
+        typeDeterminers["PictureFrame"] = [ : ]
+        typeDeterminers["PictureFrame"]!["Type"] = "PictureFrame"
         typeDeterminers["Placeholder"] = [ : ]
         typeDeterminers["Placeholders"] = [ : ]
         typeDeterminers["Portion"] = [ : ]
@@ -1336,8 +1375,14 @@ class ClassRegistry {
         typeDeterminers["SaveSlide"] = [ : ]
         typeDeterminers["SaveSlide"]!["Type"] = "SaveSlide"
         typeDeterminers["ScatterChartDataPoint"] = [ : ]
+        typeDeterminers["ScatterSeries"] = [ : ]
+        typeDeterminers["ScatterSeries"]!["DataPointType"] = "Scatter"
         typeDeterminers["Section"] = [ : ]
+        typeDeterminers["SectionZoomFrame"] = [ : ]
+        typeDeterminers["SectionZoomFrame"]!["Type"] = "SectionZoomFrame"
         typeDeterminers["Sections"] = [ : ]
+        typeDeterminers["Shape"] = [ : ]
+        typeDeterminers["Shape"]!["Type"] = "Shape"
         typeDeterminers["ShapeBase"] = [ : ]
         typeDeterminers["Shapes"] = [ : ]
         typeDeterminers["Slide"] = [ : ]
@@ -1349,23 +1394,36 @@ class ClassRegistry {
         typeDeterminers["SlideModernComment"] = [ : ]
         typeDeterminers["SlideModernComment"]!["Type"] = "Modern"
         typeDeterminers["SlideProperties"] = [ : ]
+        typeDeterminers["SlideReplaceResult"] = [ : ]
         typeDeterminers["SlideShowProperties"] = [ : ]
         typeDeterminers["Slides"] = [ : ]
+        typeDeterminers["SmartArt"] = [ : ]
+        typeDeterminers["SmartArt"]!["Type"] = "SmartArt"
+        typeDeterminers["SmartArtShape"] = [ : ]
+        typeDeterminers["SmartArtShape"]!["Type"] = "SmartArtShape"
         typeDeterminers["SolidFill"] = [ : ]
         typeDeterminers["SolidFill"]!["Type"] = "Solid"
         typeDeterminers["SplitDocumentResult"] = [ : ]
         typeDeterminers["SubscriptElement"] = [ : ]
         typeDeterminers["SubscriptElement"]!["Type"] = "SubscriptElement"
+        typeDeterminers["SummaryZoomFrame"] = [ : ]
+        typeDeterminers["SummaryZoomFrame"]!["Type"] = "SummaryZoomFrame"
+        typeDeterminers["SummaryZoomSection"] = [ : ]
+        typeDeterminers["SummaryZoomSection"]!["Type"] = "SummaryZoomSection"
         typeDeterminers["SuperscriptElement"] = [ : ]
         typeDeterminers["SuperscriptElement"]!["Type"] = "SuperscriptElement"
         typeDeterminers["SvgExportOptions"] = [ : ]
         typeDeterminers["SvgExportOptions"]!["Format"] = "svg"
         typeDeterminers["SwfExportOptions"] = [ : ]
         typeDeterminers["SwfExportOptions"]!["Format"] = "swf"
+        typeDeterminers["Table"] = [ : ]
+        typeDeterminers["Table"]!["Type"] = "Table"
         typeDeterminers["TextElement"] = [ : ]
         typeDeterminers["TextElement"]!["Type"] = "Text"
         typeDeterminers["TextItems"] = [ : ]
         typeDeterminers["Theme"] = [ : ]
+        typeDeterminers["TiffExportOptions"] = [ : ]
+        typeDeterminers["TiffExportOptions"]!["Format"] = "tiff"
         typeDeterminers["TintEffect"] = [ : ]
         typeDeterminers["TintEffect"]!["Type"] = "Tint"
         typeDeterminers["UpdateBackground"] = [ : ]
@@ -1374,58 +1432,18 @@ class ClassRegistry {
         typeDeterminers["UpdateShape"]!["Type"] = "UpdateShape"
         typeDeterminers["VideoExportOptions"] = [ : ]
         typeDeterminers["VideoExportOptions"]!["Format"] = "mpeg4"
+        typeDeterminers["VideoFrame"] = [ : ]
+        typeDeterminers["VideoFrame"]!["Type"] = "VideoFrame"
         typeDeterminers["ViewProperties"] = [ : ]
+        typeDeterminers["Workbook"] = [ : ]
+        typeDeterminers["Workbook"]!["Type"] = "Workbook"
         typeDeterminers["XYSeries"] = [ : ]
         typeDeterminers["XamlExportOptions"] = [ : ]
         typeDeterminers["XamlExportOptions"]!["Format"] = "xaml"
         typeDeterminers["XpsExportOptions"] = [ : ]
         typeDeterminers["XpsExportOptions"]!["Format"] = "xps"
-        typeDeterminers["BubbleChartDataPoint"] = [ : ]
-        typeDeterminers["BubbleSeries"] = [ : ]
-        typeDeterminers["BubbleSeries"]!["DataPointType"] = "Bubble"
-        typeDeterminers["Chart"] = [ : ]
-        typeDeterminers["Chart"]!["Type"] = "Chart"
-        typeDeterminers["DocumentReplaceResult"] = [ : ]
-        typeDeterminers["GeometryShape"] = [ : ]
-        typeDeterminers["GifExportOptions"] = [ : ]
-        typeDeterminers["GifExportOptions"]!["Format"] = "gif"
-        typeDeterminers["GraphicalObject"] = [ : ]
-        typeDeterminers["GraphicalObject"]!["Type"] = "GraphicalObject"
-        typeDeterminers["GroupShape"] = [ : ]
-        typeDeterminers["GroupShape"]!["Type"] = "GroupShape"
-        typeDeterminers["ImageExportOptions"] = [ : ]
-        typeDeterminers["ImageExportOptions"]!["Format"] = "image"
-        typeDeterminers["OleObjectFrame"] = [ : ]
-        typeDeterminers["OleObjectFrame"]!["Type"] = "OleObjectFrame"
-        typeDeterminers["ScatterSeries"] = [ : ]
-        typeDeterminers["ScatterSeries"]!["DataPointType"] = "Scatter"
-        typeDeterminers["SlideReplaceResult"] = [ : ]
-        typeDeterminers["SmartArt"] = [ : ]
-        typeDeterminers["SmartArt"]!["Type"] = "SmartArt"
-        typeDeterminers["SummaryZoomFrame"] = [ : ]
-        typeDeterminers["SummaryZoomFrame"]!["Type"] = "SummaryZoomFrame"
-        typeDeterminers["Table"] = [ : ]
-        typeDeterminers["Table"]!["Type"] = "Table"
-        typeDeterminers["TiffExportOptions"] = [ : ]
-        typeDeterminers["TiffExportOptions"]!["Format"] = "tiff"
-        typeDeterminers["ZoomObject"] = [ : ]
-        typeDeterminers["AudioFrame"] = [ : ]
-        typeDeterminers["AudioFrame"]!["Type"] = "AudioFrame"
-        typeDeterminers["Connector"] = [ : ]
-        typeDeterminers["Connector"]!["Type"] = "Connector"
-        typeDeterminers["PictureFrame"] = [ : ]
-        typeDeterminers["PictureFrame"]!["Type"] = "PictureFrame"
-        typeDeterminers["SectionZoomFrame"] = [ : ]
-        typeDeterminers["SectionZoomFrame"]!["Type"] = "SectionZoomFrame"
-        typeDeterminers["Shape"] = [ : ]
-        typeDeterminers["Shape"]!["Type"] = "Shape"
-        typeDeterminers["SmartArtShape"] = [ : ]
-        typeDeterminers["SmartArtShape"]!["Type"] = "SmartArtShape"
-        typeDeterminers["VideoFrame"] = [ : ]
-        typeDeterminers["VideoFrame"]!["Type"] = "VideoFrame"
         typeDeterminers["ZoomFrame"] = [ : ]
         typeDeterminers["ZoomFrame"]!["Type"] = "ZoomFrame"
-        typeDeterminers["SummaryZoomSection"] = [ : ]
-        typeDeterminers["SummaryZoomSection"]!["Type"] = "SummaryZoomSection"
+        typeDeterminers["ZoomObject"] = [ : ]
     }
 }

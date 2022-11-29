@@ -63,6 +63,10 @@ public class SvgExportOptions: ExportOptions {
     public var deletePicturesCroppedAreas: Bool?
     /** Determines a way of handling externally loaded fonts. */
     public var externalFontsHandling: ExternalFontsHandling?
+    /** Determines whether the text frame will be included in a rendering area or not. */
+    public var useFrameSize: Bool?
+    /** Determines whether to perform the specified rotation of the shape when rendering or not. */
+    public var useFrameRotation: Bool?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
@@ -114,9 +118,17 @@ public class SvgExportOptions: ExportOptions {
                 }
             }
         }
+        let useFrameSizeValue = source["useFrameSize"] ?? source["UseFrameSize"]
+        if useFrameSizeValue != nil {
+            self.useFrameSize = useFrameSizeValue! as? Bool
+        }
+        let useFrameRotationValue = source["useFrameRotation"] ?? source["UseFrameRotation"]
+        if useFrameRotationValue != nil {
+            self.useFrameRotation = useFrameRotationValue! as? Bool
+        }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil) {
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, vectorizeText: Bool? = nil, metafileRasterizationDpi: Int? = nil, disable3DText: Bool? = nil, disableGradientSplit: Bool? = nil, disableLineEndCropping: Bool? = nil, jpegQuality: Int? = nil, picturesCompression: PicturesCompression? = nil, deletePicturesCroppedAreas: Bool? = nil, externalFontsHandling: ExternalFontsHandling? = nil, useFrameSize: Bool? = nil, useFrameRotation: Bool? = nil) {
         super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format)
         self.vectorizeText = vectorizeText
         self.metafileRasterizationDpi = metafileRasterizationDpi
@@ -127,6 +139,8 @@ public class SvgExportOptions: ExportOptions {
         self.picturesCompression = picturesCompression
         self.deletePicturesCroppedAreas = deletePicturesCroppedAreas
         self.externalFontsHandling = externalFontsHandling
+        self.useFrameSize = useFrameSize
+        self.useFrameRotation = useFrameRotation
         self.format = "svg"
     }
 
@@ -140,6 +154,8 @@ public class SvgExportOptions: ExportOptions {
         case picturesCompression
         case deletePicturesCroppedAreas
         case externalFontsHandling
+        case useFrameSize
+        case useFrameRotation
     }
 
     required init(from decoder: Decoder) throws {
@@ -154,6 +170,8 @@ public class SvgExportOptions: ExportOptions {
         picturesCompression = try? values.decode(PicturesCompression.self, forKey: .picturesCompression)
         deletePicturesCroppedAreas = try? values.decode(Bool.self, forKey: .deletePicturesCroppedAreas)
         externalFontsHandling = try? values.decode(ExternalFontsHandling.self, forKey: .externalFontsHandling)
+        useFrameSize = try? values.decode(Bool.self, forKey: .useFrameSize)
+        useFrameRotation = try? values.decode(Bool.self, forKey: .useFrameRotation)
         self.format = "svg"
     }
 
@@ -186,6 +204,12 @@ public class SvgExportOptions: ExportOptions {
         }
         if (externalFontsHandling != nil) {
             try? container.encode(externalFontsHandling, forKey: .externalFontsHandling)
+        }
+        if (useFrameSize != nil) {
+            try? container.encode(useFrameSize, forKey: .useFrameSize)
+        }
+        if (useFrameRotation != nil) {
+            try? container.encode(useFrameRotation, forKey: .useFrameRotation)
         }
     }
 

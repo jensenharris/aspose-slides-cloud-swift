@@ -25,12 +25,31 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.11.0"
+
+/** Represents string or double literals data source. */
+public class Literals: DataSource {
+
+
+    override func fillValues(_ source: [String:Any]) throws {
+        try super.fillValues(source)
+    }
+
+    public override init(type: ModelType? = nil) {
+        super.init(type: type)
+        self.type = ModelType.literals
+    }
+
+    required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        self.type = ModelType.literals
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+    }
+
 }
+

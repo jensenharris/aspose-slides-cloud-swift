@@ -25,12 +25,39 @@
  * --------------------------------------------------------------------------------------------------------------------
  */
 
+
 import Foundation
 
-open class Configuration {
-	
-	// This value is used to configure the date formatter that is used to serialize dates into JSON format. 
-	// You must set it prior to encoding any dates, and it will only be read once. 
-    public static var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-    public static let apiVersion = "22.11.0"
+
+/** Data source for chart values. */
+public class DataSource: Codable {
+
+    public enum ModelType: String, Codable { 
+        case workbook = "Workbook"
+        case literals = "Literals"
+    }
+    public var type: ModelType?
+
+    func fillValues(_ source: [String:Any]) throws {
+        let typeValue = source["type"] ?? source["Type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
+    }
+
+    public init(type: ModelType? = nil) {
+        self.type = type
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case type
+    }
+
 }
+

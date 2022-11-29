@@ -125,6 +125,8 @@ public class Series: Codable {
     public var type: ModelType?
     /** Series name. */
     public var name: String?
+    /** Series name data source. */
+    public var dataSourceForSeriesName: DataSource?
     /** True if each data marker in the series has a different color. */
     public var isColorVaried: Bool?
     /** Invert solid color for the series. */
@@ -163,6 +165,16 @@ public class Series: Codable {
         let nameValue = source["name"] ?? source["Name"]
         if nameValue != nil {
             self.name = nameValue! as? String
+        }
+        let dataSourceForSeriesNameValue = source["dataSourceForSeriesName"] ?? source["DataSourceForSeriesName"]
+        if dataSourceForSeriesNameValue != nil {
+            let dataSourceForSeriesNameDictionaryValue = dataSourceForSeriesNameValue! as? [String:Any]
+            if dataSourceForSeriesNameDictionaryValue != nil {
+                let (dataSourceForSeriesNameInstance, error) = ClassRegistry.getClassFromDictionary(DataSource.self, dataSourceForSeriesNameDictionaryValue!)
+                if error == nil && dataSourceForSeriesNameInstance != nil {
+                    self.dataSourceForSeriesName = dataSourceForSeriesNameInstance! as? DataSource
+                }
+            }
         }
         let isColorVariedValue = source["isColorVaried"] ?? source["IsColorVaried"]
         if isColorVariedValue != nil {
@@ -244,9 +256,10 @@ public class Series: Codable {
         }
     }
 
-    public init(type: ModelType? = nil, name: String? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil) {
+    public init(type: ModelType? = nil, name: String? = nil, dataSourceForSeriesName: DataSource? = nil, isColorVaried: Bool? = nil, invertedSolidFillColor: String? = nil, smooth: Bool? = nil, plotOnSecondAxis: Bool? = nil, order: Int? = nil, invertIfNegative: Bool? = nil, explosion: Int? = nil, marker: SeriesMarker? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, lineFormat: LineFormat? = nil, dataPointType: DataPointType? = nil) {
         self.type = type
         self.name = name
+        self.dataSourceForSeriesName = dataSourceForSeriesName
         self.isColorVaried = isColorVaried
         self.invertedSolidFillColor = invertedSolidFillColor
         self.smooth = smooth
@@ -264,6 +277,7 @@ public class Series: Codable {
     private enum CodingKeys: String, CodingKey {
         case type
         case name
+        case dataSourceForSeriesName
         case isColorVaried
         case invertedSolidFillColor
         case smooth

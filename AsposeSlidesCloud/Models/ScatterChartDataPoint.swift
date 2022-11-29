@@ -36,6 +36,10 @@ public class ScatterChartDataPoint: DataPoint {
     public var xValue: Double?
     /** Y-value */
     public var yValue: Double?
+    /** Spreadsheet formula in A1-style. */
+    public var xValueFormula: String?
+    /** Spreadsheet formula in A1-style. */
+    public var yValueFormula: String?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
@@ -47,17 +51,29 @@ public class ScatterChartDataPoint: DataPoint {
         if yValueValue != nil {
             self.yValue = yValueValue! as? Double
         }
+        let xValueFormulaValue = source["xValueFormula"] ?? source["XValueFormula"]
+        if xValueFormulaValue != nil {
+            self.xValueFormula = xValueFormulaValue! as? String
+        }
+        let yValueFormulaValue = source["yValueFormula"] ?? source["YValueFormula"]
+        if yValueFormulaValue != nil {
+            self.yValueFormula = yValueFormulaValue! as? String
+        }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil) {
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil, xValueFormula: String? = nil, yValueFormula: String? = nil) {
         super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat)
         self.xValue = xValue
         self.yValue = yValue
+        self.xValueFormula = xValueFormula
+        self.yValueFormula = yValueFormula
     }
 
     private enum CodingKeys: String, CodingKey {
         case xValue
         case yValue
+        case xValueFormula
+        case yValueFormula
     }
 
     required init(from decoder: Decoder) throws {
@@ -65,6 +81,8 @@ public class ScatterChartDataPoint: DataPoint {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         xValue = try? values.decode(Double.self, forKey: .xValue)
         yValue = try? values.decode(Double.self, forKey: .yValue)
+        xValueFormula = try? values.decode(String.self, forKey: .xValueFormula)
+        yValueFormula = try? values.decode(String.self, forKey: .yValueFormula)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -75,6 +93,12 @@ public class ScatterChartDataPoint: DataPoint {
         }
         if (yValue != nil) {
             try? container.encode(yValue, forKey: .yValue)
+        }
+        if (xValueFormula != nil) {
+            try? container.encode(xValueFormula, forKey: .xValueFormula)
+        }
+        if (yValueFormula != nil) {
+            try? container.encode(yValueFormula, forKey: .yValueFormula)
         }
     }
 
