@@ -61,12 +61,13 @@ public class OneValueChartDataPoint: DataPoint {
         }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, value: Double? = nil, valueFormula: String? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
-        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat)
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, type: ModelType? = nil, value: Double? = nil, valueFormula: String? = nil, setAsTotal: Bool? = nil, invertIfNegative: Bool? = nil) {
+        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, type: type)
         self.value = value
         self.valueFormula = valueFormula
         self.setAsTotal = setAsTotal
         self.invertIfNegative = invertIfNegative
+        self.type = ModelType.oneValue
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -83,6 +84,7 @@ public class OneValueChartDataPoint: DataPoint {
         valueFormula = try? values.decode(String.self, forKey: .valueFormula)
         setAsTotal = try? values.decode(Bool.self, forKey: .setAsTotal)
         invertIfNegative = try? values.decode(Bool.self, forKey: .invertIfNegative)
+        self.type = ModelType.oneValue
     }
 
     public override func encode(to encoder: Encoder) throws {

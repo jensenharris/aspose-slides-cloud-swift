@@ -61,12 +61,13 @@ public class ScatterChartDataPoint: DataPoint {
         }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil, xValueFormula: String? = nil, yValueFormula: String? = nil) {
-        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat)
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, type: ModelType? = nil, xValue: Double? = nil, yValue: Double? = nil, xValueFormula: String? = nil, yValueFormula: String? = nil) {
+        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, type: type)
         self.xValue = xValue
         self.yValue = yValue
         self.xValueFormula = xValueFormula
         self.yValueFormula = yValueFormula
+        self.type = ModelType.scatter
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -83,6 +84,7 @@ public class ScatterChartDataPoint: DataPoint {
         yValue = try? values.decode(Double.self, forKey: .yValue)
         xValueFormula = try? values.decode(String.self, forKey: .xValueFormula)
         yValueFormula = try? values.decode(String.self, forKey: .yValueFormula)
+        self.type = ModelType.scatter
     }
 
     public override func encode(to encoder: Encoder) throws {

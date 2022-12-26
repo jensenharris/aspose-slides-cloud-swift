@@ -32,6 +32,11 @@ import Foundation
 /** Data point. */
 public class DataPoint: Codable {
 
+    public enum ModelType: String, Codable { 
+        case oneValue = "OneValue"
+        case scatter = "Scatter"
+        case bubble = "Bubble"
+    }
     /** Gets or sets the fill format. */
     public var fillFormat: FillFormat?
     /** Gets or sets the effect format. */
@@ -40,6 +45,7 @@ public class DataPoint: Codable {
     public var threeDFormat: ThreeDFormat?
     /** Gets or sets the line format. */
     public var lineFormat: LineFormat?
+    public var type: ModelType?
 
     func fillValues(_ source: [String:Any]) throws {
         let fillFormatValue = source["fillFormat"] ?? source["FillFormat"]
@@ -82,13 +88,24 @@ public class DataPoint: Codable {
                 }
             }
         }
+        let typeValue = source["type"] ?? source["Type"]
+        if typeValue != nil {
+            let typeStringValue = typeValue! as? String
+            if typeStringValue != nil {
+                let typeEnumValue = ModelType(rawValue: typeStringValue!)
+                if typeEnumValue != nil {
+                    self.type = typeEnumValue!
+                }
+            }
+        }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil) {
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, type: ModelType? = nil) {
         self.fillFormat = fillFormat
         self.effectFormat = effectFormat
         self.threeDFormat = threeDFormat
         self.lineFormat = lineFormat
+        self.type = type
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -96,6 +113,7 @@ public class DataPoint: Codable {
         case effectFormat
         case threeDFormat
         case lineFormat
+        case type
     }
 
 }

@@ -1239,6 +1239,7 @@ class ClassRegistry {
         typeDeterminers["BoxElement"] = [ : ]
         typeDeterminers["BoxElement"]!["Type"] = "Box"
         typeDeterminers["BubbleChartDataPoint"] = [ : ]
+        typeDeterminers["BubbleChartDataPoint"]!["Type"] = "Bubble"
         typeDeterminers["BubbleSeries"] = [ : ]
         typeDeterminers["BubbleSeries"]!["DataPointType"] = "Bubble"
         typeDeterminers["Chart"] = [ : ]
@@ -1325,6 +1326,7 @@ class ClassRegistry {
         typeDeterminers["OleObjectFrame"] = [ : ]
         typeDeterminers["OleObjectFrame"]!["Type"] = "OleObjectFrame"
         typeDeterminers["OneValueChartDataPoint"] = [ : ]
+        typeDeterminers["OneValueChartDataPoint"]!["Type"] = "OneValue"
         typeDeterminers["OneValueSeries"] = [ : ]
         typeDeterminers["OneValueSeries"]!["DataPointType"] = "OneValue"
         typeDeterminers["Paragraph"] = [ : ]
@@ -1375,6 +1377,7 @@ class ClassRegistry {
         typeDeterminers["SaveSlide"] = [ : ]
         typeDeterminers["SaveSlide"]!["Type"] = "SaveSlide"
         typeDeterminers["ScatterChartDataPoint"] = [ : ]
+        typeDeterminers["ScatterChartDataPoint"]!["Type"] = "Scatter"
         typeDeterminers["ScatterSeries"] = [ : ]
         typeDeterminers["ScatterSeries"]!["DataPointType"] = "Scatter"
         typeDeterminers["Section"] = [ : ]

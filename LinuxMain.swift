@@ -27,7 +27,9 @@
 
 import XCTest
 import AsposeSlidesCloudTests
+import SwiftTestReporter
 
+_ = TestObserver()
 var tests = [XCTestCaseEntry]()
 tests += AsposeSlidesCloudTests.allTests()
 XCTMain(tests)

@@ -12,7 +12,8 @@ let package = Package(
             targets: ["AsposeSlidesCloud"]),
     ],
     dependencies: [
-		.package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0"))
+		.package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMajor(from: "0.9.0")),
+                .package(url: "https://github.com/allegro/swift-junit.git", from: "2.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -22,7 +23,7 @@ let package = Package(
             path: "AsposeSlidesCloud"),
         .testTarget(
             name: "AsposeSlidesCloudTests",
-            dependencies: ["AsposeSlidesCloud","ZIPFoundation"],
+            dependencies: ["AsposeSlidesCloud","ZIPFoundation","SwiftTestReporter"],
             path: "AsposeSlidesCloudTests"),
     ]
 )

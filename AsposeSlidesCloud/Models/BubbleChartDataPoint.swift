@@ -49,10 +49,11 @@ public class BubbleChartDataPoint: ScatterChartDataPoint {
         }
     }
 
-    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, xValue: Double? = nil, yValue: Double? = nil, xValueFormula: String? = nil, yValueFormula: String? = nil, bubbleSize: Double? = nil, bubbleSizeFormula: String? = nil) {
-        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, xValue: xValue, yValue: yValue, xValueFormula: xValueFormula, yValueFormula: yValueFormula)
+    public init(fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, type: ModelType? = nil, xValue: Double? = nil, yValue: Double? = nil, xValueFormula: String? = nil, yValueFormula: String? = nil, bubbleSize: Double? = nil, bubbleSizeFormula: String? = nil) {
+        super.init(fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, type: type, xValue: xValue, yValue: yValue, xValueFormula: xValueFormula, yValueFormula: yValueFormula)
         self.bubbleSize = bubbleSize
         self.bubbleSizeFormula = bubbleSizeFormula
+        self.type = ModelType.bubble
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -65,6 +66,7 @@ public class BubbleChartDataPoint: ScatterChartDataPoint {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         bubbleSize = try? values.decode(Double.self, forKey: .bubbleSize)
         bubbleSizeFormula = try? values.decode(String.self, forKey: .bubbleSizeFormula)
+        self.type = ModelType.bubble
     }
 
     public override func encode(to encoder: Encoder) throws {
