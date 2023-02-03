@@ -212,6 +212,104 @@ open class SlidesAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
+     Compresses embedded fonts by removing unused characters.
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func compressEmbeddedFonts(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+        compressEmbeddedFontsWithRequestBuilder(name, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            if error == nil {
+                completion((), error)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+
+    /**
+     Compresses embedded fonts by removing unused characters.
+     - POST /slides/{name}/fonts/embedded/compress
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - parameter name: Document name.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Void> 
+     */
+    open class func compressEmbeddedFontsWithRequestBuilder(_ name: String, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Void> {
+        var methodPath = "/slides/{name}/fonts/embedded/compress"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Void>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getNonDecodableBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Compresses embedded fonts by removing unused characters.
+     - parameter document: Document data.
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func compressEmbeddedFontsOnline(_ document: Data, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        compressEmbeddedFontsOnlineWithRequestBuilder(document, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Compresses embedded fonts by removing unused characters.
+     - POST /slides/fonts/embedded/compress
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data.
+     - parameter password: Document password.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func compressEmbeddedFontsOnlineWithRequestBuilder(_ document: Data, _ password: String = "") -> RequestBuilder<Data> {
+        let methodPath = "/slides/fonts/embedded/compress"
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters: [String:Any]? = nil
+
+
+        var fileParams = [Data]()
+        fileParams.append(document)
+
+
+        let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+    }
+    /**
      * enum for parameter format
      */
     public enum Format_convert: String { 

@@ -52,6 +52,14 @@ class SlidesAPITests : XCTestCase {
         ("testAlignSpecialSlideShapesInvalidFolder", testAlignSpecialSlideShapesInvalidFolder),
         ("testAlignSpecialSlideShapesInvalidStorage", testAlignSpecialSlideShapesInvalidStorage),
         ("testAlignSpecialSlideShapesInvalidSubShape", testAlignSpecialSlideShapesInvalidSubShape),
+        ("testCompressEmbeddedFonts", testCompressEmbeddedFonts),
+        ("testCompressEmbeddedFontsInvalidName", testCompressEmbeddedFontsInvalidName),
+        ("testCompressEmbeddedFontsInvalidPassword", testCompressEmbeddedFontsInvalidPassword),
+        ("testCompressEmbeddedFontsInvalidFolder", testCompressEmbeddedFontsInvalidFolder),
+        ("testCompressEmbeddedFontsInvalidStorage", testCompressEmbeddedFontsInvalidStorage),
+        ("testCompressEmbeddedFontsOnline", testCompressEmbeddedFontsOnline),
+        ("testCompressEmbeddedFontsOnlineInvalidDocument", testCompressEmbeddedFontsOnlineInvalidDocument),
+        ("testCompressEmbeddedFontsOnlineInvalidPassword", testCompressEmbeddedFontsOnlineInvalidPassword),
         ("testConvert", testConvert),
         ("testConvertInvalidDocument", testConvertInvalidDocument),
         ("testConvertInvalidFormat", testConvertInvalidFormat),
@@ -2272,6 +2280,126 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("alignSpecialSlideShapes", "subShape", paramSubShape) { (response, error) -> Void in
             SlidesAPI.alignSpecialSlideShapes(paramName, paramSlideIndex, paramSlideType, paramAlignmentType, paramAlignToSlide, paramShapes, paramPassword, paramFolder, paramStorage, paramSubShape) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "alignSpecialSlideShapes", parameterName: "subShape", parameterValue: paramSubShape as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testCompressEmbeddedFonts() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFonts")
+        let paramName : String = TestUtils.getTestValue(functionName: "compressEmbeddedFonts", name: "name", type: "String")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "compressEmbeddedFonts", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "compressEmbeddedFonts", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "compressEmbeddedFonts", name: "storage", type: "String")
+        TestUtils.initialize("compressEmbeddedFonts") { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCompressEmbeddedFontsInvalidName() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFonts")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("compressEmbeddedFonts", "name", paramName) { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "compressEmbeddedFonts", parameterName: "name", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCompressEmbeddedFontsInvalidPassword() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFonts")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("compressEmbeddedFonts", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "compressEmbeddedFonts", parameterName: "password", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCompressEmbeddedFontsInvalidFolder() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFonts")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("compressEmbeddedFonts", "folder", paramFolder) { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "compressEmbeddedFonts", parameterName: "folder", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCompressEmbeddedFontsInvalidStorage() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFonts")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFonts", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("compressEmbeddedFonts", "storage", paramStorage) { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFonts(paramName, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "compressEmbeddedFonts", parameterName: "storage", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testCompressEmbeddedFontsOnline() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFontsOnline")
+        let paramDocument : Data = TestUtils.getTestValue(functionName: "compressEmbeddedFontsOnline", name: "document", type: "Data")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "compressEmbeddedFontsOnline", name: "password", type: "String")
+        TestUtils.initialize("compressEmbeddedFontsOnline") { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFontsOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCompressEmbeddedFontsOnlineInvalidDocument() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFontsOnline")
+        let invalidFieldName = "document"
+        let paramDocument : Data = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFontsOnline", name: "document", invalidFieldName: invalidFieldName, type: "Data")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFontsOnline", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("compressEmbeddedFontsOnline", "document", paramDocument) { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFontsOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "compressEmbeddedFontsOnline", parameterName: "document", parameterValue: paramDocument as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCompressEmbeddedFontsOnlineInvalidPassword() {
+        let expectation = self.expectation(description: "testcompressEmbeddedFontsOnline")
+        let invalidFieldName = "password"
+        let paramDocument : Data = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFontsOnline", name: "document", invalidFieldName: invalidFieldName, type: "Data")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "compressEmbeddedFontsOnline", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("compressEmbeddedFontsOnline", "password", paramPassword) { (response, error) -> Void in
+            SlidesAPI.compressEmbeddedFontsOnline(paramDocument, paramPassword) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "compressEmbeddedFontsOnline", parameterName: "password", parameterValue: paramPassword as Any)
                 expectation.fulfill()
             }
         }
