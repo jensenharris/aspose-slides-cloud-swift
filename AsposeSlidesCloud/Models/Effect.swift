@@ -294,6 +294,8 @@ public class Effect: Codable {
     public var repeatUntilEndSlide: Bool?
     /** Specifies if the effect will repeat until the next click. */
     public var repeatUntilNextClick: Bool?
+    /** This attribute specifies if the animation effect stops the previous sound. */
+    public var stopPreviousSound: Bool?
 
     func fillValues(_ source: [String:Any]) throws {
         let typeValue = source["type"] ?? source["Type"]
@@ -394,9 +396,13 @@ public class Effect: Codable {
         if repeatUntilNextClickValue != nil {
             self.repeatUntilNextClick = repeatUntilNextClickValue! as? Bool
         }
+        let stopPreviousSoundValue = source["stopPreviousSound"] ?? source["StopPreviousSound"]
+        if stopPreviousSoundValue != nil {
+            self.stopPreviousSound = stopPreviousSoundValue! as? Bool
+        }
     }
 
-    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil, repeatUntilEndSlide: Bool? = nil, repeatUntilNextClick: Bool? = nil) {
+    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil, repeatUntilEndSlide: Bool? = nil, repeatUntilNextClick: Bool? = nil, stopPreviousSound: Bool? = nil) {
         self.type = type
         self.subtype = subtype
         self.presetClassType = presetClassType
@@ -414,6 +420,7 @@ public class Effect: Codable {
         self.triggerDelayTime = triggerDelayTime
         self.repeatUntilEndSlide = repeatUntilEndSlide
         self.repeatUntilNextClick = repeatUntilNextClick
+        self.stopPreviousSound = stopPreviousSound
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -434,6 +441,7 @@ public class Effect: Codable {
         case triggerDelayTime
         case repeatUntilEndSlide
         case repeatUntilNextClick
+        case stopPreviousSound
     }
 
 }

@@ -97,6 +97,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -193,6 +194,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -250,6 +252,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -296,6 +299,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -382,6 +386,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -477,6 +482,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -536,6 +542,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -588,6 +595,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -648,6 +656,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -717,6 +726,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -787,6 +797,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -852,6 +863,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -912,6 +924,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -975,6 +988,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1038,6 +1052,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1104,6 +1119,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1167,6 +1183,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1229,6 +1246,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1283,6 +1301,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -1333,6 +1352,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1386,6 +1406,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         if image != nil {
             fileParams.append(image!)
         }
@@ -1439,6 +1460,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
         if image != nil {
             fileParams.append(image!)
@@ -1500,6 +1522,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1567,6 +1590,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1639,6 +1663,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1700,6 +1725,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         if data != nil {
             fileParams.append(data!)
         }
@@ -1765,6 +1791,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1833,6 +1860,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1896,6 +1924,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -1964,6 +1993,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2026,6 +2056,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2095,6 +2126,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2170,6 +2202,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2242,6 +2275,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2317,6 +2351,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2396,6 +2431,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2480,6 +2516,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2560,6 +2597,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2627,6 +2665,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2687,6 +2726,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -2748,6 +2788,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2809,6 +2850,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2870,6 +2912,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2934,6 +2977,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -2992,6 +3036,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3050,6 +3095,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3108,6 +3154,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3172,6 +3219,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3239,6 +3287,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3303,6 +3352,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3359,6 +3409,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3408,6 +3459,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -3463,6 +3515,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3521,6 +3574,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3575,6 +3629,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3624,6 +3679,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -3674,6 +3730,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3722,6 +3779,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3776,6 +3834,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3842,6 +3901,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3908,6 +3968,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -3979,6 +4040,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4048,6 +4110,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4105,6 +4168,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4151,6 +4215,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -4209,6 +4274,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4269,6 +4335,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4334,6 +4401,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4397,6 +4465,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4457,6 +4526,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4517,6 +4587,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4569,6 +4640,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -4626,6 +4698,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4693,6 +4766,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4764,6 +4838,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4837,6 +4912,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4910,6 +4986,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -4986,6 +5063,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5056,6 +5134,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5126,6 +5205,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5204,6 +5284,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5282,6 +5363,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5365,6 +5447,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5446,6 +5529,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5523,6 +5607,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5598,6 +5683,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5655,6 +5741,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5701,6 +5788,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -5756,6 +5844,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5805,6 +5894,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -5861,6 +5951,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -5910,6 +6001,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -5959,6 +6051,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6023,6 +6116,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6077,6 +6171,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6126,6 +6221,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -6187,6 +6283,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -6250,6 +6347,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6301,6 +6399,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6347,6 +6446,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -6405,6 +6505,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -6495,6 +6596,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6585,6 +6687,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -6650,6 +6753,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6741,6 +6845,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6836,6 +6941,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -6855,6 +6961,59 @@ open class SlidesAPI {
         let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
+     * enum for parameter format
+     */
+    public enum Format_downloadShapeFromDto: String { 
+        case jpeg = "Jpeg"
+        case png = "Png"
+        case gif = "Gif"
+        case bmp = "Bmp"
+        case tiff = "Tiff"
+        case svg = "Svg"
+    }
+
+    /**
+     Creates the shape from the DTO and returns the result in the specified format.
+     - parameter format: Export format
+     - parameter dto: Shape DTO.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func downloadShapeFromDto(_ format: String, _ dto: ShapeBase, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        downloadShapeFromDtoWithRequestBuilder(format, dto).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Creates the shape from the DTO and returns the result in the specified format.
+     - POST /slides/shape/{format}
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter format: Export format
+     - parameter dto: Shape DTO.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func downloadShapeFromDtoWithRequestBuilder(_ format: String, _ dto: ShapeBase) -> RequestBuilder<Data> {
+        var methodPath = "/slides/shape/{format}"
+        methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dto)
+
+
+        var fileParams = [Data]()
+        fileParams.removeAll()
+
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams)
     }
     /**
      * enum for parameter format
@@ -6929,6 +7088,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -7027,6 +7187,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7121,6 +7282,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -7229,6 +7391,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7296,6 +7459,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7340,6 +7504,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
 
         let url = URLComponents(string: URLString)
@@ -7391,6 +7556,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7449,6 +7615,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7493,6 +7660,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7543,6 +7711,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7601,6 +7770,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7648,6 +7818,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7690,6 +7861,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7743,6 +7915,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7794,6 +7967,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7840,6 +8014,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -7896,6 +8071,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -7954,6 +8130,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8009,6 +8186,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8067,6 +8245,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8122,6 +8301,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8180,6 +8360,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8238,6 +8419,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8291,6 +8473,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -8355,6 +8538,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8422,6 +8606,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8483,6 +8668,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8546,6 +8732,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8608,6 +8795,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8666,6 +8854,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8735,6 +8924,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8805,6 +8995,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8869,6 +9060,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8935,6 +9127,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -8991,6 +9184,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9046,6 +9240,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9103,6 +9298,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9159,6 +9355,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9214,6 +9411,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9277,6 +9475,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9335,6 +9534,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9419,6 +9619,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9479,6 +9680,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9537,6 +9739,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9595,6 +9798,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9653,6 +9857,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9708,6 +9913,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9763,6 +9969,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9823,6 +10030,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9879,6 +10087,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -9953,6 +10162,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10033,6 +10243,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10109,6 +10320,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10191,6 +10403,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10270,6 +10483,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10346,6 +10560,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10419,6 +10634,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10478,6 +10694,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10533,6 +10750,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10602,6 +10820,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10675,6 +10894,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10736,6 +10956,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10793,6 +11014,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(pdf)
 
         var url = URLComponents(string: URLString)
@@ -10866,6 +11088,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         if image != nil {
             fileParams.append(image!)
         }
@@ -10932,6 +11155,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -10985,6 +11209,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         if files != nil {
             fileParams = files!
         }
@@ -11032,6 +11257,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         if files != nil {
             fileParams = files!
         }
@@ -11086,6 +11312,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11138,6 +11365,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11195,6 +11423,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11256,6 +11485,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11311,6 +11541,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11360,6 +11591,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -11407,6 +11639,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11460,6 +11693,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11506,6 +11740,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         if files != nil {
             fileParams = files!
         }
@@ -11561,6 +11796,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11624,6 +11860,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11682,6 +11919,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -11744,6 +11982,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11799,6 +12038,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -11865,6 +12105,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -11923,6 +12164,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -11993,6 +12235,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12090,6 +12333,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12191,6 +12435,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12290,6 +12535,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -12394,6 +12640,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12494,6 +12741,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -12608,6 +12856,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12674,6 +12923,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12734,6 +12984,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12794,6 +13045,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12867,6 +13119,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12926,6 +13179,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -12992,6 +13246,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13063,6 +13318,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13120,6 +13376,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13180,6 +13437,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13238,6 +13496,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13295,6 +13554,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(font)
 
         var url = URLComponents(string: URLString)
@@ -13347,6 +13607,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
         fileParams.append(font)
 
@@ -13401,6 +13662,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -13462,6 +13724,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13519,6 +13782,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13576,6 +13840,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13624,6 +13889,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
 
@@ -13679,6 +13945,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13742,6 +14009,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13802,6 +14070,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13859,6 +14128,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13916,6 +14186,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -13988,6 +14259,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14045,6 +14317,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14145,6 +14418,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14248,6 +14522,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -14344,6 +14619,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(document)
 
         var url = URLComponents(string: URLString)
@@ -14394,6 +14670,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
 
         let url = URLComponents(string: URLString)
@@ -14450,6 +14727,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14516,6 +14794,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14582,6 +14861,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14651,6 +14931,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14717,6 +14998,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14777,6 +15059,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14837,6 +15120,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14905,6 +15189,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -14977,6 +15262,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15038,6 +15324,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15104,6 +15391,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15165,6 +15453,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15240,6 +15529,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15318,6 +15608,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15398,6 +15689,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15482,6 +15774,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15560,6 +15853,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
 
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
@@ -15610,6 +15904,7 @@ open class SlidesAPI {
 
 
         var fileParams = [Data]()
+        fileParams.removeAll()
         fileParams.append(file)
 
         var url = URLComponents(string: URLString)

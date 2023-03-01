@@ -29,8 +29,8 @@
 import Foundation
 
 
-/** Represents paragraph resource */
-public class Paragraph: ResourceBase {
+/** Paragraph formatting properties. */
+public class ParagraphFormat: Codable {
 
     public enum Alignment: String, Codable { 
         case _left = "Left"
@@ -49,7 +49,7 @@ public class Paragraph: ResourceBase {
         case baseline = "Baseline"
         case _default = "Default"
     }
-    public enum HangingPunctuation: String, Codable { 
+    public enum RightToLeft: String, Codable { 
         case _false = "False"
         case _true = "True"
         case notDefined = "NotDefined"
@@ -64,7 +64,7 @@ public class Paragraph: ResourceBase {
         case _true = "True"
         case notDefined = "NotDefined"
     }
-    public enum RightToLeft: String, Codable { 
+    public enum HangingPunctuation: String, Codable { 
         case _false = "False"
         case _true = "True"
         case notDefined = "NotDefined"
@@ -120,6 +120,10 @@ public class Paragraph: ResourceBase {
         case bulletHindiAlpha1Period = "BulletHindiAlpha1Period"
         case notDefined = "NotDefined"
     }
+    /** Depth. */
+    public var depth: Int?
+    /** Text alignment. */
+    public var alignment: Alignment?
     /** Left margin. */
     public var marginLeft: Double?
     /** Right margin. */
@@ -130,26 +134,20 @@ public class Paragraph: ResourceBase {
     public var spaceAfter: Double?
     /** Spacing between lines. */
     public var spaceWithin: Double?
-    /** First line indent. */
-    public var indent: Double?
-    /** Text alignment. */
-    public var alignment: Alignment?
     /** Font alignment. */
     public var fontAlignment: FontAlignment?
-    /** Default tabulation size. */
-    public var defaultTabSize: Double?
-    /** Depth. */
-    public var depth: Int?
-    /** True if hanging punctuation is used with the paragraph. */
-    public var hangingPunctuation: HangingPunctuation?
-    /** True if East Asian line break is used with the paragraph. */
-    public var eastAsianLineBreak: EastAsianLineBreak?
-    /** True if Latin line break is used with the paragraph. */
-    public var latinLineBreak: LatinLineBreak?
-    /** True if right to left direction is used with the paragraph. */
+    /** First line indent. */
+    public var indent: Double?
+    /** Determines whether the Right to Left writing is used in a paragraph. No inheritance applied. */
     public var rightToLeft: RightToLeft?
-    /** List of portion links. */
-    public var portionList: [Portion]?
+    /** Determines whether the East Asian line break is used in a paragraph. No inheritance applied. */
+    public var eastAsianLineBreak: EastAsianLineBreak?
+    /** Determines whether the Latin line break is used in a paragraph. No inheritance applied. */
+    public var latinLineBreak: LatinLineBreak?
+    /** Determines whether the hanging punctuation is used in a paragraph. No inheritance applied. */
+    public var hangingPunctuation: HangingPunctuation?
+    /** Returns or sets default tabulation size with no inheritance. */
+    public var defaultTabSize: Double?
     /** Default portion format. */
     public var defaultPortionFormat: PortionFormat?
     /** Bullet char. */
@@ -165,8 +163,21 @@ public class Paragraph: ResourceBase {
     /** Bullet fill format. */
     public var bulletFillFormat: FillFormat?
 
-    override func fillValues(_ source: [String:Any]) throws {
-        try super.fillValues(source)
+    func fillValues(_ source: [String:Any]) throws {
+        let depthValue = source["depth"] ?? source["Depth"]
+        if depthValue != nil {
+            self.depth = depthValue! as? Int
+        }
+        let alignmentValue = source["alignment"] ?? source["Alignment"]
+        if alignmentValue != nil {
+            let alignmentStringValue = alignmentValue! as? String
+            if alignmentStringValue != nil {
+                let alignmentEnumValue = Alignment(rawValue: alignmentStringValue!)
+                if alignmentEnumValue != nil {
+                    self.alignment = alignmentEnumValue!
+                }
+            }
+        }
         let marginLeftValue = source["marginLeft"] ?? source["MarginLeft"]
         if marginLeftValue != nil {
             self.marginLeft = marginLeftValue! as? Double
@@ -187,20 +198,6 @@ public class Paragraph: ResourceBase {
         if spaceWithinValue != nil {
             self.spaceWithin = spaceWithinValue! as? Double
         }
-        let indentValue = source["indent"] ?? source["Indent"]
-        if indentValue != nil {
-            self.indent = indentValue! as? Double
-        }
-        let alignmentValue = source["alignment"] ?? source["Alignment"]
-        if alignmentValue != nil {
-            let alignmentStringValue = alignmentValue! as? String
-            if alignmentStringValue != nil {
-                let alignmentEnumValue = Alignment(rawValue: alignmentStringValue!)
-                if alignmentEnumValue != nil {
-                    self.alignment = alignmentEnumValue!
-                }
-            }
-        }
         let fontAlignmentValue = source["fontAlignment"] ?? source["FontAlignment"]
         if fontAlignmentValue != nil {
             let fontAlignmentStringValue = fontAlignmentValue! as? String
@@ -211,21 +208,17 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let defaultTabSizeValue = source["defaultTabSize"] ?? source["DefaultTabSize"]
-        if defaultTabSizeValue != nil {
-            self.defaultTabSize = defaultTabSizeValue! as? Double
+        let indentValue = source["indent"] ?? source["Indent"]
+        if indentValue != nil {
+            self.indent = indentValue! as? Double
         }
-        let depthValue = source["depth"] ?? source["Depth"]
-        if depthValue != nil {
-            self.depth = depthValue! as? Int
-        }
-        let hangingPunctuationValue = source["hangingPunctuation"] ?? source["HangingPunctuation"]
-        if hangingPunctuationValue != nil {
-            let hangingPunctuationStringValue = hangingPunctuationValue! as? String
-            if hangingPunctuationStringValue != nil {
-                let hangingPunctuationEnumValue = HangingPunctuation(rawValue: hangingPunctuationStringValue!)
-                if hangingPunctuationEnumValue != nil {
-                    self.hangingPunctuation = hangingPunctuationEnumValue!
+        let rightToLeftValue = source["rightToLeft"] ?? source["RightToLeft"]
+        if rightToLeftValue != nil {
+            let rightToLeftStringValue = rightToLeftValue! as? String
+            if rightToLeftStringValue != nil {
+                let rightToLeftEnumValue = RightToLeft(rawValue: rightToLeftStringValue!)
+                if rightToLeftEnumValue != nil {
+                    self.rightToLeft = rightToLeftEnumValue!
                 }
             }
         }
@@ -249,40 +242,19 @@ public class Paragraph: ResourceBase {
                 }
             }
         }
-        let rightToLeftValue = source["rightToLeft"] ?? source["RightToLeft"]
-        if rightToLeftValue != nil {
-            let rightToLeftStringValue = rightToLeftValue! as? String
-            if rightToLeftStringValue != nil {
-                let rightToLeftEnumValue = RightToLeft(rawValue: rightToLeftStringValue!)
-                if rightToLeftEnumValue != nil {
-                    self.rightToLeft = rightToLeftEnumValue!
+        let hangingPunctuationValue = source["hangingPunctuation"] ?? source["HangingPunctuation"]
+        if hangingPunctuationValue != nil {
+            let hangingPunctuationStringValue = hangingPunctuationValue! as? String
+            if hangingPunctuationStringValue != nil {
+                let hangingPunctuationEnumValue = HangingPunctuation(rawValue: hangingPunctuationStringValue!)
+                if hangingPunctuationEnumValue != nil {
+                    self.hangingPunctuation = hangingPunctuationEnumValue!
                 }
             }
         }
-        let portionListValue = source["portionList"] ?? source["PortionList"]
-        if portionListValue != nil {
-            var portionListArray: [Portion] = []
-            let portionListDictionaryValue = portionListValue! as? [Any]
-            if portionListDictionaryValue != nil {
-                portionListDictionaryValue!.forEach { portionListAnyItem in
-                    let portionListItem = portionListAnyItem as? [String:Any]
-                    var added = false
-                    if portionListItem != nil {
-                        let (portionListInstance, error) = ClassRegistry.getClassFromDictionary(Portion.self, portionListItem!)
-                        if error == nil && portionListInstance != nil {
-                            let portionListArrayItem = portionListInstance! as? Portion
-                            if portionListArrayItem != nil {
-                                portionListArray.append(portionListArrayItem!)
-                                added = true
-                            }
-                        }
-                    }
-                    if !added {
-                        portionListArray.append(Portion())
-                    }
-                }
-            }
-            self.portionList = portionListArray
+        let defaultTabSizeValue = source["defaultTabSize"] ?? source["DefaultTabSize"]
+        if defaultTabSizeValue != nil {
+            self.defaultTabSize = defaultTabSizeValue! as? Double
         }
         let defaultPortionFormatValue = source["defaultPortionFormat"] ?? source["DefaultPortionFormat"]
         if defaultPortionFormatValue != nil {
@@ -338,23 +310,21 @@ public class Paragraph: ResourceBase {
         }
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, marginLeft: Double? = nil, marginRight: Double? = nil, spaceBefore: Double? = nil, spaceAfter: Double? = nil, spaceWithin: Double? = nil, indent: Double? = nil, alignment: Alignment? = nil, fontAlignment: FontAlignment? = nil, defaultTabSize: Double? = nil, depth: Int? = nil, hangingPunctuation: HangingPunctuation? = nil, eastAsianLineBreak: EastAsianLineBreak? = nil, latinLineBreak: LatinLineBreak? = nil, rightToLeft: RightToLeft? = nil, portionList: [Portion]? = nil, defaultPortionFormat: PortionFormat? = nil, bulletChar: String? = nil, bulletHeight: Double? = nil, bulletType: BulletType? = nil, numberedBulletStartWith: Int? = nil, numberedBulletStyle: NumberedBulletStyle? = nil, bulletFillFormat: FillFormat? = nil) {
-        super.init(selfUri: selfUri, alternateLinks: alternateLinks)
+    public init(depth: Int? = nil, alignment: Alignment? = nil, marginLeft: Double? = nil, marginRight: Double? = nil, spaceBefore: Double? = nil, spaceAfter: Double? = nil, spaceWithin: Double? = nil, fontAlignment: FontAlignment? = nil, indent: Double? = nil, rightToLeft: RightToLeft? = nil, eastAsianLineBreak: EastAsianLineBreak? = nil, latinLineBreak: LatinLineBreak? = nil, hangingPunctuation: HangingPunctuation? = nil, defaultTabSize: Double? = nil, defaultPortionFormat: PortionFormat? = nil, bulletChar: String? = nil, bulletHeight: Double? = nil, bulletType: BulletType? = nil, numberedBulletStartWith: Int? = nil, numberedBulletStyle: NumberedBulletStyle? = nil, bulletFillFormat: FillFormat? = nil) {
+        self.depth = depth
+        self.alignment = alignment
         self.marginLeft = marginLeft
         self.marginRight = marginRight
         self.spaceBefore = spaceBefore
         self.spaceAfter = spaceAfter
         self.spaceWithin = spaceWithin
-        self.indent = indent
-        self.alignment = alignment
         self.fontAlignment = fontAlignment
-        self.defaultTabSize = defaultTabSize
-        self.depth = depth
-        self.hangingPunctuation = hangingPunctuation
+        self.indent = indent
+        self.rightToLeft = rightToLeft
         self.eastAsianLineBreak = eastAsianLineBreak
         self.latinLineBreak = latinLineBreak
-        self.rightToLeft = rightToLeft
-        self.portionList = portionList
+        self.hangingPunctuation = hangingPunctuation
+        self.defaultTabSize = defaultTabSize
         self.defaultPortionFormat = defaultPortionFormat
         self.bulletChar = bulletChar
         self.bulletHeight = bulletHeight
@@ -365,21 +335,20 @@ public class Paragraph: ResourceBase {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case depth
+        case alignment
         case marginLeft
         case marginRight
         case spaceBefore
         case spaceAfter
         case spaceWithin
-        case indent
-        case alignment
         case fontAlignment
-        case defaultTabSize
-        case depth
-        case hangingPunctuation
+        case indent
+        case rightToLeft
         case eastAsianLineBreak
         case latinLineBreak
-        case rightToLeft
-        case portionList
+        case hangingPunctuation
+        case defaultTabSize
         case defaultPortionFormat
         case bulletChar
         case bulletHeight
@@ -387,104 +356,6 @@ public class Paragraph: ResourceBase {
         case numberedBulletStartWith
         case numberedBulletStyle
         case bulletFillFormat
-    }
-
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        marginLeft = try? values.decode(Double.self, forKey: .marginLeft)
-        marginRight = try? values.decode(Double.self, forKey: .marginRight)
-        spaceBefore = try? values.decode(Double.self, forKey: .spaceBefore)
-        spaceAfter = try? values.decode(Double.self, forKey: .spaceAfter)
-        spaceWithin = try? values.decode(Double.self, forKey: .spaceWithin)
-        indent = try? values.decode(Double.self, forKey: .indent)
-        alignment = try? values.decode(Alignment.self, forKey: .alignment)
-        fontAlignment = try? values.decode(FontAlignment.self, forKey: .fontAlignment)
-        defaultTabSize = try? values.decode(Double.self, forKey: .defaultTabSize)
-        depth = try? values.decode(Int.self, forKey: .depth)
-        hangingPunctuation = try? values.decode(HangingPunctuation.self, forKey: .hangingPunctuation)
-        eastAsianLineBreak = try? values.decode(EastAsianLineBreak.self, forKey: .eastAsianLineBreak)
-        latinLineBreak = try? values.decode(LatinLineBreak.self, forKey: .latinLineBreak)
-        rightToLeft = try? values.decode(RightToLeft.self, forKey: .rightToLeft)
-        portionList = try? values.decode([Portion].self, forKey: .portionList)
-        defaultPortionFormat = try? values.decode(PortionFormat.self, forKey: .defaultPortionFormat)
-        bulletChar = try? values.decode(String.self, forKey: .bulletChar)
-        bulletHeight = try? values.decode(Double.self, forKey: .bulletHeight)
-        bulletType = try? values.decode(BulletType.self, forKey: .bulletType)
-        numberedBulletStartWith = try? values.decode(Int.self, forKey: .numberedBulletStartWith)
-        numberedBulletStyle = try? values.decode(NumberedBulletStyle.self, forKey: .numberedBulletStyle)
-        bulletFillFormat = try? values.decode(FillFormat.self, forKey: .bulletFillFormat)
-    }
-
-    public override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        if (marginLeft != nil) {
-            try? container.encode(marginLeft, forKey: .marginLeft)
-        }
-        if (marginRight != nil) {
-            try? container.encode(marginRight, forKey: .marginRight)
-        }
-        if (spaceBefore != nil) {
-            try? container.encode(spaceBefore, forKey: .spaceBefore)
-        }
-        if (spaceAfter != nil) {
-            try? container.encode(spaceAfter, forKey: .spaceAfter)
-        }
-        if (spaceWithin != nil) {
-            try? container.encode(spaceWithin, forKey: .spaceWithin)
-        }
-        if (indent != nil) {
-            try? container.encode(indent, forKey: .indent)
-        }
-        if (alignment != nil) {
-            try? container.encode(alignment, forKey: .alignment)
-        }
-        if (fontAlignment != nil) {
-            try? container.encode(fontAlignment, forKey: .fontAlignment)
-        }
-        if (defaultTabSize != nil) {
-            try? container.encode(defaultTabSize, forKey: .defaultTabSize)
-        }
-        if (depth != nil) {
-            try? container.encode(depth, forKey: .depth)
-        }
-        if (hangingPunctuation != nil) {
-            try? container.encode(hangingPunctuation, forKey: .hangingPunctuation)
-        }
-        if (eastAsianLineBreak != nil) {
-            try? container.encode(eastAsianLineBreak, forKey: .eastAsianLineBreak)
-        }
-        if (latinLineBreak != nil) {
-            try? container.encode(latinLineBreak, forKey: .latinLineBreak)
-        }
-        if (rightToLeft != nil) {
-            try? container.encode(rightToLeft, forKey: .rightToLeft)
-        }
-        if (portionList != nil) {
-            try? container.encode(portionList, forKey: .portionList)
-        }
-        if (defaultPortionFormat != nil) {
-            try? container.encode(defaultPortionFormat, forKey: .defaultPortionFormat)
-        }
-        if (bulletChar != nil) {
-            try? container.encode(bulletChar, forKey: .bulletChar)
-        }
-        if (bulletHeight != nil) {
-            try? container.encode(bulletHeight, forKey: .bulletHeight)
-        }
-        if (bulletType != nil) {
-            try? container.encode(bulletType, forKey: .bulletType)
-        }
-        if (numberedBulletStartWith != nil) {
-            try? container.encode(numberedBulletStartWith, forKey: .numberedBulletStartWith)
-        }
-        if (numberedBulletStyle != nil) {
-            try? container.encode(numberedBulletStyle, forKey: .numberedBulletStyle)
-        }
-        if (bulletFillFormat != nil) {
-            try? container.encode(bulletFillFormat, forKey: .bulletFillFormat)
-        }
     }
 
 }

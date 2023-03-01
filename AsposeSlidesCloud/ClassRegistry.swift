@@ -635,6 +635,10 @@ class ClassRegistry {
             let value = Paragraph()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "ParagraphFormat" {
+            let value = ParagraphFormat()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "Paragraphs" {
             let value = Paragraphs()
             try? value.fillValues(object)

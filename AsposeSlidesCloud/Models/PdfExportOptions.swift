@@ -38,9 +38,16 @@ public class PdfExportOptions: ExportOptions {
     }
     public enum Compliance: String, Codable { 
         case pdf15 = "Pdf15"
+        case pdf16 = "Pdf16"
+        case pdf17 = "Pdf17"
         case pdfA1b = "PdfA1b"
         case pdfA1a = "PdfA1a"
+        case pdfA2b = "PdfA2b"
+        case pdfA2a = "PdfA2a"
+        case pdfA3b = "PdfA3b"
+        case pdfA3a = "PdfA3a"
         case pdfUa = "PdfUa"
+        case pdfA2u = "PdfA2u"
     }
     public enum NotesPosition: String, Codable { 
         case _none = "None"

@@ -74,6 +74,8 @@ public class Hyperlink: Codable {
     public var stopSoundOnClick: Bool?
     /** Represents the source of hyperlink color */
     public var colorSource: ColorSource?
+    /** Audio data encoded in base64. Represents the playing sound of the hyperlink.  */
+    public var soundBase64: String?
 
     func fillValues(_ source: [String:Any]) throws {
         let isDisabledValue = source["isDisabled"] ?? source["IsDisabled"]
@@ -128,9 +130,13 @@ public class Hyperlink: Codable {
                 }
             }
         }
+        let soundBase64Value = source["soundBase64"] ?? source["SoundBase64"]
+        if soundBase64Value != nil {
+            self.soundBase64 = soundBase64Value! as? String
+        }
     }
 
-    public init(isDisabled: Bool? = nil, actionType: ActionType? = nil, externalUrl: String? = nil, targetSlideIndex: Int? = nil, targetFrame: String? = nil, tooltip: String? = nil, history: Bool? = nil, highlightClick: Bool? = nil, stopSoundOnClick: Bool? = nil, colorSource: ColorSource? = nil) {
+    public init(isDisabled: Bool? = nil, actionType: ActionType? = nil, externalUrl: String? = nil, targetSlideIndex: Int? = nil, targetFrame: String? = nil, tooltip: String? = nil, history: Bool? = nil, highlightClick: Bool? = nil, stopSoundOnClick: Bool? = nil, colorSource: ColorSource? = nil, soundBase64: String? = nil) {
         self.isDisabled = isDisabled
         self.actionType = actionType
         self.externalUrl = externalUrl
@@ -141,6 +147,7 @@ public class Hyperlink: Codable {
         self.highlightClick = highlightClick
         self.stopSoundOnClick = stopSoundOnClick
         self.colorSource = colorSource
+        self.soundBase64 = soundBase64
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -154,6 +161,7 @@ public class Hyperlink: Codable {
         case highlightClick
         case stopSoundOnClick
         case colorSource
+        case soundBase64
     }
 
 }

@@ -810,6 +810,9 @@ class SlidesAPITests : XCTestCase {
         ("testDownloadShapeInvalidStorage", testDownloadShapeInvalidStorage),
         ("testDownloadShapeInvalidFontsFolder", testDownloadShapeInvalidFontsFolder),
         ("testDownloadShapeInvalidSubShape", testDownloadShapeInvalidSubShape),
+        ("testDownloadShapeFromDto", testDownloadShapeFromDto),
+        ("testDownloadShapeFromDtoInvalidFormat", testDownloadShapeFromDtoInvalidFormat),
+        ("testDownloadShapeFromDtoInvalidDto", testDownloadShapeFromDtoInvalidDto),
         ("testDownloadShapeOnline", testDownloadShapeOnline),
         ("testDownloadShapeOnlineInvalidDocument", testDownloadShapeOnlineInvalidDocument),
         ("testDownloadShapeOnlineInvalidSlideIndex", testDownloadShapeOnlineInvalidSlideIndex),
@@ -16574,6 +16577,47 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("downloadShape", "subShape", paramSubShape) { (response, error) -> Void in
             SlidesAPI.downloadShape(paramName, paramSlideIndex, paramShapeIndex, paramFormat, paramOptions, paramScaleX, paramScaleY, paramBounds, paramPassword, paramFolder, paramStorage, paramFontsFolder, paramSubShape) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "downloadShape", parameterName: "subShape", parameterValue: paramSubShape as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+    func testDownloadShapeFromDto() {
+        let expectation = self.expectation(description: "testdownloadShapeFromDto")
+        let paramFormat : String = TestUtils.getTestValue(functionName: "downloadShapeFromDto", name: "format", type: "String")
+        let paramDto : ShapeBase = TestUtils.getTestValue(functionName: "downloadShapeFromDto", name: "dto", type: "ShapeBase")
+        TestUtils.initialize("downloadShapeFromDto") { (response, error) -> Void in
+            SlidesAPI.downloadShapeFromDto(paramFormat, paramDto) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadShapeFromDtoInvalidFormat() {
+        let expectation = self.expectation(description: "testdownloadShapeFromDto")
+        let invalidFieldName = "format"
+        let paramFormat : String = TestUtils.getTestValueForInvalid(functionName: "downloadShapeFromDto", name: "format", invalidFieldName: invalidFieldName, type: "String")
+        let paramDto : ShapeBase = TestUtils.getTestValueForInvalid(functionName: "downloadShapeFromDto", name: "dto", invalidFieldName: invalidFieldName, type: "ShapeBase")
+        TestUtils.initialize("downloadShapeFromDto", "format", paramFormat) { (response, error) -> Void in
+            SlidesAPI.downloadShapeFromDto(paramFormat, paramDto) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadShapeFromDto", parameterName: "format", parameterValue: paramFormat as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDownloadShapeFromDtoInvalidDto() {
+        let expectation = self.expectation(description: "testdownloadShapeFromDto")
+        let invalidFieldName = "dto"
+        let paramFormat : String = TestUtils.getTestValueForInvalid(functionName: "downloadShapeFromDto", name: "format", invalidFieldName: invalidFieldName, type: "String")
+        let paramDto : ShapeBase = TestUtils.getTestValueForInvalid(functionName: "downloadShapeFromDto", name: "dto", invalidFieldName: invalidFieldName, type: "ShapeBase")
+        TestUtils.initialize("downloadShapeFromDto", "dto", paramDto) { (response, error) -> Void in
+            SlidesAPI.downloadShapeFromDto(paramFormat, paramDto) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "downloadShapeFromDto", parameterName: "dto", parameterValue: paramDto as Any)
                 expectation.fulfill()
             }
         }
