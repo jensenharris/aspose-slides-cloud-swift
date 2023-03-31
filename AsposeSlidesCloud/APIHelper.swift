@@ -106,6 +106,12 @@ public struct APIHelper {
         if val is String {
             return val as! String != ""
         }
+        if val is Bool {
+            return val as! Bool
+        }
+        if val is Array<Any> {
+            return (val as! Array<Any>).count > 0
+        }
         return true
     }
 }

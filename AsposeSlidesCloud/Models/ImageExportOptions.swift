@@ -50,6 +50,8 @@ public class ImageExportOptions: ImageExportOptionsBase {
     public var commentsAreaWidth: Int?
     /** Gets or sets the color of comments area (Applies only if comments are displayed on the right). */
     public var commentsAreaColor: String?
+    /** Show hidden slides. If true, hidden are exported. */
+    public var showHiddenSlides: Bool?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
@@ -81,14 +83,19 @@ public class ImageExportOptions: ImageExportOptionsBase {
         if commentsAreaColorValue != nil {
             self.commentsAreaColor = commentsAreaColorValue! as? String
         }
+        let showHiddenSlidesValue = source["showHiddenSlides"] ?? source["ShowHiddenSlides"]
+        if showHiddenSlidesValue != nil {
+            self.showHiddenSlides = showHiddenSlidesValue! as? Bool
+        }
     }
 
-    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil) {
+    public init(defaultRegularFont: String? = nil, fontFallbackRules: [FontFallbackRule]? = nil, fontSubstRules: [FontSubstRule]? = nil, format: String? = nil, height: Int? = nil, width: Int? = nil, notesPosition: NotesPosition? = nil, commentsPosition: CommentsPosition? = nil, commentsAreaWidth: Int? = nil, commentsAreaColor: String? = nil, showHiddenSlides: Bool? = nil) {
         super.init(defaultRegularFont: defaultRegularFont, fontFallbackRules: fontFallbackRules, fontSubstRules: fontSubstRules, format: format, height: height, width: width)
         self.notesPosition = notesPosition
         self.commentsPosition = commentsPosition
         self.commentsAreaWidth = commentsAreaWidth
         self.commentsAreaColor = commentsAreaColor
+        self.showHiddenSlides = showHiddenSlides
         self.format = "image"
     }
 
@@ -97,6 +104,7 @@ public class ImageExportOptions: ImageExportOptionsBase {
         case commentsPosition
         case commentsAreaWidth
         case commentsAreaColor
+        case showHiddenSlides
     }
 
     required init(from decoder: Decoder) throws {
@@ -106,6 +114,7 @@ public class ImageExportOptions: ImageExportOptionsBase {
         commentsPosition = try? values.decode(CommentsPosition.self, forKey: .commentsPosition)
         commentsAreaWidth = try? values.decode(Int.self, forKey: .commentsAreaWidth)
         commentsAreaColor = try? values.decode(String.self, forKey: .commentsAreaColor)
+        showHiddenSlides = try? values.decode(Bool.self, forKey: .showHiddenSlides)
         self.format = "image"
     }
 
@@ -123,6 +132,9 @@ public class ImageExportOptions: ImageExportOptionsBase {
         }
         if (commentsAreaColor != nil) {
             try? container.encode(commentsAreaColor, forKey: .commentsAreaColor)
+        }
+        if (showHiddenSlides != nil) {
+            try? container.encode(showHiddenSlides, forKey: .showHiddenSlides)
         }
     }
 

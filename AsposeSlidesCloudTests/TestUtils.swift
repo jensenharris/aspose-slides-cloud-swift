@@ -35,38 +35,17 @@ class TestUtils {
     
     class func getTestValueInternal(functionName: String, name: String, type: String) -> (value: Any?, type: String?) {
         ensureRules()
-        if type == "Data" {
-            var fileName = "test.pptx"
-            if functionName.caseInsensitiveCompare("importFromPdf") == .orderedSame {
-                fileName = "test.pdf"
-            } else if functionName.caseInsensitiveCompare("importShapesFromSvg") == .orderedSame {
-                fileName = "shapes.svg"
-            } else if name.caseInsensitiveCompare("image") == .orderedSame {
-                fileName = "watermark.png"
-            } else if name.caseInsensitiveCompare("font") == .orderedSame {
-                fileName = "calibri.ttf"
-            }
-            return (FileManager.default.contents(atPath: "TestData/" + fileName), nil)
-        }
-        if type == "[Data]" {
-            return ([ FileManager.default.contents(atPath: "TestData/test.pptx")!, FileManager.default.contents(atPath: "TestData/test-unprotected.pptx")! ], nil)
-        }
-        var value: Any? = "test" + name
-        var ruleType: String? = nil
+        var value:  Any? = nil
+        let ruleType: String? = nil
         let v = rules!["Values"] as! NSArray
         for vr in v {
             let rule = vr as! NSDictionary
-            if (isGoodRule(rule, functionName, name)) {
-                if rule["Type"] == nil || ClassRegistry.isSubclass(rule["Type"] as! String, type) {
-                    if (rule["Value"] != nil) {
-                        if (rule["Value"] is NSNull) {
-                            value = nil
-                        } else {
-                            value = rule["Value"]
-                        }
-                        if (rule["Type"] != nil) {
-                            ruleType = rule["Type"] as? String 
-                        }
+            if (isGoodRule(rule, functionName, name, type)) {
+                if (rule["Value"] != nil) {
+                    if (rule["Value"] is NSNull) {
+                        value = nil
+                    } else {
+                        value = untemplatize(rule["Value"], name, value)
                     }
                 }
             }
@@ -136,6 +115,9 @@ class TestUtils {
             if (type == "Double") {
                 return 0.0 as! T
             }
+            if (type == "Data") {
+                return "".data(using: .utf8) as! T
+            }
             if (type.starts(with: "[")) {
                 return [] as! T
             }
@@ -157,7 +139,9 @@ class TestUtils {
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: invalidValue as! NSDictionary)
                 let result: (decodableObj: T?, error: Error?) = CodableHelper.decode(T.self, from: jsonData)
-                return result.decodableObj!
+                if result.decodableObj != nil {
+                    return result.decodableObj!
+                }
             } catch {
             }
         }
@@ -178,24 +162,26 @@ class TestUtils {
             if (type == "Double") {
                 return 0.0 as! T
             }
+            if (type == "Data") {
+                return "".data(using: .utf8) as! T
+            }
             if (type.starts(with: "[")) {
                 return [] as! T
             }
+            let result: (decodableObj: Decodable?, error: Error?) = ClassRegistry.getClassInstance(type, "{}".data(using: .utf8)!)
+            return result.decodableObj as! T
         }
         return typedValue!
     }
 
     class func getInvalidTestValueInternal(functionName: String, name: String, value: Any, type: String) -> Any? {
         ensureRules()
-        if type == "Data" {
-            return "".data(using: .utf8)
-        }
         var result: Any? = value
         var invalidValue: Any? = nil
         let v = rules!["Values"] as! NSArray
         for vr in v {
             let rule = vr as! NSDictionary
-            if (isGoodRule(rule, functionName, name)) {
+            if (isGoodRule(rule, functionName, name, type)) {
                 if (rule["InvalidValue"] != nil) {
                     if (rule["InvalidValue"] is NSNull) {
                         invalidValue = nil
@@ -205,7 +191,7 @@ class TestUtils {
                 }
             }
         }
-        result = untemplatize(invalidValue, value)
+        result = untemplatize(invalidValue, name, value)
         if (result == nil) {
             if (type == "String") {
                 return ""
@@ -220,7 +206,7 @@ class TestUtils {
         return result
     }
     
-    class func untemplatize(_ template: Any? = nil, _ value: Any? = nil) -> Any? {
+    class func untemplatize(_ template: Any? = nil, _ name: Any? = nil, _ value: Any? = nil) -> Any? {
         if (template == nil && value != nil) {
             let strValue = value as? String
             if strValue != nil {
@@ -228,12 +214,25 @@ class TestUtils {
             }
         }
         if (template != nil) {
-            let strTemplate = template as? String
+            var strTemplate = template as? String
             if strTemplate != nil {
-                if value != nil {
-                    return strTemplate!.replacingOccurrences(of: "%v", with: "\(value!)")
+                if strTemplate!.starts(with:"@") {
+                    let lowerBound = String.Index(encodedOffset: 1)
+                    let upperBound = String.Index(encodedOffset: strTemplate!.count)
+                    strTemplate = String(strTemplate![lowerBound ..< upperBound])
+                    return FileManager.default.contents(atPath: "TestData/" + strTemplate!)
                 }
-                return strTemplate!.replacingOccurrences(of: "%v", with: "")
+                if name != nil {
+                    strTemplate = strTemplate!.replacingOccurrences(of: "%n", with: "\(name!)")
+                } else {
+                    strTemplate = strTemplate!.replacingOccurrences(of: "%n", with: "")
+                }
+                if value != nil {
+                    strTemplate = strTemplate!.replacingOccurrences(of: "%v", with: "\(value!)")
+                } else {
+                    strTemplate = strTemplate!.replacingOccurrences(of: "%v", with: "")
+                }
+                return strTemplate!
             }
         }
         if (template == nil) {
@@ -242,18 +241,18 @@ class TestUtils {
         return template
     }
     
-    class func initialize(_ functionName: String, _ parameterName: String = "", _ parameterValue: Any? = nil, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+    class func initialize(_ functionName: String, _ parameterName: String = "", _ parameterType: String = "", _ parameterValue: Any? = nil, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
         ensureTestFiles() { error -> Void in
             ensureRules()
             let f = rules!["Files"]! as! NSArray
             let frules = NSMutableDictionary()
             for file in f {
                 let rule = file as! NSDictionary
-                if (isGoodRule(rule, functionName, parameterName)) {
-                    let actualName = untemplatize(rule["File"], parameterValue) as! String
+                if (isGoodRule(rule, functionName, parameterName, parameterType)) {
+                    let actualName = untemplatize(rule["File"], parameterName, parameterValue) as! String
                     var path = "TempSlidesSDK"
                     if (rule["Folder"] != nil) {
-                        path = untemplatize(rule["Folder"], parameterValue) as! String
+                        path = untemplatize(rule["Folder"], parameterName, parameterValue) as! String
                     }
                     path = path + "/" + actualName
                     let mRule = rule.mutableCopy() as! NSMutableDictionary
@@ -371,7 +370,7 @@ class TestUtils {
         }
     }
     
-    class func assertError(error: Error?, functionName: String, parameterName: String, parameterValue: Any) {
+    class func assertError(error: Error?, functionName: String, parameterName: String, parameterType: String, parameterValue: Any) {
         var code = 0
         var message = "Unexpected message"
         ensureRules()
@@ -379,7 +378,7 @@ class TestUtils {
         let vn = rules!["OKToNotFail"] as! NSArray
         for vr in vn {
             let rule = vr as! NSDictionary
-            if (isGoodRule(rule, functionName, parameterName)) {
+            if (isGoodRule(rule, functionName, parameterName, parameterType)) {
                 mustFail = false
             }
         }
@@ -387,7 +386,7 @@ class TestUtils {
             let v = rules!["Results"] as! NSArray
             for vr in v {
                 let rule = vr as! NSDictionary
-                if (isGoodRule(rule, functionName, parameterName)) {
+                if (isGoodRule(rule, functionName, parameterName, parameterType)) {
                     if (rule["Code"] != nil) {
                        code = rule["Code"] as! Int
                     }
@@ -396,7 +395,7 @@ class TestUtils {
                     }
                 }
             }
-            message = untemplatize(message, parameterValue) as! String
+            message = untemplatize(message, parameterName, parameterValue) as! String
             XCTAssertNotNil(error)
             if (error != nil) {
                 switch (error!) {
@@ -412,14 +411,59 @@ class TestUtils {
         }
     }
     
-    class func isGoodRule(_ rule: NSDictionary, _ functionName: String, _ parameterName: String) -> Bool {
-        let ruleMethod = rule["Method"]
+    class func isGoodRule(_ rule: NSDictionary, _ functionName: String, _ parameterName: String, _ parameterType: String) -> Bool {
         let ruleInvalid = rule["Invalid"]
-        let ruleParameter = rule["Parameter"]
-        let ruleLanguage = rule["Language"]
-        return ((ruleMethod == nil) || (functionName.caseInsensitiveCompare(ruleMethod as! String) == .orderedSame))
+        return isGoodRuleValue(rule["Method"], functionName)
             && ((ruleInvalid == nil) || (ruleInvalid as! Bool) == (parameterName != ""))
-            && ((ruleParameter == nil) || parameterName.caseInsensitiveCompare(ruleParameter as! String) == .orderedSame)
-            && ((ruleLanguage == nil) || (ruleLanguage as! String) == "Swift")
+            && isGoodRuleValue(rule["Parameter"], parameterName)
+            && isGoodRuleValue(rule["Language"], "Swift")
+            && isGoodRuleType(rule["Type"], parameterType)
+    }
+    
+    class func isGoodRuleValue(_ ruleValue: Any?, _ actualValue: String) -> Bool {
+        if ruleValue == nil {
+            return true
+        }
+        let ruleValueString = ruleValue as! String
+        if ruleValueString.starts(with:"/") {
+            let lowerBound = String.Index(encodedOffset: 1)
+            let upperBound = String.Index(encodedOffset: ruleValueString.count - 1)
+            let regex = ruleValueString[lowerBound ..< upperBound].lowercased()
+            return actualValue.lowercased().range(of: regex, options:.regularExpression) != nil
+        }
+        return actualValue.caseInsensitiveCompare(ruleValueString) == .orderedSame
+    }
+    
+    class func isGoodRuleType(_ ruleType: Any?, _ actualType: String) -> Bool {
+        if ruleType == nil {
+            return true
+        }
+        if actualType == "" {
+            return false
+        }
+        let ruleTypeString = ruleType as! String
+        if ruleTypeString == "number" {
+            return actualType == "Int"
+        }
+        if ruleTypeString == "int" {
+            return actualType == "Int"
+        }
+        if ruleTypeString == "int[]" {
+            return actualType == "[Int]"
+        }
+        if ruleTypeString == "bool" {
+            return actualType == "Bool"
+        }
+        if ruleTypeString == "stream" {
+            return actualType == "Data"
+        }
+        if ruleTypeString == "model" {
+            return ClassRegistry.createInstance(actualType, [String:Any]()).error == nil
+        }
+        if ClassRegistry.createInstance(ruleTypeString, [String:Any]()).error == nil {
+            return ClassRegistry.isSubclass(ruleTypeString, actualType)
+        }
+        return false
     }
 }
+

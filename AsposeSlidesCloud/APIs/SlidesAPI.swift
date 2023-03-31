@@ -14482,10 +14482,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter options: Export options.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func splitAndSaveOnline(_ document: Data, _ format: String, _ destFolder: String = "", _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: SplitDocumentResult?,_ error: Error?) -> Void)) {
-        splitAndSaveOnlineWithRequestBuilder(document, format, destFolder, width, height, from, to, password, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func splitAndSaveOnline(_ document: Data, _ format: String, _ destFolder: String = "", _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ options: ExportOptions? = nil, completion: @escaping ((_ data: SplitDocumentResult?,_ error: Error?) -> Void)) {
+        splitAndSaveOnlineWithRequestBuilder(document, format, destFolder, width, height, from, to, password, storage, fontsFolder, options).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -14512,13 +14513,14 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter options: Export options.
      - returns: RequestBuilder<SplitDocumentResult> 
      */
-    open class func splitAndSaveOnlineWithRequestBuilder(_ document: Data, _ format: String, _ destFolder: String = "", _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<SplitDocumentResult> {
+    open class func splitAndSaveOnlineWithRequestBuilder(_ document: Data, _ format: String, _ destFolder: String = "", _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ options: ExportOptions? = nil) -> RequestBuilder<SplitDocumentResult> {
         var methodPath = "/slides/split/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: options)
 
 
         var fileParams = [Data]()
@@ -14542,7 +14544,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<SplitDocumentResult>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
     }
     /**
      * enum for parameter format
@@ -14584,10 +14586,11 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter options: Export options.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func splitOnline(_ document: Data, _ format: String, _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
-        splitOnlineWithRequestBuilder(document, format, width, height, from, to, password, storage, fontsFolder).executeAuthorized { (response, error) -> Void in
+    open class func splitOnline(_ document: Data, _ format: String, _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ options: ExportOptions? = nil, completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        splitOnlineWithRequestBuilder(document, format, width, height, from, to, password, storage, fontsFolder, options).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -14609,13 +14612,14 @@ open class SlidesAPI {
      - parameter password: Document password.
      - parameter storage: Document storage.
      - parameter fontsFolder: Custom fonts folder.
+     - parameter options: Export options.
      - returns: RequestBuilder<Data> 
      */
-    open class func splitOnlineWithRequestBuilder(_ document: Data, _ format: String, _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "") -> RequestBuilder<Data> {
+    open class func splitOnlineWithRequestBuilder(_ document: Data, _ format: String, _ width: Int? = nil, _ height: Int? = nil, _ from: Int? = nil, _ to: Int? = nil, _ password: String = "", _ storage: String = "", _ fontsFolder: String = "", _ options: ExportOptions? = nil) -> RequestBuilder<Data> {
         var methodPath = "/slides/split/{format}"
         methodPath = APIHelper.replacePathParameter(methodPath, "format", format)
         let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
-        let parameters: [String:Any]? = nil
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: options)
 
 
         var fileParams = [Data]()
@@ -14638,7 +14642,7 @@ open class SlidesAPI {
 
         let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
     }
     /**
      Check if storage exists
