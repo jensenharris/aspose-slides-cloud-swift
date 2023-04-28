@@ -339,6 +339,36 @@ class SlidesAPITests : XCTestCase {
         ("testCreateSpecialSlideShapeInvalidFolder", testCreateSpecialSlideShapeInvalidFolder),
         ("testCreateSpecialSlideShapeInvalidStorage", testCreateSpecialSlideShapeInvalidStorage),
         ("testCreateSpecialSlideShapeInvalidSubShape", testCreateSpecialSlideShapeInvalidSubShape),
+        ("testCreateTableCellParagraph", testCreateTableCellParagraph),
+        ("testCreateTableCellParagraphInvalidName", testCreateTableCellParagraphInvalidName),
+        ("testCreateTableCellParagraphInvalidSlideIndex", testCreateTableCellParagraphInvalidSlideIndex),
+        ("testCreateTableCellParagraphInvalidShapeIndex", testCreateTableCellParagraphInvalidShapeIndex),
+        ("testCreateTableCellParagraphInvalidRowIndex", testCreateTableCellParagraphInvalidRowIndex),
+        ("testCreateTableCellParagraphInvalidCellIndex", testCreateTableCellParagraphInvalidCellIndex),
+        ("testCreateTableCellParagraphInvalidDto", testCreateTableCellParagraphInvalidDto),
+        ("testCreateTableCellParagraphInvalidPassword", testCreateTableCellParagraphInvalidPassword),
+        ("testCreateTableCellParagraphInvalidFolder", testCreateTableCellParagraphInvalidFolder),
+        ("testCreateTableCellParagraphInvalidStorage", testCreateTableCellParagraphInvalidStorage),
+        ("testCreateTableCellPortion", testCreateTableCellPortion),
+        ("testCreateTableCellPortionInvalidName", testCreateTableCellPortionInvalidName),
+        ("testCreateTableCellPortionInvalidSlideIndex", testCreateTableCellPortionInvalidSlideIndex),
+        ("testCreateTableCellPortionInvalidShapeIndex", testCreateTableCellPortionInvalidShapeIndex),
+        ("testCreateTableCellPortionInvalidRowIndex", testCreateTableCellPortionInvalidRowIndex),
+        ("testCreateTableCellPortionInvalidCellIndex", testCreateTableCellPortionInvalidCellIndex),
+        ("testCreateTableCellPortionInvalidParagraphIndex", testCreateTableCellPortionInvalidParagraphIndex),
+        ("testCreateTableCellPortionInvalidDto", testCreateTableCellPortionInvalidDto),
+        ("testCreateTableCellPortionInvalidPassword", testCreateTableCellPortionInvalidPassword),
+        ("testCreateTableCellPortionInvalidFolder", testCreateTableCellPortionInvalidFolder),
+        ("testCreateTableCellPortionInvalidStorage", testCreateTableCellPortionInvalidStorage),
+        ("testCreateTableRow", testCreateTableRow),
+        ("testCreateTableRowInvalidName", testCreateTableRowInvalidName),
+        ("testCreateTableRowInvalidSlideIndex", testCreateTableRowInvalidSlideIndex),
+        ("testCreateTableRowInvalidShapeIndex", testCreateTableRowInvalidShapeIndex),
+        ("testCreateTableRowInvalidDto", testCreateTableRowInvalidDto),
+        ("testCreateTableRowInvalidPosition", testCreateTableRowInvalidPosition),
+        ("testCreateTableRowInvalidPassword", testCreateTableRowInvalidPassword),
+        ("testCreateTableRowInvalidFolder", testCreateTableRowInvalidFolder),
+        ("testCreateTableRowInvalidStorage", testCreateTableRowInvalidStorage),
         ("testCreateWatermark", testCreateWatermark),
         ("testCreateWatermarkInvalidName", testCreateWatermarkInvalidName),
         ("testCreateWatermarkInvalidShape", testCreateWatermarkInvalidShape),
@@ -688,6 +718,36 @@ class SlidesAPITests : XCTestCase {
         ("testDeleteSpecialSlideShapesInvalidFolder", testDeleteSpecialSlideShapesInvalidFolder),
         ("testDeleteSpecialSlideShapesInvalidStorage", testDeleteSpecialSlideShapesInvalidStorage),
         ("testDeleteSpecialSlideShapesInvalidSubShape", testDeleteSpecialSlideShapesInvalidSubShape),
+        ("testDeleteTableCellParagraph", testDeleteTableCellParagraph),
+        ("testDeleteTableCellParagraphInvalidName", testDeleteTableCellParagraphInvalidName),
+        ("testDeleteTableCellParagraphInvalidSlideIndex", testDeleteTableCellParagraphInvalidSlideIndex),
+        ("testDeleteTableCellParagraphInvalidShapeIndex", testDeleteTableCellParagraphInvalidShapeIndex),
+        ("testDeleteTableCellParagraphInvalidRowIndex", testDeleteTableCellParagraphInvalidRowIndex),
+        ("testDeleteTableCellParagraphInvalidCellIndex", testDeleteTableCellParagraphInvalidCellIndex),
+        ("testDeleteTableCellParagraphInvalidParagraphIndex", testDeleteTableCellParagraphInvalidParagraphIndex),
+        ("testDeleteTableCellParagraphInvalidPassword", testDeleteTableCellParagraphInvalidPassword),
+        ("testDeleteTableCellParagraphInvalidFolder", testDeleteTableCellParagraphInvalidFolder),
+        ("testDeleteTableCellParagraphInvalidStorage", testDeleteTableCellParagraphInvalidStorage),
+        ("testDeleteTableCellPortion", testDeleteTableCellPortion),
+        ("testDeleteTableCellPortionInvalidName", testDeleteTableCellPortionInvalidName),
+        ("testDeleteTableCellPortionInvalidSlideIndex", testDeleteTableCellPortionInvalidSlideIndex),
+        ("testDeleteTableCellPortionInvalidShapeIndex", testDeleteTableCellPortionInvalidShapeIndex),
+        ("testDeleteTableCellPortionInvalidRowIndex", testDeleteTableCellPortionInvalidRowIndex),
+        ("testDeleteTableCellPortionInvalidCellIndex", testDeleteTableCellPortionInvalidCellIndex),
+        ("testDeleteTableCellPortionInvalidParagraphIndex", testDeleteTableCellPortionInvalidParagraphIndex),
+        ("testDeleteTableCellPortionInvalidPortionIndex", testDeleteTableCellPortionInvalidPortionIndex),
+        ("testDeleteTableCellPortionInvalidPassword", testDeleteTableCellPortionInvalidPassword),
+        ("testDeleteTableCellPortionInvalidFolder", testDeleteTableCellPortionInvalidFolder),
+        ("testDeleteTableCellPortionInvalidStorage", testDeleteTableCellPortionInvalidStorage),
+        ("testDeleteTableRow", testDeleteTableRow),
+        ("testDeleteTableRowInvalidName", testDeleteTableRowInvalidName),
+        ("testDeleteTableRowInvalidSlideIndex", testDeleteTableRowInvalidSlideIndex),
+        ("testDeleteTableRowInvalidShapeIndex", testDeleteTableRowInvalidShapeIndex),
+        ("testDeleteTableRowInvalidRowIndex", testDeleteTableRowInvalidRowIndex),
+        ("testDeleteTableRowInvalidWithAttachedRows", testDeleteTableRowInvalidWithAttachedRows),
+        ("testDeleteTableRowInvalidPassword", testDeleteTableRowInvalidPassword),
+        ("testDeleteTableRowInvalidFolder", testDeleteTableRowInvalidFolder),
+        ("testDeleteTableRowInvalidStorage", testDeleteTableRowInvalidStorage),
         ("testDeleteUnusedLayoutSlides", testDeleteUnusedLayoutSlides),
         ("testDeleteUnusedLayoutSlidesInvalidName", testDeleteUnusedLayoutSlidesInvalidName),
         ("testDeleteUnusedLayoutSlidesInvalidPassword", testDeleteUnusedLayoutSlidesInvalidPassword),
@@ -1205,6 +1265,46 @@ class SlidesAPITests : XCTestCase {
         ("testGetSpecialSlideShapesInvalidFolder", testGetSpecialSlideShapesInvalidFolder),
         ("testGetSpecialSlideShapesInvalidStorage", testGetSpecialSlideShapesInvalidStorage),
         ("testGetSpecialSlideShapesInvalidSubShape", testGetSpecialSlideShapesInvalidSubShape),
+        ("testGetTableCellParagraph", testGetTableCellParagraph),
+        ("testGetTableCellParagraphInvalidName", testGetTableCellParagraphInvalidName),
+        ("testGetTableCellParagraphInvalidSlideIndex", testGetTableCellParagraphInvalidSlideIndex),
+        ("testGetTableCellParagraphInvalidShapeIndex", testGetTableCellParagraphInvalidShapeIndex),
+        ("testGetTableCellParagraphInvalidRowIndex", testGetTableCellParagraphInvalidRowIndex),
+        ("testGetTableCellParagraphInvalidCellIndex", testGetTableCellParagraphInvalidCellIndex),
+        ("testGetTableCellParagraphInvalidParagraphIndex", testGetTableCellParagraphInvalidParagraphIndex),
+        ("testGetTableCellParagraphInvalidPassword", testGetTableCellParagraphInvalidPassword),
+        ("testGetTableCellParagraphInvalidFolder", testGetTableCellParagraphInvalidFolder),
+        ("testGetTableCellParagraphInvalidStorage", testGetTableCellParagraphInvalidStorage),
+        ("testGetTableCellParagraphs", testGetTableCellParagraphs),
+        ("testGetTableCellParagraphsInvalidName", testGetTableCellParagraphsInvalidName),
+        ("testGetTableCellParagraphsInvalidSlideIndex", testGetTableCellParagraphsInvalidSlideIndex),
+        ("testGetTableCellParagraphsInvalidShapeIndex", testGetTableCellParagraphsInvalidShapeIndex),
+        ("testGetTableCellParagraphsInvalidRowIndex", testGetTableCellParagraphsInvalidRowIndex),
+        ("testGetTableCellParagraphsInvalidCellIndex", testGetTableCellParagraphsInvalidCellIndex),
+        ("testGetTableCellParagraphsInvalidPassword", testGetTableCellParagraphsInvalidPassword),
+        ("testGetTableCellParagraphsInvalidFolder", testGetTableCellParagraphsInvalidFolder),
+        ("testGetTableCellParagraphsInvalidStorage", testGetTableCellParagraphsInvalidStorage),
+        ("testGetTableCellPortion", testGetTableCellPortion),
+        ("testGetTableCellPortionInvalidName", testGetTableCellPortionInvalidName),
+        ("testGetTableCellPortionInvalidSlideIndex", testGetTableCellPortionInvalidSlideIndex),
+        ("testGetTableCellPortionInvalidShapeIndex", testGetTableCellPortionInvalidShapeIndex),
+        ("testGetTableCellPortionInvalidRowIndex", testGetTableCellPortionInvalidRowIndex),
+        ("testGetTableCellPortionInvalidCellIndex", testGetTableCellPortionInvalidCellIndex),
+        ("testGetTableCellPortionInvalidParagraphIndex", testGetTableCellPortionInvalidParagraphIndex),
+        ("testGetTableCellPortionInvalidPortionIndex", testGetTableCellPortionInvalidPortionIndex),
+        ("testGetTableCellPortionInvalidPassword", testGetTableCellPortionInvalidPassword),
+        ("testGetTableCellPortionInvalidFolder", testGetTableCellPortionInvalidFolder),
+        ("testGetTableCellPortionInvalidStorage", testGetTableCellPortionInvalidStorage),
+        ("testGetTableCellPortions", testGetTableCellPortions),
+        ("testGetTableCellPortionsInvalidName", testGetTableCellPortionsInvalidName),
+        ("testGetTableCellPortionsInvalidSlideIndex", testGetTableCellPortionsInvalidSlideIndex),
+        ("testGetTableCellPortionsInvalidShapeIndex", testGetTableCellPortionsInvalidShapeIndex),
+        ("testGetTableCellPortionsInvalidRowIndex", testGetTableCellPortionsInvalidRowIndex),
+        ("testGetTableCellPortionsInvalidCellIndex", testGetTableCellPortionsInvalidCellIndex),
+        ("testGetTableCellPortionsInvalidParagraphIndex", testGetTableCellPortionsInvalidParagraphIndex),
+        ("testGetTableCellPortionsInvalidPassword", testGetTableCellPortionsInvalidPassword),
+        ("testGetTableCellPortionsInvalidFolder", testGetTableCellPortionsInvalidFolder),
+        ("testGetTableCellPortionsInvalidStorage", testGetTableCellPortionsInvalidStorage),
         ("testGetTheme", testGetTheme),
         ("testGetThemeInvalidName", testGetThemeInvalidName),
         ("testGetThemeInvalidSlideIndex", testGetThemeInvalidSlideIndex),
@@ -1278,6 +1378,14 @@ class SlidesAPITests : XCTestCase {
         ("testMergeOnlineInvalidFiles", testMergeOnlineInvalidFiles),
         ("testMergeOnlineInvalidRequest", testMergeOnlineInvalidRequest),
         ("testMergeOnlineInvalidStorage", testMergeOnlineInvalidStorage),
+        ("testMergeTableCells", testMergeTableCells),
+        ("testMergeTableCellsInvalidName", testMergeTableCellsInvalidName),
+        ("testMergeTableCellsInvalidSlideIndex", testMergeTableCellsInvalidSlideIndex),
+        ("testMergeTableCellsInvalidShapeIndex", testMergeTableCellsInvalidShapeIndex),
+        ("testMergeTableCellsInvalidTableCellMergeOptions", testMergeTableCellsInvalidTableCellMergeOptions),
+        ("testMergeTableCellsInvalidPassword", testMergeTableCellsInvalidPassword),
+        ("testMergeTableCellsInvalidFolder", testMergeTableCellsInvalidFolder),
+        ("testMergeTableCellsInvalidStorage", testMergeTableCellsInvalidStorage),
         ("testMoveFile", testMoveFile),
         ("testMoveFileInvalidSrcPath", testMoveFileInvalidSrcPath),
         ("testMoveFileInvalidDestPath", testMoveFileInvalidDestPath),
@@ -1667,6 +1775,17 @@ class SlidesAPITests : XCTestCase {
         ("testSplitOnlineInvalidStorage", testSplitOnlineInvalidStorage),
         ("testSplitOnlineInvalidFontsFolder", testSplitOnlineInvalidFontsFolder),
         ("testSplitOnlineInvalidOptions", testSplitOnlineInvalidOptions),
+        ("testSplitTableCell", testSplitTableCell),
+        ("testSplitTableCellInvalidName", testSplitTableCellInvalidName),
+        ("testSplitTableCellInvalidSlideIndex", testSplitTableCellInvalidSlideIndex),
+        ("testSplitTableCellInvalidShapeIndex", testSplitTableCellInvalidShapeIndex),
+        ("testSplitTableCellInvalidRowIndex", testSplitTableCellInvalidRowIndex),
+        ("testSplitTableCellInvalidCellIndex", testSplitTableCellInvalidCellIndex),
+        ("testSplitTableCellInvalidSplitType", testSplitTableCellInvalidSplitType),
+        ("testSplitTableCellInvalidValue", testSplitTableCellInvalidValue),
+        ("testSplitTableCellInvalidPassword", testSplitTableCellInvalidPassword),
+        ("testSplitTableCellInvalidFolder", testSplitTableCellInvalidFolder),
+        ("testSplitTableCellInvalidStorage", testSplitTableCellInvalidStorage),
         ("testStorageExists", testStorageExists),
         ("testStorageExistsInvalidStorageName", testStorageExistsInvalidStorageName),
         ("testUpdateAnimationEffect", testUpdateAnimationEffect),
@@ -1824,6 +1943,48 @@ class SlidesAPITests : XCTestCase {
         ("testUpdateSpecialSlideShapeInvalidFolder", testUpdateSpecialSlideShapeInvalidFolder),
         ("testUpdateSpecialSlideShapeInvalidStorage", testUpdateSpecialSlideShapeInvalidStorage),
         ("testUpdateSpecialSlideShapeInvalidSubShape", testUpdateSpecialSlideShapeInvalidSubShape),
+        ("testUpdateTableCell", testUpdateTableCell),
+        ("testUpdateTableCellInvalidName", testUpdateTableCellInvalidName),
+        ("testUpdateTableCellInvalidSlideIndex", testUpdateTableCellInvalidSlideIndex),
+        ("testUpdateTableCellInvalidShapeIndex", testUpdateTableCellInvalidShapeIndex),
+        ("testUpdateTableCellInvalidRowIndex", testUpdateTableCellInvalidRowIndex),
+        ("testUpdateTableCellInvalidCellIndex", testUpdateTableCellInvalidCellIndex),
+        ("testUpdateTableCellInvalidDto", testUpdateTableCellInvalidDto),
+        ("testUpdateTableCellInvalidPassword", testUpdateTableCellInvalidPassword),
+        ("testUpdateTableCellInvalidFolder", testUpdateTableCellInvalidFolder),
+        ("testUpdateTableCellInvalidStorage", testUpdateTableCellInvalidStorage),
+        ("testUpdateTableCellParagraph", testUpdateTableCellParagraph),
+        ("testUpdateTableCellParagraphInvalidName", testUpdateTableCellParagraphInvalidName),
+        ("testUpdateTableCellParagraphInvalidSlideIndex", testUpdateTableCellParagraphInvalidSlideIndex),
+        ("testUpdateTableCellParagraphInvalidShapeIndex", testUpdateTableCellParagraphInvalidShapeIndex),
+        ("testUpdateTableCellParagraphInvalidRowIndex", testUpdateTableCellParagraphInvalidRowIndex),
+        ("testUpdateTableCellParagraphInvalidCellIndex", testUpdateTableCellParagraphInvalidCellIndex),
+        ("testUpdateTableCellParagraphInvalidParagraphIndex", testUpdateTableCellParagraphInvalidParagraphIndex),
+        ("testUpdateTableCellParagraphInvalidDto", testUpdateTableCellParagraphInvalidDto),
+        ("testUpdateTableCellParagraphInvalidPassword", testUpdateTableCellParagraphInvalidPassword),
+        ("testUpdateTableCellParagraphInvalidFolder", testUpdateTableCellParagraphInvalidFolder),
+        ("testUpdateTableCellParagraphInvalidStorage", testUpdateTableCellParagraphInvalidStorage),
+        ("testUpdateTableCellPortion", testUpdateTableCellPortion),
+        ("testUpdateTableCellPortionInvalidName", testUpdateTableCellPortionInvalidName),
+        ("testUpdateTableCellPortionInvalidSlideIndex", testUpdateTableCellPortionInvalidSlideIndex),
+        ("testUpdateTableCellPortionInvalidShapeIndex", testUpdateTableCellPortionInvalidShapeIndex),
+        ("testUpdateTableCellPortionInvalidRowIndex", testUpdateTableCellPortionInvalidRowIndex),
+        ("testUpdateTableCellPortionInvalidCellIndex", testUpdateTableCellPortionInvalidCellIndex),
+        ("testUpdateTableCellPortionInvalidParagraphIndex", testUpdateTableCellPortionInvalidParagraphIndex),
+        ("testUpdateTableCellPortionInvalidPortionIndex", testUpdateTableCellPortionInvalidPortionIndex),
+        ("testUpdateTableCellPortionInvalidDto", testUpdateTableCellPortionInvalidDto),
+        ("testUpdateTableCellPortionInvalidPassword", testUpdateTableCellPortionInvalidPassword),
+        ("testUpdateTableCellPortionInvalidFolder", testUpdateTableCellPortionInvalidFolder),
+        ("testUpdateTableCellPortionInvalidStorage", testUpdateTableCellPortionInvalidStorage),
+        ("testUpdateTableRow", testUpdateTableRow),
+        ("testUpdateTableRowInvalidName", testUpdateTableRowInvalidName),
+        ("testUpdateTableRowInvalidSlideIndex", testUpdateTableRowInvalidSlideIndex),
+        ("testUpdateTableRowInvalidShapeIndex", testUpdateTableRowInvalidShapeIndex),
+        ("testUpdateTableRowInvalidRowIndex", testUpdateTableRowInvalidRowIndex),
+        ("testUpdateTableRowInvalidDto", testUpdateTableRowInvalidDto),
+        ("testUpdateTableRowInvalidPassword", testUpdateTableRowInvalidPassword),
+        ("testUpdateTableRowInvalidFolder", testUpdateTableRowInvalidFolder),
+        ("testUpdateTableRowInvalidStorage", testUpdateTableRowInvalidStorage),
         ("testUploadFile", testUploadFile),
         ("testUploadFileInvalidPath", testUploadFileInvalidPath),
         ("testUploadFileInvalidFile", testUploadFileInvalidFile),
@@ -7894,6 +8055,638 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("createSpecialSlideShape", "subShape", "String", paramSubShape) { (response, error) -> Void in
             SlidesAPI.createSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramDto, paramShapeToClone, paramPosition, paramPassword, paramFolder, paramStorage, paramSubShape) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "createSpecialSlideShape", parameterName: "subShape", parameterType: "String", parameterValue: paramSubShape as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraph() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let paramName : String = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "cellIndex", type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "dto", type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "createTableCellParagraph", name: "storage", type: "String")
+        TestUtils.initialize("createTableCellParagraph") { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidName() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidRowIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidCellIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidDto() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "dto", "Paragraph", paramDto) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "dto", parameterType: "Paragraph", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidPassword() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidFolder() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellParagraphInvalidStorage() {
+        let expectation = self.expectation(description: "testcreateTableCellParagraph")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellParagraph", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.createTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellParagraph", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortion() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let paramName : String = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "paragraphIndex", type: "Int")
+        let paramDto : Portion = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "dto", type: "Portion")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "createTableCellPortion", name: "storage", type: "String")
+        TestUtils.initialize("createTableCellPortion") { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidName() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidRowIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidCellIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidDto() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "dto", "Portion", paramDto) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "dto", parameterType: "Portion", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidPassword() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidFolder() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableCellPortionInvalidStorage() {
+        let expectation = self.expectation(description: "testcreateTableCellPortion")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableCellPortion", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.createTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableCellPortion", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRow() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let paramName : String = TestUtils.getTestValue(functionName: "createTableRow", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "createTableRow", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "createTableRow", name: "shapeIndex", type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValue(functionName: "createTableRow", name: "dto", type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValue(functionName: "createTableRow", name: "position", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "createTableRow", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "createTableRow", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "createTableRow", name: "storage", type: "String")
+        TestUtils.initialize("createTableRow") { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidName() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidDto() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "dto", "TableRow", paramDto) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "dto", parameterType: "TableRow", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidPosition() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "position"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "position", "Int", paramPosition) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "position", parameterType: "Int", parameterValue: paramPosition as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidPassword() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidFolder() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testCreateTableRowInvalidStorage() {
+        let expectation = self.expectation(description: "testcreateTableRow")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPosition : Int = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "position", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "createTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("createTableRow", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.createTableRow(paramName, paramSlideIndex, paramShapeIndex, paramDto, paramPosition, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "createTableRow", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }
@@ -14454,6 +15247,638 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("deleteSpecialSlideShapes", "subShape", "String", paramSubShape) { (response, error) -> Void in
             SlidesAPI.deleteSpecialSlideShapes(paramName, paramSlideIndex, paramSlideType, paramShapes, paramPassword, paramFolder, paramStorage, paramSubShape) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "deleteSpecialSlideShapes", parameterName: "subShape", parameterType: "String", parameterValue: paramSubShape as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraph() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "paragraphIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteTableCellParagraph", name: "storage", type: "String")
+        TestUtils.initialize("deleteTableCellParagraph") { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidName() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidRowIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidCellIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellParagraphInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteTableCellParagraph")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellParagraph", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellParagraph", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortion() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "paragraphIndex", type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "portionIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteTableCellPortion", name: "storage", type: "String")
+        TestUtils.initialize("deleteTableCellPortion") { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidName() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidRowIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidCellIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidPortionIndex() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "portionIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "portionIndex", "Int", paramPortionIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "portionIndex", parameterType: "Int", parameterValue: paramPortionIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableCellPortionInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteTableCellPortion")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableCellPortion", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableCellPortion", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRow() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let paramName : String = TestUtils.getTestValue(functionName: "deleteTableRow", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "deleteTableRow", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "deleteTableRow", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "deleteTableRow", name: "rowIndex", type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValue(functionName: "deleteTableRow", name: "withAttachedRows", type: "Bool")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "deleteTableRow", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "deleteTableRow", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "deleteTableRow", name: "storage", type: "String")
+        TestUtils.initialize("deleteTableRow") { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidName() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidRowIndex() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidWithAttachedRows() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "withAttachedRows"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "withAttachedRows", "Bool", paramWithAttachedRows) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "withAttachedRows", parameterType: "Bool", parameterValue: paramWithAttachedRows as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidPassword() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidFolder() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testDeleteTableRowInvalidStorage() {
+        let expectation = self.expectation(description: "testdeleteTableRow")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramWithAttachedRows : Bool = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "withAttachedRows", invalidFieldName: invalidFieldName, type: "Bool")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "deleteTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("deleteTableRow", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.deleteTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramWithAttachedRows, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "deleteTableRow", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }
@@ -24116,6 +25541,848 @@ class SlidesAPITests : XCTestCase {
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
 
+    func testGetTableCellParagraph() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let paramName : String = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "paragraphIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "getTableCellParagraph", name: "storage", type: "String")
+        TestUtils.initialize("getTableCellParagraph") { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidName() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidRowIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidCellIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidPassword() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidFolder() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphInvalidStorage() {
+        let expectation = self.expectation(description: "testgetTableCellParagraph")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraph", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraph", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphs() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let paramName : String = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "cellIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "getTableCellParagraphs", name: "storage", type: "String")
+        TestUtils.initialize("getTableCellParagraphs") { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidName() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidRowIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidCellIndex() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidPassword() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidFolder() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellParagraphsInvalidStorage() {
+        let expectation = self.expectation(description: "testgetTableCellParagraphs")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellParagraphs", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellParagraphs", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.getTableCellParagraphs(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellParagraphs", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortion() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let paramName : String = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "paragraphIndex", type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "portionIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "getTableCellPortion", name: "storage", type: "String")
+        TestUtils.initialize("getTableCellPortion") { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidName() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidRowIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidCellIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidPortionIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "portionIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "portionIndex", "Int", paramPortionIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "portionIndex", parameterType: "Int", parameterValue: paramPortionIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidPassword() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidFolder() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionInvalidStorage() {
+        let expectation = self.expectation(description: "testgetTableCellPortion")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortion", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortion", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortions() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let paramName : String = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "paragraphIndex", type: "Int")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "getTableCellPortions", name: "storage", type: "String")
+        TestUtils.initialize("getTableCellPortions") { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidName() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidRowIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidCellIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidPassword() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidFolder() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testGetTableCellPortionsInvalidStorage() {
+        let expectation = self.expectation(description: "testgetTableCellPortions")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "getTableCellPortions", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("getTableCellPortions", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.getTableCellPortions(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "getTableCellPortions", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
     func testGetTheme() {
         let expectation = self.expectation(description: "testgetTheme")
         let paramName : String = TestUtils.getTestValue(functionName: "getTheme", name: "name", type: "String")
@@ -25534,6 +27801,158 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("mergeOnline", "storage", "String", paramStorage) { (response, error) -> Void in
             SlidesAPI.mergeOnline(paramFiles, paramRequest, paramStorage) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "mergeOnline", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCells() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let paramName : String = TestUtils.getTestValue(functionName: "mergeTableCells", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "mergeTableCells", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "mergeTableCells", name: "shapeIndex", type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValue(functionName: "mergeTableCells", name: "tableCellMergeOptions", type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "mergeTableCells", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "mergeTableCells", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "mergeTableCells", name: "storage", type: "String")
+        TestUtils.initialize("mergeTableCells") { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidName() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidTableCellMergeOptions() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "tableCellMergeOptions"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "tableCellMergeOptions", "TableCellMergeOptions", paramTableCellMergeOptions) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "tableCellMergeOptions", parameterType: "TableCellMergeOptions", parameterValue: paramTableCellMergeOptions as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidPassword() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidFolder() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testMergeTableCellsInvalidStorage() {
+        let expectation = self.expectation(description: "testmergeTableCells")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramTableCellMergeOptions : TableCellMergeOptions = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "tableCellMergeOptions", invalidFieldName: invalidFieldName, type: "TableCellMergeOptions")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "mergeTableCells", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("mergeTableCells", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.mergeTableCells(paramName, paramSlideIndex, paramShapeIndex, paramTableCellMergeOptions, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "mergeTableCells", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }
@@ -33220,6 +35639,248 @@ class SlidesAPITests : XCTestCase {
         self.waitForExpectations(timeout: testTimeout, handler: nil)
     }
 
+    func testSplitTableCell() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let paramName : String = TestUtils.getTestValue(functionName: "splitTableCell", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "splitTableCell", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "splitTableCell", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "splitTableCell", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "splitTableCell", name: "cellIndex", type: "Int")
+        let paramSplitType : String = TestUtils.getTestValue(functionName: "splitTableCell", name: "splitType", type: "String")
+        let paramValue : Double = TestUtils.getTestValue(functionName: "splitTableCell", name: "value", type: "Double")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "splitTableCell", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "splitTableCell", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "splitTableCell", name: "storage", type: "String")
+        TestUtils.initialize("splitTableCell") { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidName() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidRowIndex() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidCellIndex() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidSplitType() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "splitType"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "splitType", "String", paramSplitType) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "splitType", parameterType: "String", parameterValue: paramSplitType as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidValue() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "value"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "value", "Double", paramValue) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "value", parameterType: "Double", parameterValue: paramValue as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidPassword() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidFolder() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testSplitTableCellInvalidStorage() {
+        let expectation = self.expectation(description: "testsplitTableCell")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramSplitType : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "splitType", invalidFieldName: invalidFieldName, type: "String")
+        let paramValue : Double = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "value", invalidFieldName: invalidFieldName, type: "Double")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "splitTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("splitTableCell", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.splitTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramSplitType, paramValue, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "splitTableCell", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
     func testStorageExists() {
         let expectation = self.expectation(description: "teststorageExists")
         let paramStorageName : String = TestUtils.getTestValue(functionName: "storageExists", name: "storageName", type: "String")
@@ -36396,6 +39057,914 @@ class SlidesAPITests : XCTestCase {
         TestUtils.initialize("updateSpecialSlideShape", "subShape", "String", paramSubShape) { (response, error) -> Void in
             SlidesAPI.updateSpecialSlideShape(paramName, paramSlideIndex, paramSlideType, paramShapeIndex, paramDto, paramPassword, paramFolder, paramStorage, paramSubShape) { (response, error) -> Void in
                 TestUtils.assertError(error: error, functionName: "updateSpecialSlideShape", parameterName: "subShape", parameterType: "String", parameterValue: paramSubShape as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCell() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let paramName : String = TestUtils.getTestValue(functionName: "updateTableCell", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateTableCell", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateTableCell", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "updateTableCell", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "updateTableCell", name: "cellIndex", type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValue(functionName: "updateTableCell", name: "dto", type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "updateTableCell", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "updateTableCell", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "updateTableCell", name: "storage", type: "String")
+        TestUtils.initialize("updateTableCell") { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidName() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidRowIndex() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidCellIndex() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidDto() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "dto", "TableCell", paramDto) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "dto", parameterType: "TableCell", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidPassword() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidFolder() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellInvalidStorage() {
+        let expectation = self.expectation(description: "testupdateTableCell")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableCell = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "dto", invalidFieldName: invalidFieldName, type: "TableCell")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCell", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCell", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.updateTableCell(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCell", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraph() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let paramName : String = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "paragraphIndex", type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "dto", type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "updateTableCellParagraph", name: "storage", type: "String")
+        TestUtils.initialize("updateTableCellParagraph") { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidName() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidRowIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidCellIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidDto() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "dto", "Paragraph", paramDto) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "dto", parameterType: "Paragraph", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidPassword() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidFolder() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellParagraphInvalidStorage() {
+        let expectation = self.expectation(description: "testupdateTableCellParagraph")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Paragraph = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "dto", invalidFieldName: invalidFieldName, type: "Paragraph")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellParagraph", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellParagraph", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.updateTableCellParagraph(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellParagraph", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortion() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let paramName : String = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "rowIndex", type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "cellIndex", type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "paragraphIndex", type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "portionIndex", type: "Int")
+        let paramDto : Portion = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "dto", type: "Portion")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "updateTableCellPortion", name: "storage", type: "String")
+        TestUtils.initialize("updateTableCellPortion") { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidName() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidRowIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidCellIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "cellIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "cellIndex", "Int", paramCellIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "cellIndex", parameterType: "Int", parameterValue: paramCellIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidParagraphIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "paragraphIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "paragraphIndex", "Int", paramParagraphIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "paragraphIndex", parameterType: "Int", parameterValue: paramParagraphIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidPortionIndex() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "portionIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "portionIndex", "Int", paramPortionIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "portionIndex", parameterType: "Int", parameterValue: paramPortionIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidDto() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "dto", "Portion", paramDto) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "dto", parameterType: "Portion", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidPassword() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidFolder() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableCellPortionInvalidStorage() {
+        let expectation = self.expectation(description: "testupdateTableCellPortion")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramCellIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "cellIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramParagraphIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "paragraphIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramPortionIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "portionIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : Portion = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "dto", invalidFieldName: invalidFieldName, type: "Portion")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableCellPortion", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableCellPortion", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.updateTableCellPortion(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramCellIndex, paramParagraphIndex, paramPortionIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableCellPortion", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRow() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let paramName : String = TestUtils.getTestValue(functionName: "updateTableRow", name: "name", type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValue(functionName: "updateTableRow", name: "slideIndex", type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValue(functionName: "updateTableRow", name: "shapeIndex", type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValue(functionName: "updateTableRow", name: "rowIndex", type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValue(functionName: "updateTableRow", name: "dto", type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValue(functionName: "updateTableRow", name: "password", type: "String")
+        let paramFolder : String = TestUtils.getTestValue(functionName: "updateTableRow", name: "folder", type: "String")
+        let paramStorage : String = TestUtils.getTestValue(functionName: "updateTableRow", name: "storage", type: "String")
+        TestUtils.initialize("updateTableRow") { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                XCTAssertNotNil(response)
+                XCTAssertNil(error)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidName() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "name"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "name", "String", paramName) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "name", parameterType: "String", parameterValue: paramName as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidSlideIndex() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "slideIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "slideIndex", "Int", paramSlideIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "slideIndex", parameterType: "Int", parameterValue: paramSlideIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidShapeIndex() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "shapeIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "shapeIndex", "Int", paramShapeIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "shapeIndex", parameterType: "Int", parameterValue: paramShapeIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidRowIndex() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "rowIndex"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "rowIndex", "Int", paramRowIndex) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "rowIndex", parameterType: "Int", parameterValue: paramRowIndex as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidDto() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "dto"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "dto", "TableRow", paramDto) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "dto", parameterType: "TableRow", parameterValue: paramDto as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidPassword() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "password"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "password", "String", paramPassword) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "password", parameterType: "String", parameterValue: paramPassword as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidFolder() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "folder"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "folder", "String", paramFolder) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "folder", parameterType: "String", parameterValue: paramFolder as Any)
+                expectation.fulfill()
+            }
+        }
+        self.waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    func testUpdateTableRowInvalidStorage() {
+        let expectation = self.expectation(description: "testupdateTableRow")
+        let invalidFieldName = "storage"
+        let paramName : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "name", invalidFieldName: invalidFieldName, type: "String")
+        let paramSlideIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "slideIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramShapeIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "shapeIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramRowIndex : Int = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "rowIndex", invalidFieldName: invalidFieldName, type: "Int")
+        let paramDto : TableRow = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "dto", invalidFieldName: invalidFieldName, type: "TableRow")
+        let paramPassword : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "password", invalidFieldName: invalidFieldName, type: "String")
+        let paramFolder : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "folder", invalidFieldName: invalidFieldName, type: "String")
+        let paramStorage : String = TestUtils.getTestValueForInvalid(functionName: "updateTableRow", name: "storage", invalidFieldName: invalidFieldName, type: "String")
+        TestUtils.initialize("updateTableRow", "storage", "String", paramStorage) { (response, error) -> Void in
+            SlidesAPI.updateTableRow(paramName, paramSlideIndex, paramShapeIndex, paramRowIndex, paramDto, paramPassword, paramFolder, paramStorage) { (response, error) -> Void in
+                TestUtils.assertError(error: error, functionName: "updateTableRow", parameterName: "storage", parameterType: "String", parameterValue: paramStorage as Any)
                 expectation.fulfill()
             }
         }

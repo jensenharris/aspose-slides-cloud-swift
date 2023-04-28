@@ -86,6 +86,10 @@ public class TableCell: Codable {
     public var columnIndex: Int?
     /** Cell row index */
     public var rowIndex: Int?
+    /** Returns TextFrame&#39;s formatting properties. */
+    public var textFrameFormat: TextFrameFormat?
+    /** Get or sets list to paragraphs list */
+    public var paragraphs: ResourceUri?
 
     func fillValues(_ source: [String:Any]) throws {
         let textValue = source["text"] ?? source["Text"]
@@ -214,9 +218,29 @@ public class TableCell: Codable {
         if rowIndexValue != nil {
             self.rowIndex = rowIndexValue! as? Int
         }
+        let textFrameFormatValue = source["textFrameFormat"] ?? source["TextFrameFormat"]
+        if textFrameFormatValue != nil {
+            let textFrameFormatDictionaryValue = textFrameFormatValue! as? [String:Any]
+            if textFrameFormatDictionaryValue != nil {
+                let (textFrameFormatInstance, error) = ClassRegistry.getClassFromDictionary(TextFrameFormat.self, textFrameFormatDictionaryValue!)
+                if error == nil && textFrameFormatInstance != nil {
+                    self.textFrameFormat = textFrameFormatInstance! as? TextFrameFormat
+                }
+            }
+        }
+        let paragraphsValue = source["paragraphs"] ?? source["Paragraphs"]
+        if paragraphsValue != nil {
+            let paragraphsDictionaryValue = paragraphsValue! as? [String:Any]
+            if paragraphsDictionaryValue != nil {
+                let (paragraphsInstance, error) = ClassRegistry.getClassFromDictionary(ResourceUri.self, paragraphsDictionaryValue!)
+                if error == nil && paragraphsInstance != nil {
+                    self.paragraphs = paragraphsInstance! as? ResourceUri
+                }
+            }
+        }
     }
 
-    public init(text: String? = nil, rowSpan: Int? = nil, colSpan: Int? = nil, marginTop: Double? = nil, marginRight: Double? = nil, marginLeft: Double? = nil, marginBottom: Double? = nil, textAnchorType: TextAnchorType? = nil, textVerticalType: TextVerticalType? = nil, fillFormat: FillFormat? = nil, borderTop: LineFormat? = nil, borderRight: LineFormat? = nil, borderLeft: LineFormat? = nil, borderBottom: LineFormat? = nil, borderDiagonalUp: LineFormat? = nil, borderDiagonalDown: LineFormat? = nil, columnIndex: Int? = nil, rowIndex: Int? = nil) {
+    public init(text: String? = nil, rowSpan: Int? = nil, colSpan: Int? = nil, marginTop: Double? = nil, marginRight: Double? = nil, marginLeft: Double? = nil, marginBottom: Double? = nil, textAnchorType: TextAnchorType? = nil, textVerticalType: TextVerticalType? = nil, fillFormat: FillFormat? = nil, borderTop: LineFormat? = nil, borderRight: LineFormat? = nil, borderLeft: LineFormat? = nil, borderBottom: LineFormat? = nil, borderDiagonalUp: LineFormat? = nil, borderDiagonalDown: LineFormat? = nil, columnIndex: Int? = nil, rowIndex: Int? = nil, textFrameFormat: TextFrameFormat? = nil, paragraphs: ResourceUri? = nil) {
         self.text = text
         self.rowSpan = rowSpan
         self.colSpan = colSpan
@@ -235,6 +259,8 @@ public class TableCell: Codable {
         self.borderDiagonalDown = borderDiagonalDown
         self.columnIndex = columnIndex
         self.rowIndex = rowIndex
+        self.textFrameFormat = textFrameFormat
+        self.paragraphs = paragraphs
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -256,6 +282,8 @@ public class TableCell: Codable {
         case borderDiagonalDown
         case columnIndex
         case rowIndex
+        case textFrameFormat
+        case paragraphs
     }
 
 }

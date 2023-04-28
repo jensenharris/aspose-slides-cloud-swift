@@ -939,6 +939,10 @@ class ClassRegistry {
             let value = TableCell()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "TableCellMergeOptions" {
+            let value = TableCellMergeOptions()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "TableColumn" {
             let value = TableColumn()
             try? value.fillValues(object)
