@@ -999,6 +999,18 @@ class ClassRegistry {
             let value = UpdateShape()
             try? value.fillValues(object)
             return (value, nil)
+        } else if className == "VbaModule" {
+            let value = VbaModule()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "VbaProject" {
+            let value = VbaProject()
+            try? value.fillValues(object)
+            return (value, nil)
+        } else if className == "VbaReference" {
+            let value = VbaReference()
+            try? value.fillValues(object)
+            return (value, nil)
         } else if className == "VideoExportOptions" {
             let value = VideoExportOptions()
             try? value.fillValues(object)
@@ -1181,6 +1193,8 @@ class ClassRegistry {
         "TintEffect": "ImageTransformEffect",
         "UpdateBackground": "Task",
         "UpdateShape": "Task",
+        "VbaModule": "ResourceBase",
+        "VbaProject": "ResourceBase",
         "VideoExportOptions": "ExportOptions",
         "VideoFrame": "GeometryShape",
         "ViewProperties": "ResourceBase",
@@ -1441,6 +1455,8 @@ class ClassRegistry {
         typeDeterminers["UpdateBackground"]!["Type"] = "UpdateBackground"
         typeDeterminers["UpdateShape"] = [ : ]
         typeDeterminers["UpdateShape"]!["Type"] = "UpdateShape"
+        typeDeterminers["VbaModule"] = [ : ]
+        typeDeterminers["VbaProject"] = [ : ]
         typeDeterminers["VideoExportOptions"] = [ : ]
         typeDeterminers["VideoExportOptions"]!["Format"] = "mpeg4"
         typeDeterminers["VideoFrame"] = [ : ]
