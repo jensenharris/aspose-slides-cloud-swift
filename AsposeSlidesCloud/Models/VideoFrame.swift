@@ -62,6 +62,10 @@ public class VideoFrame: GeometryShape {
     public var base64Data: String?
     /** Picture fill format. */
     public var pictureFillFormat: PictureFill?
+    /** Trim start [ms] */
+    public var trimFromStart: Double?
+    /** Trim end [ms] */
+    public var trimFromEnd: Double?
 
     override func fillValues(_ source: [String:Any]) throws {
         try super.fillValues(source)
@@ -115,9 +119,17 @@ public class VideoFrame: GeometryShape {
                 }
             }
         }
+        let trimFromStartValue = source["trimFromStart"] ?? source["TrimFromStart"]
+        if trimFromStartValue != nil {
+            self.trimFromStart = trimFromStartValue! as? Double
+        }
+        let trimFromEndValue = source["trimFromEnd"] ?? source["TrimFromEnd"]
+        if trimFromEndValue != nil {
+            self.trimFromEnd = trimFromEndValue! as? Double
+        }
     }
 
-    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, x: Double? = nil, y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, fullScreenMode: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, rewindVideo: Bool? = nil, volume: Volume? = nil, base64Data: String? = nil, pictureFillFormat: PictureFill? = nil) {
+    public init(selfUri: ResourceUri? = nil, alternateLinks: [ResourceUri]? = nil, name: String? = nil, width: Double? = nil, height: Double? = nil, alternativeText: String? = nil, alternativeTextTitle: String? = nil, hidden: Bool? = nil, x: Double? = nil, y: Double? = nil, zOrderPosition: Int? = nil, fillFormat: FillFormat? = nil, effectFormat: EffectFormat? = nil, threeDFormat: ThreeDFormat? = nil, lineFormat: LineFormat? = nil, hyperlinkClick: Hyperlink? = nil, hyperlinkMouseOver: Hyperlink? = nil, type: ModelType? = nil, shapeType: ShapeType? = nil, fullScreenMode: Bool? = nil, hideAtShowing: Bool? = nil, playLoopMode: Bool? = nil, playMode: PlayMode? = nil, rewindVideo: Bool? = nil, volume: Volume? = nil, base64Data: String? = nil, pictureFillFormat: PictureFill? = nil, trimFromStart: Double? = nil, trimFromEnd: Double? = nil) {
         super.init(selfUri: selfUri, alternateLinks: alternateLinks, name: name, width: width, height: height, alternativeText: alternativeText, alternativeTextTitle: alternativeTextTitle, hidden: hidden, x: x, y: y, zOrderPosition: zOrderPosition, fillFormat: fillFormat, effectFormat: effectFormat, threeDFormat: threeDFormat, lineFormat: lineFormat, hyperlinkClick: hyperlinkClick, hyperlinkMouseOver: hyperlinkMouseOver, type: type, shapeType: shapeType)
         self.fullScreenMode = fullScreenMode
         self.hideAtShowing = hideAtShowing
@@ -127,6 +139,8 @@ public class VideoFrame: GeometryShape {
         self.volume = volume
         self.base64Data = base64Data
         self.pictureFillFormat = pictureFillFormat
+        self.trimFromStart = trimFromStart
+        self.trimFromEnd = trimFromEnd
         self.type = ModelType.videoFrame
     }
 
@@ -139,6 +153,8 @@ public class VideoFrame: GeometryShape {
         case volume
         case base64Data
         case pictureFillFormat
+        case trimFromStart
+        case trimFromEnd
     }
 
     required init(from decoder: Decoder) throws {
@@ -152,6 +168,8 @@ public class VideoFrame: GeometryShape {
         volume = try? values.decode(Volume.self, forKey: .volume)
         base64Data = try? values.decode(String.self, forKey: .base64Data)
         pictureFillFormat = try? values.decode(PictureFill.self, forKey: .pictureFillFormat)
+        trimFromStart = try? values.decode(Double.self, forKey: .trimFromStart)
+        trimFromEnd = try? values.decode(Double.self, forKey: .trimFromEnd)
         self.type = ModelType.videoFrame
     }
 
@@ -181,6 +199,12 @@ public class VideoFrame: GeometryShape {
         }
         if (pictureFillFormat != nil) {
             try? container.encode(pictureFillFormat, forKey: .pictureFillFormat)
+        }
+        if (trimFromStart != nil) {
+            try? container.encode(trimFromStart, forKey: .trimFromStart)
+        }
+        if (trimFromEnd != nil) {
+            try? container.encode(trimFromEnd, forKey: .trimFromEnd)
         }
     }
 

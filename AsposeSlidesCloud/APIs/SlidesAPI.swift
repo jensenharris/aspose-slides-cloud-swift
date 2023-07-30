@@ -13182,6 +13182,130 @@ open class SlidesAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, files: fileParams, headers: headerParameters)
     }
     /**
+     Finds and replaces text in presentation with given format.
+     - parameter name: Document name.
+     - parameter oldValue: Text value to be replaced.
+     - parameter newValue: Text value to replace with.
+     - parameter portionFormat: Portion format.
+     - parameter withMasters: Text replacement includes master slides.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func replaceTextFormatting(_ name: String, _ oldValue: String, _ newValue: String, _ portionFormat: PortionFormat? = nil, _ withMasters: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: Document?,_ error: Error?) -> Void)) {
+        replaceTextFormattingWithRequestBuilder(name, oldValue, newValue, portionFormat, withMasters, password, folder, storage).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Finds and replaces text in presentation with given format.
+     - POST /slides/{name}/replaceTextFormatting
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{contentType=application/json, example={
+  "blank": true,
+  "bytes": [],
+  "empty": true
+}}]
+     - parameter name: Document name.
+     - parameter oldValue: Text value to be replaced.
+     - parameter newValue: Text value to replace with.
+     - parameter portionFormat: Portion format.
+     - parameter withMasters: Text replacement includes master slides.
+     - parameter password: Document password.
+     - parameter folder: Document folder.
+     - parameter storage: Document storage.
+     - returns: RequestBuilder<Document> 
+     */
+    open class func replaceTextFormattingWithRequestBuilder(_ name: String, _ oldValue: String, _ newValue: String, _ portionFormat: PortionFormat? = nil, _ withMasters: Bool? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<Document> {
+        var methodPath = "/slides/{name}/replaceTextFormatting"
+        methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: portionFormat)
+
+
+        var fileParams = [Data]()
+        fileParams.removeAll()
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "oldValue": oldValue, 
+            "newValue": newValue, 
+            "withMasters": withMasters, 
+            "folder": folder, 
+            "storage": storage
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Document>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
+     Finds and replaces text in presentation with given format.
+     - parameter document: Document data.
+     - parameter oldValue: Text value to be replaced.
+     - parameter newValue: Text value to replace with.
+     - parameter portionFormat: Portion format.
+     - parameter withMasters: Text replacement includes master slides.
+     - parameter password: Document password.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func replaceTextFormattingOnline(_ document: Data, _ oldValue: String, _ newValue: String, _ portionFormat: PortionFormat? = nil, _ withMasters: Bool? = nil, _ password: String = "", completion: @escaping ((_ data: Data?,_ error: Error?) -> Void)) {
+        replaceTextFormattingOnlineWithRequestBuilder(document, oldValue, newValue, portionFormat, withMasters, password).executeAuthorized { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Finds and replaces text in presentation with given format.
+     - POST /slides/replaceTextFormatting
+     - OAuth:
+       - type: oauth2
+       - name: JWT
+     - examples: [{output=none}]
+     - parameter document: Document data.
+     - parameter oldValue: Text value to be replaced.
+     - parameter newValue: Text value to replace with.
+     - parameter portionFormat: Portion format.
+     - parameter withMasters: Text replacement includes master slides.
+     - parameter password: Document password.
+     - returns: RequestBuilder<Data> 
+     */
+    open class func replaceTextFormattingOnlineWithRequestBuilder(_ document: Data, _ oldValue: String, _ newValue: String, _ portionFormat: PortionFormat? = nil, _ withMasters: Bool? = nil, _ password: String = "") -> RequestBuilder<Data> {
+        let methodPath = "/slides/replaceTextFormatting"
+        let URLString = AsposeSlidesCloudAPI.getBaseUrl() + methodPath
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: portionFormat)
+
+
+        var fileParams = [Data]()
+        fileParams.removeAll()
+        fileParams.append(document)
+
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "oldValue": oldValue, 
+            "newValue": newValue, 
+            "withMasters": withMasters
+        ])
+        let nillableHeaders: [String: Any?] = [
+            "password": password
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
+
+        let requestBuilder: RequestBuilder<Data>.Type = AsposeSlidesCloudAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, files: fileParams, headers: headerParameters)
+    }
+    /**
      Convert Mathematical Text to MathML Format and saves result to the storage
      - parameter name: Document name.
      - parameter slideIndex: Slide index.
@@ -17245,7 +17369,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func updateVbaModule(_ name: String, _ moduleIndex: Int, _ moduleDto: VbaModule? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: VbaModule?,_ error: Error?) -> Void)) {
+    open class func updateVbaModule(_ name: String, _ moduleIndex: Int, _ moduleDto: VbaModule, _ password: String = "", _ folder: String = "", _ storage: String = "", completion: @escaping ((_ data: VbaModule?,_ error: Error?) -> Void)) {
         updateVbaModuleWithRequestBuilder(name, moduleIndex, moduleDto, password, folder, storage).executeAuthorized { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -17271,7 +17395,7 @@ open class SlidesAPI {
      - parameter storage: Document storage.
      - returns: RequestBuilder<VbaModule> 
      */
-    open class func updateVbaModuleWithRequestBuilder(_ name: String, _ moduleIndex: Int, _ moduleDto: VbaModule? = nil, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<VbaModule> {
+    open class func updateVbaModuleWithRequestBuilder(_ name: String, _ moduleIndex: Int, _ moduleDto: VbaModule, _ password: String = "", _ folder: String = "", _ storage: String = "") -> RequestBuilder<VbaModule> {
         var methodPath = "/slides/{name}/vbaProject/modules/{moduleIndex}"
         methodPath = APIHelper.replacePathParameter(methodPath, "name", name)
         methodPath = APIHelper.replacePathParameter(methodPath, "moduleIndex", moduleIndex)

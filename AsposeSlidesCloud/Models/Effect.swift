@@ -260,6 +260,12 @@ public class Effect: Codable {
         case never = "Never"
         case notDefined = "NotDefined"
     }
+    public enum AfterAnimationType: String, Codable { 
+        case doNotDim = "DoNotDim"
+        case color = "Color"
+        case hideAfterAnimation = "HideAfterAnimation"
+        case hideOnNextMouseClick = "HideOnNextMouseClick"
+    }
     /** Effect type. */
     public var type: ModelType?
     /** Effect subtype. */
@@ -296,6 +302,12 @@ public class Effect: Codable {
     public var repeatUntilNextClick: Bool?
     /** This attribute specifies if the animation effect stops the previous sound. */
     public var stopPreviousSound: Bool?
+    /** This attribute specifies if the effect will rewind when done playing. */
+    public var rewind: Bool?
+    /** Defined an after animation color for effect. */
+    public var afterAnimationType: AfterAnimationType?
+    /** Defined an after animation color for effect. Applied when the AfterAnimationType property is set to Color. */
+    public var afterAnimationColor: String?
 
     func fillValues(_ source: [String:Any]) throws {
         let typeValue = source["type"] ?? source["Type"]
@@ -400,9 +412,27 @@ public class Effect: Codable {
         if stopPreviousSoundValue != nil {
             self.stopPreviousSound = stopPreviousSoundValue! as? Bool
         }
+        let rewindValue = source["rewind"] ?? source["Rewind"]
+        if rewindValue != nil {
+            self.rewind = rewindValue! as? Bool
+        }
+        let afterAnimationTypeValue = source["afterAnimationType"] ?? source["AfterAnimationType"]
+        if afterAnimationTypeValue != nil {
+            let afterAnimationTypeStringValue = afterAnimationTypeValue! as? String
+            if afterAnimationTypeStringValue != nil {
+                let afterAnimationTypeEnumValue = AfterAnimationType(rawValue: afterAnimationTypeStringValue!)
+                if afterAnimationTypeEnumValue != nil {
+                    self.afterAnimationType = afterAnimationTypeEnumValue!
+                }
+            }
+        }
+        let afterAnimationColorValue = source["afterAnimationColor"] ?? source["AfterAnimationColor"]
+        if afterAnimationColorValue != nil {
+            self.afterAnimationColor = afterAnimationColorValue! as? String
+        }
     }
 
-    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil, repeatUntilEndSlide: Bool? = nil, repeatUntilNextClick: Bool? = nil, stopPreviousSound: Bool? = nil) {
+    public init(type: ModelType? = nil, subtype: Subtype? = nil, presetClassType: PresetClassType? = nil, shapeIndex: Int? = nil, paragraphIndex: Int? = nil, triggerType: TriggerType? = nil, accelerate: Double? = nil, autoReverse: Bool? = nil, decelerate: Double? = nil, duration: Double? = nil, repeatCount: Double? = nil, repeatDuration: Double? = nil, restart: Restart? = nil, speed: Double? = nil, triggerDelayTime: Double? = nil, repeatUntilEndSlide: Bool? = nil, repeatUntilNextClick: Bool? = nil, stopPreviousSound: Bool? = nil, rewind: Bool? = nil, afterAnimationType: AfterAnimationType? = nil, afterAnimationColor: String? = nil) {
         self.type = type
         self.subtype = subtype
         self.presetClassType = presetClassType
@@ -421,6 +451,9 @@ public class Effect: Codable {
         self.repeatUntilEndSlide = repeatUntilEndSlide
         self.repeatUntilNextClick = repeatUntilNextClick
         self.stopPreviousSound = stopPreviousSound
+        self.rewind = rewind
+        self.afterAnimationType = afterAnimationType
+        self.afterAnimationColor = afterAnimationColor
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -442,6 +475,9 @@ public class Effect: Codable {
         case repeatUntilEndSlide
         case repeatUntilNextClick
         case stopPreviousSound
+        case rewind
+        case afterAnimationType
+        case afterAnimationColor
     }
 
 }
