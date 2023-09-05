@@ -287,7 +287,8 @@ open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilde
             
             // Safely cast the response to HTTPURLResponse
             guard let dataResponse = response as? HTTPURLResponse else {
-                completion(nil, ErrorResponse.error(-1, nil, AlamofireDecodableRequestBuilderError.invalidResponse))
+                let error = URLError(.badServerResponse)
+                completion(nil, error)
                 return
             }
             
