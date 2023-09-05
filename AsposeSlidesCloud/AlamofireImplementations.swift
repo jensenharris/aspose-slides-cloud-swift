@@ -252,7 +252,13 @@ public enum AlamofireDecodableRequestBuilderError: Error {
     case generalError(Error)
 }
 
-open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilder<T> {
+open class AlamofireDecodableRequestBuilder<T: Decodable>: AlamofireRequestBuilder<T> {
+    // Create a custom URLSession instance with a 5-minute timeout
+    private lazy var customSession: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 300.0 // 5 minutes timeout
+        return URLSession(configuration: configuration)
+    }()
 
     override fileprivate func processRequest(request: URLRequest, _ completion: @escaping (_ response: Response<T>?, _ error: Error?) -> Void) {
         var r = request
@@ -261,6 +267,7 @@ open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilde
         for (key, value) in headers {
             r.setValue(value, forHTTPHeaderField: key)
         }
+        
         if AsposeSlidesCloudAPI.debug {
             print(">>\(r.httpMethod!) \(r)")
             print(r.allHTTPHeaderFields!)
@@ -273,7 +280,9 @@ open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilde
                 }
             }
         }
-        let task = URLSession.shared.dataTask(with: r) { data, response, error in
+
+        // Use the custom session for the data task
+        let task = customSession.dataTask(with: r) { data, response, error in
             if AsposeSlidesCloudAPI.debug {
                 if let response = response {
                     print("<< \(response)")
@@ -315,3 +324,4 @@ open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilde
         task.resume()
     }
 }
+
