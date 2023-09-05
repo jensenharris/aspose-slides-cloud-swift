@@ -275,17 +275,22 @@ open class AlamofireDecodableRequestBuilder<T:Decodable>: AlamofireRequestBuilde
         }
         let task = URLSession.shared.dataTask(with: r) { data, response, error in
             if AsposeSlidesCloudAPI.debug {
-                print("<< \(response!)")
-                if data != nil {
-                    let s = String(data: data!, encoding: .utf8)
-                    if s != nil {
-                        print(s!)
-                    } else {
-                        print(data!)
-                    }
+                if let response = response {
+                    print("<< \(response)")
+                }
+                if let data = data, let s = String(data: data, encoding: .utf8) {
+                    print(s)
+                } else {
+                    print(data ?? "No data received")
                 }
             }
-            let dataResponse = response as! HTTPURLResponse
+            
+            // Safely cast the response to HTTPURLResponse
+            guard let dataResponse = response as? HTTPURLResponse else {
+                completion(nil, ErrorResponse.error(-1, nil, AlamofireDecodableRequestBuilderError.invalidResponse))
+                return
+            }
+            
             if !((200 ... 299) ~= dataResponse.statusCode) {
                 completion(nil, ErrorResponse.error(dataResponse.statusCode, data, AlamofireDecodableRequestBuilderError.httpError))
             } else {
